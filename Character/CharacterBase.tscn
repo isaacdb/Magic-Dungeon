@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://ddrlvr6k1bgv8"]
 
 [ext_resource type="Script" path="res://Character/Player.gd" id="1_u2x5d"]
-[ext_resource type="Texture2D" uid="uid://c0l8jaj035wc2" path="res://Character/Magician.png" id="1_veuvv"]
+[ext_resource type="Texture2D" uid="uid://bij07g2lqci3r" path="res://Character/LadyMage.png" id="2_fxss2"]
 [ext_resource type="PackedScene" uid="uid://doeitf8m5edu3" path="res://Weapon/Weapon.tscn" id="3_jc8jj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mdim3"]
@@ -44,11 +44,11 @@ _data = {
 "RESET": SubResource("Animation_pqqg8")
 }
 
-[sub_resource type="Gradient" id="Gradient_jflrf"]
+[sub_resource type="Gradient" id="Gradient_vgptn"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_sahfi"]
-gradient = SubResource("Gradient_jflrf")
+gradient = SubResource("Gradient_vgptn")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.825688, 0.802752)
@@ -61,8 +61,9 @@ script = ExtResource("1_u2x5d")
 shape = SubResource("RectangleShape2D_mdim3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_veuvv")
-hframes = 4
+texture = ExtResource("2_fxss2")
+offset = Vector2(0, -1.424)
+hframes = 9
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
