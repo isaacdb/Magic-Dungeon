@@ -74,4 +74,5 @@ libraries = {
 [node name="PointLight2D" type="PointLight2D" parent="."]
 scale = Vector2(2.08026, 1.88008)
 energy = 0.28
+shadow_enabled = true
 texture = SubResource("GradientTexture2D_sahfi")
