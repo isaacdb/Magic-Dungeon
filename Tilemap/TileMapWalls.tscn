@@ -1,9 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cchjlv33o063k"]
+[gd_scene load_steps=4 format=3 uid="uid://03my8igrvwt8"]
 
-[ext_resource type="Texture2D" uid="uid://chgxjcanqjv2a" path="res://Assets/16x16 dungeon ii wall reconfig/16x16 dungeon ii wall reconfig/16x16 dungeon ii wall reconfig v04 spritesheet.png" id="1_vgorn"]
+[ext_resource type="Texture2D" uid="uid://chgxjcanqjv2a" path="res://Assets/16x16 dungeon ii wall reconfig v04 spritesheet.png" id="1_ahv7w"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_763mn"]
-texture = ExtResource("1_vgorn")
+texture = ExtResource("1_ahv7w")
 texture_region_size = Vector2i(16, 32)
 0:0/0 = 0
 0:0/0/terrain_set = 0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ddrlvr6k1bgv8"]
+[gd_scene load_steps=10 format=3 uid="uid://ddrlvr6k1bgv8"]
 
 [ext_resource type="Script" path="res://Character/Player.gd" id="1_u2x5d"]
 [ext_resource type="Texture2D" uid="uid://c0l8jaj035wc2" path="res://Character/Magician.png" id="1_veuvv"]
@@ -44,7 +44,17 @@ _data = {
 "RESET": SubResource("Animation_pqqg8")
 }
 
+[sub_resource type="Gradient" id="Gradient_jflrf"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sahfi"]
+gradient = SubResource("Gradient_jflrf")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.825688, 0.802752)
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
+collision_mask = 48
 script = ExtResource("1_u2x5d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -60,3 +70,8 @@ libraries = {
 }
 
 [node name="Weapon" parent="." instance=ExtResource("3_jc8jj")]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(2.08026, 1.88008)
+energy = 0.28
+texture = SubResource("GradientTexture2D_sahfi")

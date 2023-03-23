@@ -1,10 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://h532sbrch7we"]
+[gd_scene load_steps=6 format=3 uid="uid://d2iv4f2anflh4"]
 
-[ext_resource type="Texture2D" uid="uid://chgxjcanqjv2a" path="res://Assets/16x16 dungeon ii wall reconfig/16x16 dungeon ii wall reconfig/16x16 dungeon ii wall reconfig v04 spritesheet.png" id="1_ksxoh"]
+[ext_resource type="Texture2D" uid="uid://chgxjcanqjv2a" path="res://Assets/16x16 dungeon ii wall reconfig v04 spritesheet.png" id="1_tqfk5"]
 [ext_resource type="Texture2D" uid="uid://dw0420537afle" path="res://Assets/Dungeon_Tileset_Decorations_v2.png" id="2_5w3oy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h1628"]
-texture = ExtResource("1_ksxoh")
+texture = ExtResource("1_tqfk5")
 13:4/0 = 0
 14:4/0 = 0
 15:4/0 = 0
