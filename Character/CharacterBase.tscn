@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ddrlvr6k1bgv8"]
+[gd_scene load_steps=11 format=3 uid="uid://ddrlvr6k1bgv8"]
 
 [ext_resource type="Script" path="res://Character/Player.gd" id="1_u2x5d"]
 [ext_resource type="Texture2D" uid="uid://bij07g2lqci3r" path="res://Character/LadyMage.png" id="2_fxss2"]
@@ -38,8 +38,14 @@ tracks/0/keys = {
 "values": [0]
 }
 
+[sub_resource type="Animation" id="Animation_pxje7"]
+resource_name = "Fire"
+length = 0.1
+step = 0.05
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_njtry"]
 _data = {
+"Fire": SubResource("Animation_pxje7"),
 "Idle": SubResource("Animation_2iv2e"),
 "RESET": SubResource("Animation_pqqg8")
 }

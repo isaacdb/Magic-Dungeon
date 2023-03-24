@@ -6,6 +6,7 @@ extends Node2D
 @onready var sprite2D := $Sprite2D as Sprite2D
 @onready var fireTimer := $Timer as Timer
 @onready var spawnPoint := $Sprite2D/Marker2D as Marker2D
+@onready var animationPlayer := $AnimationPlayer as AnimationPlayer
 
 var offSetSpawnPoint := 0
 var canShoot := true
@@ -33,6 +34,8 @@ func _physics_process(delta):
 	pass
 
 func _fire():
+	animationPlayer.play("Fire")
+	
 	var newBullet = bullet.instantiate()
 	newBullet.origin = "Player"
 	get_tree().get_root().add_child(newBullet)
