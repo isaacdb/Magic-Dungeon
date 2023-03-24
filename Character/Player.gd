@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var speed = 200
 @export var acceleration = 800
-@export var friction = 800
+@export var friction = 20
 @export var spriteTexture : CompressedTexture2D
 
 @onready var sprite2D := $Sprite2D as Sprite2D
@@ -23,7 +23,12 @@ func _move(delta):
 	
 	var direction = Vector2 (directionH, directionV).normalized()
 	
-	velocity = velocity.move_toward(direction * speed, acceleration * delta)
+	if direction:
+		velocity = velocity.move_toward(direction * speed, acceleration * delta)
+	else:
+		velocity = velocity.lerp(Vector2.ZERO, minf(friction * delta, 1.0))
+		
 	move_and_slide()
 	
 	sprite2D.flip_h = (get_global_mouse_position() - position).x < 0
+	sprite2D.rotation_degrees = directionH * 5
