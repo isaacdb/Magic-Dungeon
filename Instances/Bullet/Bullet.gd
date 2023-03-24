@@ -33,7 +33,6 @@ func _physics_process(delta):
 	pass
 	
 func _on_body_entered(body):
-	print(body.name)
 	if body.has_method("take_damage"):
 		body.take_damage(damage)
 		
@@ -41,7 +40,6 @@ func _on_body_entered(body):
 	pass
 
 func _on_area_entered(area):
-	print(area.name)
 	if area.has_method("take_damage"):
 		area.take_damage(damage)
 		
@@ -49,7 +47,6 @@ func _on_area_entered(area):
 	pass
 	
 func _destroy():
-	print("destroy")
 	self.queue_free()
 	pass
 

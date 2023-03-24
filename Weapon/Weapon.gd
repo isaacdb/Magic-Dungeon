@@ -2,7 +2,7 @@ extends Node2D
 
 @export var fireDelay := 0.5
 
-@onready var bullet := preload("res://Instances/Bullet.tscn")
+@onready var bullet := preload("res://Instances/Bullet/Bullet.tscn")
 @onready var sprite2D := $Sprite2D as Sprite2D
 @onready var fireTimer := $Timer as Timer
 @onready var spawnPoint := $Sprite2D/Marker2D as Marker2D
@@ -37,7 +37,9 @@ func _fire():
 	newBullet.origin = "Player"
 	get_tree().get_root().add_child(newBullet)
 	newBullet.global_position = spawnPoint.global_position
-	newBullet.moveDirection = (get_global_mouse_position() - spawnPoint.global_position).normalized()
+	
+	var targetDirection = (get_global_mouse_position() - spawnPoint.global_position).normalized()
+	newBullet.moveDirection = targetDirection
 	canShoot = false
 	fireTimer.start()
 	pass

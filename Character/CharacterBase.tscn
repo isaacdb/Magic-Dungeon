@@ -54,6 +54,8 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.825688, 0.802752)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+y_sort_enabled = true
+position = Vector2(0, -9.737)
 collision_mask = 48
 script = ExtResource("1_u2x5d")
 
@@ -61,8 +63,11 @@ script = ExtResource("1_u2x5d")
 shape = SubResource("RectangleShape2D_mdim3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, 9.737)
 texture = ExtResource("2_fxss2")
-offset = Vector2(0, -1.424)
+centered = false
+offset = Vector2(-7.494, -22.721)
 hframes = 9
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -76,4 +81,5 @@ libraries = {
 scale = Vector2(2.08026, 1.88008)
 energy = 0.28
 shadow_enabled = true
+shadow_filter_smooth = 20.3
 texture = SubResource("GradientTexture2D_sahfi")
