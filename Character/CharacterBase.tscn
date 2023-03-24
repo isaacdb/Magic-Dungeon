@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Character/Player.gd" id="1_u2x5d"]
 [ext_resource type="Texture2D" uid="uid://bij07g2lqci3r" path="res://Character/LadyMage.png" id="2_fxss2"]
-[ext_resource type="PackedScene" uid="uid://doeitf8m5edu3" path="res://Weapon/Weapon.tscn" id="3_jc8jj"]
+[ext_resource type="PackedScene" uid="uid://dn35ldwj2pa1y" path="res://Instances/Weapon/Weapon.tscn" id="3_jc8jj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mdim3"]
 

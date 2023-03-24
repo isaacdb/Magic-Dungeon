@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dih0deqqyloao"]
+
+[ext_resource type="Texture2D" uid="uid://cprsltieyui37" path="res://Character/SrSoldier.png" id="1_2nfbi"]
+[ext_resource type="Script" path="res://Instances/Enemies/EnemyTest.gd" id="1_jcyni"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mcq7i"]
+
+[node name="Enemy" type="Area2D"]
+script = ExtResource("1_jcyni")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_mcq7i")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 9)
+texture = ExtResource("1_2nfbi")
+centered = false
+offset = Vector2(-7.742, -31.64)
+hframes = 9
