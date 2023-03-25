@@ -42,7 +42,7 @@ func _physics_process(delta):
 	
 func _on_body_entered(body):
 	if body.has_method("take_damage"):
-		body.take_damage(damage)
+		body.take_damage(damage, moveDirection)
 		
 	_destroy()
 	pass
@@ -50,7 +50,7 @@ func _on_body_entered(body):
 
 func _on_area_entered(area):
 	if area.has_method("take_damage"):
-		area.take_damage(damage)
+		area.take_damage(damage, moveDirection)
 		
 	_destroy()
 	pass
