@@ -1,19 +1,106 @@
-[gd_scene load_steps=4 format=3 uid="uid://dih0deqqyloao"]
+[gd_scene load_steps=8 format=3 uid="uid://dih0deqqyloao"]
 
 [ext_resource type="Texture2D" uid="uid://cprsltieyui37" path="res://Character/SrSoldier.png" id="1_2nfbi"]
 [ext_resource type="Script" path="res://Instances/Enemies/EnemyTest.gd" id="1_jcyni"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_mcq7i"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_afdj0"]
+size = Vector2(13, 20)
+
+[sub_resource type="Animation" id="Animation_rv7bv"]
+resource_name = "Attack"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.31315, 0.887669, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_0kp24"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a08sq"]
+_data = {
+"Attack": SubResource("Animation_rv7bv"),
+"RESET": SubResource("Animation_0kp24")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pl4dq"]
+radius = 19.0263
 
 [node name="Enemy" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_jcyni")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_mcq7i")
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_afdj0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, 9)
 texture = ExtResource("1_2nfbi")
 centered = false
 offset = Vector2(-7.742, -31.64)
 hframes = 9
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_a08sq")
+}
+
+[node name="AttackArea" type="Area2D" parent="."]
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(0, -10)
+shape = SubResource("CircleShape2D_pl4dq")
+
+[node name="TimerAttack" type="Timer" parent="."]
+autostart = true
+
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]
+[connection signal="timeout" from="TimerAttack" to="." method="_on_timer_attack_timeout"]

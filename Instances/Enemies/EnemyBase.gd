@@ -3,16 +3,21 @@ class_name EnemyBase
 extends Area2D
 
 @export var lifeBase := 5
+@export var speed := 50
+@export var damage := 1
+
+@onready var player := get_tree().get_nodes_in_group("player")[0] as CharacterBody2D
 
 var currentLife := lifeBase
 
 func _init():
-	print("start eney")
-	monitoring = false
+	monitoring = true
 	monitorable = true
 	
 	collision_layer = 0
-	set_collision_layer_value(4, true)
+	set_collision_layer_value(4, true) # Own enemy hut box
+	
+	set_collision_mask_value(6, true) # Watch World	
 	
 func take_damage(damage):
 	currentLife -= damage

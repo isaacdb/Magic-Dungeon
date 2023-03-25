@@ -5,7 +5,11 @@ extends Area2D
 @export var damage := 0.0
 @export_enum("None:-1", "Player:0", "Enemy:1") var origin = "Player"
 
+@onready var timer := $Timer as Timer
+@onready var animationPlayer := $AnimationPlayer as AnimationPlayer
+
 var velocity := Vector2.ZERO
+var isRunning := true
 
 func _ready():
 	
@@ -21,16 +25,20 @@ func _ready():
 	monitoring = true
 	monitorable = true # Have to be true, just bc a bug, its required for collision with tileemap
 	
+	timer.one_shot = true
+	
 	connect("body_entered", _on_body_entered)
 	connect("area_entered", _on_area_entered)
+	
 	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	velocity = speed * moveDirection * delta	
-	translate(velocity)
+	if isRunning:
+		velocity = speed * moveDirection * delta	
+		translate(velocity)			
 	pass
+
 	
 func _on_body_entered(body):
 	if body.has_method("take_damage"):
@@ -39,6 +47,7 @@ func _on_body_entered(body):
 	_destroy()
 	pass
 
+
 func _on_area_entered(area):
 	if area.has_method("take_damage"):
 		area.take_damage(damage)
@@ -46,8 +55,17 @@ func _on_area_entered(area):
 	_destroy()
 	pass
 	
+	
 func _destroy():
-	self.queue_free()
+	isRunning = false	
+	animationPlayer.play("Hit")
+	
+	timer.wait_time = 0.5
+	timer.start()
+	
+	await timer.timeout
+	
+	self.queue_free()	
 	pass
 
 

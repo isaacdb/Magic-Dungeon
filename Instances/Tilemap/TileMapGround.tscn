@@ -798,6 +798,7 @@ y_sort_enabled = true
 tile_set = SubResource("TileSet_slwwa")
 format = 2
 layer_0/name = "Ground"
+layer_0/z_index = 10
 layer_1/name = "Decorations"
 layer_1/enabled = true
 layer_1/modulate = Color(1, 1, 1, 1)

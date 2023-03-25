@@ -4,9 +4,12 @@ extends CharacterBody2D
 @export var acceleration = 800
 @export var friction = 20
 @export var spriteTexture : CompressedTexture2D
+@export var lifeBase := 10
 
 @onready var sprite2D := $Sprite2D as Sprite2D
 @onready var animationPlayer := $AnimationPlayer as AnimationPlayer
+
+var currentLife := lifeBase
 
 func _ready():
 	animationPlayer.play("Idle")
@@ -32,3 +35,10 @@ func _move(delta):
 	
 	sprite2D.flip_h = (get_global_mouse_position() - position).x < 0
 	sprite2D.rotation_degrees = directionH * 5
+	pass
+	
+func take_damage(damage):
+	currentLife -= damage
+	print(currentLife)
+	
+	pass

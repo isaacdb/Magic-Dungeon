@@ -1,12 +1,30 @@
 extends EnemyBase
 
+var canAttack = false
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	print("enemy test")
-	pass # Replace with function body.
+func _ready():	
+	pass
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _physics_process(delta):
+	var playerDirection = (player.global_position - self.global_position).normalized()
+	var velocity = speed * playerDirection * delta	
+	translate(velocity)
+	pass
+
+func _on_attack_area_body_entered(body):
+	canAttack = true
+	pass
+
+func _on_attack_area_body_exited(body):
+	canAttack = false
+	pass
+
+func _on_timer_attack_timeout():
+	if canAttack:
+		_attack()
+	pass
+
+func _attack():
+	player.take_damage(damage)
 	pass

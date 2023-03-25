@@ -43,6 +43,7 @@ func _fire():
 	
 	var targetDirection = (get_global_mouse_position() - spawnPoint.global_position).normalized()
 	newBullet.moveDirection = targetDirection
+	newBullet.look_at(get_global_mouse_position())
 	canShoot = false
 	fireTimer.start()
 	pass
