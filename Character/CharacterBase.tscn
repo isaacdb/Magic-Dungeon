@@ -1,10 +1,22 @@
-[gd_scene load_steps=11 format=3 uid="uid://ddrlvr6k1bgv8"]
+[gd_scene load_steps=14 format=3 uid="uid://ddrlvr6k1bgv8"]
 
 [ext_resource type="Script" path="res://Character/Player.gd" id="1_u2x5d"]
+[ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="2_5lk51"]
 [ext_resource type="Texture2D" uid="uid://bij07g2lqci3r" path="res://Character/LadyMage.png" id="2_fxss2"]
 [ext_resource type="PackedScene" uid="uid://dn35ldwj2pa1y" path="res://Instances/Weapon/Weapon.tscn" id="3_jc8jj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mdim3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cmbts"]
+resource_local_to_scene = true
+shader = ExtResource("2_5lk51")
+shader_parameter/flash_color = Color(0.792157, 0.364706, 0.290196, 1)
+shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="Animation" id="Animation_pxje7"]
+resource_name = "Fire"
+length = 0.1
+step = 0.05
 
 [sub_resource type="Animation" id="Animation_2iv2e"]
 resource_name = "Idle"
@@ -37,15 +49,51 @@ tracks/0/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:material:shader_parameter/flash_modifier")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
-[sub_resource type="Animation" id="Animation_pxje7"]
-resource_name = "Fire"
-length = 0.1
-step = 0.05
+[sub_resource type="Animation" id="Animation_wwtjb"]
+resource_name = "Hit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/flash_modifier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.8, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer:current_animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Idle"]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_njtry"]
 _data = {
 "Fire": SubResource("Animation_pxje7"),
+"Hit": SubResource("Animation_wwtjb"),
 "Idle": SubResource("Animation_2iv2e"),
 "RESET": SubResource("Animation_pqqg8")
 }
@@ -70,6 +118,7 @@ shape = SubResource("RectangleShape2D_mdim3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 y_sort_enabled = true
+material = SubResource("ShaderMaterial_cmbts")
 position = Vector2(0, 9.737)
 texture = ExtResource("2_fxss2")
 centered = false

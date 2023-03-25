@@ -7,6 +7,7 @@ extends Area2D
 @export var damage := 1
 
 @onready var player := get_tree().get_nodes_in_group("player")[0] as CharacterBody2D
+@onready var animPlayer := $AnimationPlayer as AnimationPlayer
 
 var currentLife := lifeBase
 
@@ -21,6 +22,7 @@ func _init():
 	
 func take_damage(damage):
 	currentLife -= damage
+	animPlayer.play("Hit")
 	
 	if currentLife <= 0:
 		queue_free()	

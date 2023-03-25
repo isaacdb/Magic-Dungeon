@@ -39,6 +39,6 @@ func _move(delta):
 	
 func take_damage(damage):
 	currentLife -= damage
-	print(currentLife)
+	animationPlayer.play("Hit")
 	
 	pass
