@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://dih0deqqyloao"]
+[gd_scene load_steps=44 format=3 uid="uid://dih0deqqyloao"]
 
 [ext_resource type="Script" path="res://Instances/Enemies/EnemyTest.gd" id="1_jcyni"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="2_hs026"]
@@ -402,6 +402,15 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_ck05n"]
+offsets = PackedFloat32Array(0, 0.416129, 0.741935)
+colors = PackedColorArray(0.175756, 0.403577, 0.983566, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_h8ab2"]
+gradient = SubResource("Gradient_ck05n")
+fill = 1
+fill_from = Vector2(0.487179, 0.521368)
+
 [sub_resource type="Animation" id="Animation_v1b8t"]
 resource_name = "Explosion"
 step = 0.05
@@ -429,6 +438,30 @@ tracks/1/keys = {
 "update": 1,
 "values": [&"Explosion"]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PointLight2D:enabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.55),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PointLight2D:energy")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.55),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 2.0, 0.5, 0.0]
+}
 
 [sub_resource type="Animation" id="Animation_yejn2"]
 length = 0.001
@@ -455,6 +488,30 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [&"Explosion"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PointLight2D:enabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PointLight2D:energy")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_81din"]
@@ -503,6 +560,12 @@ z_index = 10
 position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_amwqu")
 animation = &"Explosion"
+
+[node name="PointLight2D" type="PointLight2D" parent="ExplosionSprite"]
+enabled = false
+energy = 0.0
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_h8ab2")
 
 [node name="AnimationPlayerExplosion" type="AnimationPlayer" parent="ExplosionSprite"]
 libraries = {
