@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://pllt78kqfrts"]
+[gd_scene load_steps=6 format=3 uid="uid://pllt78kqfrts"]
 
 [ext_resource type="PackedScene" uid="uid://03my8igrvwt8" path="res://Instances/Tilemap/TileMapWalls.tscn" id="1_fch5f"]
 [ext_resource type="PackedScene" uid="uid://d2iv4f2anflh4" path="res://Instances/Tilemap/TileMapGround.tscn" id="2_vbm8m"]
 [ext_resource type="PackedScene" uid="uid://ddrlvr6k1bgv8" path="res://Character/CharacterBase.tscn" id="3_du5vr"]
+[ext_resource type="Script" path="res://Scripts/Camera.gd" id="3_fsyre"]
 [ext_resource type="PackedScene" uid="uid://dih0deqqyloao" path="res://Instances/Enemies/EnemyBase.tscn" id="4_xrce3"]
 
 [node name="Node2D" type="Node2D"]
@@ -21,25 +22,32 @@ layer_1/tile_data = PackedInt32Array(0, 0, 8, 1, 0, 8, 2, 0, 8, 3, 0, 8, 4, 0, 8
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(114, 79)
+zoom = Vector2(2, 2)
+script = ExtResource("3_fsyre")
+
+[node name="ShakeTimer" type="Timer" parent="Camera2D"]
+one_shot = true
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("3_du5vr")]
 position = Vector2(-61, 34)
 
 [node name="Enemy" parent="." instance=ExtResource("4_xrce3")]
 y_sort_enabled = true
-lifeBase = 50
+lifeBase = 10
 
 [node name="Enemy2" parent="." instance=ExtResource("4_xrce3")]
 y_sort_enabled = true
 position = Vector2(84, 31)
-lifeBase = 50
+lifeBase = 10
 
 [node name="Enemy3" parent="." instance=ExtResource("4_xrce3")]
 y_sort_enabled = true
 position = Vector2(153, 81)
-lifeBase = 50
+lifeBase = 10
 
 [node name="Enemy4" parent="." instance=ExtResource("4_xrce3")]
 y_sort_enabled = true
 position = Vector2(248, -8)
-lifeBase = 50
+lifeBase = 10
+
+[connection signal="timeout" from="Camera2D/ShakeTimer" to="Camera2D" method="_on_shake_timer_timeout"]

@@ -138,3 +138,7 @@ energy = 0.28
 shadow_enabled = true
 shadow_filter_smooth = 20.3
 texture = SubResource("GradientTexture2D_sahfi")
+
+[node name="DashTimer" type="Timer" parent="."]
+
+[node name="DashTimerCooldown" type="Timer" parent="."]
