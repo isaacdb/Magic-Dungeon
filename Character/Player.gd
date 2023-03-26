@@ -19,6 +19,7 @@ var currentLife := lifeBase
 var canDash = true
 var isDashing = false
 var dashDirection := Vector2.ZERO
+var isAlive = true
 
 func _ready():
 	animationPlayer.play("Idle")
@@ -31,6 +32,10 @@ func _ready():
 	pass 
 
 func _physics_process(delta):
+	if !isAlive:
+		velocity = velocity.lerp(Vector2.ZERO, minf(friction * delta, 1.0))
+		return
+	
 	if Input.is_action_just_pressed("dash") and canDash:
 		dash()
 		
@@ -39,6 +44,7 @@ func _physics_process(delta):
 		
 	
 func _move(delta):
+	
 	var moveDirection = getAxisInput()
 	
 	if isDashing:
@@ -75,8 +81,15 @@ func dash():
 	pass	
 	
 func take_damage(damage):
+	if !isAlive:
+		return
+		
 	currentLife -= damage
 	animationPlayer.play("Hit")	
+	
+	if currentLife <= 0:
+		Global.emit_signal("player_dead")
+		isAlive = false
 	pass
 	
 func dashDuration_timeout():
