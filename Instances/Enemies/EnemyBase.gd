@@ -9,7 +9,7 @@ extends CharacterBody2D
 @onready var player := get_tree().get_nodes_in_group("player")[0] as CharacterBody2D
 @onready var animPlayer := $AnimationPlayer as AnimationPlayer
 @onready var explosionAnimPlayer := $ExplosionSprite/AnimationPlayerExplosion as AnimationPlayer
-@onready var sprite := $Sprite2D as Sprite2D
+@onready var sprite := $AnimatedSprite as AnimatedSprite2D
 
 var currentLife := 0
 

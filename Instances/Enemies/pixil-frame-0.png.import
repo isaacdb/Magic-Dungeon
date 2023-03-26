@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0l8jaj035wc2"
-path="res://.godot/imported/Magician.png-a28f0f9123278c23609230ec12d984ab.ctex"
+uid="uid://cq3wrgwnra0xh"
+path="res://.godot/imported/pixil-frame-0.png-8e8a3cc8415de8686ac079b115d959a2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Character/Magician.png"
-dest_files=["res://.godot/imported/Magician.png-a28f0f9123278c23609230ec12d984ab.ctex"]
+source_file="res://Instances/Enemies/pixil-frame-0.png"
+dest_files=["res://.godot/imported/pixil-frame-0.png-8e8a3cc8415de8686ac079b115d959a2.ctex"]
 
 [params]
 
