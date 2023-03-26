@@ -12,10 +12,10 @@ func _physics_process(delta):
 		return
 		
 	var playerDirection = (player.global_position - self.global_position).normalized()
-	#velocity = velocity.lerp(player.global_position, minf(20 * delta, 1.0))
 	velocity = velocity.move_toward(playerDirection * speed, delta * 1300)
 	move_and_slide()
-	sprite.flip_h = velocity.x < 0
+	
+	sprite.flip_h = playerDirection.x < 0
 	pass
 
 func _on_attack_area_body_entered(body):

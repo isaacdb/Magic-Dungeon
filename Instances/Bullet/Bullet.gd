@@ -7,6 +7,7 @@ extends Area2D
 
 @onready var timer := $Timer as Timer
 @onready var animationPlayer := $AnimationPlayer as AnimationPlayer
+@onready var collisionShape := $CollisionShape2D as CollisionShape2D
 
 var velocity := Vector2.ZERO
 var isRunning := true
@@ -41,6 +42,9 @@ func _physics_process(delta):
 
 	
 func _on_body_entered(body):
+	if !isRunning:
+		return
+		
 	if body.has_method("take_damage"):
 		body.take_damage(damage, moveDirection)
 		
@@ -49,6 +53,9 @@ func _on_body_entered(body):
 
 
 func _on_area_entered(area):
+	if !isRunning:
+		return
+		
 	if area.has_method("take_damage"):
 		area.take_damage(damage, moveDirection)
 		
@@ -58,9 +65,10 @@ func _on_area_entered(area):
 	
 func _destroy():
 	isRunning = false	
+	collisionShape.set_deferred("Disabled", true)
 	animationPlayer.play("Hit")
 	
-	timer.wait_time = 0.5
+	timer.wait_time = 1.5
 	timer.start()
 	
 	await timer.timeout

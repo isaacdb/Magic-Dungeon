@@ -38,7 +38,7 @@ func _fire():
 	
 	var newBullet = bullet.instantiate()
 	newBullet.origin = "Player"
-	get_tree().get_root().add_child(newBullet)
+	get_tree().get_root().get_child(0).add_child(newBullet)
 	newBullet.global_position = spawnPoint.global_position
 	
 	var targetDirection = (get_global_mouse_position() - spawnPoint.global_position).normalized()

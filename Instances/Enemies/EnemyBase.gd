@@ -18,6 +18,7 @@ func _init():
 	set_collision_layer_value(4, true) # Own enemy hut box
 	
 	set_collision_mask_value(6, true) # Watch World	
+	set_collision_mask_value(4, true) # Watch another enemies
 	
 func take_damage(damage, moveDirection):
 	currentLife -= damage
