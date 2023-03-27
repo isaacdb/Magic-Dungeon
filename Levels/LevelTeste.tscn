@@ -142,7 +142,7 @@ position = Vector2(178, -472)
 script = ExtResource("6_awtxp")
 gateEnter = NodePath("../Gate-Lobby-Room1")
 gateExit = NodePath("../Gate-Room1-Room2")
-enemies = Array[PackedScene]([ExtResource("4_xrce3"), ExtResource("4_xrce3")])
+enemies = Array[PackedScene]([ExtResource("4_xrce3"), ExtResource("4_xrce3"), ExtResource("4_xrce3"), ExtResource("4_xrce3"), ExtResource("4_xrce3"), ExtResource("4_xrce3")])
 
 [node name="Area2D" type="Area2D" parent="Room-1"]
 collision_layer = 0

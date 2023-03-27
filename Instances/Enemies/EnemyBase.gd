@@ -12,6 +12,7 @@ extends CharacterBody2D
 @onready var sprite := $AnimatedSprite as AnimatedSprite2D
 
 var currentLife := 0
+var isAlive = false
 
 func _init():	
 	collision_layer = 0
@@ -38,4 +39,11 @@ func take_damage(damage, moveDirection):
 		explosionAnimPlayer.get_parent().reparent(get_tree().get_root())
 		queue_free()
 		
-
+func spawned():
+	isAlive = true
+	enable_disable_enemy(true)
+	pass
+	
+func enable_disable_enemy(active: bool):
+	sprite.visible = active
+	pass

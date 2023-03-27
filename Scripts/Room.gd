@@ -10,7 +10,7 @@ extends Node2D
 
 var areaClean = false
 var areaActive = false
-
+var spawnPointsUsed : Array[int]
 var enemiesCount := 0
 var enemiesKilled := 0 
 
@@ -31,10 +31,19 @@ func spawn_enemies():
 	for enemy in enemies:
 		var newEnemy = enemy.instantiate() as CharacterBody2D
 		get_tree().root.call_deferred("add_child", newEnemy)
-		var positionIndex = rand.randi_range(0, spawnPoints.size() - 1)		
-		newEnemy.global_position = spawnPoints[positionIndex].global_position
+		newEnemy.global_position = get_random_spawn_point()
 		enemiesCount += 1
 	pass
+
+func get_random_spawn_point() -> Vector2:
+	var positionIndex = rand.randi_range(0, spawnPoints.size() - 1)		
+	
+	while spawnPointsUsed.any(func(number): return number == positionIndex):
+		positionIndex = rand.randi_range(0, spawnPoints.size() -  1)		
+	
+	spawnPointsUsed.insert(0, positionIndex)
+	
+	return spawnPoints[positionIndex].global_position
 	
 func enemy_killed():
 	if areaActive and not areaClean:

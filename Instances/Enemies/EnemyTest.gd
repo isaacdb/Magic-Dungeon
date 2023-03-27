@@ -3,11 +3,14 @@ extends EnemyBase
 var canAttack = false
 
 func _ready():	
+	enable_disable_enemy(false)
 	currentLife = lifeBase
 	pass
 
-
 func _physics_process(delta):
+	if not isAlive:
+		return
+	
 	if canAttack:
 		return
 		
@@ -27,6 +30,9 @@ func _on_attack_area_body_exited(body):
 	pass
 
 func _on_timer_attack_timeout():
+	if not isAlive:
+		return
+		
 	if canAttack:
 		_attack()
 	pass
