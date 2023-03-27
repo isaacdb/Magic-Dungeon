@@ -204,25 +204,7 @@ position = Vector2(272, -42)
 position = Vector2(178, -472)
 script = ExtResource("6_awtxp")
 gateEnter = NodePath("../Gate-Lobby-Room-1")
-
-[node name="Enemy" parent="Room-1" instance=ExtResource("4_xrce3")]
-y_sort_enabled = true
-lifeBase = 10
-
-[node name="Enemy2" parent="Room-1" instance=ExtResource("4_xrce3")]
-y_sort_enabled = true
-position = Vector2(84, 31)
-lifeBase = 10
-
-[node name="Enemy3" parent="Room-1" instance=ExtResource("4_xrce3")]
-y_sort_enabled = true
-position = Vector2(153, 81)
-lifeBase = 10
-
-[node name="Enemy4" parent="Room-1" instance=ExtResource("4_xrce3")]
-y_sort_enabled = true
-position = Vector2(248, -8)
-lifeBase = 10
+enemies = Array[PackedScene]([ExtResource("4_xrce3"), ExtResource("4_xrce3")])
 
 [node name="Area2D" type="Area2D" parent="Room-1"]
 collision_layer = 0
@@ -230,6 +212,80 @@ collision_layer = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Room-1/Area2D"]
 position = Vector2(134.5, 71.5)
 shape = SubResource("RectangleShape2D_a8ybq")
+
+[node name="SpawnPoints" type="Node2D" parent="Room-1"]
+
+[node name="Marker2D" type="Node2D" parent="Room-1/SpawnPoints"]
+position = Vector2(-118, -38)
+
+[node name="Marker2D2" type="Node2D" parent="Room-1/SpawnPoints"]
+position = Vector2(-49, -38)
+
+[node name="Marker2D3" type="Node2D" parent="Room-1/SpawnPoints"]
+position = Vector2(14, -38)
+
+[node name="Marker2D4" type="Node2D" parent="Room-1/SpawnPoints"]
+position = Vector2(87, -38)
+
+[node name="Marker2D5" type="Node2D" parent="Room-1/SpawnPoints"]
+position = Vector2(143, -38)
+
+[node name="Marker2D6" type="Node2D" parent="Room-1/SpawnPoints"]
+position = Vector2(216, -38)
+
+[node name="Marker2D7" type="Node2D" parent="Room-1/SpawnPoints"]
+position = Vector2(311, -38)
+
+[node name="Marker2D8" type="Node2D" parent="Room-1/SpawnPoints"]
+position = Vector2(386, -38)
+
+[node name="Marker2D9" type="Node2D" parent="Room-1/SpawnPoints"]
+position = Vector2(-118, 53)
+
+[node name="Marker2D10" type="Node2D" parent="Room-1/SpawnPoints"]
+position = Vector2(-49, 53)
+
+[node name="Marker2D11" type="Node2D" parent="Room-1/SpawnPoints"]
+position = Vector2(14, 53)
+
+[node name="Marker2D12" type="Node2D" parent="Room-1/SpawnPoints"]
+position = Vector2(87, 53)
+
+[node name="Marker2D13" type="Node2D" parent="Room-1/SpawnPoints"]
+position = Vector2(143, 53)
+
+[node name="Marker2D14" type="Node2D" parent="Room-1/SpawnPoints"]
+position = Vector2(216, 53)
+
+[node name="Marker2D15" type="Node2D" parent="Room-1/SpawnPoints"]
+position = Vector2(311, 53)
+
+[node name="Marker2D16" type="Node2D" parent="Room-1/SpawnPoints"]
+position = Vector2(386, 53)
+
+[node name="Marker2D17" type="Node2D" parent="Room-1/SpawnPoints"]
+position = Vector2(-118, 112)
+
+[node name="Marker2D18" type="Node2D" parent="Room-1/SpawnPoints"]
+position = Vector2(-49, 112)
+
+[node name="Marker2D19" type="Node2D" parent="Room-1/SpawnPoints"]
+position = Vector2(14, 112)
+
+[node name="Marker2D20" type="Node2D" parent="Room-1/SpawnPoints"]
+position = Vector2(87, 112)
+
+[node name="Marker2D21" type="Node2D" parent="Room-1/SpawnPoints"]
+position = Vector2(143, 112)
+
+[node name="Marker2D22" type="Node2D" parent="Room-1/SpawnPoints"]
+position = Vector2(216, 112)
+
+[node name="Marker2D23" type="Node2D" parent="Room-1/SpawnPoints"]
+position = Vector2(311, 112)
+
+[node name="Marker2D24" type="Node2D" parent="Room-1/SpawnPoints"]
+position = Vector2(386, 112)
 
 [node name="Gate-Lobby-Room-1" type="StaticBody2D" parent="."]
 y_sort_enabled = true
