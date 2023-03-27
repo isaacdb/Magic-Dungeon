@@ -20,6 +20,8 @@ Global="*res://Scripts/Global.gd"
 
 [display]
 
+window/size/viewport_width=1280
+window/size/viewport_height=720
 window/stretch/aspect="expand"
 
 [input]
@@ -63,6 +65,7 @@ dash={
 2d_physics/layer_4="Enemy Hurt Box"
 2d_physics/layer_5="Interactive"
 2d_physics/layer_6="World"
+2d_physics/layer_7="Room"
 
 [rendering]
 

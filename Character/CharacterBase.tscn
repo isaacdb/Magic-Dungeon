@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://ddrlvr6k1bgv8"]
+[gd_scene load_steps=15 format=3 uid="uid://ddrlvr6k1bgv8"]
 
 [ext_resource type="Script" path="res://Character/Player.gd" id="1_u2x5d"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="2_5lk51"]
 [ext_resource type="Texture2D" uid="uid://bij07g2lqci3r" path="res://Character/LadyMage.png" id="2_fxss2"]
 [ext_resource type="PackedScene" uid="uid://dn35ldwj2pa1y" path="res://Instances/Weapon/Weapon.tscn" id="3_jc8jj"]
+[ext_resource type="Script" path="res://Scripts/Camera.gd" id="5_frrt1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mdim3"]
 
@@ -110,7 +111,7 @@ fill_to = Vector2(0.825688, 0.802752)
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["player"]]
 y_sort_enabled = true
 position = Vector2(0, -9.737)
-collision_mask = 48
+collision_mask = 112
 script = ExtResource("1_u2x5d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -142,3 +143,15 @@ texture = SubResource("GradientTexture2D_sahfi")
 [node name="DashTimer" type="Timer" parent="."]
 
 [node name="DashTimerCooldown" type="Timer" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2.5, 2.5)
+limit_left = 0
+limit_right = 640
+limit_bottom = 0
+script = ExtResource("5_frrt1")
+
+[node name="ShakeTimer" type="Timer" parent="Camera2D"]
+one_shot = true
+
+[connection signal="timeout" from="Camera2D/ShakeTimer" to="Camera2D" method="_on_shake_timer_timeout"]
