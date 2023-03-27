@@ -33,6 +33,7 @@ func take_damage(damage, moveDirection):
 	
 	if currentLife <= 0:
 		Global.emit_signal("screen_shake", 2, .2, .5)
+		Global.emit_signal("enemy_killed")
 		explosionAnimPlayer.play("Explosion")
 		explosionAnimPlayer.get_parent().reparent(get_tree().get_root())
 		queue_free()

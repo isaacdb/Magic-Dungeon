@@ -1,0 +1,139 @@
+[gd_scene load_steps=8 format=3 uid="uid://rsrbyyuomhgb"]
+
+[ext_resource type="Script" path="res://Scripts/Gate.gd" id="1_5q84b"]
+[ext_resource type="Texture2D" uid="uid://r26guv2r3np2" path="res://Assets/pixil-frame-1.png" id="2_jdvbb"]
+
+[sub_resource type="Animation" id="Animation_mif48"]
+resource_name = "Close"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GateSprites:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(90, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_plija"]
+resource_name = "Open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GateSprites:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(90, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_2a7aj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GateSprites:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ymlf1"]
+_data = {
+"Close": SubResource("Animation_mif48"),
+"Open": SubResource("Animation_plija"),
+"RESET": SubResource("Animation_2a7aj")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g6o3d"]
+size = Vector2(124, 25.586)
+
+[node name="Gate-Lobby-Room-1" type="StaticBody2D"]
+y_sort_enabled = true
+position = Vector2(313, -230)
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("1_5q84b")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ymlf1")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 9.793)
+shape = SubResource("RectangleShape2D_g6o3d")
+disabled = true
+
+[node name="GateSprites" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="GateSprites"]
+y_sort_enabled = true
+position = Vector2(-31, 3.5)
+texture = ExtResource("2_jdvbb")
+
+[node name="Sprite2D2" type="Sprite2D" parent="GateSprites"]
+y_sort_enabled = true
+position = Vector2(-15, 3.5)
+texture = ExtResource("2_jdvbb")
+
+[node name="Sprite2D3" type="Sprite2D" parent="GateSprites"]
+y_sort_enabled = true
+position = Vector2(1, 3.5)
+texture = ExtResource("2_jdvbb")
+
+[node name="Sprite2D4" type="Sprite2D" parent="GateSprites"]
+y_sort_enabled = true
+position = Vector2(17, 3.5)
+texture = ExtResource("2_jdvbb")
+
+[node name="Sprite2D5" type="Sprite2D" parent="GateSprites"]
+y_sort_enabled = true
+position = Vector2(33, 3.5)
+texture = ExtResource("2_jdvbb")
