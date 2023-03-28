@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://ddrlvr6k1bgv8"]
+[gd_scene load_steps=18 format=3 uid="uid://ddrlvr6k1bgv8"]
 
 [ext_resource type="Script" path="res://Character/Player.gd" id="1_u2x5d"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="2_5lk51"]
 [ext_resource type="Texture2D" uid="uid://bij07g2lqci3r" path="res://Character/LadyMage.png" id="2_fxss2"]
 [ext_resource type="PackedScene" uid="uid://dn35ldwj2pa1y" path="res://Instances/Weapon/Weapon.tscn" id="3_jc8jj"]
 [ext_resource type="Script" path="res://Scripts/Camera.gd" id="5_frrt1"]
+[ext_resource type="Texture2D" uid="uid://b6l8fu6uss63t" path="res://Character/Pixilart Sprite Sheet.png" id="6_hlgvd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mdim3"]
 
@@ -108,6 +109,16 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.825688, 0.802752)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hp0bg"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_nnyqe"]
+offsets = PackedFloat32Array(0, 0.71134, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["player"]]
 y_sort_enabled = true
 position = Vector2(0, -9.737)
@@ -153,5 +164,47 @@ script = ExtResource("5_frrt1")
 
 [node name="ShakeTimer" type="Timer" parent="Camera2D"]
 one_shot = true
+
+[node name="DashParticle" type="CPUParticles2D" parent="."]
+z_index = -1
+material = SubResource("CanvasItemMaterial_hp0bg")
+position = Vector2(0, 9.737)
+emitting = false
+amount = 200
+randomness = 0.2
+texture = ExtResource("6_hlgvd")
+direction = Vector2(0, -1)
+gravity = Vector2(0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 15.0
+damping_min = 0.5
+damping_max = 2.0
+angle_min = -480.0
+angle_max = 360.0
+scale_amount_min = 0.7
+scale_amount_max = 1.2
+color_ramp = SubResource("Gradient_nnyqe")
+anim_offset_max = 1.0
+
+[node name="WalkParticle" type="CPUParticles2D" parent="."]
+z_index = -1
+material = SubResource("CanvasItemMaterial_hp0bg")
+position = Vector2(0, 9.737)
+emitting = false
+amount = 32
+randomness = 0.2
+texture = ExtResource("6_hlgvd")
+direction = Vector2(0, -1)
+gravity = Vector2(0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 15.0
+damping_min = 0.5
+damping_max = 2.0
+angle_min = -480.0
+angle_max = 360.0
+scale_amount_min = 0.5
+scale_amount_max = 0.7
+color_ramp = SubResource("Gradient_nnyqe")
+anim_offset_max = 1.0
 
 [connection signal="timeout" from="Camera2D/ShakeTimer" to="Camera2D" method="_on_shake_timer_timeout"]

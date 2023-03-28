@@ -30,7 +30,7 @@ func area_room_body_entered(body):
 func spawn_enemies():
 	for enemy in enemies:
 		var newEnemy = enemy.instantiate() as CharacterBody2D
-		get_tree().root.call_deferred("add_child", newEnemy)
+		self.get_parent().call_deferred("add_child", newEnemy)
 		newEnemy.global_position = get_random_spawn_point()
 		enemiesCount += 1
 	pass

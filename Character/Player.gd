@@ -14,6 +14,8 @@ extends CharacterBody2D
 @onready var animationPlayer := $AnimationPlayer as AnimationPlayer
 @onready var dashTimerDuration := $DashTimer as Timer
 @onready var dashTimerCD := $DashTimerCooldown as Timer
+@onready var dashParticule := $DashParticle as CPUParticles2D
+@onready var walkParticule := $WalkParticle as CPUParticles2D
 
 var currentLife := lifeBase
 var canDash = true
@@ -43,14 +45,14 @@ func _physics_process(delta):
 	pass
 		
 	
-func _move(delta):
-	
+func _move(delta):	
 	var moveDirection = getAxisInput()
 	
 	if isDashing:
 		moveDirection = dashDirection
 		velocity = velocity.move_toward(moveDirection * dashSpeed, acceleration * 20 * delta)
 	else:		
+		walkParticule.emitting = moveDirection != Vector2.ZERO
 		if moveDirection:
 			velocity = velocity.move_toward(moveDirection * speed, acceleration * delta)
 		else:
@@ -78,6 +80,8 @@ func dash():
 		dashDirection = Vector2.RIGHT
 	
 	dashTimerDuration.start()
+	dashParticule.emitting = true
+	walkParticule.emitting = false
 	pass	
 	
 func take_damage(damage):
@@ -96,6 +100,8 @@ func dashDuration_timeout():
 	dashTimerCD.start()
 	isDashing = false
 	velocity = dashDirection * speed
+	dashParticule.emitting = false
+	walkParticule.emitting = true
 	pass
 	
 func dashCooldown_timeout():
