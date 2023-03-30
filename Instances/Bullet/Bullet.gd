@@ -22,6 +22,7 @@ func _ready():
 			set_collision_mask_value(4, true) #Collision with enemy hurtBox
 		"Enemy":
 			set_collision_mask_value(2, true) #Collision with player hurtBox			
+			set_collision_mask_value(1, true)
 	
 	monitoring = true
 	monitorable = true # Have to be true, just bc a bug, its required for collision with tileemap

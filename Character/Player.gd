@@ -84,7 +84,7 @@ func dash():
 	walkParticule.emitting = false
 	pass	
 	
-func take_damage(damage):
+func take_damage(damage, damageDirection):
 	if !isAlive:
 		return
 		

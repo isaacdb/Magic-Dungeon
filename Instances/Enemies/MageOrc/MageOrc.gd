@@ -1,5 +1,7 @@
 extends EnemyBase
 
+@onready var bullet := preload("res://Instances/Bullet/Bullet.tscn")
+
 var canAttack = false
 
 func _ready():	
@@ -71,8 +73,19 @@ func _on_timer_attack_timeout():
 	pass
 
 func _attack():
-	player.take_damage(damage)
 	animPlayer.play("Attack")
+		
+	var newBullet = bullet.instantiate()
+	newBullet.origin = "Enemy"
+	get_tree().get_root().get_child(0).add_child(newBullet)
+	newBullet.global_position = global_position
+	newBullet.speed = 300.0
+	
+	var targetDirection = (player.global_position - global_position).normalized()
+	newBullet.moveDirection = targetDirection
+	newBullet.look_at(player.global_position)
+	pass
+	
 	pass
 
 func _on_hit_knock_back_timer_timeout():

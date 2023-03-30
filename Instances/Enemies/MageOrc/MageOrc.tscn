@@ -276,7 +276,7 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pl4dq"]
-radius = 107.0
+radius = 250.018
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_isurp"]
 atlas = ExtResource("4_4qcg0")
@@ -653,7 +653,7 @@ _data = {
 "Spawn": SubResource("Animation_8sabl")
 }
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="MageOrc" type="CharacterBody2D"]
 y_sort_enabled = true
 collision_layer = 0
 collision_mask = 0
@@ -687,6 +687,7 @@ position = Vector2(0, -10)
 shape = SubResource("CircleShape2D_pl4dq")
 
 [node name="TimerAttack" type="Timer" parent="."]
+wait_time = 2.0
 one_shot = true
 autostart = true
 
