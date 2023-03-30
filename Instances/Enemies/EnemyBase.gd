@@ -2,17 +2,34 @@ class_name EnemyBase
 
 extends CharacterBody2D
 
-@export var lifeBase := 5
-@export var speed := 50
-@export var damage := 1
+@export var enemyBaseResource : EnemyBaseResource
+@export var enemyAttacks : EnemyAttack
 
 @onready var player := get_tree().get_nodes_in_group("player")[0] as CharacterBody2D
 @onready var animPlayer := $AnimationPlayer as AnimationPlayer
 @onready var explosionAnimPlayer := $ExplosionSprite/AnimationPlayerExplosion as AnimationPlayer
 @onready var sprite := $AnimatedSprite as AnimatedSprite2D
+@onready var collisionShape := $CollisionShape2D as CollisionShape2D
+@onready var attackAreaShape := $AttackArea/CollisionShape2D as CollisionShape2D
+@onready var enemyAttackTimer := $TimerAttack as Timer
+@onready var hitKockBackTimer := $HitKnockBackTimer as Timer
 
 var currentLife := 0
 var isAlive = false
+var lastBulletImpactDirection := Vector2.ZERO
+
+enum States
+{
+	IDLE,
+	CHASING,
+	ESCAPING,
+	HIT,
+	ATTACK,
+	DEATH,
+	SPAWNING
+}
+
+var currentState := States.SPAWNING
 
 func _init():	
 	collision_layer = 0
@@ -22,28 +39,19 @@ func _init():
 	set_collision_mask_value(6, true) # Watch World	
 	set_collision_mask_value(4, true) # Watch another enemies
 	
-func take_damage(damage, moveDirection):
+func take_damage(damage, bulletDirection):
 	currentLife -= damage
-	animPlayer.play("Hit")
+	currentState = States.HIT
+	lastBulletImpactDirection = bulletDirection
+	hitKockBackTimer.start()
 	
-	Global.emit_signal("screen_shake", .5, .1, 1)
-	
-	var tween = create_tween()
-	tween.tween_property(self, "position", global_position + moveDirection * 30, 0.1).from_current()
-	tween.play()
-	
-	if currentLife <= 0:
-		Global.emit_signal("screen_shake", 2, .2, .5)
-		Global.emit_signal("enemy_killed")
-		explosionAnimPlayer.play("Explosion")
-		explosionAnimPlayer.get_parent().reparent(get_tree().get_root())
-		queue_free()
-		
 func spawned():
 	isAlive = true
+	currentState = States.IDLE
 	enable_disable_enemy(true)
 	pass
 	
 func enable_disable_enemy(active: bool):
 	sprite.visible = active
+	collisionShape.disabled = !active
 	pass
