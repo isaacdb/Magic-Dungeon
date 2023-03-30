@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="EnemyBaseResource" load_steps=2 format=3 uid="uid://bfxqe5jdhwuwc"]
-
-[ext_resource type="Script" path="res://Scripts/EnemyBaseResource.gd" id="1_xdngg"]
-
-[resource]
-script = ExtResource("1_xdngg")
-lifeBase = 5
-speed = 50
-damage = 1

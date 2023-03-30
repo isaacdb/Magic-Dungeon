@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dd802vu3oo82g"
-path="res://.godot/imported/pixil-frame-1.png-7b27911c6537db770cd573861e32eb8d.ctex"
+path="res://.godot/imported/low-orc.png-39dba9ef5f7ec35ebf32d413641200f9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Instances/Enemies/pixil-frame-1.png"
-dest_files=["res://.godot/imported/pixil-frame-1.png-7b27911c6537db770cd573861e32eb8d.ctex"]
+source_file="res://Instances/Enemies/LowOrc/low-orc.png"
+dest_files=["res://.godot/imported/low-orc.png-39dba9ef5f7ec35ebf32d413641200f9.ctex"]
 
 [params]
 

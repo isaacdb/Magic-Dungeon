@@ -2,8 +2,9 @@ class_name EnemyBase
 
 extends CharacterBody2D
 
-@export var enemyBaseResource : EnemyBaseResource
-@export var enemyAttacks : EnemyAttack
+@export var lifeBase := 5
+@export var speed := 50
+@export var damage := 1
 
 @onready var player := get_tree().get_nodes_in_group("player")[0] as CharacterBody2D
 @onready var animPlayer := $AnimationPlayer as AnimationPlayer

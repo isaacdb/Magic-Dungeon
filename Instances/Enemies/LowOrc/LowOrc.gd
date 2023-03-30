@@ -4,7 +4,7 @@ var canAttack = false
 
 func _ready():	
 	enable_disable_enemy(false)
-	currentLife = enemyBaseResource.lifeBase
+	currentLife = lifeBase
 	pass
 
 func _physics_process(delta):
@@ -28,7 +28,7 @@ func _physics_process(delta):
 		States.CHASING:
 			animPlayer.play("Walk")
 			var playerDirection = (player.global_position - self.global_position).normalized()
-			velocity = velocity.move_toward(playerDirection * enemyBaseResource.speed, delta * 1300)
+			velocity = velocity.move_toward(playerDirection * speed, delta * 1300)
 			move_and_slide()
 	
 			sprite.flip_h = playerDirection.x < 0
@@ -38,10 +38,11 @@ func _physics_process(delta):
 			pass
 	
 		States.ATTACK:
-			_attack()
-			canAttack = false
-			enemyAttackTimer.start()
-			currentState = States.IDLE
+			if canAttack:
+				_attack()
+				canAttack = false
+				enemyAttackTimer.start()
+			
 			pass
 			
 		States.HIT:
@@ -70,10 +71,14 @@ func _on_timer_attack_timeout():
 	pass
 
 func _attack():
-	enemyAttacks.attack(self)
+	player.take_damage(damage)
+	animPlayer.play("Attack")
 	pass
 
 func _on_hit_knock_back_timer_timeout():
 	currentState = States.IDLE
-	print("KNOCKBACK")
 	pass 
+	
+func attack_anim_finished():
+	currentState = States.IDLE
+	pass

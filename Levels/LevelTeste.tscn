@@ -1,12 +1,13 @@
-[gd_scene load_steps=15 format=3 uid="uid://pllt78kqfrts"]
+[gd_scene load_steps=16 format=3 uid="uid://bu3iigcjnxy10"]
 
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_avsao"]
 [ext_resource type="PackedScene" uid="uid://03my8igrvwt8" path="res://Instances/Tilemap/TileMapWalls.tscn" id="1_fch5f"]
 [ext_resource type="PackedScene" uid="uid://d2iv4f2anflh4" path="res://Instances/Tilemap/TileMapGround.tscn" id="2_vbm8m"]
 [ext_resource type="PackedScene" uid="uid://ddrlvr6k1bgv8" path="res://Character/CharacterBase.tscn" id="3_du5vr"]
-[ext_resource type="PackedScene" uid="uid://dih0deqqyloao" path="res://Instances/Enemies/EnemyBase.tscn" id="4_xrce3"]
 [ext_resource type="Script" path="res://Scripts/Room.gd" id="6_awtxp"]
+[ext_resource type="PackedScene" uid="uid://bote8qrr2iwst" path="res://Instances/Enemies/LowOrc/LowOrc.tscn" id="6_wwk1m"]
 [ext_resource type="PackedScene" uid="uid://rsrbyyuomhgb" path="res://Instances/Gate.tscn" id="7_pgs22"]
+[ext_resource type="PackedScene" uid="uid://bvupdvdk7ogxs" path="res://Instances/Enemies/MageOrc/MageOrc.tscn" id="7_ssw41"]
 [ext_resource type="Script" path="res://Scripts/Lobby.gd" id="8_kfohy"]
 
 [sub_resource type="Theme" id="Theme_ewkng"]
@@ -142,7 +143,7 @@ position = Vector2(178, -472)
 script = ExtResource("6_awtxp")
 gateEnter = NodePath("../Gate-Lobby-Room1")
 gateExit = NodePath("../Gate-Room1-Room2")
-enemies = Array[PackedScene]([ExtResource("4_xrce3"), ExtResource("4_xrce3"), ExtResource("4_xrce3"), ExtResource("4_xrce3"), ExtResource("4_xrce3"), ExtResource("4_xrce3")])
+enemies = Array[PackedScene]([ExtResource("6_wwk1m"), ExtResource("6_wwk1m"), ExtResource("7_ssw41"), ExtResource("7_ssw41")])
 
 [node name="Area2D" type="Area2D" parent="Room-1"]
 collision_layer = 0
