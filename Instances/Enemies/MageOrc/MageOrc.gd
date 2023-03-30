@@ -17,6 +17,10 @@ func _physics_process(delta):
 		States.IDLE:
 			animPlayer.play("Walk")
 			sprite.rotation_degrees = 0
+			
+			var playerDirection = (player.global_position - self.global_position).normalized()
+			sprite.flip_h = playerDirection.x < 0
+			
 			var circleAreaAttack = attackAreaShape.shape as CircleShape2D
 			if circleAreaAttack.radius <= self.global_position.distance_to(player.global_position):
 				currentState = States.CHASING
@@ -29,6 +33,7 @@ func _physics_process(delta):
 			
 		States.CHASING:
 			animPlayer.play("Walk")
+			sprite.rotation_degrees = 0
 			var playerDirection = (player.global_position - self.global_position).normalized()
 			velocity = velocity.move_toward(playerDirection * speed, delta * 1300)
 			move_and_slide()
@@ -65,7 +70,7 @@ func _physics_process(delta):
 			explosionAnimPlayer.get_parent().reparent(get_tree().get_root())
 			queue_free()
 			pass
-
+		
 	pass
 
 func _on_timer_attack_timeout():
@@ -80,6 +85,7 @@ func _attack():
 	get_tree().get_root().get_child(0).add_child(newBullet)
 	newBullet.global_position = global_position
 	newBullet.speed = 300.0
+	newBullet.sprite.modulate = Color(1, 0, 0, 1)
 	
 	var targetDirection = (player.global_position - global_position).normalized()
 	newBullet.moveDirection = targetDirection

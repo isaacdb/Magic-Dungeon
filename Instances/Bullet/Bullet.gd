@@ -8,12 +8,12 @@ extends Area2D
 @onready var timer := $Timer as Timer
 @onready var animationPlayer := $AnimationPlayer as AnimationPlayer
 @onready var collisionShape := $CollisionShape2D as CollisionShape2D
+@onready var sprite := $Sprite2D as AnimatedSprite2D
 
 var velocity := Vector2.ZERO
 var isRunning := true
 
 func _ready():
-	
 	set_collision_mask_value(6, true) # World collision
 	match origin:
 		"None":

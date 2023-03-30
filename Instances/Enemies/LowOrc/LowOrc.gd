@@ -71,7 +71,7 @@ func _on_timer_attack_timeout():
 	pass
 
 func _attack():
-	player.take_damage(damage)
+	player.take_damage(damage, global_position)
 	animPlayer.play("Attack")
 	pass
 
