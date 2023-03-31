@@ -54,5 +54,5 @@ func spawned():
 	
 func enable_disable_enemy(active: bool):
 	sprite.visible = active
-	collisionShape.disabled = !active
+	collisionShape.set_deferred("disabled", !active)
 	pass
