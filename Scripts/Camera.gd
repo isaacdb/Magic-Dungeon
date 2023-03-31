@@ -8,6 +8,7 @@ var shakeDampening = 0.0
 
 func _ready():
 	Global.screen_shake.connect(screen_shake)
+	Global.camera = self
 	pass
 	
 func _process(delta):

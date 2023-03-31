@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pdwxjtefc0fe"
-path="res://.godot/imported/mage-orc.png-0e521458cbfe5e8a6a30dd291fb47a9a.ctex"
+uid="uid://bnrosj0wplew7"
+path="res://.godot/imported/boss-orc.png-c30f2e1a7a8513abe2d04a7cae9fa6c3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Instances/Enemies/BossOrc/mage-orc.png"
-dest_files=["res://.godot/imported/mage-orc.png-0e521458cbfe5e8a6a30dd291fb47a9a.ctex"]
+source_file="res://Instances/Enemies/BossOrc/boss-orc.png"
+dest_files=["res://.godot/imported/boss-orc.png-c30f2e1a7a8513abe2d04a7cae9fa6c3.ctex"]
 
 [params]
 

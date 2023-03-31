@@ -413,42 +413,42 @@ position = Vector2(311, 112)
 [node name="Marker2D24" type="Node2D" parent="Room-3/SpawnPoints"]
 position = Vector2(386, 112)
 
-[node name="Room-4" type="Node2D" parent="." node_paths=PackedStringArray("gateEnter", "boss")]
+[node name="Boss-Room" type="Node2D" parent="." node_paths=PackedStringArray("gateEnter", "boss")]
 position = Vector2(178, -1467)
 script = ExtResource("8_852hq")
 gateEnter = NodePath("../Gate-Room3-Room4")
 boss = NodePath("BossOrc")
 
-[node name="BossOrc" parent="Room-4" instance=ExtResource("6_di7aa")]
+[node name="BossOrc" parent="Boss-Room" instance=ExtResource("6_di7aa")]
 position = Vector2(128, -22)
 lifeBase = 50
 speed = 150
 damage = 5
 
-[node name="Area2D" type="Area2D" parent="Room-4"]
+[node name="Area2D" type="Area2D" parent="Boss-Room"]
 collision_layer = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Room-4/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boss-Room/Area2D"]
 position = Vector2(134.5, 60.5)
 shape = SubResource("RectangleShape2D_4j2hw")
 
-[node name="SmashPoints" type="Node2D" parent="Room-4"]
+[node name="SmashPoints" type="Node2D" parent="Boss-Room"]
 position = Vector2(134, 59)
 
-[node name="SmashPoint0" type="Node2D" parent="Room-4/SmashPoints"]
+[node name="SmashPoint0" type="Node2D" parent="Boss-Room/SmashPoints"]
 position = Vector2(1, 0)
 
-[node name="SmashPoint1" type="Node2D" parent="Room-4/SmashPoints"]
-position = Vector2(224, 0)
+[node name="SmashPoint1" type="Node2D" parent="Boss-Room/SmashPoints"]
+position = Vector2(248, -70)
 
-[node name="SmashPoint2" type="Node2D" parent="Room-4/SmashPoints"]
-position = Vector2(0, -100)
+[node name="SmashPoint2" type="Node2D" parent="Boss-Room/SmashPoints"]
+position = Vector2(-251, -80)
 
-[node name="SmashPoint3" type="Node2D" parent="Room-4/SmashPoints"]
-position = Vector2(0, 115)
+[node name="SmashPoint3" type="Node2D" parent="Boss-Room/SmashPoints"]
+position = Vector2(-253, 92)
 
-[node name="SmashPoint4" type="Node2D" parent="Room-4/SmashPoints"]
-position = Vector2(-226, 2)
+[node name="SmashPoint4" type="Node2D" parent="Boss-Room/SmashPoints"]
+position = Vector2(248, 97)
 
 [node name="Gate-Lobby-Room1" parent="." instance=ExtResource("7_pgs22")]
 

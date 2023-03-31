@@ -63,7 +63,7 @@ func _physics_process(delta):
 			
 		States.HIT:
 			animPlayer.play("Hit")
-			Global.emit_signal("screen_shake", 1, .1, 1)
+			Global.emit_signal("screen_shake", .5, .1, 1)
 			
 			if currentLife <= lifeBase / 2:
 				rageMode = true
@@ -116,3 +116,9 @@ func _clean_current_smash_points():
 	var lastSmashPoint = currentSmashPoints[currentSmashPoints.size() - 1]
 	currentSmashPoints.clear()
 	currentSmashPoints.insert(0, lastSmashPoint)
+
+
+func _on_attack_area_body_entered(body):
+	if body.has_method("take_damage"):
+		body.take_damage(damage, self.global_position)
+	pass 

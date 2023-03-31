@@ -21,6 +21,7 @@ func area_room_body_entered(body):
 		areaActive = true
 		gateEnter.close()
 		boss.spawned()
+		Global.camera.zoom = Vector2(2, 2)
 	pass
 
 func boss_killed():
