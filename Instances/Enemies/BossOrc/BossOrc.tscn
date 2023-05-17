@@ -18,8 +18,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_afdj0"]
 size = Vector2(47, 69)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_q5xe1"]
-resource_local_to_scene = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s6lfn"]
 shader = ExtResource("2_4t5dc")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifier = 0.0
@@ -90,18 +89,30 @@ animations = [{
 
 [sub_resource type="Animation" id="Animation_rv7bv"]
 resource_name = "Attack"
-length = 0.4
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
+tracks/0/path = NodePath("AnimatedSprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3, 0.4),
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [0.0, -0.31315, 0.887669, 0.0]
+"values": [Vector2(0, 0), Vector2(0, -9.425), Vector2(0, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(3, 3), Vector2(2.71, 3), Vector2(5, 1), Vector2(3, 3)]
 }
 
 [sub_resource type="Animation" id="Animation_fwoc5"]
@@ -114,14 +125,14 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite:material:shader_parameter/flash_modifier")
+tracks/0/path = NodePath("AnimatedSprite:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0, 1.0, 0.0]
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_0kp24"]
@@ -129,7 +140,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
+tracks/0/path = NodePath("AnimatedSprite:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -141,62 +152,62 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite:rotation")
+tracks/1/path = NodePath("AnimatedSprite:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [Vector2(0, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatedSprite:material:shader_parameter/flash_modifier")
+tracks/2/path = NodePath("AnimatedSprite:animation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
+"update": 1,
+"values": [&"Walk"]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("AnimatedSprite:position")
+tracks/3/path = NodePath("AnimatedSprite:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
+"update": 1,
+"values": [0]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("AnimatedSprite:animation")
+tracks/4/path = NodePath("AnimatedSprite:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"Walk"]
+"update": 0,
+"values": [Vector2(3, 3)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("AnimatedSprite:frame")
+tracks/5/path = NodePath("AnimatedSprite:modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_ask0i"]
@@ -269,8 +280,8 @@ _data = {
 "Walk": SubResource("Animation_onjrd")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dgpdh"]
-size = Vector2(46, 69)
+[sub_resource type="CircleShape2D" id="CircleShape2D_ee65t"]
+radius = 26.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_isurp"]
 atlas = ExtResource("4_n2wwp")
@@ -645,7 +656,7 @@ shape = SubResource("RectangleShape2D_afdj0")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
-material = SubResource("ShaderMaterial_q5xe1")
+material = SubResource("ShaderMaterial_s6lfn")
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_ru10r")
 animation = &"Walk"
@@ -663,8 +674,8 @@ collision_layer = 0
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(-3, -34.5)
-shape = SubResource("RectangleShape2D_dgpdh")
+position = Vector2(-2, -17)
+shape = SubResource("CircleShape2D_ee65t")
 
 [node name="TimerAttack" type="Timer" parent="."]
 wait_time = 2.0
@@ -672,7 +683,7 @@ one_shot = true
 autostart = true
 
 [node name="HitKnockBackTimer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.1
 one_shot = true
 
 [node name="ExplosionSprite" type="AnimatedSprite2D" parent="."]
@@ -710,6 +721,5 @@ libraries = {
 "": SubResource("AnimationLibrary_wv4wo")
 }
 
-[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="timeout" from="TimerAttack" to="." method="_on_timer_attack_timeout"]
 [connection signal="timeout" from="HitKnockBackTimer" to="." method="_on_hit_knock_back_timer_timeout"]

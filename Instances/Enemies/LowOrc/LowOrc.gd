@@ -41,8 +41,7 @@ func _physics_process(delta):
 			if canAttack:
 				_attack()
 				canAttack = false
-				enemyAttackTimer.start()
-			
+				enemyAttackTimer.start()			
 			pass
 			
 		States.HIT:

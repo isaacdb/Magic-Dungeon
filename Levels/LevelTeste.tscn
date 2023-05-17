@@ -420,7 +420,7 @@ gateEnter = NodePath("../Gate-Room3-Room4")
 boss = NodePath("BossOrc")
 
 [node name="BossOrc" parent="Boss-Room" instance=ExtResource("6_di7aa")]
-position = Vector2(128, -22)
+position = Vector2(134, 80)
 lifeBase = 50
 speed = 150
 damage = 5

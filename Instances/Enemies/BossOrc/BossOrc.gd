@@ -1,17 +1,11 @@
 extends EnemyBase
 
-@onready var smashPoints = self.get_parent().get_node("SmashPoints").get_children() as Array[Node2D]
 @onready var lowOrc := preload("res://Instances/Enemies/LowOrc/LowOrc.tscn")
-@onready var rnd := RandomNumberGenerator.new()
 
 var canAttack = false
-var currentSmashPoints : Array[int]
-var qntdSmashForAttack := 2
 var rageMode := false
 
 func _ready():	
-	rnd.randomize()
-	currentSmashPoints.insert(0, 0)
 	set_collision_mask_value(4, false) # Dont watch another enemies	
 	enable_disable_enemy(false)
 	currentLife = lifeBase
@@ -26,46 +20,44 @@ func _physics_process(delta):
 		States.IDLE:
 			animPlayer.play("Walk")
 			sprite.rotation_degrees = 0
+			var circleAreaAttack = attackAreaShape.shape as CircleShape2D
+			if circleAreaAttack.radius <= self.global_position.distance_to(player.global_position):
+				currentState = States.CHASING
+				return
+				
+			if canAttack and circleAreaAttack.radius > self.global_position.distance_to(player.global_position):
+				currentState = States.ATTACK
+				
 			pass
 			
 		States.CHASING:
+			var currentSpeed = speed
+			if rageMode:
+				currentSpeed = speed * 1.5
+				
+			animPlayer.play("Walk")
+			var playerDirection = (player.global_position - self.global_position).normalized()
+			velocity = velocity.move_toward(playerDirection * currentSpeed, delta * 1300)
+			move_and_slide()
+	
+			sprite.flip_h = playerDirection.x < 0
+			var circleAreaAttack = attackAreaShape.shape as CircleShape2D
+			if circleAreaAttack.radius > self.global_position.distance_to(player.global_position):
+				currentState = States.IDLE			
 			pass
 	
 		States.ATTACK:
 			if canAttack:
+				_attack()
 				canAttack = false
-				
-				var qntdSmashs = qntdSmashForAttack
-				var smashVelocity = 1
-				var smashDelay = 3.5
-				
-				if rageMode:
-					qntdSmashs += 2
-					smashVelocity = 0.6
-					smashDelay = 1.5				
-				
-				for i in qntdSmashs:
-					_chose_where_smash()
-				
-				var tween = create_tween()				
-				for i in qntdSmashs:
-					tween.tween_property(self, "global_position", smashPoints[currentSmashPoints[i - 1]].global_position, smashVelocity)
-				
-				
-				tween.connect("finished", _smash_end)
-				tween.play()
-				
-				enemyAttackTimer.wait_time = smashDelay				
-				
-				_clean_current_smash_points()
-				currentState = States.IDLE
+				enemyAttackTimer.start()
 			pass
 			
 		States.HIT:
 			animPlayer.play("Hit")
 			Global.emit_signal("screen_shake", .5, .1, 1)
-			
 			if currentLife <= lifeBase / 2:
+				sprite.modulate = Color(0.862745, 0.0784314, 0.235294, 1)
 				rageMode = true
 			
 			if currentLife <= 0:
@@ -81,14 +73,13 @@ func _physics_process(delta):
 		
 	pass
 
-func _smash_end():
-	enemyAttackTimer.start()
-	print("start delay")
+func _attack():
+	player.take_damage(damage, global_position)
+	animPlayer.play("Attack")
 	pass
-
+	
 func _on_timer_attack_timeout():
 	canAttack = true
-	currentState = States.ATTACK
 	pass
 
 func _spawn_low_orcs():
@@ -101,24 +92,9 @@ func _spawn_low_orcs():
 	pass
 
 func _on_hit_knock_back_timer_timeout():
-	print("Knockacktimer")
+	currentState = States.IDLE
 	pass 
-	
-func _chose_where_smash():
-	var rndSmashIndex = rnd.randi_range(0, smashPoints.size() - 1)
-	
-	while currentSmashPoints.any(func(number): return number == rndSmashIndex):
-		rndSmashIndex = rnd.randi_range(0, smashPoints.size() - 1)
-	
-	currentSmashPoints.insert(currentSmashPoints.size(), rndSmashIndex)
-	
-func _clean_current_smash_points():
-	var lastSmashPoint = currentSmashPoints[currentSmashPoints.size() - 1]
-	currentSmashPoints.clear()
-	currentSmashPoints.insert(0, lastSmashPoint)
 
-
-func _on_attack_area_body_entered(body):
-	if body.has_method("take_damage"):
-		body.take_damage(damage, self.global_position)
-	pass 
+func attack_anim_finished():
+	currentState = States.IDLE
+	pass
