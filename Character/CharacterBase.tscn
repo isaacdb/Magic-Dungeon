@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ddrlvr6k1bgv8"]
+[gd_scene load_steps=22 format=3 uid="uid://ddrlvr6k1bgv8"]
 
 [ext_resource type="Script" path="res://Character/Player.gd" id="1_u2x5d"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="2_5lk51"]
@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://dn35ldwj2pa1y" path="res://Instances/Weapon/Weapon.tscn" id="3_jc8jj"]
 [ext_resource type="Script" path="res://Scripts/Camera.gd" id="5_frrt1"]
 [ext_resource type="Texture2D" uid="uid://b6l8fu6uss63t" path="res://Character/Pixilart Sprite Sheet.png" id="6_hlgvd"]
+[ext_resource type="PackedScene" uid="uid://b4asjdyoyep5s" path="res://Instances/Components/Health/Health.tscn" id="7_7akkb"]
+[ext_resource type="PackedScene" uid="uid://6fcg84clxst2" path="res://Instances/Components/Death/DeathManager.tscn" id="8_gfplf"]
+[ext_resource type="PackedScene" uid="uid://bjwrgsdbjvqw3" path="res://Instances/Components/DeathEffect/DeathExplosion.tscn" id="9_xgfkt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mdim3"]
 
@@ -119,6 +122,9 @@ particles_anim_loop = false
 offsets = PackedFloat32Array(0, 0.71134, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t86o3"]
+size = Vector2(23, 22)
+
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["player"]]
 y_sort_enabled = true
 position = Vector2(0, -9.737)
@@ -206,5 +212,22 @@ scale_amount_min = 0.5
 scale_amount_max = 0.7
 color_ramp = SubResource("Gradient_nnyqe")
 anim_offset_max = 1.0
+
+[node name="Health" parent="." node_paths=PackedStringArray("deathManager") groups=["player"] instance=ExtResource("7_7akkb")]
+collision_layer = 2
+collision_mask = 0
+health = 10
+deathManager = NodePath("../DeathManager")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Health"]
+position = Vector2(0.5, -0.263)
+shape = SubResource("RectangleShape2D_t86o3")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="DeathManager" parent="." node_paths=PackedStringArray("health") instance=ExtResource("8_gfplf")]
+switch_nps = Array[NodePath]([NodePath("../DeathExplosion")])
+health = NodePath("../Health")
+
+[node name="DeathExplosion" parent="." instance=ExtResource("9_xgfkt")]
 
 [connection signal="timeout" from="Camera2D/ShakeTimer" to="Camera2D" method="_on_shake_timer_timeout"]

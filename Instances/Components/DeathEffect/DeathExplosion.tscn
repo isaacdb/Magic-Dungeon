@@ -1,0 +1,262 @@
+[gd_scene load_steps=25 format=3 uid="uid://bjwrgsdbjvqw3"]
+
+[ext_resource type="Script" path="res://Instances/Components/DeathEffect/DeathExplosion.gd" id="1_wxamv"]
+[ext_resource type="Texture2D" uid="uid://bmthaf8sd0d62" path="res://Assets/magic-explosion.png" id="2_yys38"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_isurp"]
+atlas = ExtResource("2_yys38")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ykkew"]
+atlas = ExtResource("2_yys38")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34x0t"]
+atlas = ExtResource("2_yys38")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bj5hl"]
+atlas = ExtResource("2_yys38")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbwmx"]
+atlas = ExtResource("2_yys38")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8ult"]
+atlas = ExtResource("2_yys38")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j4w8n"]
+atlas = ExtResource("2_yys38")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8cwwl"]
+atlas = ExtResource("2_yys38")
+region = Rect2(192, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8w0n8"]
+atlas = ExtResource("2_yys38")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_va1tm"]
+atlas = ExtResource("2_yys38")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8fgbx"]
+atlas = ExtResource("2_yys38")
+region = Rect2(128, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s17gv"]
+atlas = ExtResource("2_yys38")
+region = Rect2(192, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n1lxs"]
+atlas = ExtResource("2_yys38")
+region = Rect2(0, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uwedg"]
+atlas = ExtResource("2_yys38")
+region = Rect2(64, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qn3jv"]
+atlas = ExtResource("2_yys38")
+region = Rect2(128, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t7vna"]
+atlas = ExtResource("2_yys38")
+region = Rect2(192, 192, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vy161"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_isurp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ykkew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_34x0t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bj5hl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gbwmx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8ult")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j4w8n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8cwwl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8w0n8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_va1tm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8fgbx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s17gv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n1lxs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uwedg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qn3jv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t7vna")
+}],
+"loop": false,
+"name": &"Explosion",
+"speed": 5.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_ck05n"]
+offsets = PackedFloat32Array(0, 0.416129, 0.741935)
+colors = PackedColorArray(0.175756, 0.403577, 0.983566, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qqvy0"]
+gradient = SubResource("Gradient_ck05n")
+fill = 1
+fill_from = Vector2(0.487179, 0.521368)
+
+[sub_resource type="Animation" id="Animation_v1b8t"]
+resource_name = "Explosion"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 15]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Explosion"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PointLight2D:enabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.55),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PointLight2D:energy")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.55),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 2.0, 0.5, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_yejn2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Explosion"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PointLight2D:enabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PointLight2D:energy")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_81din"]
+_data = {
+"Explosion": SubResource("Animation_v1b8t"),
+"RESET": SubResource("Animation_yejn2")
+}
+
+[node name="DeathExplosion" type="Node2D"]
+script = ExtResource("1_wxamv")
+
+[node name="ExplosionSprite" type="AnimatedSprite2D" parent="."]
+z_index = 10
+position = Vector2(0, -9)
+sprite_frames = SubResource("SpriteFrames_vy161")
+animation = &"Explosion"
+
+[node name="PointLight2D" type="PointLight2D" parent="ExplosionSprite"]
+enabled = false
+energy = 0.0
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_qqvy0")
+
+[node name="AnimationPlayerExplosion" type="AnimationPlayer" parent="ExplosionSprite"]
+libraries = {
+"": SubResource("AnimationLibrary_81din")
+}

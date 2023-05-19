@@ -58,7 +58,9 @@ func _on_area_entered(area):
 		return
 		
 	if area.has_method("take_damage"):
-		area.take_damage(damage, moveDirection)
+		var attack = Attack.new()
+		attack.damage = damage
+		area.take_damage(attack)
 		
 	_destroy()
 	pass
