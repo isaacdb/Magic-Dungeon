@@ -32,7 +32,7 @@ func _ready():
 	connect("body_entered", _on_body_entered)
 	connect("area_entered", _on_area_entered)
 	
-	pass # Replace with function body.
+	pass
 
 
 func _physics_process(delta):
@@ -60,6 +60,8 @@ func _on_area_entered(area):
 	if area.has_method("take_damage"):
 		var attack = Attack.new()
 		attack.damage = damage
+		attack.direction = moveDirection
+		attack.knock_back = 10
 		area.take_damage(attack)
 		
 	_destroy()

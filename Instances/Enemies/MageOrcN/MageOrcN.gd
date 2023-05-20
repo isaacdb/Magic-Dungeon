@@ -4,8 +4,11 @@ extends CharacterBody2D
 @export var moveComponent : MoveComponent
 @export var playerTracker : PlayerTracker
 @export var attackManager : AttackManager
+@export var healthManager : Health
+@export var shootManager : ShooterComponent
 
 @onready var animPlayer := $AnimationPlayer as AnimationPlayer
+@onready var sprite := $AnimatedSprite2D as AnimatedSprite2D
 
 enum States
 {
@@ -20,7 +23,8 @@ enum States
 var currentState := States.SPAWNING
 
 func _ready():
-	attackManager.attack_signal.connect(func(): ChangeState(States.ATTACK))
+	attackManager.connect("attack_signal", func(): ChangeState(States.ATTACK))
+	healthManager.connect("damage", func(): ChangeState(States.HIT))
 	pass
 	
 func _physics_process(delta):
@@ -31,29 +35,42 @@ func _physics_process(delta):
 					ChangeState(States.CHASING)
 			pass
 			
-		States.SPAWNING:			
+		States.SPAWNING:
+			sprite.visible = false
 			spawnEffect.Execute()
 			if spawnEffect.isSpawned:
-				currentState = States.CHASING
+				ChangeState(States.CHASING)
+				sprite.visible = true
 			pass
 			
 		States.CHASING:
 			animPlayer.play("Walk")
-			var playerDirection = (playerTracker.playerTrack.global_position - self.global_position).normalized()
+			var playerDirection = playerTracker.GetDirection()
 			moveComponent.Move(self, playerDirection, delta)
 			
+			if attackManager.playerInRange:
+				ChangeState(States.IDLE)	
+			pass
+			
+		States.HIT:
+			animPlayer.play("Hit")
 			pass
 			
 		States.ATTACK:
 			animPlayer.play("Attack")
 			pass
-		
-	
+				
 
 func ChangeState(state: States):
 	currentState = state
 	pass
 	
 func AttackFinished():
+	var playerDirection = playerTracker.GetDirection()
+	shootManager.Fire(playerDirection)
 	ChangeState(States.IDLE)
 	pass
+	
+func HitFinished():
+	ChangeState(States.IDLE)
+	pass	

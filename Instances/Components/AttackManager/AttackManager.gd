@@ -2,7 +2,6 @@ extends Area2D
 class_name AttackManager
 
 @export var playerTracker : PlayerTracker
-
 @export var attackDelay := 0.0
 
 @onready var timerAttack := $TimerAttack as Timer
