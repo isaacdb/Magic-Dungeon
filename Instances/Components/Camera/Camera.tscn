@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://pnthfjsqolx2"]
+
+[ext_resource type="Script" path="res://Scripts/Camera.gd" id="1_ywhl6"]
+
+[node name="Camera2D" type="Camera2D"]
+zoom = Vector2(2.5, 2.5)
+limit_left = 0
+limit_right = 640
+limit_bottom = 0
+script = ExtResource("1_ywhl6")
+
+[node name="ShakeTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="ShakeTimer" to="." method="_on_shake_timer_timeout"]

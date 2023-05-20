@@ -1,4 +1,5 @@
 extends Node2D
+class_name DashSkillComponent
 
 @export var dashSpeed := 600
 @export var normalSpeed := 10
@@ -29,7 +30,7 @@ func SetActive(active: bool):
 	isActive = active
 	pass
 	
-func Dash(dashDirection: Vector2, character: CharacterBody2D, speedDefault: float):
+func Dash(direction: Vector2, character: CharacterBody2D, speedDefault: float):
 	if !canDash or !isActive:
 		return
 	
@@ -37,6 +38,7 @@ func Dash(dashDirection: Vector2, character: CharacterBody2D, speedDefault: floa
 	isDashing = true
 	canDash = false
 	normalSpeed = speedDefault
+	dashDirection = direction
 		
 	if dashDirection == Vector2.ZERO:
 		dashDirection = Vector2.RIGHT

@@ -4,7 +4,7 @@
 [ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="2_5lk51"]
 [ext_resource type="Texture2D" uid="uid://bij07g2lqci3r" path="res://Character/LadyMage.png" id="2_fxss2"]
 [ext_resource type="PackedScene" uid="uid://dn35ldwj2pa1y" path="res://Instances/Weapon/Weapon.tscn" id="3_jc8jj"]
-[ext_resource type="Script" path="res://Scripts/Camera.gd" id="5_frrt1"]
+[ext_resource type="PackedScene" uid="uid://pnthfjsqolx2" path="res://Instances/Components/Camera/Camera.tscn" id="5_r35ck"]
 [ext_resource type="Texture2D" uid="uid://b6l8fu6uss63t" path="res://Character/Pixilart Sprite Sheet.png" id="6_hlgvd"]
 [ext_resource type="PackedScene" uid="uid://b4asjdyoyep5s" path="res://Instances/Components/Health/Health.tscn" id="7_7akkb"]
 [ext_resource type="PackedScene" uid="uid://6fcg84clxst2" path="res://Instances/Components/Death/DeathManager.tscn" id="8_gfplf"]
@@ -104,11 +104,11 @@ _data = {
 "RESET": SubResource("Animation_pqqg8")
 }
 
-[sub_resource type="Gradient" id="Gradient_vgptn"]
+[sub_resource type="Gradient" id="Gradient_kycdo"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_sahfi"]
-gradient = SubResource("Gradient_vgptn")
+gradient = SubResource("Gradient_kycdo")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.825688, 0.802752)
@@ -162,15 +162,7 @@ texture = SubResource("GradientTexture2D_sahfi")
 
 [node name="DashTimerCooldown" type="Timer" parent="."]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2.5, 2.5)
-limit_left = 0
-limit_right = 640
-limit_bottom = 0
-script = ExtResource("5_frrt1")
-
-[node name="ShakeTimer" type="Timer" parent="Camera2D"]
-one_shot = true
+[node name="Camera2D" parent="." instance=ExtResource("5_r35ck")]
 
 [node name="DashParticle" type="CPUParticles2D" parent="."]
 z_index = -1
@@ -234,5 +226,3 @@ switch_nps = Array[NodePath]([NodePath("../DeathExplosion")])
 [node name="ActiveHandleComponent" parent="." instance=ExtResource("10_7nypt")]
 activeOnLoad = true
 switch_nps = Array[NodePath]([NodePath("../Health"), NodePath("../DeathManager"), NodePath("../DeathExplosion")])
-
-[connection signal="timeout" from="Camera2D/ShakeTimer" to="Camera2D" method="_on_shake_timer_timeout"]
