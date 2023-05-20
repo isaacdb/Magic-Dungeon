@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Instances/Components/ActiveHandleComponent/ActiveHandleComponent.gd" id="1_s0uy3"]
+
+[node name="ActiveHandleComponent" type="Node2D"]
+script = ExtResource("1_s0uy3")

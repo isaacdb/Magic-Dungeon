@@ -10,6 +10,7 @@ signal attack_signal
 
 var playerInRange := false
 var attackReady := false
+var isActive := false
 
 func _ready():
 	connect("area_entered", _on_area_entered)
@@ -20,9 +21,16 @@ func _ready():
 	timerAttack.autostart = true
 
 func _physics_process(delta):
+	if !isActive:
+		return
+	
 	if playerInRange and attackReady:
 		Attack()
 
+func SetActive(active: bool):
+	isActive = active
+	pass
+	
 func _on_area_entered(area):
 	if area.is_in_group("player"):
 		playerInRange = true

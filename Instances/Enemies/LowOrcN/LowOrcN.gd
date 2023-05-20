@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var playerTracker : PlayerTracker
 @export var attackManager : AttackManager
 @export var healthManager : Health
+@export var speed := 50.0
 
 @onready var animPlayer := $AnimationPlayer as AnimationPlayer
 @onready var sprite := $AnimatedSprite2D as AnimatedSprite2D
@@ -45,7 +46,7 @@ func _physics_process(delta):
 		States.CHASING:
 			animPlayer.play("Walk")
 			var playerDirection = (playerTracker.playerTrack.global_position - self.global_position).normalized()
-			moveComponent.Move(self, playerDirection, delta)			
+			moveComponent.Move(self, playerDirection, delta, 1300, speed)			
 			
 			if attackManager.playerInRange:
 				ChangeState(States.IDLE)			

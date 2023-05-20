@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://car085oreds85"]
+[gd_scene load_steps=35 format=3 uid="uid://car085oreds85"]
 
 [ext_resource type="Script" path="res://Instances/Enemies/LowOrcN/LowOrcN.gd" id="1_v5u44"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="2_0f6yl"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bplfkb5uolvrb" path="res://Instances/Components/HitBox/HitBox.tscn" id="11_up554"]
 [ext_resource type="PackedScene" uid="uid://bcbgphbcmqgky" path="res://Instances/Components/KnockBack/KnockBack.tscn" id="12_hk3au"]
 [ext_resource type="PackedScene" uid="uid://d1loimaxqs6y6" path="res://Instances/Components/LookAtPlayerComponent/LookAtPlayerComponent.tscn" id="13_8p1je"]
+[ext_resource type="PackedScene" path="res://Instances/Components/ActiveHandleComponent/ActiveHandleComponent.tscn" id="14_mchh0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xek6w"]
 radius = 7.0
@@ -436,18 +437,19 @@ knockBack = NodePath("../KnockBack")
 shape = SubResource("CapsuleShape2D_axq1k")
 debug_color = Color(0, 0.6, 0, 0.419608)
 
-[node name="DeathManager" parent="." instance=ExtResource("6_y0wxg")]
+[node name="SpawnEffect" parent="." node_paths=PackedStringArray("activeHandle") instance=ExtResource("9_n50ab")]
 position = Vector2(0, -8)
+activeHandle = NodePath("../ActiveHandleComponent")
+
+[node name="DeathManager" parent="." node_paths=PackedStringArray("activeHandle") instance=ExtResource("6_y0wxg")]
+position = Vector2(0, -8)
+activeHandle = NodePath("../ActiveHandleComponent")
 switch_nps = Array[NodePath]([NodePath("../DeathExplosion")])
 
 [node name="DeathExplosion" parent="." instance=ExtResource("7_0143p")]
 position = Vector2(0, -8)
 
 [node name="Move" parent="." instance=ExtResource("8_irqj0")]
-position = Vector2(0, -8)
-speed = 50.0
-
-[node name="SpawnEffect" parent="." instance=ExtResource("9_n50ab")]
 position = Vector2(0, -8)
 
 [node name="PlayerTracker" parent="." instance=ExtResource("10_25ldp")]
@@ -468,3 +470,6 @@ debug_color = Color(0.4, 0.0196078, 0.109804, 0.419608)
 
 [node name="LookAtPlayerComponent" parent="." node_paths=PackedStringArray("playerTracker") instance=ExtResource("13_8p1je")]
 playerTracker = NodePath("../PlayerTracker")
+
+[node name="ActiveHandleComponent" parent="." instance=ExtResource("14_mchh0")]
+switch_nps = Array[NodePath]([NodePath("../AttackManager"), NodePath("../Health"), NodePath("../SpawnEffect"), NodePath("../DeathManager"), NodePath("../DeathExplosion"), NodePath("../Move"), NodePath("../PlayerTracker"), NodePath("../HitBox"), NodePath("../KnockBack"), NodePath("../LookAtPlayerComponent")])

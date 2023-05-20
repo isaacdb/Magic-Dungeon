@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bwqvuin7bkc6k"]
+[gd_scene load_steps=17 format=3 uid="uid://bwqvuin7bkc6k"]
 
 [ext_resource type="PackedScene" uid="uid://bplfkb5uolvrb" path="res://Instances/Components/HitBox/HitBox.tscn" id="1_aedg3"]
 [ext_resource type="Script" path="res://Instances/Bullet/BulletsEnemies/BulletEnemy1/BulletEnemy1.gd" id="1_vvcwv"]
@@ -7,10 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b11kxnruvfbck" path="res://Instances/Bullet/Asset/hits/hits-1/frames/hits-1-3.png" id="4_cgytt"]
 [ext_resource type="Texture2D" uid="uid://d3jpncj4gbyqy" path="res://Instances/Bullet/Asset/hits/hits-1/frames/hits-1-4.png" id="5_g0ve3"]
 [ext_resource type="Texture2D" uid="uid://cqk22n6df0cls" path="res://Instances/Bullet/Asset/hits/hits-1/frames/hits-1-5.png" id="6_psumu"]
-[ext_resource type="Texture2D" uid="uid://d3e1gr6v8phcc" path="res://Instances/Bullet/Asset/Bolt/bolt1.png" id="7_weaxv"]
-[ext_resource type="Texture2D" uid="uid://bv87s6f6oknb3" path="res://Instances/Bullet/Asset/Bolt/bolt2.png" id="8_hg418"]
-[ext_resource type="Texture2D" uid="uid://bkmxb2w4i1bbx" path="res://Instances/Bullet/Asset/Bolt/bolt3.png" id="9_wieg0"]
-[ext_resource type="Texture2D" uid="uid://b6imgsndxkfou" path="res://Instances/Bullet/Asset/Bolt/bolt4.png" id="10_wxhj5"]
+[ext_resource type="Texture2D" uid="uid://dk1c0lhn184jj" path="res://Instances/Bullet/BulletsEnemies/enemy-bullet.png" id="8_4c37o"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j5a4u"]
 radius = 4.0
@@ -40,16 +37,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("7_weaxv")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_hg418")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_wieg0")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_wxhj5")
+"texture": ExtResource("8_4c37o")
 }],
 "loop": true,
 "name": &"Idle",
@@ -148,38 +136,26 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/path = NodePath("Sprite2D:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:offset")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-12.28, 0)]
+"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(0.9, 0.9), Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_4iqli"]
@@ -244,6 +220,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(-12.28, 0)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprite2D:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.445, 0.445)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_utrjg"]
 _data = {
@@ -254,6 +242,7 @@ _data = {
 
 [node name="BulletEnemy1" type="Node2D"]
 script = ExtResource("1_vvcwv")
+speed = 300.0
 
 [node name="HitBox" parent="." instance=ExtResource("1_aedg3")]
 collision_layer = 0
@@ -264,8 +253,7 @@ shape = SubResource("CapsuleShape2D_j5a4u")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
-position = Vector2(0.384, 0.329)
-scale = Vector2(0.439449, 0.444441)
+scale = Vector2(0.445, 0.445)
 sprite_frames = SubResource("SpriteFrames_yi2xm")
 animation = &"Idle"
 offset = Vector2(-12.28, 0)
@@ -274,6 +262,7 @@ flip_h = true
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(-2.27374e-13, 0)
 scale = Vector2(0.55609, 0.546765)
+color = Color(0.972549, 0, 0.0235294, 1)
 energy = 0.4
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_n6dg6")

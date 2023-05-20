@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://ddrlvr6k1bgv8"]
+[gd_scene load_steps=23 format=3 uid="uid://ddrlvr6k1bgv8"]
 
 [ext_resource type="Script" path="res://Character/Player.gd" id="1_u2x5d"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="2_5lk51"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b4asjdyoyep5s" path="res://Instances/Components/Health/Health.tscn" id="7_7akkb"]
 [ext_resource type="PackedScene" uid="uid://6fcg84clxst2" path="res://Instances/Components/Death/DeathManager.tscn" id="8_gfplf"]
 [ext_resource type="PackedScene" uid="uid://bjwrgsdbjvqw3" path="res://Instances/Components/DeathEffect/DeathExplosion.tscn" id="9_xgfkt"]
+[ext_resource type="PackedScene" path="res://Instances/Components/ActiveHandleComponent/ActiveHandleComponent.tscn" id="10_7nypt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mdim3"]
 
@@ -224,10 +225,14 @@ position = Vector2(0.5, -0.263)
 shape = SubResource("RectangleShape2D_t86o3")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
-[node name="DeathManager" parent="." node_paths=PackedStringArray("health") instance=ExtResource("8_gfplf")]
+[node name="DeathManager" parent="." node_paths=PackedStringArray("activeHandle") instance=ExtResource("8_gfplf")]
+activeHandle = NodePath("../ActiveHandleComponent")
 switch_nps = Array[NodePath]([NodePath("../DeathExplosion")])
-health = NodePath("../Health")
 
 [node name="DeathExplosion" parent="." instance=ExtResource("9_xgfkt")]
+
+[node name="ActiveHandleComponent" parent="." instance=ExtResource("10_7nypt")]
+activeOnLoad = true
+switch_nps = Array[NodePath]([NodePath("../Health"), NodePath("../DeathManager"), NodePath("../DeathExplosion")])
 
 [connection signal="timeout" from="Camera2D/ShakeTimer" to="Camera2D" method="_on_shake_timer_timeout"]

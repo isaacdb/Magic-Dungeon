@@ -8,6 +8,7 @@ class_name ShooterComponent
 @onready var bullet := preload("res://Instances/Bullet/BulletsEnemies/BulletEnemy1/BulletEnemy1.tscn")
 
 var canShoot := false
+var isActive := false
 
 func _ready():
 	fireTimer.connect("timeout", FireTimerTimeout)
@@ -15,7 +16,14 @@ func _ready():
 	fireTimer.set_one_shot(false)
 	pass
 
+func SetActive(active: bool):
+	isActive = active
+	pass
+
 func Fire(direction: Vector2):
+	if !isActive:
+		return
+	
 	var newBullet = bullet.instantiate()
 	get_tree().get_root().get_child(0).add_child(newBullet)
 	newBullet.global_position = self.global_position

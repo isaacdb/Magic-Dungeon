@@ -6,13 +6,16 @@ class_name Health
 @export var deathManager : DeathManager
 @export var knockBack : KnockBack
 
+@onready var collisionShape := $CollisionShape2D as CollisionShape2D
+
 var currentHealth := 0
+var isActive := false
 
 signal damage
 
 func _ready():
 	monitorable = true
-	monitoring = false
+	monitoring = true
 	
 	currentHealth = health	
 	pass
@@ -21,8 +24,16 @@ func _ready():
 func _process(delta):
 	pass
 	
+func SetActive(active: bool):
+	isActive = active
+	
+	collisionShape.set_deferred("Disabled", !active)
+	pass
 
 func take_damage(attack: Attack):
+	if !isActive:
+		return
+	
 	currentHealth -= attack.damage
 	
 	damage.emit()

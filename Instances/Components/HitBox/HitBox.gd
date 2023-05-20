@@ -5,14 +5,23 @@ signal attack_enter
 
 @export var damage := 0.0
 
+var isActive := false
+
+func SetActive(active: bool):
+	isActive = active
+	pass
+
 func _ready():	
-	monitorable = false
+	monitorable = true
 	monitoring = true
 	
 	connect("area_entered", _on_area_entered)
 	pass 
 
-func _on_area_entered(area):		
+func _on_area_entered(area):
+	if !isActive:
+		return
+	
 	if area is Health:
 		var attack = Attack.new()
 		attack.damage = damage
