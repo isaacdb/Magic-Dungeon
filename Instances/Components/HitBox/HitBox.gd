@@ -3,7 +3,8 @@ class_name HitBoxComponent
 
 signal attack_enter
 
-@export var damage := 0.0
+var damage := 0.0
+var knockBackForce := 0.0
 
 var isActive := false
 
@@ -25,7 +26,7 @@ func _on_area_entered(area):
 	if area is Health:
 		var attack = Attack.new()
 		attack.damage = damage
-		attack.knock_back = 100
+		attack.knock_back = knockBackForce
 		attack.direction = self.global_position
 		
 		area.take_damage(attack)

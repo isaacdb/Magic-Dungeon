@@ -15,6 +15,7 @@ var isRunning := true
 func _ready():
 	timer.one_shot = true
 	hitBox.connect("attack_enter", Destroy)
+	hitBox.SetActive(true)
 	pass
 
 func _physics_process(delta):

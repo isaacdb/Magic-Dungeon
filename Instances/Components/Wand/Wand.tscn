@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dn35ldwj2pa1y"]
+[gd_scene load_steps=8 format=3 uid="uid://db4uuf766upgt"]
 
-[ext_resource type="Script" path="res://Instances/Weapon/Weapon.gd" id="1_d73ql"]
-[ext_resource type="Texture2D" uid="uid://dly6q5evuf44e" path="res://Instances/Weapon/Sprite.png" id="2_0nymr"]
+[ext_resource type="Script" path="res://Instances/Components/Wand/Wand.gd" id="1_3cjob"]
+[ext_resource type="Texture2D" uid="uid://dly6q5evuf44e" path="res://Instances/Weapon/Sprite.png" id="1_fj8tm"]
+[ext_resource type="PackedScene" uid="uid://c4oywo6sm3beo" path="res://Instances/Components/WeaponRoundComponent/WeaponRoundComponent.tscn" id="2_lbcjr"]
+[ext_resource type="PackedScene" uid="uid://ca6aeltom7e7y" path="res://Instances/Components/ShooterComponent/ShooterComponent.tscn" id="3_1r5n4"]
 
 [sub_resource type="Animation" id="Animation_3fxgn"]
 resource_name = "Fire"
@@ -41,19 +43,23 @@ _data = {
 "RESET": SubResource("Animation_rseno")
 }
 
-[node name="Weapon" type="Node2D"]
-script = ExtResource("1_d73ql")
+[node name="Wand" type="Node2D" node_paths=PackedStringArray("shootManager")]
+script = ExtResource("1_3cjob")
+shootManager = NodePath("Sprite2D/ShooterComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_0nymr")
+texture = ExtResource("1_fj8tm")
 offset = Vector2(15, 0)
 
-[node name="Marker2D" type="Marker2D" parent="Sprite2D"]
-position = Vector2(15, -7)
-
-[node name="Timer" type="Timer" parent="."]
+[node name="ShooterComponent" parent="Sprite2D" instance=ExtResource("3_1r5n4")]
+position = Vector2(23, -7)
+origin = "Player:0"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_334kq")
 }
+
+[node name="WeaponRoundComponent" parent="." node_paths=PackedStringArray("sprite2D", "spawnPoint") instance=ExtResource("2_lbcjr")]
+sprite2D = NodePath("../Sprite2D")
+spawnPoint = NodePath("../Sprite2D/ShooterComponent")

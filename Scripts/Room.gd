@@ -17,12 +17,12 @@ var enemiesKilled := 0
 
 func _ready():
 	rand.randomize()
-	areaRoom.connect("body_entered", area_room_body_entered)
+	areaRoom.connect("area_entered", area_room_area_entered)
 	Global.enemy_killed.connect(enemy_killed)
 	pass # Replace with function body.
 
-func area_room_body_entered(body):
-	if !areaClean and body.is_in_group("player"):
+func area_room_area_entered(area):
+	if !areaClean and area.is_in_group("player"):
 		areaActive = true
 		gateEnter.close()
 		spawn_enemies()

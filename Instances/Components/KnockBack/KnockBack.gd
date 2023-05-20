@@ -7,12 +7,14 @@ func SetActive(active: bool):
 	isActive = active
 	pass
 
-func Execute(character: CharacterBody2D, force: float, direction: Vector2):
+func Execute(character: CharacterBody2D, force: float, impactOrigin: Vector2):
 	if !isActive:
 		return
 	
 	#character.velocity = direction * force
 	#character.move_and_slide()   
+
+	var direction = (self.global_position - impactOrigin).normalized()	
 	
 	var tween = create_tween()
 	tween.tween_property(self.get_parent(), "position", self.get_parent().global_position + direction * force, 0.1).from_current()

@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @export var moveComponent : MoveComponent
+@export var healthManager : Health
 @export var acceleration := 800.0
 @export var speed := 200.0
 
@@ -8,10 +9,12 @@ extends CharacterBody2D
 @onready var animationPlayer := $AnimationPlayer as AnimationPlayer
 @onready var dashSkill := $DashSkill as DashSkillComponent
 
+
 var isAlive = true
 
 func _ready():
 	animationPlayer.play("Idle")
+	healthManager.connect("damage",func(): GetHited())	
 	pass
 
 func _physics_process(delta):
@@ -27,6 +30,25 @@ func _physics_process(delta):
 		
 	sprite2D.flip_h = (get_global_mouse_position() - position).x < 0
 	pass	
+
+func GetHited():
+	ChangeAnim("Hit")
+	StartIFrame()
+	pass
+
+func EndHitFrame():
+	ChangeAnim("Idle")
+	EndIFrame()
+	pass
+
+func ChangeAnim(anim: String):
+	animationPlayer.play(anim)
+	
+func StartIFrame():
+	healthManager.SetActive(false)
+	
+func EndIFrame():
+	healthManager.SetActive(true)
 
 func getAxisInput() -> Vector2:
 	var directionH = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")

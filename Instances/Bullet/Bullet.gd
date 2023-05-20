@@ -60,7 +60,7 @@ func _on_area_entered(area):
 	if area.has_method("take_damage"):
 		var attack = Attack.new()
 		attack.damage = damage
-		attack.direction = moveDirection
+		attack.direction = self.global_position
 		attack.knock_back = 10
 		area.take_damage(attack)
 		

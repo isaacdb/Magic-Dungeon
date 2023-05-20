@@ -1,8 +1,9 @@
-[gd_scene load_steps=23 format=3 uid="uid://ctmuuvakalfx1"]
+[gd_scene load_steps=25 format=3 uid="uid://ctmuuvakalfx1"]
 
 [ext_resource type="Script" path="res://Instances/Mage1/Mage1.gd" id="1_giwmu"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="1_hkxu6"]
 [ext_resource type="Texture2D" uid="uid://bij07g2lqci3r" path="res://Character/LadyMage.png" id="2_2wl1u"]
+[ext_resource type="PackedScene" uid="uid://db4uuf766upgt" path="res://Instances/Components/Wand/Wand.tscn" id="2_540pc"]
 [ext_resource type="PackedScene" uid="uid://b4asjdyoyep5s" path="res://Instances/Components/Health/Health.tscn" id="3_gonwg"]
 [ext_resource type="Texture2D" uid="uid://b6l8fu6uss63t" path="res://Character/Pixilart Sprite Sheet.png" id="4_tvlqg"]
 [ext_resource type="PackedScene" uid="uid://6fcg84clxst2" path="res://Instances/Components/Death/DeathManager.tscn" id="4_v7fsg"]
@@ -10,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dx8h735nl0e2d" path="res://Instances/Components/Move/Move.tscn" id="6_nmcf8"]
 [ext_resource type="PackedScene" uid="uid://dwmmaqkh76tiv" path="res://Instances/Components/DashSkill/DashSkill.tscn" id="8_hx86t"]
 [ext_resource type="PackedScene" uid="uid://pnthfjsqolx2" path="res://Instances/Components/Camera/Camera.tscn" id="10_okhe8"]
+[ext_resource type="PackedScene" uid="uid://bcbgphbcmqgky" path="res://Instances/Components/KnockBack/KnockBack.tscn" id="12_b338j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6gleb"]
 
@@ -26,7 +28,7 @@ step = 0.05
 
 [sub_resource type="Animation" id="Animation_wwtjb"]
 resource_name = "Hit"
-length = 0.2
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -34,22 +36,24 @@ tracks/0/path = NodePath("Sprite2D:material:shader_parameter/flash_modifier")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.8, 0.0]
+"values": [0.0, 0.8, 0.0, 0.8, 0.0]
 }
-tracks/1/type = "value"
+tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimationPlayer:current_animation")
+tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.2),
+"times": PackedFloat32Array(0.4),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"Idle"]
+"values": [{
+"args": [],
+"method": &"EndHitFrame"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_2iv2e"]
@@ -127,11 +131,15 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 radius = 6.0
 height = 20.0
 
-[node name="Mage1" type="CharacterBody2D" node_paths=PackedStringArray("moveComponent")]
+[node name="Mage1" type="CharacterBody2D" node_paths=PackedStringArray("moveComponent", "healthManager") groups=["player"]]
 collision_layer = 0
 collision_mask = 112
 script = ExtResource("1_giwmu")
 moveComponent = NodePath("Move")
+healthManager = NodePath("Health")
+
+[node name="Wand" parent="." instance=ExtResource("2_540pc")]
+fireRate = 0.1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -179,12 +187,14 @@ scale_amount_max = 0.7
 color_ramp = SubResource("Gradient_f3y8h")
 anim_offset_max = 1.0
 
-[node name="Health" parent="." node_paths=PackedStringArray("deathManager") instance=ExtResource("3_gonwg")]
+[node name="Health" parent="." node_paths=PackedStringArray("deathManager", "knockBack") groups=["player"] instance=ExtResource("3_gonwg")]
 collision_layer = 2
 collision_mask = 0
+health = 10
 deathManager = NodePath("../DeathManager")
+knockBack = NodePath("../KnockBack")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Health"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Health" groups=["player"]]
 shape = SubResource("CapsuleShape2D_2uere")
 
 [node name="DeathManager" parent="." node_paths=PackedStringArray("activeHandle") instance=ExtResource("4_v7fsg")]
@@ -192,7 +202,7 @@ activeHandle = NodePath("../ActiveHandleComponent")
 
 [node name="ActiveHandleComponent" parent="." instance=ExtResource("5_mmgrx")]
 activeOnLoad = true
-switch_nps = Array[NodePath]([NodePath("../Health"), NodePath("../DeathManager"), NodePath("../Move"), NodePath("../DashSkill")])
+switch_nps = Array[NodePath]([NodePath("../Health"), NodePath("../DeathManager"), NodePath("../Move"), NodePath("../DashSkill"), NodePath("../KnockBack")])
 
 [node name="Move" parent="." node_paths=PackedStringArray("walkParticule") instance=ExtResource("6_nmcf8")]
 walkParticule = NodePath("../WalkParticle")
@@ -200,3 +210,5 @@ walkParticule = NodePath("../WalkParticle")
 [node name="DashSkill" parent="." instance=ExtResource("8_hx86t")]
 
 [node name="Camera2D" parent="." instance=ExtResource("10_okhe8")]
+
+[node name="KnockBack" parent="." instance=ExtResource("12_b338j")]

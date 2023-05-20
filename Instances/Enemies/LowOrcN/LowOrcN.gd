@@ -5,7 +5,12 @@ extends CharacterBody2D
 @export var playerTracker : PlayerTracker
 @export var attackManager : AttackManager
 @export var healthManager : Health
+@export var hitBox : HitBoxComponent
+
 @export var speed := 50.0
+@export var damage := 1.0
+@export var knockBackForce := 20.0
+
 
 @onready var animPlayer := $AnimationPlayer as AnimationPlayer
 @onready var sprite := $AnimatedSprite2D as AnimatedSprite2D
@@ -25,6 +30,9 @@ var currentState := States.SPAWNING
 func _ready():
 	attackManager.connect("attack_signal", func(): ChangeState(States.ATTACK))
 	healthManager.connect("damage", func(): ChangeState(States.HIT))
+	
+	hitBox.damage = damage
+	hitBox.knockBackForce = knockBackForce	
 	pass
 	
 func _physics_process(delta):

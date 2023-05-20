@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Instances/Components/ShooterComponent/ShooterComponent.gd" id="1_5eups"]
 
-[node name="ShooterComponent" type="Node2D"]
+[node name="ShooterComponent" type="Marker2D"]
 script = ExtResource("1_5eups")
 
 [node name="Timer" type="Timer" parent="."]

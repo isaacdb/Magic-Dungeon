@@ -10,6 +10,7 @@ extends CharacterBody2D
 
 @onready var animPlayer := $AnimationPlayer as AnimationPlayer
 @onready var sprite := $AnimatedSprite2D as AnimatedSprite2D
+@onready var orcBullet := preload("res://Instances/Bullet/BulletsEnemies/BulletEnemy1/BulletEnemy1.tscn")
 
 enum States
 {
@@ -68,7 +69,7 @@ func ChangeState(state: States):
 	
 func AttackFinished():
 	var playerDirection = playerTracker.GetDirection()
-	shootManager.Fire(playerDirection)
+	shootManager.Fire(playerDirection, orcBullet)
 	ChangeState(States.IDLE)
 	pass
 	
