@@ -16,6 +16,7 @@ func _ready():
 	pass
 
 func UpdateFireRate(newFireRate: float):
+	print("new fire rate ", newFireRate)
 	fireRate = newFireRate
 	fireTimer.set_wait_time(fireRate)
 	fireTimer.start()

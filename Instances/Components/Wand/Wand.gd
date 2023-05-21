@@ -1,7 +1,7 @@
 extends Node2D
+class_name Wand
 
 @export var shootManager : ShooterComponent
-@export var fireRate := 0.0
 
 @onready var animationPlayer := $AnimationPlayer as AnimationPlayer
 @onready var wandBullet := preload("res://Instances/Bullet/Bullet.tscn")
@@ -9,7 +9,11 @@ extends Node2D
 var isActive := false
 
 func _ready():
-	shootManager.UpdateFireRate(fireRate)
+	shootManager.UpdateFireRate(1)
+	pass
+
+func UpdateFireRate(newFireRate: float):
+	shootManager.UpdateFireRate(newFireRate)	
 	pass
 
 func _physics_process(delta):

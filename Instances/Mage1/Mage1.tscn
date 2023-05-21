@@ -132,15 +132,15 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 radius = 6.0
 height = 20.0
 
-[node name="Mage1" type="CharacterBody2D" node_paths=PackedStringArray("moveComponent", "healthManager") groups=["player"]]
+[node name="Mage1" type="CharacterBody2D" node_paths=PackedStringArray("moveComponent", "healthManager", "wand") groups=["player"]]
 collision_layer = 0
 collision_mask = 112
 script = ExtResource("1_giwmu")
 moveComponent = NodePath("Move")
 healthManager = NodePath("Health")
+wand = NodePath("Wand")
 
 [node name="Wand" parent="." instance=ExtResource("2_540pc")]
-fireRate = 0.1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

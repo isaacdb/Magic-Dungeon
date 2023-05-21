@@ -2,10 +2,12 @@ extends CharacterBody2D
 
 @export var moveComponent : MoveComponent
 @export var healthManager : Health
+@export var wand : Wand
 
 @export var acceleration := 800.0
 @export var speed := 200.0
 @export var lifeBase := 10.0
+@export var fireRate := 1.0
 
 @onready var sprite2D := $Sprite2D as Sprite2D
 @onready var animationPlayer := $AnimationPlayer as AnimationPlayer
@@ -20,7 +22,7 @@ func _ready():
 	healthManager.SetLifeBase(lifeBase)
 	Global.set_player_max_life.emit(lifeBase)
 	Global.update_player_life.emit(lifeBase)
-	print("mage ready")
+	wand.UpdateFireRate(fireRate)
 		
 	pass
 
@@ -42,7 +44,19 @@ func GetHited():
 	ChangeAnim("Hit")
 	StartIFrame()
 	Global.update_player_life.emit(healthManager.currentHealth)
+	ChangeFireRate()
 	pass
+	
+func ChangeFireRate():
+	var lifePercent = (healthManager.currentHealth * 100) / healthManager.lifeBase
+	print(lifePercent)
+	if lifePercent > 80:
+		wand.UpdateFireRate(fireRate)
+	elif lifePercent >= 50:
+		wand.UpdateFireRate(fireRate / 2)		
+	elif lifePercent >= 30:
+		wand.UpdateFireRate(fireRate / 4)		
+		
 
 func EndHitFrame():
 	ChangeAnim("Idle")
