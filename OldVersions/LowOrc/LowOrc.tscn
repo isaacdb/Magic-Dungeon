@@ -1,8 +1,8 @@
-[gd_scene load_steps=59 format=3 uid="uid://bote8qrr2iwst"]
+[gd_scene load_steps=59 format=3]
 
-[ext_resource type="Script" path="res://Instances/Enemies/LowOrc/LowOrc.gd" id="1_fflio"]
+[ext_resource type="Script" path="res://OldVersions/LowOrc/LowOrc.gd" id="1_fflio"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="2_hs026"]
-[ext_resource type="Texture2D" uid="uid://dd802vu3oo82g" path="res://Instances/Enemies/LowOrc/low-orc.png" id="3_risyp"]
+[ext_resource type="Texture2D" uid="uid://dd802vu3oo82g" path="res://OldVersions/LowOrc/low-orc.png" id="3_risyp"]
 [ext_resource type="Texture2D" uid="uid://bmthaf8sd0d62" path="res://Assets/magic-explosion.png" id="4_4qcg0"]
 [ext_resource type="Texture2D" uid="uid://iur82cv6oa7y" path="res://Instances/Enemies/Spawn/hits-1/hits-1-5.png" id="5_y5or0"]
 [ext_resource type="Texture2D" uid="uid://cnhk1o1i05qjm" path="res://Instances/Enemies/Spawn/hits-1/hits-1-4.png" id="6_73uc2"]

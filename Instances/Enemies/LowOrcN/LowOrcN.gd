@@ -8,12 +8,16 @@ extends CharacterBody2D
 @export var hitBox : HitBoxComponent
 
 @export var speed := 50.0
+
+# Combat vars
 @export var damage := 1.0
+@export var attackDelay := 1.5
 @export var knockBackForce := 20.0
+@export var lifeBase := 8.0
 
 
 @onready var animPlayer := $AnimationPlayer as AnimationPlayer
-@onready var sprite := $AnimatedSprite2D as AnimatedSprite2D
+@onready var sprite := $GroupFlip/AnimatedSprite2D as AnimatedSprite2D
 
 enum States
 {
@@ -30,6 +34,9 @@ var currentState := States.SPAWNING
 func _ready():
 	attackManager.connect("attack_signal", func(): ChangeState(States.ATTACK))
 	healthManager.connect("damage", func(): ChangeState(States.HIT))
+	
+	attackManager.SetAttackDelay(attackDelay)
+	healthManager.SetLifeBase(lifeBase)
 	
 	hitBox.damage = damage
 	hitBox.knockBackForce = knockBackForce	

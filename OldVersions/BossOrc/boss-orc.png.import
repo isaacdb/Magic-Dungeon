@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bij07g2lqci3r"
-path="res://.godot/imported/LadyMage.png-d1f947874e406431b5e426a8e74be4b9.ctex"
+uid="uid://bnrosj0wplew7"
+path="res://.godot/imported/boss-orc.png-db123aca1a6ca6730bb6ed6b2bcf87fd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Character/LadyMage.png"
-dest_files=["res://.godot/imported/LadyMage.png-d1f947874e406431b5e426a8e74be4b9.ctex"]
+source_file="res://OldVersions/BossOrc/boss-orc.png"
+dest_files=["res://.godot/imported/boss-orc.png-db123aca1a6ca6730bb6ed6b2bcf87fd.ctex"]
 
 [params]
 

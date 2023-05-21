@@ -8,8 +8,11 @@ extends CharacterBody2D
 @export var shootManager : ShooterComponent
 @export var speed := 80.0
 
+@export var fireRate := 2.5
+@export var lifeBase := 5
+
 @onready var animPlayer := $AnimationPlayer as AnimationPlayer
-@onready var sprite := $AnimatedSprite2D as AnimatedSprite2D
+@onready var sprite := $GroupFlip/AnimatedSprite2D as AnimatedSprite2D
 @onready var orcBullet := preload("res://Instances/Bullet/BulletsEnemies/BulletEnemy1/BulletEnemy1.tscn")
 
 enum States
@@ -27,6 +30,9 @@ var currentState := States.SPAWNING
 func _ready():
 	attackManager.connect("attack_signal", func(): ChangeState(States.ATTACK))
 	healthManager.connect("damage", func(): ChangeState(States.HIT))
+	
+	attackManager.SetAttackDelay(fireRate)
+	healthManager.SetLifeBase(lifeBase)
 	pass
 	
 func _physics_process(delta):

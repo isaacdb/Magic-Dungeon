@@ -1,8 +1,8 @@
-[gd_scene load_steps=35 format=3 uid="uid://diankd5iy2r67"]
+[gd_scene load_steps=36 format=3 uid="uid://il16ni6ku2om"]
 
 [ext_resource type="Script" path="res://Instances/Enemies/MageOrcN/MageOrcN.gd" id="1_mpfqp"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="1_rj5j8"]
-[ext_resource type="Texture2D" uid="uid://c4qxerf4msgyu" path="res://Instances/Enemies/MageOrc/mage-orc.png" id="2_v83le"]
+[ext_resource type="Texture2D" uid="uid://c4qxerf4msgyu" path="res://OldVersions/MageOrc/mage-orc.png" id="2_v83le"]
 [ext_resource type="PackedScene" uid="uid://b4asjdyoyep5s" path="res://Instances/Components/Health/Health.tscn" id="3_k0wef"]
 [ext_resource type="PackedScene" uid="uid://6fcg84clxst2" path="res://Instances/Components/Death/DeathManager.tscn" id="4_s32rd"]
 [ext_resource type="PackedScene" uid="uid://bjwrgsdbjvqw3" path="res://Instances/Components/DeathEffect/DeathExplosion.tscn" id="5_5fvh3"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://wwc5nmv5yn2j" path="res://Instances/Components/AttackManager/AttackManager.tscn" id="12_qsol5"]
 [ext_resource type="PackedScene" uid="uid://ca6aeltom7e7y" path="res://Instances/Components/ShooterComponent/ShooterComponent.tscn" id="13_hksvg"]
 [ext_resource type="PackedScene" path="res://Instances/Components/ActiveHandleComponent/ActiveHandleComponent.tscn" id="14_fg023"]
+[ext_resource type="PackedScene" uid="uid://8mpq1pm143kp" path="res://Instances/Components/HealthBar/HealthBar.tscn" id="15_ohlla"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u6pv1"]
 radius = 7.0
@@ -108,7 +109,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:position")
+tracks/1/path = NodePath("GroupFlip/AnimatedSprite2D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -120,7 +121,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatedSprite2D:rotation")
+tracks/2/path = NodePath("GroupFlip/AnimatedSprite2D:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -132,7 +133,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("AnimatedSprite2D:scale")
+tracks/3/path = NodePath("GroupFlip/AnimatedSprite2D:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -152,7 +153,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/flash_modifier")
+tracks/0/path = NodePath("GroupFlip/AnimatedSprite2D:material:shader_parameter/flash_modifier")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -184,7 +185,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/path = NodePath("GroupFlip/AnimatedSprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -196,7 +197,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:rotation")
+tracks/1/path = NodePath("GroupFlip/AnimatedSprite2D:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -208,7 +209,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatedSprite2D:scale")
+tracks/2/path = NodePath("GroupFlip/AnimatedSprite2D:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -223,7 +224,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:rotation")
+tracks/0/path = NodePath("GroupFlip/AnimatedSprite2D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -235,7 +236,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:material:shader_parameter/flash_modifier")
+tracks/1/path = NodePath("GroupFlip/AnimatedSprite2D:material:shader_parameter/flash_modifier")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -247,7 +248,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatedSprite2D:position")
+tracks/2/path = NodePath("GroupFlip/AnimatedSprite2D:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -259,7 +260,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("AnimatedSprite2D:animation")
+tracks/3/path = NodePath("GroupFlip/AnimatedSprite2D:animation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -271,7 +272,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("AnimatedSprite2D:frame")
+tracks/4/path = NodePath("GroupFlip/AnimatedSprite2D:frame")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -283,7 +284,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("AnimatedSprite2D:scale")
+tracks/5/path = NodePath("GroupFlip/AnimatedSprite2D:scale")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -300,7 +301,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/path = NodePath("GroupFlip/AnimatedSprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -312,7 +313,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:rotation")
+tracks/1/path = NodePath("GroupFlip/AnimatedSprite2D:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -324,7 +325,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatedSprite2D:animation")
+tracks/2/path = NodePath("GroupFlip/AnimatedSprite2D:animation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -336,7 +337,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("AnimatedSprite2D:frame")
+tracks/3/path = NodePath("GroupFlip/AnimatedSprite2D:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -378,25 +379,33 @@ shootManager = NodePath("ShooterComponent")
 position = Vector2(-1, -8)
 shape = SubResource("CircleShape2D_u6pv1")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="GroupFlip" type="Node2D" parent="."]
+
+[node name="LookAtPlayerComponent" parent="GroupFlip" node_paths=PackedStringArray("playerTracker") instance=ExtResource("9_166lo")]
+rotation = 3.14159
+scale = Vector2(1, -1)
+playerTracker = NodePath("../../PlayerTracker")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GroupFlip"]
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_7dk2g")
 sprite_frames = SubResource("SpriteFrames_6sefw")
 animation = &"Walk"
 centered = false
 offset = Vector2(-8.062, -20.028)
+flip_h = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_a08sq")
 }
 
-[node name="Health" parent="." node_paths=PackedStringArray("deathManager", "knockBack") instance=ExtResource("3_k0wef")]
+[node name="Health" parent="." node_paths=PackedStringArray("deathManager", "knockBack", "lifeBar") instance=ExtResource("3_k0wef")]
 collision_layer = 8
 collision_mask = 0
-health = 3
 deathManager = NodePath("../DeathManager")
 knockBack = NodePath("../KnockBack")
+lifeBar = NodePath("../HealthBar")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Health"]
 position = Vector2(-1, -7)
@@ -407,7 +416,6 @@ debug_color = Color(0, 0.52549, 0, 0.419608)
 collision_layer = 0
 collision_mask = 2
 playerTracker = NodePath("../PlayerTracker")
-attackDelay = 3.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackManager"]
 position = Vector2(0, -7)
@@ -424,19 +432,20 @@ switch_nps = Array[NodePath]([NodePath("../DeathExplosion")])
 [node name="DeathExplosion" parent="." instance=ExtResource("5_5fvh3")]
 
 [node name="Move" parent="." instance=ExtResource("6_oin3v")]
-speed = 80.0
 
 [node name="PlayerTracker" parent="." instance=ExtResource("7_mtjfn")]
-
-[node name="LookAtPlayerComponent" parent="." node_paths=PackedStringArray("playerTracker") instance=ExtResource("9_166lo")]
-playerTracker = NodePath("../PlayerTracker")
 
 [node name="KnockBack" parent="." instance=ExtResource("10_5ip6j")]
 
 [node name="ShooterComponent" parent="." instance=ExtResource("13_hksvg")]
-position = Vector2(0, -7)
+position = Vector2(0, -8)
 origin = "Enemy:1"
-fireDelay = 1.0
 
 [node name="ActiveHandleComponent" parent="." instance=ExtResource("14_fg023")]
-switch_nps = Array[NodePath]([NodePath("../Health"), NodePath("../AttackManager"), NodePath("../DeathManager"), NodePath("../DeathExplosion"), NodePath("../Move"), NodePath("../PlayerTracker"), NodePath("../LookAtPlayerComponent"), NodePath("../KnockBack"), NodePath("../ShooterComponent")])
+switch_nps = Array[NodePath]([NodePath("../Health"), NodePath("../AttackManager"), NodePath("../DeathManager"), NodePath("../DeathExplosion"), NodePath("../Move"), NodePath("../PlayerTracker"), NodePath("../GroupFlip/LookAtPlayerComponent"), NodePath("../KnockBack"), NodePath("../ShooterComponent")])
+
+[node name="HealthBar" parent="." instance=ExtResource("15_ohlla")]
+offset_left = -9.0
+offset_top = -19.0
+offset_right = 182.0
+offset_bottom = 8.0

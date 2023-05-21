@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6l8fu6uss63t"
-path="res://.godot/imported/Pixilart Sprite Sheet.png-1defef1f63a21d3eb2356f211e95130a.ctex"
+uid="uid://cprsltieyui37"
+path="res://.godot/imported/SrSoldier.png-6f33c6f252f886a15b55cc6080871cbf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Character/Pixilart Sprite Sheet.png"
-dest_files=["res://.godot/imported/Pixilart Sprite Sheet.png-1defef1f63a21d3eb2356f211e95130a.ctex"]
+source_file="res://OldVersions/Character/SrSoldier.png"
+dest_files=["res://.godot/imported/SrSoldier.png-6f33c6f252f886a15b55cc6080871cbf.ctex"]
 
 [params]
 

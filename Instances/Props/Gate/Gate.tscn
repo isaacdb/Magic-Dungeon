@@ -1,7 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://rsrbyyuomhgb"]
+[gd_scene load_steps=8 format=3 uid="uid://ccth7h5t4bfu"]
 
-[ext_resource type="Script" path="res://Scripts/Gate.gd" id="1_5q84b"]
-[ext_resource type="Texture2D" uid="uid://r26guv2r3np2" path="res://Assets/pixil-frame-1.png" id="2_jdvbb"]
+[ext_resource type="Script" path="res://Instances/Props/Gate/Gate.gd" id="1_bk75x"]
+[ext_resource type="Texture2D" uid="uid://r26guv2r3np2" path="res://Assets/pixil-frame-1.png" id="2_tvy0r"]
 
 [sub_resource type="Animation" id="Animation_mif48"]
 resource_name = "Close"
@@ -99,7 +99,7 @@ y_sort_enabled = true
 position = Vector2(313, -230)
 collision_layer = 32
 collision_mask = 0
-script = ExtResource("1_5q84b")
+script = ExtResource("1_bk75x")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "RESET"
@@ -116,24 +116,24 @@ shape = SubResource("RectangleShape2D_g6o3d")
 [node name="Sprite2D" type="Sprite2D" parent="GateSprites"]
 y_sort_enabled = true
 position = Vector2(-31, 3.5)
-texture = ExtResource("2_jdvbb")
+texture = ExtResource("2_tvy0r")
 
 [node name="Sprite2D2" type="Sprite2D" parent="GateSprites"]
 y_sort_enabled = true
 position = Vector2(-15, 3.5)
-texture = ExtResource("2_jdvbb")
+texture = ExtResource("2_tvy0r")
 
 [node name="Sprite2D3" type="Sprite2D" parent="GateSprites"]
 y_sort_enabled = true
 position = Vector2(1, 3.5)
-texture = ExtResource("2_jdvbb")
+texture = ExtResource("2_tvy0r")
 
 [node name="Sprite2D4" type="Sprite2D" parent="GateSprites"]
 y_sort_enabled = true
 position = Vector2(17, 3.5)
-texture = ExtResource("2_jdvbb")
+texture = ExtResource("2_tvy0r")
 
 [node name="Sprite2D5" type="Sprite2D" parent="GateSprites"]
 y_sort_enabled = true
 position = Vector2(33, 3.5)
-texture = ExtResource("2_jdvbb")
+texture = ExtResource("2_tvy0r")

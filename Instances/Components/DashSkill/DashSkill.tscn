@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dwmmaqkh76tiv"]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://Instances/Components/DashSkill/DashSkill.gd" id="1_v47tm"]
-[ext_resource type="Texture2D" uid="uid://b6l8fu6uss63t" path="res://Character/Pixilart Sprite Sheet.png" id="2_rtfjg"]
+[ext_resource type="Texture2D" uid="uid://b6l8fu6uss63t" path="res://Assets/Dust.png" id="2_rtfjg"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7pq76"]
 particles_animation = true

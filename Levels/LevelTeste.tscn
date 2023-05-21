@@ -1,14 +1,14 @@
-[gd_scene load_steps=21 format=3 uid="uid://bu3iigcjnxy10"]
+[gd_scene load_steps=21 format=3 uid="uid://cmx7pnpls2gkt"]
 
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_avsao"]
 [ext_resource type="PackedScene" uid="uid://03my8igrvwt8" path="res://Instances/Tilemap/TileMapWalls.tscn" id="1_fch5f"]
 [ext_resource type="PackedScene" uid="uid://d2iv4f2anflh4" path="res://Instances/Tilemap/TileMapGround.tscn" id="2_vbm8m"]
-[ext_resource type="PackedScene" uid="uid://ctmuuvakalfx1" path="res://Instances/Mage1/Mage1.tscn" id="4_f7hcd"]
-[ext_resource type="PackedScene" uid="uid://car085oreds85" path="res://Instances/Enemies/LowOrcN/LowOrcN.tscn" id="6_2dt4y"]
+[ext_resource type="PackedScene" uid="uid://wxjsqqs3f4v8" path="res://Instances/Mage1/Mage1.tscn" id="4_f7hcd"]
+[ext_resource type="PackedScene" uid="uid://cjh67j7u0amal" path="res://Instances/Enemies/LowOrcN/LowOrcN.tscn" id="6_2dt4y"]
 [ext_resource type="Script" path="res://Scripts/Room.gd" id="6_awtxp"]
-[ext_resource type="PackedScene" uid="uid://did3hb1j8vm3a" path="res://Instances/Enemies/BossOrc/BossOrc.tscn" id="6_di7aa"]
-[ext_resource type="PackedScene" uid="uid://diankd5iy2r67" path="res://Instances/Enemies/MageOrcN/MageOrcN.tscn" id="7_43g3d"]
-[ext_resource type="PackedScene" uid="uid://rsrbyyuomhgb" path="res://Instances/Gate.tscn" id="7_pgs22"]
+[ext_resource type="PackedScene" path="res://OldVersions/BossOrc/BossOrc.tscn" id="6_di7aa"]
+[ext_resource type="PackedScene" uid="uid://il16ni6ku2om" path="res://Instances/Enemies/MageOrcN/MageOrcN.tscn" id="7_43g3d"]
+[ext_resource type="PackedScene" uid="uid://ccth7h5t4bfu" path="res://Instances/Props/Gate/Gate.tscn" id="7_pgs22"]
 [ext_resource type="Script" path="res://Scripts/BossRoom.gd" id="8_852hq"]
 [ext_resource type="Script" path="res://Scripts/Lobby.gd" id="8_kfohy"]
 
@@ -75,16 +75,16 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fsra8"]
-size = Vector2(631, 297)
+size = Vector2(631, 321)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0vbb2"]
-size = Vector2(631, 272)
+size = Vector2(631, 303)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tdnn4"]
-size = Vector2(631, 281)
+size = Vector2(631, 312)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4j2hw"]
-size = Vector2(631, 281)
+size = Vector2(631, 291)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dj17o"]
 size = Vector2(591, 305)
@@ -162,7 +162,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Room-1/Area2D"]
-position = Vector2(134.5, 64.5)
+position = Vector2(134.5, 76.5)
 shape = SubResource("RectangleShape2D_fsra8")
 
 [node name="SpawnPoints" type="Node2D" parent="Room-1"]
@@ -252,7 +252,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Room-2/Area2D"]
-position = Vector2(134.5, 56)
+position = Vector2(134.5, 66.5)
 shape = SubResource("RectangleShape2D_0vbb2")
 
 [node name="SpawnPoints" type="Node2D" parent="Room-2"]
@@ -342,7 +342,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Room-3/Area2D"]
-position = Vector2(134.5, 60.5)
+position = Vector2(134.5, 69)
 shape = SubResource("RectangleShape2D_tdnn4")
 
 [node name="SpawnPoints" type="Node2D" parent="Room-3"]
@@ -436,7 +436,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Boss-Room/Area2D"]
-position = Vector2(134.5, 60.5)
+position = Vector2(134.5, 65.5)
 shape = SubResource("RectangleShape2D_4j2hw")
 
 [node name="SmashPoints" type="Node2D" parent="Boss-Room"]

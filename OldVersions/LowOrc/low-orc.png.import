@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4qxerf4msgyu"
-path="res://.godot/imported/mage-orc.png-c5de6bceea5ccb56a1e69c236c347775.ctex"
+uid="uid://dd802vu3oo82g"
+path="res://.godot/imported/low-orc.png-9c3f709eb8fc256c6504681c2ac8905a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Instances/Enemies/MageOrc/mage-orc.png"
-dest_files=["res://.godot/imported/mage-orc.png-c5de6bceea5ccb56a1e69c236c347775.ctex"]
+source_file="res://OldVersions/LowOrc/low-orc.png"
+dest_files=["res://.godot/imported/low-orc.png-9c3f709eb8fc256c6504681c2ac8905a.ctex"]
 
 [params]
 

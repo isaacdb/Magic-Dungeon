@@ -2,19 +2,23 @@ extends CharacterBody2D
 
 @export var moveComponent : MoveComponent
 @export var healthManager : Health
+
 @export var acceleration := 800.0
 @export var speed := 200.0
+@export var lifeBase := 10.0
 
 @onready var sprite2D := $Sprite2D as Sprite2D
 @onready var animationPlayer := $AnimationPlayer as AnimationPlayer
 @onready var dashSkill := $DashSkill as DashSkillComponent
 
-
 var isAlive = true
 
 func _ready():
 	animationPlayer.play("Idle")
-	healthManager.connect("damage",func(): GetHited())	
+	healthManager.connect("damage",func(): GetHited())
+	
+	healthManager.SetLifeBase(lifeBase)
+	
 	pass
 
 func _physics_process(delta):

@@ -1,17 +1,18 @@
-[gd_scene load_steps=25 format=3 uid="uid://ctmuuvakalfx1"]
+[gd_scene load_steps=26 format=3 uid="uid://wxjsqqs3f4v8"]
 
 [ext_resource type="Script" path="res://Instances/Mage1/Mage1.gd" id="1_giwmu"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="1_hkxu6"]
-[ext_resource type="Texture2D" uid="uid://bij07g2lqci3r" path="res://Character/LadyMage.png" id="2_2wl1u"]
 [ext_resource type="PackedScene" uid="uid://db4uuf766upgt" path="res://Instances/Components/Wand/Wand.tscn" id="2_540pc"]
 [ext_resource type="PackedScene" uid="uid://b4asjdyoyep5s" path="res://Instances/Components/Health/Health.tscn" id="3_gonwg"]
-[ext_resource type="Texture2D" uid="uid://b6l8fu6uss63t" path="res://Character/Pixilart Sprite Sheet.png" id="4_tvlqg"]
+[ext_resource type="Texture2D" uid="uid://dk66h00qimkf4" path="res://Instances/Mage1/Mage1.png" id="4_ftoke"]
 [ext_resource type="PackedScene" uid="uid://6fcg84clxst2" path="res://Instances/Components/Death/DeathManager.tscn" id="4_v7fsg"]
+[ext_resource type="Texture2D" uid="uid://b6l8fu6uss63t" path="res://Assets/Dust.png" id="5_2k80y"]
 [ext_resource type="PackedScene" path="res://Instances/Components/ActiveHandleComponent/ActiveHandleComponent.tscn" id="5_mmgrx"]
 [ext_resource type="PackedScene" uid="uid://dx8h735nl0e2d" path="res://Instances/Components/Move/Move.tscn" id="6_nmcf8"]
-[ext_resource type="PackedScene" uid="uid://dwmmaqkh76tiv" path="res://Instances/Components/DashSkill/DashSkill.tscn" id="8_hx86t"]
+[ext_resource type="PackedScene" path="res://Instances/Components/DashSkill/DashSkill.tscn" id="8_hx86t"]
 [ext_resource type="PackedScene" uid="uid://pnthfjsqolx2" path="res://Instances/Components/Camera/Camera.tscn" id="10_okhe8"]
 [ext_resource type="PackedScene" uid="uid://bcbgphbcmqgky" path="res://Instances/Components/KnockBack/KnockBack.tscn" id="12_b338j"]
+[ext_resource type="PackedScene" uid="uid://8mpq1pm143kp" path="res://Instances/Components/HealthBar/HealthBar.tscn" id="13_8jnl4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6gleb"]
 
@@ -149,7 +150,7 @@ shape = SubResource("CircleShape2D_6gleb")
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_bpi2f")
 position = Vector2(0, 9.737)
-texture = ExtResource("2_2wl1u")
+texture = ExtResource("4_ftoke")
 centered = false
 offset = Vector2(-7.494, -22.721)
 hframes = 9
@@ -169,11 +170,11 @@ texture = SubResource("GradientTexture2D_vpnaj")
 [node name="WalkParticle" type="CPUParticles2D" parent="."]
 z_index = -1
 material = SubResource("CanvasItemMaterial_mhr2p")
-position = Vector2(0, 9.737)
+position = Vector2(0, 9)
 emitting = false
 amount = 32
 randomness = 0.2
-texture = ExtResource("4_tvlqg")
+texture = ExtResource("5_2k80y")
 direction = Vector2(0, -1)
 gravity = Vector2(0, 0)
 initial_velocity_min = 5.0
@@ -187,12 +188,12 @@ scale_amount_max = 0.7
 color_ramp = SubResource("Gradient_f3y8h")
 anim_offset_max = 1.0
 
-[node name="Health" parent="." node_paths=PackedStringArray("deathManager", "knockBack") groups=["player"] instance=ExtResource("3_gonwg")]
+[node name="Health" parent="." node_paths=PackedStringArray("deathManager", "knockBack", "lifeBar") groups=["player"] instance=ExtResource("3_gonwg")]
 collision_layer = 2
 collision_mask = 0
-health = 10
 deathManager = NodePath("../DeathManager")
 knockBack = NodePath("../KnockBack")
+lifeBar = NodePath("../HealthBar")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Health" groups=["player"]]
 shape = SubResource("CapsuleShape2D_2uere")
@@ -212,3 +213,10 @@ walkParticule = NodePath("../WalkParticle")
 [node name="Camera2D" parent="." instance=ExtResource("10_okhe8")]
 
 [node name="KnockBack" parent="." instance=ExtResource("12_b338j")]
+
+[node name="HealthBar" parent="." instance=ExtResource("13_8jnl4")]
+modulate = Color(0, 0.941176, 0, 1)
+offset_left = -12.0
+offset_top = -15.0
+offset_right = 248.0
+offset_bottom = 15.0

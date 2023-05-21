@@ -1,8 +1,8 @@
-[gd_scene load_steps=61 format=3 uid="uid://did3hb1j8vm3a"]
+[gd_scene load_steps=61 format=3]
 
-[ext_resource type="Script" path="res://Instances/Enemies/BossOrc/BossOrc.gd" id="1_sq4jn"]
+[ext_resource type="Script" path="res://OldVersions/BossOrc/BossOrc.gd" id="1_sq4jn"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="2_4t5dc"]
-[ext_resource type="Texture2D" uid="uid://bnrosj0wplew7" path="res://Instances/Enemies/BossOrc/boss-orc.png" id="3_xrd5d"]
+[ext_resource type="Texture2D" uid="uid://bnrosj0wplew7" path="res://OldVersions/BossOrc/boss-orc.png" id="3_xrd5d"]
 [ext_resource type="Texture2D" uid="uid://bmthaf8sd0d62" path="res://Assets/magic-explosion.png" id="4_n2wwp"]
 [ext_resource type="Texture2D" uid="uid://iur82cv6oa7y" path="res://Instances/Enemies/Spawn/hits-1/hits-1-5.png" id="5_saqqt"]
 [ext_resource type="Texture2D" uid="uid://cnhk1o1i05qjm" path="res://Instances/Enemies/Spawn/hits-1/hits-1-4.png" id="6_5rquy"]

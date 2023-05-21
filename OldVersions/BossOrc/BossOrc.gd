@@ -1,6 +1,6 @@
 extends EnemyBase
 
-@onready var lowOrc := preload("res://Instances/Enemies/LowOrc/LowOrc.tscn")
+@onready var lowOrc := preload("res://Instances/Enemies/LowOrcN/LowOrcN.tscn")
 
 var canAttack = false
 var rageMode := false
