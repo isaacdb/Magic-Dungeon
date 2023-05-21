@@ -10,6 +10,9 @@ func SetMaxValue(newMaxValue):
 	
 func UpdateHealthBar(newValue: float):
 	visible = true
-	value = newValue
+	
+	var tween = create_tween()
+	tween.tween_property(self, "value", newValue, 0.8).set_trans(Tween.TRANS_LINEAR)
+	tween.play()
+	
 	pass
-

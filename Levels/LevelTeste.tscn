@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://cmx7pnpls2gkt"]
+[gd_scene load_steps=22 format=3 uid="uid://cmx7pnpls2gkt"]
 
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_avsao"]
 [ext_resource type="PackedScene" uid="uid://03my8igrvwt8" path="res://Instances/Tilemap/TileMapWalls.tscn" id="1_fch5f"]
+[ext_resource type="PackedScene" uid="uid://8mpq1pm143kp" path="res://Instances/Components/HealthBar/HealthBar.tscn" id="2_3ryg4"]
 [ext_resource type="PackedScene" uid="uid://d2iv4f2anflh4" path="res://Instances/Tilemap/TileMapGround.tscn" id="2_vbm8m"]
 [ext_resource type="PackedScene" uid="uid://wxjsqqs3f4v8" path="res://Instances/Mage1/Mage1.tscn" id="4_f7hcd"]
 [ext_resource type="PackedScene" uid="uid://cjh67j7u0amal" path="res://Instances/Enemies/LowOrcN/LowOrcN.tscn" id="6_2dt4y"]
@@ -89,12 +90,21 @@ size = Vector2(631, 291)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dj17o"]
 size = Vector2(591, 305)
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("playerLifeBar")]
 y_sort_enabled = true
 position = Vector2(4, -3)
 script = ExtResource("1_avsao")
+playerLifeBar = NodePath("CanvasLayer/HealthBar")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" parent="CanvasLayer" instance=ExtResource("2_3ryg4")]
+modulate = Color(0, 1, 0, 1)
+offset_left = 64.0
+offset_top = 55.0
+offset_right = 1424.0
+offset_bottom = 295.0
+metadata/_edit_use_anchors_ = true
 
 [node name="DeadPanel" type="ColorRect" parent="CanvasLayer"]
 visible = false

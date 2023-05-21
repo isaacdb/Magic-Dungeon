@@ -18,7 +18,10 @@ func _ready():
 	healthManager.connect("damage",func(): GetHited())
 	
 	healthManager.SetLifeBase(lifeBase)
-	
+	Global.set_player_max_life.emit(lifeBase)
+	Global.update_player_life.emit(lifeBase)
+	print("mage ready")
+		
 	pass
 
 func _physics_process(delta):
@@ -38,6 +41,7 @@ func _physics_process(delta):
 func GetHited():
 	ChangeAnim("Hit")
 	StartIFrame()
+	Global.update_player_life.emit(healthManager.currentHealth)
 	pass
 
 func EndHitFrame():
