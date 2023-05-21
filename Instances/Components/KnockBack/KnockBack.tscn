@@ -4,3 +4,5 @@
 
 [node name="KnockBack" type="Node2D"]
 script = ExtResource("1_eugon")
+
+[node name="Timer" type="Timer" parent="."]

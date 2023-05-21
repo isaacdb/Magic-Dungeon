@@ -12,7 +12,7 @@ extends CharacterBody2D
 # Combat vars
 @export var damage := 1.0
 @export var attackDelay := 1.5
-@export var knockBackForce := 20.0
+@export var knockBackForce := 300.0
 @export var lifeBase := 8.0
 
 
