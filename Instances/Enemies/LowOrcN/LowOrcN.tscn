@@ -418,6 +418,7 @@ playerTracker = NodePath("PlayerTracker")
 attackManager = NodePath("AttackManager")
 healthManager = NodePath("Health")
 hitBox = NodePath("GroupFlip/HitBox")
+lifeBase = 5.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

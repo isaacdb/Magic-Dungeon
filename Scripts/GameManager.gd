@@ -8,15 +8,11 @@ extends Node2D
 @onready var timerDead := $CanvasLayer/DeadPanel/TimerDead as Timer
 @onready var canvaModulate := $CanvasModulate as CanvasModulate
 
-
 func _init():
 	Global.player_dead.connect(player_dead)
 	Global.set_player_max_life.connect(SetPlayerLife)
 	Global.update_player_life.connect(UpdatePlayerLife)
 	Global.player_hited.connect(PlayerGetHit)
-	pass
-
-func _ready():
 	pass
 
 func player_dead():
