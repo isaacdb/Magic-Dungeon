@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://il16ni6ku2om"]
+[gd_scene load_steps=37 format=3 uid="uid://il16ni6ku2om"]
 
 [ext_resource type="Script" path="res://Instances/Enemies/MageOrcN/MageOrcN.gd" id="1_mpfqp"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="1_rj5j8"]
@@ -15,6 +15,9 @@
 [ext_resource type="PackedScene" uid="uid://ca6aeltom7e7y" path="res://Instances/Components/ShooterComponent/ShooterComponent.tscn" id="13_hksvg"]
 [ext_resource type="PackedScene" path="res://Instances/Components/ActiveHandleComponent/ActiveHandleComponent.tscn" id="14_fg023"]
 [ext_resource type="PackedScene" uid="uid://8mpq1pm143kp" path="res://Instances/Components/HealthBar/HealthBar.tscn" id="15_ohlla"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6js1l"]
+light_mode = 1
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u6pv1"]
 radius = 7.0
@@ -365,6 +368,7 @@ height = 18.0
 radius = 111.072
 
 [node name="MageOrcN" type="CharacterBody2D" node_paths=PackedStringArray("spawnEffect", "moveComponent", "playerTracker", "attackManager", "healthManager", "shootManager")]
+material = SubResource("CanvasItemMaterial_6js1l")
 collision_layer = 0
 collision_mask = 32
 script = ExtResource("1_mpfqp")
@@ -390,6 +394,7 @@ playerTracker = NodePath("../../PlayerTracker")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GroupFlip"]
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_7dk2g")
+use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_6sefw")
 animation = &"Walk"
 centered = false

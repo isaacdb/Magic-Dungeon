@@ -154,7 +154,7 @@ wait_time = 3.0
 one_shot = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.588235, 0.419608, 0.388235, 1)
+color = Color(1, 0.643137, 0.588235, 1)
 
 [node name="TileMapWall" parent="." instance=ExtResource("1_fch5f")]
 position = Vector2(178, -472)

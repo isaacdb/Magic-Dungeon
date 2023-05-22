@@ -172,8 +172,8 @@ point_count = 3
 [node name="BulletN" type="Node2D"]
 script = ExtResource("1_xqbv4")
 moveDirection = Vector2(0.5, 0.5)
-enemyColor = Color(0.733333, 0.00784314, 0, 1)
-playerColor = Color(0, 0.537255, 1, 1)
+enemyColor = Color(1, 0, 0, 1)
+playerColor = Color(1, 1, 1, 1)
 
 [node name="HitBox" parent="." instance=ExtResource("2_ogrr7")]
 collision_layer = 0

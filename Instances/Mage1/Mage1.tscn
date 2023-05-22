@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://wxjsqqs3f4v8"]
+[gd_scene load_steps=27 format=3 uid="uid://wxjsqqs3f4v8"]
 
 [ext_resource type="Script" path="res://Instances/Mage1/Mage1.gd" id="1_giwmu"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="1_hkxu6"]
@@ -14,12 +14,14 @@
 [ext_resource type="PackedScene" uid="uid://pnthfjsqolx2" path="res://Instances/Components/Camera/Camera.tscn" id="10_okhe8"]
 [ext_resource type="PackedScene" uid="uid://bcbgphbcmqgky" path="res://Instances/Components/KnockBack/KnockBack.tscn" id="12_b338j"]
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gvd1b"]
+light_mode = 1
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_6gleb"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bpi2f"]
-resource_local_to_scene = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_amhju"]
 shader = ExtResource("1_hkxu6")
-shader_parameter/flash_color = Color(0.792157, 0.364706, 0.290196, 1)
+shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifier = 0.0
 
 [sub_resource type="Animation" id="Animation_pxje7"]
@@ -133,6 +135,7 @@ radius = 6.0
 height = 20.0
 
 [node name="Mage1" type="CharacterBody2D" node_paths=PackedStringArray("moveComponent", "healthManager", "wand") groups=["player"]]
+material = SubResource("CanvasItemMaterial_gvd1b")
 collision_layer = 0
 collision_mask = 112
 script = ExtResource("1_giwmu")
@@ -149,7 +152,8 @@ shape = SubResource("CircleShape2D_6gleb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 y_sort_enabled = true
-material = SubResource("ShaderMaterial_bpi2f")
+material = SubResource("ShaderMaterial_amhju")
+use_parent_material = true
 position = Vector2(0, 9.737)
 texture = ExtResource("4_ftoke")
 centered = false
