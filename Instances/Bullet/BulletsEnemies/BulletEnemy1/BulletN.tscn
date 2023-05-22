@@ -1,0 +1,234 @@
+[gd_scene load_steps=17 format=3 uid="uid://ckmrkojeday20"]
+
+[ext_resource type="Script" path="res://Instances/Bullet/BulletsEnemies/BulletEnemy1/BulletN.gd" id="1_xqbv4"]
+[ext_resource type="PackedScene" uid="uid://bplfkb5uolvrb" path="res://Instances/Components/HitBox/HitBox.tscn" id="2_ogrr7"]
+[ext_resource type="Texture2D" uid="uid://i1tufpxybhlh" path="res://Assets/blankbullet.png" id="3_q1dkk"]
+[ext_resource type="Script" path="res://Scripts/LineTrail.gd" id="4_nl1ph"]
+[ext_resource type="Texture2D" uid="uid://b6l8fu6uss63t" path="res://Assets/Dust.png" id="5_m14l8"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j5a4u"]
+radius = 4.0
+height = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_koult"]
+radius = 4.12311
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d5xyr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_q1dkk")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_jflrf"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_n6dg6"]
+gradient = SubResource("Gradient_jflrf")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.825688, 0.802752)
+
+[sub_resource type="Animation" id="Animation_3m5d3"]
+resource_name = "Idle"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"Idle", &"Idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(0.9, 0.9), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_4iqli"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PointLight2D:energy")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.4]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.445, 0.445)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_utrjg"]
+_data = {
+"Idle": SubResource("Animation_3m5d3"),
+"RESET": SubResource("Animation_4iqli")
+}
+
+[sub_resource type="Curve" id="Curve_cc7kk"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.709091), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2832l"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_inrta"]
+_data = [Vector2(0.0234375, 1), 0.0, 0.0, 0, 0, Vector2(0.421875, 0.727273), -2.58586, -2.58586, 0, 0, Vector2(0.515625, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="BulletN" type="Node2D"]
+script = ExtResource("1_xqbv4")
+moveDirection = Vector2(0.5, 0.5)
+enemyColor = Color(0.733333, 0.00784314, 0, 1)
+playerColor = Color(0, 0.537255, 1, 1)
+
+[node name="HitBox" parent="." instance=ExtResource("2_ogrr7")]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CapsuleShape2D_j5a4u")
+
+[node name="WallDetect" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallDetect"]
+shape = SubResource("CircleShape2D_koult")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+scale = Vector2(0.445, 0.445)
+sprite_frames = SubResource("SpriteFrames_d5xyr")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-2.27374e-13, 0)
+scale = Vector2(0.55609, 0.546765)
+energy = 0.4
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_n6dg6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Idle"
+libraries = {
+"": SubResource("AnimationLibrary_utrjg")
+}
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Line2D" type="Line2D" parent="."]
+modulate = Color(1, 0.156863, 0.156863, 1)
+show_behind_parent = true
+width_curve = SubResource("Curve_cc7kk")
+script = ExtResource("4_nl1ph")
+lenght = 5
+
+[node name="ImpactPaticle" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_2832l")
+emitting = false
+amount = 5
+lifetime = 0.3
+one_shot = true
+explosiveness = 0.72
+texture = ExtResource("5_m14l8")
+spread = 30.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 300.0
+initial_velocity_max = 350.0
+scale_amount_curve = SubResource("Curve_inrta")
+anim_offset_max = 1.0

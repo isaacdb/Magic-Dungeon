@@ -15,9 +15,12 @@ extends CharacterBody2D
 @export var knockBackForce := 300.0
 @export var lifeBase := 8.0
 
+@export var timeEscaping := 1.0
 
 @onready var animPlayer := $AnimationPlayer as AnimationPlayer
 @onready var sprite := $GroupFlip/AnimatedSprite2D as AnimatedSprite2D
+@onready var timerScape := $TimerEscape as Timer
+@onready var rnd := RandomNumberGenerator.new()
 
 enum States
 {
@@ -26,12 +29,13 @@ enum States
 	HIT,
 	ATTACK,
 	DEATH,
-	SPAWNING
+	SPAWNING,
+	ESCAPE
 }
 
 var currentState := States.SPAWNING
 
-func _ready():
+func _ready():	
 	attackManager.connect("attack_signal", func(): ChangeState(States.ATTACK))
 	healthManager.connect("damage", func(): ChangeState(States.HIT))
 	
@@ -40,6 +44,11 @@ func _ready():
 	
 	hitBox.damage = damage
 	hitBox.knockBackForce = knockBackForce	
+	
+	timerScape.wait_time = timeEscaping
+	timerScape.one_shot = true
+	timerScape.autostart = false
+	timerScape.timeout.connect(TimerScapeTimeout)
 	pass
 	
 func _physics_process(delta):
@@ -74,7 +83,6 @@ func _physics_process(delta):
 		States.ATTACK:
 			animPlayer.play("Attack")
 			pass
-				
 
 func ChangeState(state: States):
 	currentState = state
@@ -87,3 +95,6 @@ func AttackFinished():
 func HitFinished():
 	ChangeState(States.IDLE)
 	pass	
+
+func TimerScapeTimeout():
+	ChangeState(States.IDLE)

@@ -8,12 +8,14 @@ extends CharacterBody2D
 @export var shootManager : ShooterComponent
 @export var speed := 80.0
 
+@export var orcMageBulletStats : BulletStats
+
 @export var fireRate := 2.5
 @export var lifeBase := 5
 
 @onready var animPlayer := $AnimationPlayer as AnimationPlayer
 @onready var sprite := $GroupFlip/AnimatedSprite2D as AnimatedSprite2D
-@onready var orcBullet := preload("res://Instances/Bullet/BulletsEnemies/BulletEnemy1/BulletEnemy1.tscn")
+@onready var orcBullet := preload("res://Instances/Bullet/BulletsEnemies/BulletEnemy1/BulletN.tscn")
 
 enum States
 {
@@ -75,7 +77,7 @@ func ChangeState(state: States):
 	
 func AttackFinished():
 	var playerDirection = playerTracker.GetDirection()
-	shootManager.Fire(playerDirection, orcBullet)
+	shootManager.Fire(playerDirection, orcBullet, orcMageBulletStats)
 	ChangeState(States.IDLE)
 	pass
 	

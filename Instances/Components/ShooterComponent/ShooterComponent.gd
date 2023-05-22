@@ -1,7 +1,6 @@
 extends Marker2D
 class_name ShooterComponent
 
-@export_enum("None:-1", "Player:0", "Enemy:1") var origin = "Player"
 @export var fireRate := 0.0
 
 @onready var fireTimer := $Timer as Timer
@@ -16,7 +15,6 @@ func _ready():
 	pass
 
 func UpdateFireRate(newFireRate: float):
-	print("new fire rate ", newFireRate)
 	fireRate = newFireRate
 	fireTimer.set_wait_time(fireRate)
 	fireTimer.start()
@@ -25,15 +23,14 @@ func SetActive(active: bool):
 	isActive = active
 	pass
 
-func Fire(direction: Vector2, bullet) -> bool:
+func Fire(direction: Vector2, bullet, bulletStats: BulletStats):
 	if !isActive or !canShoot:
 		return false
 	
 	var newBullet = bullet.instantiate()
 	get_tree().get_root().get_child(0).add_child(newBullet)
+	newBullet.UpdateStats(bulletStats)
 	newBullet.global_position = self.global_position
-	
-#	var targetDirection = (get_global_mouse_position() - spawnPoint.global_position).normalized()
 	newBullet.moveDirection = direction
 	newBullet.look_at(self.global_position + (direction * 10))
 	canShoot = false

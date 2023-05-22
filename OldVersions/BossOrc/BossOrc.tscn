@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3]
+[gd_scene load_steps=61 format=3 uid="uid://0cncowura4of"]
 
 [ext_resource type="Script" path="res://OldVersions/BossOrc/BossOrc.gd" id="1_sq4jn"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="2_4t5dc"]

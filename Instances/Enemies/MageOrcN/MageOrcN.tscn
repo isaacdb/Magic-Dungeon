@@ -1,7 +1,8 @@
-[gd_scene load_steps=36 format=3 uid="uid://il16ni6ku2om"]
+[gd_scene load_steps=37 format=3 uid="uid://il16ni6ku2om"]
 
 [ext_resource type="Script" path="res://Instances/Enemies/MageOrcN/MageOrcN.gd" id="1_mpfqp"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="1_rj5j8"]
+[ext_resource type="Resource" uid="uid://crxsteq57s84y" path="res://Instances/Resources/BulletEnemy.tres" id="2_ck4i4"]
 [ext_resource type="Texture2D" uid="uid://c4qxerf4msgyu" path="res://OldVersions/MageOrc/mage-orc.png" id="2_v83le"]
 [ext_resource type="PackedScene" uid="uid://b4asjdyoyep5s" path="res://Instances/Components/Health/Health.tscn" id="3_k0wef"]
 [ext_resource type="PackedScene" uid="uid://6fcg84clxst2" path="res://Instances/Components/Death/DeathManager.tscn" id="4_s32rd"]
@@ -374,6 +375,7 @@ playerTracker = NodePath("PlayerTracker")
 attackManager = NodePath("AttackManager")
 healthManager = NodePath("Health")
 shootManager = NodePath("ShooterComponent")
+orcMageBulletStats = ExtResource("2_ck4i4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -8)
@@ -439,7 +441,6 @@ switch_nps = Array[NodePath]([NodePath("../DeathExplosion")])
 
 [node name="ShooterComponent" parent="." instance=ExtResource("13_hksvg")]
 position = Vector2(0, -8)
-origin = "Enemy:1"
 
 [node name="ActiveHandleComponent" parent="." instance=ExtResource("14_fg023")]
 switch_nps = Array[NodePath]([NodePath("../Health"), NodePath("../AttackManager"), NodePath("../DeathManager"), NodePath("../DeathExplosion"), NodePath("../Move"), NodePath("../PlayerTracker"), NodePath("../GroupFlip/LookAtPlayerComponent"), NodePath("../KnockBack"), NodePath("../ShooterComponent")])

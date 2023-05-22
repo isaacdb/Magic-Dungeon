@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://wxjsqqs3f4v8" path="res://Instances/Mage1/Mage1.tscn" id="4_f7hcd"]
 [ext_resource type="PackedScene" uid="uid://cjh67j7u0amal" path="res://Instances/Enemies/LowOrcN/LowOrcN.tscn" id="6_2dt4y"]
 [ext_resource type="Script" path="res://Scripts/Room.gd" id="6_awtxp"]
-[ext_resource type="PackedScene" path="res://OldVersions/BossOrc/BossOrc.tscn" id="6_di7aa"]
+[ext_resource type="PackedScene" uid="uid://0cncowura4of" path="res://OldVersions/BossOrc/BossOrc.tscn" id="6_di7aa"]
 [ext_resource type="PackedScene" uid="uid://il16ni6ku2om" path="res://Instances/Enemies/MageOrcN/MageOrcN.tscn" id="7_43g3d"]
 [ext_resource type="PackedScene" uid="uid://ccth7h5t4bfu" path="res://Instances/Props/Gate/Gate.tscn" id="7_pgs22"]
 [ext_resource type="Script" path="res://Scripts/BossRoom.gd" id="8_852hq"]
@@ -100,11 +100,19 @@ playerLifeBar = NodePath("CanvasLayer/HealthBar")
 
 [node name="HealthBar" parent="CanvasLayer" instance=ExtResource("2_3ryg4")]
 modulate = Color(0, 1, 0, 1)
-offset_left = 64.0
-offset_top = 55.0
-offset_right = 1424.0
-offset_bottom = 295.0
-metadata/_edit_use_anchors_ = true
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -136.0
+offset_top = -66.0
+offset_right = 2584.0
+offset_bottom = 334.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 8
 
 [node name="DeadPanel" type="ColorRect" parent="CanvasLayer"]
 visible = false

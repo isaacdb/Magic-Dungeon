@@ -30,5 +30,6 @@ func _on_area_entered(area):
 		attack.direction = self.global_position
 		
 		area.take_damage(attack)
-		attack_enter.emit()
+	
+	attack_enter.emit()
 	return

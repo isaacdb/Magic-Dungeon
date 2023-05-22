@@ -49,7 +49,6 @@ func GetHited():
 	
 func ChangeFireRate():
 	var lifePercent = (healthManager.currentHealth * 100) / healthManager.lifeBase
-	print(lifePercent)
 	if lifePercent > 80:
 		wand.UpdateFireRate(fireRate)
 	elif lifePercent >= 50:

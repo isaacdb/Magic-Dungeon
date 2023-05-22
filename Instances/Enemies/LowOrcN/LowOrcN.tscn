@@ -19,72 +19,6 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_xek6w"]
 radius = 7.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_x5abj"]
-size = Vector2(21.5, 14.5)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7meio"]
-resource_local_to_scene = true
-shader = ExtResource("2_0f6yl")
-shader_parameter/flash_color = Color(1, 1, 1, 1)
-shader_parameter/flash_modifier = 0.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ckifb"]
-atlas = ExtResource("3_h48cw")
-region = Rect2(0, 0, 16, 20)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_erpwm"]
-atlas = ExtResource("3_h48cw")
-region = Rect2(16, 0, 16, 20)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vxg76"]
-atlas = ExtResource("3_h48cw")
-region = Rect2(32, 0, 16, 20)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6jg5u"]
-atlas = ExtResource("3_h48cw")
-region = Rect2(48, 0, 16, 20)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vjnxg"]
-atlas = ExtResource("3_h48cw")
-region = Rect2(64, 0, 16, 20)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lrukj"]
-atlas = ExtResource("3_h48cw")
-region = Rect2(80, 0, 16, 20)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ueiia"]
-atlas = ExtResource("3_h48cw")
-region = Rect2(96, 0, 16, 20)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_inkh6"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ckifb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_erpwm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vxg76")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6jg5u")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vjnxg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lrukj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ueiia")
-}],
-"loop": true,
-"name": &"Walk",
-"speed": 5.0
-}]
-
 [sub_resource type="Animation" id="Animation_rv7bv"]
 resource_name = "Attack"
 length = 0.5
@@ -221,6 +155,18 @@ tracks/2/path = NodePath("GroupFlip/AnimatedSprite2D:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GroupFlip/AnimatedSprite2D:material:shader_parameter/flash_modifier")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -366,6 +312,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("GroupFlip/AnimatedSprite2D:material:shader_parameter/flash_modifier")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a08sq"]
 _data = {
@@ -377,6 +335,72 @@ _data = {
 "Walk": SubResource("Animation_onjrd")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x5abj"]
+size = Vector2(21.5, 14.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7meio"]
+resource_local_to_scene = true
+shader = ExtResource("2_0f6yl")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ckifb"]
+atlas = ExtResource("3_h48cw")
+region = Rect2(0, 0, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_erpwm"]
+atlas = ExtResource("3_h48cw")
+region = Rect2(16, 0, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxg76"]
+atlas = ExtResource("3_h48cw")
+region = Rect2(32, 0, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6jg5u"]
+atlas = ExtResource("3_h48cw")
+region = Rect2(48, 0, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vjnxg"]
+atlas = ExtResource("3_h48cw")
+region = Rect2(64, 0, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lrukj"]
+atlas = ExtResource("3_h48cw")
+region = Rect2(80, 0, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ueiia"]
+atlas = ExtResource("3_h48cw")
+region = Rect2(96, 0, 16, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_inkh6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ckifb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_erpwm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxg76")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6jg5u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vjnxg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lrukj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ueiia")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2do0f"]
 size = Vector2(17, 11)
 
@@ -386,8 +410,8 @@ height = 16.0
 
 [node name="LowOrcN" type="CharacterBody2D" node_paths=PackedStringArray("spawnEffect", "moveComponent", "playerTracker", "attackManager", "healthManager", "hitBox")]
 scale = Vector2(-1, 1)
-collision_layer = 0
-collision_mask = 96
+collision_layer = 4
+collision_mask = 100
 script = ExtResource("1_v5u44")
 spawnEffect = NodePath("SpawnEffect")
 moveComponent = NodePath("Move")
@@ -400,6 +424,14 @@ hitBox = NodePath("GroupFlip/HitBox")
 visible = false
 position = Vector2(0, -8)
 shape = SubResource("CircleShape2D_xek6w")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Walk"
+libraries = {
+"": SubResource("AnimationLibrary_a08sq")
+}
+
+[node name="TimerEscape" type="Timer" parent="."]
 
 [node name="GroupFlip" type="Node2D" parent="."]
 
@@ -424,12 +456,6 @@ sprite_frames = SubResource("SpriteFrames_inkh6")
 animation = &"Walk"
 centered = false
 offset = Vector2(-8.062, -20.028)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Walk"
-libraries = {
-"": SubResource("AnimationLibrary_a08sq")
-}
 
 [node name="AttackManager" parent="." node_paths=PackedStringArray("playerTracker") instance=ExtResource("4_v2pfu")]
 position = Vector2(0, -8)
