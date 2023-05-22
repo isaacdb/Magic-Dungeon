@@ -46,7 +46,7 @@ func _physics_process(delta):
 			
 		States.HIT:
 			animPlayer.play("Hit")
-			Global.emit_signal("screen_shake", .5, .1, 1)
+			Global.emit_signal("screen_shake", 1, .1, 1)
 			
 			velocity = lastBulletImpactDirection * 100
 			sprite.rotation_degrees = lastBulletImpactDirection.x * 45
@@ -56,7 +56,7 @@ func _physics_process(delta):
 				currentState = States.DEATH
 		
 		States.DEATH:
-			Global.emit_signal("screen_shake", 2, .2, .5)
+			Global.emit_signal("screen_shake", 2, .2, 1)
 			Global.emit_signal("enemy_killed")
 			explosionAnimPlayer.play("Explosion")
 			explosionAnimPlayer.get_parent().reparent(get_tree().get_root())

@@ -70,7 +70,7 @@ func _on_area_entered(area):
 	
 func _destroy():
 	isRunning = false	
-	Global.emit_signal("screen_shake", .5, .1, 1)
+	Global.emit_signal("screen_shake", 1, .1, 1)
 	collisionShape.set_deferred("Disabled", true)
 	animationPlayer.play("Hit")
 	

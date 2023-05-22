@@ -60,8 +60,7 @@ func _physics_process(delta):
 	pass
 	
 func Destroy():
-	isRunning = false	
-	Global.emit_signal("screen_shake", .5, .1, 1)
+	isRunning = false
 	#collisionShape.set_deferred("Disabled", true)
 	hitBox.queue_free()
 	animationPlayer.queue_free()

@@ -55,7 +55,7 @@ func _physics_process(delta):
 			
 		States.HIT:
 			animPlayer.play("Hit")
-			Global.emit_signal("screen_shake", .5, .1, 1)
+			Global.emit_signal("screen_shake", 1, .1, 1)
 			if currentLife <= lifeBase / 2:
 				sprite.modulate = Color(0.862745, 0.0784314, 0.235294, 1)
 				rageMode = true

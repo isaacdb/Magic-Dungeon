@@ -41,9 +41,11 @@ func _physics_process(delta):
 	pass	
 
 func GetHited():
+	Global.emit_signal("screen_shake", 10.0, .3, 1)
+	Global.update_player_life.emit(healthManager.currentHealth)
+	Global.player_hited.emit()
 	ChangeAnim("Hit")
 	StartIFrame()
-	Global.update_player_life.emit(healthManager.currentHealth)
 	ChangeFireRate()
 	pass
 	

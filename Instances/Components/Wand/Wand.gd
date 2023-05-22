@@ -28,8 +28,9 @@ func SetActive(active: bool):
 	isActive = active
 	pass
 
-func Fire():	
+func Fire():
 	var targetDirection = (get_global_mouse_position() - shootManager.global_position).normalized()	
 	var shoot = shootManager.Fire(targetDirection, wandBullet, wandBulletStats)
 	if shoot:
+		Global.emit_signal("screen_shake", 1, .1, 1)
 		animationPlayer.play("Fired")
