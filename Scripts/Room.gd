@@ -4,6 +4,7 @@ extends Node2D
 @export var gateExit : Gate
 @export var enemies : Array[PackedScene]
 @export var qntdEnemies : Array[int]
+@export var spawnAlert : PackedScene
 
 @onready var areaRoom := $Area2D as Area2D
 @onready var spawnPoints = self.get_node("SpawnPoints").get_children() as Array[Node2D]
@@ -32,9 +33,10 @@ func spawn_enemies():
 	var enemyNum := 0
 	for enemy in enemies:
 		for qntd in range(0, qntdEnemies[enemyNum]):
-			var newEnemy = enemy.instantiate() as CharacterBody2D
-			self.get_parent().call_deferred("add_child", newEnemy)
-			newEnemy.global_position = get_random_spawn_point()
+			var newSpawn = spawnAlert.instantiate() as SpawnAlert
+			self.get_parent().call_deferred("add_child", newSpawn)
+			newSpawn.objectToSpawn = enemy
+			newSpawn.global_position = get_random_spawn_point()
 			enemiesCount += 1
 		
 		enemyNum += 1

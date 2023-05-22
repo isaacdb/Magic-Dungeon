@@ -215,5 +215,6 @@ walkParticule = NodePath("../WalkParticle")
 [node name="DashSkill" parent="." instance=ExtResource("8_hx86t")]
 
 [node name="Camera2D" parent="." instance=ExtResource("10_okhe8")]
+zoom = Vector2(3, 3)
 
 [node name="KnockBack" parent="." instance=ExtResource("12_b338j")]

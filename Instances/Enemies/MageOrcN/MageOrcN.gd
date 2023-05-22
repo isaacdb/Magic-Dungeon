@@ -23,11 +23,10 @@ enum States
 	CHASING,
 	HIT,
 	ATTACK,
-	DEATH,
-	SPAWNING
+	DEATH
 }
 
-var currentState := States.SPAWNING
+var currentState := States.IDLE
 
 func _ready():
 	attackManager.connect("attack_signal", func(): ChangeState(States.ATTACK))
@@ -43,14 +42,6 @@ func _physics_process(delta):
 			animPlayer.play("Idle")
 			if !attackManager.playerInRange:
 					ChangeState(States.CHASING)
-			pass
-			
-		States.SPAWNING:
-			sprite.visible = false
-			spawnEffect.Execute()
-			if spawnEffect.isSpawned:
-				ChangeState(States.CHASING)
-				sprite.visible = true
 			pass
 			
 		States.CHASING:

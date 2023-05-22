@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cmx7pnpls2gkt"]
+[gd_scene load_steps=23 format=3 uid="uid://cmx7pnpls2gkt"]
 
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_avsao"]
 [ext_resource type="PackedScene" uid="uid://03my8igrvwt8" path="res://Instances/Tilemap/TileMapWalls.tscn" id="1_fch5f"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://ccth7h5t4bfu" path="res://Instances/Props/Gate/Gate.tscn" id="7_pgs22"]
 [ext_resource type="Script" path="res://Scripts/BossRoom.gd" id="8_852hq"]
 [ext_resource type="Script" path="res://Scripts/Lobby.gd" id="8_kfohy"]
+[ext_resource type="PackedScene" uid="uid://dhqly5q1v8pys" path="res://Instances/Components/SpawnEffect/SpawnEffect.tscn" id="8_owyhm"]
 
 [sub_resource type="Theme" id="Theme_ewkng"]
 
@@ -174,6 +175,7 @@ gateEnter = NodePath("../Gate-Lobby-Room1")
 gateExit = NodePath("../Gate-Room1-Room2")
 enemies = Array[PackedScene]([ExtResource("6_2dt4y")])
 qntdEnemies = Array[int]([5])
+spawnAlert = ExtResource("8_owyhm")
 
 [node name="Area2D" type="Area2D" parent="Room-1"]
 collision_layer = 0
@@ -264,6 +266,7 @@ gateEnter = NodePath("../Gate-Room1-Room2")
 gateExit = NodePath("../Gate-Room2-Room3")
 enemies = Array[PackedScene]([ExtResource("6_2dt4y"), ExtResource("7_43g3d")])
 qntdEnemies = Array[int]([5, 2])
+spawnAlert = ExtResource("8_owyhm")
 
 [node name="Area2D" type="Area2D" parent="Room-2"]
 collision_layer = 0
@@ -354,6 +357,7 @@ gateEnter = NodePath("../Gate-Room2-Room3")
 gateExit = NodePath("../Gate-Room3-Room4")
 enemies = Array[PackedScene]([ExtResource("6_2dt4y"), ExtResource("7_43g3d")])
 qntdEnemies = Array[int]([6, 4])
+spawnAlert = ExtResource("8_owyhm")
 
 [node name="Area2D" type="Area2D" parent="Room-3"]
 collision_layer = 0

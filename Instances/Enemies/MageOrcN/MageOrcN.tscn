@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://il16ni6ku2om"]
+[gd_scene load_steps=36 format=3 uid="uid://il16ni6ku2om"]
 
 [ext_resource type="Script" path="res://Instances/Enemies/MageOrcN/MageOrcN.gd" id="1_mpfqp"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="1_rj5j8"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://bjwrgsdbjvqw3" path="res://Instances/Components/DeathEffect/DeathExplosion.tscn" id="5_5fvh3"]
 [ext_resource type="PackedScene" uid="uid://dx8h735nl0e2d" path="res://Instances/Components/Move/Move.tscn" id="6_oin3v"]
 [ext_resource type="PackedScene" uid="uid://c1sky0kyn05tc" path="res://Instances/Components/PlayerTracker/PlayerTracker.tscn" id="7_mtjfn"]
-[ext_resource type="PackedScene" uid="uid://dhqly5q1v8pys" path="res://Instances/Components/SpawnEffect/SpawnEffect.tscn" id="8_a2k10"]
 [ext_resource type="PackedScene" uid="uid://d1loimaxqs6y6" path="res://Instances/Components/LookAtPlayerComponent/LookAtPlayerComponent.tscn" id="9_166lo"]
 [ext_resource type="PackedScene" uid="uid://bcbgphbcmqgky" path="res://Instances/Components/KnockBack/KnockBack.tscn" id="10_5ip6j"]
 [ext_resource type="PackedScene" uid="uid://wwc5nmv5yn2j" path="res://Instances/Components/AttackManager/AttackManager.tscn" id="12_qsol5"]
@@ -369,7 +368,7 @@ radius = 111.072
 collision_layer = 0
 collision_mask = 32
 script = ExtResource("1_mpfqp")
-spawnEffect = NodePath("SpawnEffect")
+spawnEffect = NodePath("")
 moveComponent = NodePath("Move")
 playerTracker = NodePath("PlayerTracker")
 attackManager = NodePath("AttackManager")
@@ -424,9 +423,6 @@ position = Vector2(0, -7)
 shape = SubResource("CircleShape2D_57p80")
 debug_color = Color(0.992157, 0, 0, 0.14902)
 
-[node name="SpawnEffect" parent="." node_paths=PackedStringArray("activeHandle") instance=ExtResource("8_a2k10")]
-activeHandle = NodePath("../ActiveHandleComponent")
-
 [node name="DeathManager" parent="." node_paths=PackedStringArray("activeHandle") instance=ExtResource("4_s32rd")]
 activeHandle = NodePath("../ActiveHandleComponent")
 switch_nps = Array[NodePath]([NodePath("../DeathExplosion")])
@@ -443,6 +439,7 @@ switch_nps = Array[NodePath]([NodePath("../DeathExplosion")])
 position = Vector2(0, -8)
 
 [node name="ActiveHandleComponent" parent="." instance=ExtResource("14_fg023")]
+activeOnLoad = true
 switch_nps = Array[NodePath]([NodePath("../Health"), NodePath("../AttackManager"), NodePath("../DeathManager"), NodePath("../DeathExplosion"), NodePath("../Move"), NodePath("../PlayerTracker"), NodePath("../GroupFlip/LookAtPlayerComponent"), NodePath("../KnockBack"), NodePath("../ShooterComponent")])
 
 [node name="HealthBar" parent="." instance=ExtResource("15_ohlla")]
