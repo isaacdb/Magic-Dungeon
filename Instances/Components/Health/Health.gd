@@ -10,12 +10,14 @@ class_name Health
 var lifeBase := 0
 var currentHealth := 0
 var isActive := false
+var usedLayer := 0
 
 signal damage
 
 func _ready():
 	monitorable = true
 	monitoring = true
+	usedLayer = collision_layer
 	pass
 
 func SetLifeBase(newLifeBase: float):
@@ -33,6 +35,7 @@ func _process(delta):
 func SetActive(active: bool):
 	isActive = active
 	
+	collision_layer = usedLayer if active else 0
 	collisionShape.set_deferred("Disabled", !active)
 	pass
 

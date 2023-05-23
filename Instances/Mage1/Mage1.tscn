@@ -211,7 +211,10 @@ switch_nps = Array[NodePath]([NodePath("../Health"), NodePath("../DeathManager")
 [node name="Move" parent="." node_paths=PackedStringArray("walkParticule") instance=ExtResource("6_nmcf8")]
 walkParticule = NodePath("../WalkParticle")
 
-[node name="DashSkill" parent="." instance=ExtResource("8_hx86t")]
+[node name="DashSkill" parent="." node_paths=PackedStringArray("healthComponent") instance=ExtResource("8_hx86t")]
+dashSpeed = 550
+dashDuration = 0.07
+healthComponent = NodePath("../Health")
 
 [node name="Camera2D" parent="." instance=ExtResource("10_okhe8")]
 zoom = Vector2(3, 3)

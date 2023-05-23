@@ -6,6 +6,8 @@ class_name DashSkillComponent
 @export var dashDuration := 0.1
 @export var dashCooldown := 1.0
 
+@export var healthComponent : Health
+
 @onready var dashTimerDuration := $DashTimer as Timer
 @onready var dashTimerCD := $DashTimerCooldown as Timer
 @onready var dashParticule := $DashParticle as CPUParticles2D
@@ -39,6 +41,9 @@ func Dash(direction: Vector2, character: CharacterBody2D, speedDefault: float):
 	canDash = false
 	normalSpeed = speedDefault
 	dashDirection = direction
+	
+	if healthComponent:
+		healthComponent.SetActive(false)	
 		
 	if dashDirection == Vector2.ZERO:
 		dashDirection = Vector2.RIGHT
@@ -59,6 +64,9 @@ func dashDuration_timeout():
 	isDashing = false
 	characterDash.velocity = dashDirection * normalSpeed
 	dashParticule.emitting = false
+	
+	if healthComponent:
+		healthComponent.SetActive(true)	
 	pass
 	
 func dashCooldown_timeout():

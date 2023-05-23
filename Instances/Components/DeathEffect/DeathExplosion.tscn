@@ -1,7 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://bjwrgsdbjvqw3"]
+[gd_scene load_steps=29 format=3 uid="uid://bjwrgsdbjvqw3"]
 
 [ext_resource type="Script" path="res://Instances/Components/DeathEffect/DeathExplosion.gd" id="1_wxamv"]
 [ext_resource type="Texture2D" uid="uid://bmthaf8sd0d62" path="res://Assets/magic-explosion.png" id="2_yys38"]
+[ext_resource type="Texture2D" uid="uid://b6l8fu6uss63t" path="res://Assets/Dust.png" id="3_7iwgy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_isurp"]
 atlas = ExtResource("2_yys38")
@@ -241,6 +242,22 @@ _data = {
 "RESET": SubResource("Animation_yejn2")
 }
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_o20rm"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_qg3tb"]
+min_value = -360.0
+max_value = 500.0
+_data = [Vector2(0, 500), 0.0, 0.0, 0, 0, Vector2(0.963801, -242.182), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_651cy"]
+_data = [Vector2(0.0234375, 1), 0.0, 0.0, 0, 0, Vector2(0.552036, 0.790909), -2.58586, -2.58586, 0, 0, Vector2(0.692308, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
 [node name="DeathExplosion" type="Node2D"]
 script = ExtResource("1_wxamv")
 
@@ -260,3 +277,25 @@ texture = SubResource("GradientTexture2D_qqvy0")
 libraries = {
 "": SubResource("AnimationLibrary_81din")
 }
+
+[node name="ExplosionParticle" type="CPUParticles2D" parent="ExplosionSprite"]
+y_sort_enabled = true
+material = SubResource("CanvasItemMaterial_o20rm")
+position = Vector2(0, 9)
+emitting = false
+amount = 30
+lifetime = 0.6
+one_shot = true
+explosiveness = 0.93
+lifetime_randomness = 0.36
+texture = ExtResource("3_7iwgy")
+direction = Vector2(0, -1)
+spread = 138.81
+gravity = Vector2(0, 500)
+initial_velocity_min = 200.0
+initial_velocity_max = 300.0
+angular_velocity_min = 300.0
+angular_velocity_max = 400.0
+angular_velocity_curve = SubResource("Curve_qg3tb")
+scale_amount_curve = SubResource("Curve_651cy")
+anim_offset_max = 1.0
