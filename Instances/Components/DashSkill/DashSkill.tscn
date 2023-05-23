@@ -1,42 +1,23 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=4 format=3 uid="uid://dc4pbmv3yevoo"]
 
 [ext_resource type="Script" path="res://Instances/Components/DashSkill/DashSkill.gd" id="1_v47tm"]
-[ext_resource type="Texture2D" uid="uid://b6l8fu6uss63t" path="res://Assets/Dust.png" id="2_rtfjg"]
+[ext_resource type="Script" path="res://Scripts/LineTrail.gd" id="2_v37mh"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7pq76"]
-particles_animation = true
-particles_anim_h_frames = 3
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="Gradient" id="Gradient_rkup8"]
-offsets = PackedFloat32Array(0, 0.71134, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+[sub_resource type="Curve" id="Curve_oxg78"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.609442, 0.727273), 1.21956, 1.21956, 0, 0, Vector2(0.995708, 0.981818), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [node name="DashSkill" type="Node2D"]
+show_behind_parent = true
 script = ExtResource("1_v47tm")
 
 [node name="DashTimer" type="Timer" parent="."]
 
 [node name="DashTimerCooldown" type="Timer" parent="."]
 
-[node name="DashParticle" type="CPUParticles2D" parent="."]
-z_index = -1
-material = SubResource("CanvasItemMaterial_7pq76")
-position = Vector2(0, 9.737)
-emitting = false
-amount = 200
-randomness = 0.2
-texture = ExtResource("2_rtfjg")
-direction = Vector2(0, -1)
-gravity = Vector2(0, 0)
-initial_velocity_min = 5.0
-initial_velocity_max = 15.0
-damping_min = 0.5
-damping_max = 2.0
-angle_min = -480.0
-angle_max = 360.0
-scale_amount_min = 0.7
-scale_amount_max = 1.2
-color_ramp = SubResource("Gradient_rkup8")
-anim_offset_max = 1.0
+[node name="Line2D" type="Line2D" parent="."]
+show_behind_parent = true
+width = 7.0
+width_curve = SubResource("Curve_oxg78")
+script = ExtResource("2_v37mh")
+lenght = 10

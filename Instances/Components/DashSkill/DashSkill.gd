@@ -10,7 +10,8 @@ class_name DashSkillComponent
 
 @onready var dashTimerDuration := $DashTimer as Timer
 @onready var dashTimerCD := $DashTimerCooldown as Timer
-@onready var dashParticule := $DashParticle as CPUParticles2D
+#@onready var dashParticule := $DashParticle as CPUParticles2D
+@onready var dashTrail := $Line2D as Line2D
 
 var canDash = true
 var isDashing = false
@@ -43,13 +44,15 @@ func Dash(direction: Vector2, character: CharacterBody2D, speedDefault: float):
 	dashDirection = direction
 	
 	if healthComponent:
-		healthComponent.SetActive(false)	
+		healthComponent.SetActive(false)
 		
 	if dashDirection == Vector2.ZERO:
 		dashDirection = Vector2.RIGHT
 	
 	dashTimerDuration.start()
-	dashParticule.emitting = true
+#	dashParticule.emitting = true
+	dashTrail.lenght = 50.0
+	
 	pass	
 
 func _physics_process(delta):
@@ -63,7 +66,9 @@ func dashDuration_timeout():
 	dashTimerCD.start()
 	isDashing = false
 	characterDash.velocity = dashDirection * normalSpeed
-	dashParticule.emitting = false
+#	dashParticule.emitting = false
+	var tween = create_tween()
+	tween.tween_property(dashTrail, "lenght", 0.0, 1.0).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
 	
 	if healthComponent:
 		healthComponent.SetActive(true)	

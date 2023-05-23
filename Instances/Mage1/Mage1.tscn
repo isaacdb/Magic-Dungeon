@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" path="res://Instances/Components/ActiveHandleComponent/ActiveHandleComponent.tscn" id="5_mmgrx"]
 [ext_resource type="PackedScene" uid="uid://dx8h735nl0e2d" path="res://Instances/Components/Move/Move.tscn" id="6_nmcf8"]
 [ext_resource type="PackedScene" uid="uid://deb4quwds46cx" path="res://Instances/Components/GameOverComponent/GameOverComponent.tscn" id="8_e43ia"]
-[ext_resource type="PackedScene" path="res://Instances/Components/DashSkill/DashSkill.tscn" id="8_hx86t"]
+[ext_resource type="PackedScene" uid="uid://dc4pbmv3yevoo" path="res://Instances/Components/DashSkill/DashSkill.tscn" id="8_hx86t"]
 [ext_resource type="PackedScene" uid="uid://pnthfjsqolx2" path="res://Instances/Components/Camera/Camera.tscn" id="10_okhe8"]
 [ext_resource type="PackedScene" uid="uid://bcbgphbcmqgky" path="res://Instances/Components/KnockBack/KnockBack.tscn" id="12_b338j"]
 

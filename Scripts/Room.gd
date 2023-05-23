@@ -23,7 +23,7 @@ func _ready():
 	pass # Replace with function body.
 
 func area_room_area_entered(area):
-	if !areaClean and area.is_in_group("player"):
+	if !areaClean and !areaActive and area.is_in_group("player"):
 		areaActive = true
 		gateEnter.close()
 		spawn_enemies()
