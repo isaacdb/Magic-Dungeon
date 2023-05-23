@@ -1,7 +1,8 @@
-[gd_scene load_steps=35 format=3 uid="uid://cjh67j7u0amal"]
+[gd_scene load_steps=36 format=3 uid="uid://cjh67j7u0amal"]
 
 [ext_resource type="Script" path="res://Instances/Enemies/LowOrcN/LowOrcN.gd" id="1_v5u44"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="2_0f6yl"]
+[ext_resource type="Resource" uid="uid://bm8x7t5l38b1p" path="res://Instances/Resources/BulletOrcLow.tres" id="2_r85ck"]
 [ext_resource type="Texture2D" uid="uid://dd802vu3oo82g" path="res://OldVersions/LowOrc/low-orc.png" id="3_h48cw"]
 [ext_resource type="PackedScene" uid="uid://wwc5nmv5yn2j" path="res://Instances/Components/AttackManager/AttackManager.tscn" id="4_v2pfu"]
 [ext_resource type="PackedScene" uid="uid://b4asjdyoyep5s" path="res://Instances/Components/Health/Health.tscn" id="5_ybllr"]
@@ -13,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bcbgphbcmqgky" path="res://Instances/Components/KnockBack/KnockBack.tscn" id="12_hk3au"]
 [ext_resource type="PackedScene" uid="uid://d1loimaxqs6y6" path="res://Instances/Components/LookAtPlayerComponent/LookAtPlayerComponent.tscn" id="13_8p1je"]
 [ext_resource type="PackedScene" path="res://Instances/Components/ActiveHandleComponent/ActiveHandleComponent.tscn" id="14_mchh0"]
+[ext_resource type="PackedScene" uid="uid://ca6aeltom7e7y" path="res://Instances/Components/ShooterComponent/ShooterComponent.tscn" id="15_3v3iq"]
 [ext_resource type="PackedScene" uid="uid://8mpq1pm143kp" path="res://Instances/Components/HealthBar/HealthBar.tscn" id="15_8376v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xek6w"]
@@ -83,6 +85,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [0.0, 0.537561, 0.537561, 0.993092, 0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("GroupFlip/AnimatedSprite2D:material:shader_parameter/flash_modifier")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_fwoc5"]
@@ -323,6 +337,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("GroupFlip/AnimatedSprite2D:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a08sq"]
 _data = {
@@ -400,25 +426,23 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2do0f"]
-size = Vector2(17, 11)
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_axq1k"]
 radius = 5.0
 height = 16.0
 
-[node name="LowOrcN" type="CharacterBody2D" node_paths=PackedStringArray("spawnEffect", "moveComponent", "playerTracker", "attackManager", "healthManager", "hitBox")]
+[node name="LowOrcN" type="CharacterBody2D" node_paths=PackedStringArray("moveComponent", "playerTracker", "attackManager", "healthManager", "hitBox", "shootManager")]
 scale = Vector2(-1, 1)
-collision_layer = 4
+collision_layer = 0
 collision_mask = 100
 script = ExtResource("1_v5u44")
-spawnEffect = NodePath("")
 moveComponent = NodePath("Move")
 playerTracker = NodePath("PlayerTracker")
 attackManager = NodePath("AttackManager")
 healthManager = NodePath("Health")
 hitBox = NodePath("GroupFlip/HitBox")
+shootManager = NodePath("ShooterComponent")
 lifeBase = 5.0
+orcLowBulletStats = ExtResource("2_r85ck")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -431,7 +455,7 @@ libraries = {
 "": SubResource("AnimationLibrary_a08sq")
 }
 
-[node name="TimerEscape" type="Timer" parent="."]
+[node name="TimerIdle" type="Timer" parent="."]
 
 [node name="GroupFlip" type="Node2D" parent="."]
 
@@ -459,14 +483,7 @@ offset = Vector2(-8.062, -20.028)
 
 [node name="AttackManager" parent="." node_paths=PackedStringArray("playerTracker") instance=ExtResource("4_v2pfu")]
 position = Vector2(0, -8)
-collision_layer = 0
-collision_mask = 2
 playerTracker = NodePath("../PlayerTracker")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackManager"]
-position = Vector2(7.5, 0.5)
-shape = SubResource("RectangleShape2D_2do0f")
-debug_color = Color(0.447059, 0.596078, 0.0509804, 0.419608)
 
 [node name="Health" parent="." node_paths=PackedStringArray("deathManager", "knockBack", "lifeBar") instance=ExtResource("5_ybllr")]
 position = Vector2(0, -8)
@@ -507,3 +524,6 @@ offset_top = -20.0
 offset_right = 182.0
 offset_bottom = 7.0
 fill_mode = 1
+
+[node name="ShooterComponent" parent="." instance=ExtResource("15_3v3iq")]
+position = Vector2(0, -8)

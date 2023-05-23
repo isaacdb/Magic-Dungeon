@@ -1,11 +1,11 @@
 extends CharacterBody2D
 
-@export var spawnEffect : Node2D
 @export var moveComponent : MoveComponent
 @export var playerTracker : PlayerTracker
 @export var attackManager : AttackManager
 @export var healthManager : Health
 @export var hitBox : HitBoxComponent
+@export var shootManager : ShooterComponent
 
 @export var speed := 50.0
 
@@ -15,12 +15,15 @@ extends CharacterBody2D
 @export var knockBackForce := 300.0
 @export var lifeBase := 8.0
 
-@export var timeEscaping := 1.0
+@export var timeIdle := 1.0
 
 @onready var animPlayer := $AnimationPlayer as AnimationPlayer
 @onready var sprite := $GroupFlip/AnimatedSprite2D as AnimatedSprite2D
-@onready var timerScape := $TimerEscape as Timer
+@onready var timerIdle := $TimerIdle as Timer
 @onready var rnd := RandomNumberGenerator.new()
+
+@onready var orcBullet := preload("res://Instances/Bullet/BulletsEnemies/BulletEnemy1/BulletN.tscn")
+@export var orcLowBulletStats : BulletStats
 
 enum States
 {
@@ -33,6 +36,7 @@ enum States
 }
 
 var currentState := States.IDLE
+var nextPostion := Vector2.ZERO
 
 func _ready():	
 	attackManager.connect("attack_signal", func(): ChangeState(States.ATTACK))
@@ -44,27 +48,24 @@ func _ready():
 	hitBox.damage = damage
 	hitBox.knockBackForce = knockBackForce	
 	
-	timerScape.wait_time = timeEscaping
-	timerScape.one_shot = true
-	timerScape.autostart = false
-	timerScape.timeout.connect(TimerScapeTimeout)
+	timerIdle.wait_time = timeIdle
+	timerIdle.one_shot = true
+	timerIdle.autostart = false
+	timerIdle.timeout.connect(TimerIdleTimeout)
 	pass
 	
 func _physics_process(delta):
 	match currentState:
 		States.IDLE:
 			animPlayer.play("Idle")
-			if !attackManager.playerInRange:
-					ChangeState(States.CHASING)
+			if timerIdle.is_stopped():
+				timerIdle.start()
 			pass
 			
 		States.CHASING:
 			animPlayer.play("Walk")
-			var playerDirection = (playerTracker.playerTrack.global_position - self.global_position).normalized()
-			moveComponent.Move(self, playerDirection, delta, 1300, speed)			
-			
-			if attackManager.playerInRange:
-				ChangeState(States.IDLE)			
+			var nextPositionDirection = (nextPostion - self.global_position).normalized()
+			moveComponent.Move(self, nextPositionDirection, delta, 1300, speed)			
 			pass
 			
 		States.HIT:
@@ -75,11 +76,16 @@ func _physics_process(delta):
 			animPlayer.play("Attack")
 			pass
 
+func SetNextPosition():
+	nextPostion = playerTracker.playerTrack.global_position
+
 func ChangeState(state: States):
 	currentState = state
 	pass
 	
 func AttackFinished():
+	var playerDirection = playerTracker.GetDirection()
+	shootManager.Fire(playerDirection, orcBullet, orcLowBulletStats)
 	ChangeState(States.IDLE)
 	pass
 	
@@ -87,5 +93,8 @@ func HitFinished():
 	ChangeState(States.IDLE)
 	pass	
 
-func TimerScapeTimeout():
-	ChangeState(States.IDLE)
+func TimerIdleTimeout():
+	var randTime = rnd.randf_range(1.0, 1.5)
+	timerIdle.wait_time = randTime
+	SetNextPosition()
+	ChangeState(States.CHASING)

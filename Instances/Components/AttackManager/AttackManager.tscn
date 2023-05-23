@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Instances/Components/AttackManager/AttackManager.gd" id="1_lkfq6"]
 
-[node name="AttackManager" type="Area2D"]
+[node name="AttackManager" type="Node2D"]
 script = ExtResource("1_lkfq6")
 
 [node name="TimerAttack" type="Timer" parent="."]

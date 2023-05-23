@@ -33,7 +33,6 @@ func SetPlayerLife(maxLife: float):
 	pass
 	
 func PlayerGetHit():
-	print("método tween")
 	var tween = create_tween()
 	tween.tween_property(canvaModulate, "color", hitColorModulate, 0.1).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
 	tween.tween_property(canvaModulate, "color", defaultColorModulate, 0.1).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)

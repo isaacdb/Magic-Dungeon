@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-@export var spawnEffect : Node2D
 @export var moveComponent : MoveComponent
 @export var playerTracker : PlayerTracker
 @export var attackManager : AttackManager
@@ -50,7 +49,7 @@ func _physics_process(delta):
 			moveComponent.Move(self, playerDirection, delta, 1300, speed)
 			
 			if attackManager.playerInRange:
-				ChangeState(States.IDLE)	
+				ChangeState(States.IDLE)
 			pass
 			
 		States.HIT:

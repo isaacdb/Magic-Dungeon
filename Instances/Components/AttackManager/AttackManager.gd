@@ -1,21 +1,18 @@
-extends Area2D
+extends Node2D
 class_name AttackManager
 
 @export var playerTracker : PlayerTracker
 
 @onready var timerAttack := $TimerAttack as Timer
+@onready var rnd := RandomNumberGenerator.new()
 
 signal attack_signal
 
 var attackDelay := 0.0
-var playerInRange := false
 var attackReady := false
 var isActive := false
 
-func _ready():
-	connect("area_entered", _on_area_entered)
-	connect("area_exited", _on_area_exited)
-	
+func _ready():	
 	timerAttack.timeout.connect(func(): attackReady = true)
 	timerAttack.autostart = true
 
@@ -28,25 +25,17 @@ func _physics_process(delta):
 	if !isActive:
 		return
 	
-	if playerInRange and attackReady:
+	if attackReady:
 		Attack()
 
 func SetActive(active: bool):
 	isActive = active
 	pass
 	
-func _on_area_entered(area):
-	if area.is_in_group("player"):
-		playerInRange = true
-	return
-	
-func _on_area_exited(area):		
-	if area.is_in_group("player"):
-		playerInRange = false		
-	return
-	
 func Attack():
 	attackReady = false
+	var randDelay = rnd.randf_range(0.0, 1.0)
+	timerAttack.wait_time = attackDelay + randDelay	
 	timerAttack.start()
 	attack_signal.emit()
 	pass

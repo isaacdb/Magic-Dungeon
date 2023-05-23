@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://il16ni6ku2om"]
+[gd_scene load_steps=36 format=3 uid="uid://il16ni6ku2om"]
 
 [ext_resource type="Script" path="res://Instances/Enemies/MageOrcN/MageOrcN.gd" id="1_mpfqp"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="1_rj5j8"]
@@ -364,15 +364,11 @@ _data = {
 radius = 6.0
 height = 18.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_57p80"]
-radius = 111.072
-
-[node name="MageOrcN" type="CharacterBody2D" node_paths=PackedStringArray("spawnEffect", "moveComponent", "playerTracker", "attackManager", "healthManager", "shootManager")]
+[node name="MageOrcN" type="CharacterBody2D" node_paths=PackedStringArray("moveComponent", "playerTracker", "attackManager", "healthManager", "shootManager")]
 material = SubResource("CanvasItemMaterial_6js1l")
 collision_layer = 0
 collision_mask = 32
 script = ExtResource("1_mpfqp")
-spawnEffect = NodePath("")
 moveComponent = NodePath("Move")
 playerTracker = NodePath("PlayerTracker")
 attackManager = NodePath("AttackManager")
@@ -421,15 +417,7 @@ shape = SubResource("CapsuleShape2D_fhp2g")
 debug_color = Color(0, 0.52549, 0, 0.419608)
 
 [node name="AttackManager" parent="." node_paths=PackedStringArray("playerTracker") instance=ExtResource("12_qsol5")]
-visible = false
-collision_layer = 0
-collision_mask = 2
 playerTracker = NodePath("../PlayerTracker")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackManager"]
-position = Vector2(0, -7)
-shape = SubResource("CircleShape2D_57p80")
-debug_color = Color(0.992157, 0, 0, 0.14902)
 
 [node name="DeathManager" parent="." node_paths=PackedStringArray("activeHandle") instance=ExtResource("4_s32rd")]
 activeHandle = NodePath("../ActiveHandleComponent")
