@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var playerLifeBar : HealthBar
+@export var bossLifeBar : HealthBar
 @export var defaultColorModulate : Color
 @export var hitColorModulate : Color
 
@@ -10,8 +10,7 @@ extends Node2D
 
 func _init():
 	Global.player_dead.connect(player_dead)
-	Global.set_player_max_life.connect(SetPlayerLife)
-	Global.update_player_life.connect(UpdatePlayerLife)
+#	Global.update_player_life.connect(UpdatePlayerLife)
 	Global.player_hited.connect(PlayerGetHit)
 	pass
 
@@ -24,13 +23,9 @@ func _on_timer_dead_timeout():
 	get_tree().reload_current_scene()
 	pass
 
-func UpdatePlayerLife(currentLife: float):
-	playerLifeBar.UpdateHealthBar(currentLife)
-	pass
-	
-func SetPlayerLife(maxLife: float):
-	playerLifeBar.SetMaxValue(maxLife)
-	pass
+#func UpdatePlayerLife(currentLife: float):
+#	#playerLifeBar.UpdateHealthBar(currentLife)
+#	pass
 	
 func PlayerGetHit():
 	var tween = create_tween()

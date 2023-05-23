@@ -1,8 +1,9 @@
-[gd_scene load_steps=28 format=3 uid="uid://cmx7pnpls2gkt"]
+[gd_scene load_steps=29 format=3 uid="uid://cmx7pnpls2gkt"]
 
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_avsao"]
 [ext_resource type="PackedScene" uid="uid://03my8igrvwt8" path="res://Instances/Tilemap/TileMapWalls.tscn" id="1_fch5f"]
 [ext_resource type="PackedScene" uid="uid://8mpq1pm143kp" path="res://Instances/Components/HealthBar/HealthBar.tscn" id="2_3ryg4"]
+[ext_resource type="PackedScene" uid="uid://4jvawle2nm0s" path="res://Instances/Components/PlayerLife/PlayerLife.tscn" id="2_5g5bp"]
 [ext_resource type="PackedScene" uid="uid://d2iv4f2anflh4" path="res://Instances/Tilemap/TileMapGround.tscn" id="2_vbm8m"]
 [ext_resource type="PackedScene" uid="uid://wxjsqqs3f4v8" path="res://Instances/Mage1/Mage1.tscn" id="4_f7hcd"]
 [ext_resource type="PackedScene" uid="uid://cjh67j7u0amal" path="res://Instances/Enemies/LowOrcN/LowOrcN.tscn" id="6_2dt4y"]
@@ -118,11 +119,10 @@ size = Vector2(631, 349)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dj17o"]
 size = Vector2(591, 305)
 
-[node name="Node2D" type="Node2D" node_paths=PackedStringArray("playerLifeBar")]
+[node name="Node2D" type="Node2D"]
 y_sort_enabled = true
 position = Vector2(4, -3)
 script = ExtResource("1_avsao")
-playerLifeBar = NodePath("CanvasLayer/HealthBar")
 defaultColorModulate = Color(1, 0.690196, 0.639216, 1)
 hitColorModulate = Color(1, 0.32549, 0.258824, 1)
 
@@ -131,17 +131,19 @@ environment = SubResource("Environment_k8p4i")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="HealthBar" parent="CanvasLayer" instance=ExtResource("2_3ryg4")]
-modulate = Color(0, 1, 0, 1)
+[node name="Control" parent="CanvasLayer" instance=ExtResource("2_5g5bp")]
+
+[node name="BossHealthBar" parent="CanvasLayer" instance=ExtResource("2_3ryg4")]
+modulate = Color(1, 0, 0, 1)
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -136.0
-offset_top = -66.0
-offset_right = 2584.0
-offset_bottom = 334.0
+offset_left = -446.0
+offset_top = -41.0
+offset_right = 8114.0
+offset_bottom = 109.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 4

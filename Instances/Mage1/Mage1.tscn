@@ -138,6 +138,7 @@ script = ExtResource("1_giwmu")
 moveComponent = NodePath("Move")
 healthManager = NodePath("Health")
 wand = NodePath("Wand")
+lifeBase = 3.0
 fireRate = 0.4
 
 [node name="Wand" parent="." instance=ExtResource("2_540pc")]
