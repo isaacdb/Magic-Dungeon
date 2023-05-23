@@ -8,15 +8,22 @@ extends Node2D
 @onready var timerDead := $CanvasLayer/DeadPanel/TimerDead as Timer
 @onready var canvaModulate := $CanvasModulate as CanvasModulate
 
+var pointer = load("res://Assets/pointer4.png")
+
 func _init():
 	Global.player_dead.connect(player_dead)
 #	Global.update_player_life.connect(UpdatePlayerLife)
 	Global.player_hited.connect(PlayerGetHit)
 	pass
 
+func _ready():	
+	Input.set_custom_mouse_cursor(pointer, Input.CURSOR_ARROW, Vector2(16, 16))
+	pass
+
 func player_dead():
 	deadPanelAnim.play("Dead")
 	timerDead.start()
+	
 	pass
 
 func _on_timer_dead_timeout():
