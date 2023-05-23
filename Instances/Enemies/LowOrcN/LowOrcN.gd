@@ -4,7 +4,6 @@ extends CharacterBody2D
 @export var playerTracker : PlayerTracker
 @export var attackManager : AttackManager
 @export var healthManager : Health
-@export var hitBox : HitBoxComponent
 @export var shootManager : ShooterComponent
 
 @export var speed := 50.0
@@ -44,10 +43,7 @@ func _ready():
 	
 	attackManager.SetAttackDelay(attackDelay)
 	healthManager.SetLifeBase(lifeBase)
-	
-	hitBox.damage = damage
-	hitBox.knockBackForce = knockBackForce	
-	
+		
 	timerIdle.wait_time = timeIdle
 	timerIdle.one_shot = true
 	timerIdle.autostart = false
@@ -94,7 +90,7 @@ func HitFinished():
 	pass	
 
 func TimerIdleTimeout():
-	var randTime = rnd.randf_range(1.0, 1.5)
-	timerIdle.wait_time = randTime
+	var randTime = rnd.randf_range(0.0, 1.0)
+	timerIdle.wait_time = randTime + timeIdle
 	SetNextPosition()
 	ChangeState(States.CHASING)

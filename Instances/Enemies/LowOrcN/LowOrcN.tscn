@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cjh67j7u0amal"]
+[gd_scene load_steps=34 format=3 uid="uid://cjh67j7u0amal"]
 
 [ext_resource type="Script" path="res://Instances/Enemies/LowOrcN/LowOrcN.gd" id="1_v5u44"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="2_0f6yl"]
@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://bjwrgsdbjvqw3" path="res://Instances/Components/DeathEffect/DeathExplosion.tscn" id="7_0143p"]
 [ext_resource type="PackedScene" uid="uid://dx8h735nl0e2d" path="res://Instances/Components/Move/Move.tscn" id="8_irqj0"]
 [ext_resource type="PackedScene" uid="uid://c1sky0kyn05tc" path="res://Instances/Components/PlayerTracker/PlayerTracker.tscn" id="10_25ldp"]
-[ext_resource type="PackedScene" uid="uid://bplfkb5uolvrb" path="res://Instances/Components/HitBox/HitBox.tscn" id="11_up554"]
 [ext_resource type="PackedScene" uid="uid://bcbgphbcmqgky" path="res://Instances/Components/KnockBack/KnockBack.tscn" id="12_hk3au"]
 [ext_resource type="PackedScene" uid="uid://d1loimaxqs6y6" path="res://Instances/Components/LookAtPlayerComponent/LookAtPlayerComponent.tscn" id="13_8p1je"]
 [ext_resource type="PackedScene" path="res://Instances/Components/ActiveHandleComponent/ActiveHandleComponent.tscn" id="14_mchh0"]
@@ -41,58 +40,46 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("GroupFlip/HitBox/CollisionShape2D:disabled")
+tracks/1/path = NodePath("GroupFlip/AnimatedSprite2D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [true, false, true]
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.35, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -0.012639), Vector2(0, -0.012639), Vector2(10, -4), Vector2(0, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("GroupFlip/AnimatedSprite2D:position")
+tracks/2/path = NodePath("GroupFlip/AnimatedSprite2D:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.35, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, -0.012639), Vector2(0, -0.012639), Vector2(10, -4), Vector2(0, 0)]
+"values": [Vector2(1, 1), Vector2(1, 0.5486), Vector2(1, 0.5486), Vector2(0.672072, 0.913996), Vector2(1, 1)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("GroupFlip/AnimatedSprite2D:scale")
+tracks/3/path = NodePath("GroupFlip/AnimatedSprite2D:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.35, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(1, 0.5486), Vector2(1, 0.5486), Vector2(0.672072, 0.913996), Vector2(1, 1)]
+"values": [0.0, 0.537561, 0.537561, 0.993092, 0.0]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("GroupFlip/AnimatedSprite2D:rotation")
+tracks/4/path = NodePath("GroupFlip/AnimatedSprite2D:material:shader_parameter/flash_modifier")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.35, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.537561, 0.537561, 0.993092, 0.0]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("GroupFlip/AnimatedSprite2D:material:shader_parameter/flash_modifier")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -251,22 +238,10 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("GroupFlip/HitBox/CollisionShape2D:disabled")
+tracks/5/path = NodePath("GroupFlip/AnimatedSprite2D:scale")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("GroupFlip/AnimatedSprite2D:scale")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -360,9 +335,6 @@ _data = {
 "Walk": SubResource("Animation_onjrd")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_x5abj"]
-size = Vector2(21.5, 14.5)
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7meio"]
 resource_local_to_scene = true
 shader = ExtResource("2_0f6yl")
@@ -430,7 +402,7 @@ animations = [{
 radius = 5.0
 height = 16.0
 
-[node name="LowOrcN" type="CharacterBody2D" node_paths=PackedStringArray("moveComponent", "playerTracker", "attackManager", "healthManager", "hitBox", "shootManager")]
+[node name="LowOrcN" type="CharacterBody2D" node_paths=PackedStringArray("moveComponent", "playerTracker", "attackManager", "healthManager", "shootManager")]
 scale = Vector2(-1, 1)
 collision_layer = 0
 collision_mask = 100
@@ -439,7 +411,6 @@ moveComponent = NodePath("Move")
 playerTracker = NodePath("PlayerTracker")
 attackManager = NodePath("AttackManager")
 healthManager = NodePath("Health")
-hitBox = NodePath("GroupFlip/HitBox")
 shootManager = NodePath("ShooterComponent")
 lifeBase = 5.0
 orcLowBulletStats = ExtResource("2_r85ck")
@@ -461,17 +432,6 @@ libraries = {
 
 [node name="LookAtPlayerComponent" parent="GroupFlip" node_paths=PackedStringArray("playerTracker") instance=ExtResource("13_8p1je")]
 playerTracker = NodePath("../../PlayerTracker")
-
-[node name="HitBox" parent="GroupFlip" instance=ExtResource("11_up554")]
-position = Vector2(0, -8)
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GroupFlip/HitBox"]
-position = Vector2(10.25, 0.25)
-shape = SubResource("RectangleShape2D_x5abj")
-disabled = true
-debug_color = Color(0.4, 0.0196078, 0.109804, 0.419608)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GroupFlip"]
 y_sort_enabled = true
@@ -515,7 +475,7 @@ position = Vector2(0, -8)
 
 [node name="ActiveHandleComponent" parent="." instance=ExtResource("14_mchh0")]
 activeOnLoad = true
-switch_nps = Array[NodePath]([NodePath("../AttackManager"), NodePath("../Health"), NodePath("../DeathManager"), NodePath("../DeathExplosion"), NodePath("../Move"), NodePath("../PlayerTracker"), NodePath("../GroupFlip/HitBox"), NodePath("../KnockBack"), NodePath("../GroupFlip/LookAtPlayerComponent")])
+switch_nps = Array[NodePath]([NodePath("../AttackManager"), NodePath("../Health"), NodePath("../DeathManager"), NodePath("../DeathExplosion"), NodePath("../Move"), NodePath("../PlayerTracker"), NodePath("../KnockBack"), NodePath("../GroupFlip/LookAtPlayerComponent")])
 
 [node name="HealthBar" parent="." instance=ExtResource("15_8376v")]
 modulate = Color(0.909804, 0, 0, 1)

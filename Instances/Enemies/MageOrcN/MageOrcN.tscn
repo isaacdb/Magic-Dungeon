@@ -375,6 +375,9 @@ attackManager = NodePath("AttackManager")
 healthManager = NodePath("Health")
 shootManager = NodePath("ShooterComponent")
 orcMageBulletStats = ExtResource("2_ck4i4")
+timeIdle = 4.0
+
+[node name="TimerIdle" type="Timer" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
