@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://wxjsqqs3f4v8"]
+[gd_scene load_steps=27 format=3 uid="uid://wxjsqqs3f4v8"]
 
 [ext_resource type="Script" path="res://Instances/Mage1/Mage1.gd" id="1_giwmu"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="1_hkxu6"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dc4pbmv3yevoo" path="res://Instances/Components/DashSkill/DashSkill.tscn" id="8_hx86t"]
 [ext_resource type="PackedScene" uid="uid://pnthfjsqolx2" path="res://Instances/Components/Camera/Camera.tscn" id="10_okhe8"]
 [ext_resource type="PackedScene" uid="uid://bcbgphbcmqgky" path="res://Instances/Components/KnockBack/KnockBack.tscn" id="12_b338j"]
+[ext_resource type="PackedScene" uid="uid://valwt38uo38s" path="res://Instances/Components/BulletPredict/BulletPredict.tscn" id="14_qybn2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6gleb"]
 
@@ -221,3 +222,5 @@ healthComponent = NodePath("../Health")
 zoom = Vector2(3, 3)
 
 [node name="KnockBack" parent="." instance=ExtResource("12_b338j")]
+
+[node name="BulletPredict" parent="." instance=ExtResource("14_qybn2")]

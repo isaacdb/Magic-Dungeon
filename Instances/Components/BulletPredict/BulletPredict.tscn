@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://valwt38uo38s"]
+
+[ext_resource type="Script" path="res://Instances/Components/BulletPredict/BulletPredict.gd" id="1_562fl"]
+[ext_resource type="Texture2D" uid="uid://b8jmu455rlcth" path="res://Assets/line2.png" id="1_vc48l"]
+
+[node name="BulletPredict" type="Node2D"]
+show_behind_parent = true
+
+[node name="Line2D" type="Line2D" parent="."]
+show_behind_parent = true
+texture_repeat = 2
+texture = ExtResource("1_vc48l")
+texture_mode = 1
+script = ExtResource("1_562fl")
