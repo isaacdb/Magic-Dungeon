@@ -73,8 +73,7 @@ func ChangeState(state: States):
 	pass
 	
 func AttackFinished():
-	var playerDirection = playerTracker.GetDirection()
-	shootManager.JustFire(playerDirection, orcMageBulletStats)
+	shootManager.JustFire(playerTracker.GetDirection(), orcMageBulletStats)
 	ChangeState(States.IDLE)
 	pass
 	

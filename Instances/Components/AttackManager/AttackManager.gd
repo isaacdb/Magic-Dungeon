@@ -1,6 +1,9 @@
 extends Node2D
 class_name AttackManager
 
+## Não esta sendo usado no momento.
+## Criei pensando em usar de uma maneira, 
+## mas acabou não se encaixando na arquitetura dos inimigos
 @onready var timerAttack := $TimerAttack as Timer
 @onready var rnd := RandomNumberGenerator.new()
 

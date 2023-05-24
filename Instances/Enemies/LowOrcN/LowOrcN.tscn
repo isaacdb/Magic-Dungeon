@@ -1,10 +1,9 @@
-[gd_scene load_steps=35 format=3 uid="uid://bch5uvc7lpin0"]
+[gd_scene load_steps=33 format=3 uid="uid://bch5uvc7lpin0"]
 
 [ext_resource type="Script" path="res://Instances/Enemies/LowOrcN/LowOrcN.gd" id="1_v5u44"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="2_0f6yl"]
 [ext_resource type="Resource" path="res://Instances/Resources/Bullets/BulletOrcLow.tres" id="2_r85ck"]
 [ext_resource type="Texture2D" uid="uid://dd802vu3oo82g" path="res://OldVersions/LowOrc/low-orc.png" id="3_h48cw"]
-[ext_resource type="PackedScene" uid="uid://wwc5nmv5yn2j" path="res://Instances/Components/AttackManager/AttackManager.tscn" id="4_v2pfu"]
 [ext_resource type="PackedScene" uid="uid://b4asjdyoyep5s" path="res://Instances/Components/Health/Health.tscn" id="5_ybllr"]
 [ext_resource type="PackedScene" uid="uid://6fcg84clxst2" path="res://Instances/Components/Death/DeathManager.tscn" id="6_y0wxg"]
 [ext_resource type="PackedScene" uid="uid://bjwrgsdbjvqw3" path="res://Instances/Components/DeathEffect/DeathExplosion.tscn" id="7_0143p"]
@@ -89,37 +88,6 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_fwoc5"]
 resource_name = "Death"
-
-[sub_resource type="Animation" id="Animation_syrev"]
-resource_name = "Hit"
-length = 0.25
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("GroupFlip/AnimatedSprite2D:material:shader_parameter/flash_modifier")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 1.0, 0.0]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.25),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"HitFinished"
-}]
-}
 
 [sub_resource type="Animation" id="Animation_jmy4h"]
 resource_name = "Idle"
@@ -330,7 +298,6 @@ tracks/5/keys = {
 _data = {
 "Attack": SubResource("Animation_rv7bv"),
 "Death": SubResource("Animation_fwoc5"),
-"Hit": SubResource("Animation_syrev"),
 "Idle": SubResource("Animation_jmy4h"),
 "RESET": SubResource("Animation_0kp24"),
 "Walk": SubResource("Animation_onjrd")
@@ -403,19 +370,22 @@ animations = [{
 radius = 5.0
 height = 16.0
 
-[node name="LowOrcN" type="CharacterBody2D" node_paths=PackedStringArray("moveComponent", "playerTracker", "attackManager", "healthManager", "shootManager", "flashHit")]
+[node name="LowOrcN" type="CharacterBody2D" node_paths=PackedStringArray("moveComponent", "playerTracker", "healthManager", "shootManager", "flashHit")]
 scale = Vector2(-1, 1)
 collision_layer = 0
-collision_mask = 100
+collision_mask = 96
 script = ExtResource("1_v5u44")
 moveComponent = NodePath("Move")
 playerTracker = NodePath("PlayerTracker")
-attackManager = NodePath("AttackManager")
 healthManager = NodePath("Health")
 shootManager = NodePath("ShooterComponent")
 flashHit = NodePath("FlashHit")
 lifeBase = 5.0
 orcLowBulletStats = ExtResource("2_r85ck")
+
+[node name="TimerIdle" type="Timer" parent="."]
+
+[node name="TimerWalk" type="Timer" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -427,8 +397,6 @@ autoplay = "Walk"
 libraries = {
 "": SubResource("AnimationLibrary_a08sq")
 }
-
-[node name="TimerIdle" type="Timer" parent="."]
 
 [node name="GroupFlip" type="Node2D" parent="."]
 
@@ -442,9 +410,6 @@ sprite_frames = SubResource("SpriteFrames_inkh6")
 animation = &"Walk"
 centered = false
 offset = Vector2(-8.062, -20.028)
-
-[node name="AttackManager" parent="." instance=ExtResource("4_v2pfu")]
-position = Vector2(0, -8)
 
 [node name="Health" parent="." node_paths=PackedStringArray("deathManager", "knockBack", "lifeBar") instance=ExtResource("5_ybllr")]
 position = Vector2(0, -8)
@@ -476,7 +441,7 @@ position = Vector2(0, -8)
 
 [node name="ActiveHandleComponent" parent="." instance=ExtResource("14_mchh0")]
 activeOnLoad = true
-switch_nps = Array[NodePath]([NodePath("../AttackManager"), NodePath("../Health"), NodePath("../DeathManager"), NodePath("../DeathExplosion"), NodePath("../Move"), NodePath("../PlayerTracker"), NodePath("../KnockBack"), NodePath("../GroupFlip/LookAtPlayerComponent")])
+switch_nps = Array[NodePath]([NodePath("../Health"), NodePath("../DeathManager"), NodePath("../DeathExplosion"), NodePath("../Move"), NodePath("../PlayerTracker"), NodePath("../KnockBack"), NodePath("../GroupFlip/LookAtPlayerComponent")])
 
 [node name="HealthBar" parent="." instance=ExtResource("15_8376v")]
 modulate = Color(0.909804, 0, 0, 1)
