@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cqpmv5esb2s2l"]
+[gd_scene load_steps=35 format=3 uid="uid://cqpmv5esb2s2l"]
 
 [ext_resource type="PackedScene" uid="uid://b4asjdyoyep5s" path="res://Instances/Components/Health/Health.tscn" id="1_a5e0l"]
 [ext_resource type="Script" path="res://Instances/Enemies/MiniOrc/MiniOrc.gd" id="1_w1fg2"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bjwrgsdbjvqw3" path="res://Instances/Components/DeathEffect/DeathExplosion.tscn" id="7_p68xh"]
 [ext_resource type="PackedScene" uid="uid://8mpq1pm143kp" path="res://Instances/Components/HealthBar/HealthBar.tscn" id="9_55dq3"]
 [ext_resource type="PackedScene" uid="uid://bcbgphbcmqgky" path="res://Instances/Components/KnockBack/KnockBack.tscn" id="10_a816y"]
+[ext_resource type="PackedScene" uid="uid://cwyxu1ysjtku7" path="res://Instances/Components/DropXp/DropXp.tscn" id="10_tpce3"]
 [ext_resource type="PackedScene" uid="uid://c1sky0kyn05tc" path="res://Instances/Components/PlayerTracker/PlayerTracker.tscn" id="11_j4ejo"]
 [ext_resource type="PackedScene" uid="uid://ca6aeltom7e7y" path="res://Instances/Components/ShooterComponent/ShooterComponent.tscn" id="12_27l44"]
 [ext_resource type="PackedScene" uid="uid://b4enx6olclngm" path="res://Instances/Components/FlashHit/FlashHit.tscn" id="15_6avr8"]
@@ -401,7 +402,9 @@ flip_h = true
 
 [node name="DeathManager" parent="." node_paths=PackedStringArray("activeHandle") instance=ExtResource("6_noalf")]
 activeHandle = NodePath("../ActiveHandleComponent")
-switch_nps = Array[NodePath]([NodePath("../DeathExplosion")])
+switch_nps = Array[NodePath]([NodePath("../DropXp"), NodePath("../DeathExplosion")])
+
+[node name="DropXp" parent="." instance=ExtResource("10_tpce3")]
 
 [node name="DeathExplosion" parent="." instance=ExtResource("7_p68xh")]
 

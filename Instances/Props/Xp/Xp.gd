@@ -1,13 +1,12 @@
 extends Area2D
 
-
 @export var playerTracker : PlayerTracker
 
 @onready var default_pos = self.global_position
 
 var amplitude := 0.3
 var frequency := 2.0
-var speed := 8.0
+var speed := 5.0
 
 var moveToPlayer := false
 
@@ -30,6 +29,7 @@ func _physics_process(delta):
 			return 
 			
 		var velocity := Vector2.ZERO
+		speed += 0.5
 		velocity = speed * playerTracker.GetDirection() * delta * playerTracker.GetDistance()
 		translate(velocity)
 	else:
