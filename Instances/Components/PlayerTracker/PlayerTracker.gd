@@ -16,4 +16,4 @@ func GetDirection() -> Vector2:
 	return (playerTrack.global_position - self.global_position).normalized()
 	
 func GetDistance() -> float: 
-	return global_position.distance_to(playerTrack.position)
+	return global_position.distance_to(playerTrack.global_position)
