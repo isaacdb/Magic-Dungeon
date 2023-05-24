@@ -1,0 +1,483 @@
+[gd_scene load_steps=34 format=3 uid="uid://niy5aamwe7w0"]
+
+[ext_resource type="PackedScene" uid="uid://b4asjdyoyep5s" path="res://Instances/Components/Health/Health.tscn" id="1_a5e0l"]
+[ext_resource type="Script" path="res://Instances/Enemies/MiniOrc/MiniOrc.gd" id="1_w1fg2"]
+[ext_resource type="PackedScene" uid="uid://dx8h735nl0e2d" path="res://Instances/Components/Move/Move.tscn" id="2_ai1y0"]
+[ext_resource type="Resource" uid="uid://bm8x7t5l38b1p" path="res://Instances/Resources/BulletOrcLow.tres" id="2_oubjv"]
+[ext_resource type="PackedScene" path="res://Instances/Components/ActiveHandleComponent/ActiveHandleComponent.tscn" id="3_cdsad"]
+[ext_resource type="PackedScene" uid="uid://d1loimaxqs6y6" path="res://Instances/Components/LookAtPlayerComponent/LookAtPlayerComponent.tscn" id="4_tqfj2"]
+[ext_resource type="Texture2D" uid="uid://dq672djydkruv" path="res://Instances/Enemies/MiniOrc/miniOrc.png" id="5_hdiuc"]
+[ext_resource type="PackedScene" uid="uid://6fcg84clxst2" path="res://Instances/Components/Death/DeathManager.tscn" id="6_noalf"]
+[ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="7_hsfs1"]
+[ext_resource type="PackedScene" uid="uid://bjwrgsdbjvqw3" path="res://Instances/Components/DeathEffect/DeathExplosion.tscn" id="7_p68xh"]
+[ext_resource type="PackedScene" uid="uid://8mpq1pm143kp" path="res://Instances/Components/HealthBar/HealthBar.tscn" id="9_55dq3"]
+[ext_resource type="PackedScene" uid="uid://bcbgphbcmqgky" path="res://Instances/Components/KnockBack/KnockBack.tscn" id="10_a816y"]
+[ext_resource type="PackedScene" uid="uid://c1sky0kyn05tc" path="res://Instances/Components/PlayerTracker/PlayerTracker.tscn" id="11_j4ejo"]
+[ext_resource type="PackedScene" uid="uid://ca6aeltom7e7y" path="res://Instances/Components/ShooterComponent/ShooterComponent.tscn" id="12_27l44"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_stryp"]
+height = 22.0
+
+[sub_resource type="Animation" id="Animation_0rh76"]
+resource_name = "Attack"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GroupFlip/AnimatedSprite2D:material:shader_parameter/flash_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GroupFlip/AnimatedSprite2D:material:shader_parameter/flash_modifier")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"AttackFinished"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GroupFlip/AnimatedSprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.754, 0.754), Vector2(1.565, 1.565)]
+}
+
+[sub_resource type="Animation" id="Animation_upp2o"]
+resource_name = "Hit"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GroupFlip/AnimatedSprite2D:material:shader_parameter/flash_modifier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0, 1.0, 0.0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"HitFinished"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GroupFlip/AnimatedSprite2D:material:shader_parameter/flash_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6xte8"]
+resource_name = "Idle"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GroupFlip/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GroupFlip/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GroupFlip/AnimatedSprite2D:material:shader_parameter/flash_modifier")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GroupFlip/AnimatedSprite2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -10)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("GroupFlip/AnimatedSprite2D:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("GroupFlip/AnimatedSprite2D:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.08, 1.08), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_37pfq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GroupFlip/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GroupFlip/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GroupFlip/AnimatedSprite2D:material:shader_parameter/flash_modifier")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GroupFlip/AnimatedSprite2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -10)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("GroupFlip/AnimatedSprite2D:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("GroupFlip/AnimatedSprite2D:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("GroupFlip/AnimatedSprite2D:material:shader_parameter/flash_color")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_l8txy"]
+resource_name = "Walk"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GroupFlip/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Walk"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GroupFlip/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GroupFlip/AnimatedSprite2D:material:shader_parameter/flash_modifier")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lasgw"]
+_data = {
+"Attack": SubResource("Animation_0rh76"),
+"Hit": SubResource("Animation_upp2o"),
+"Idle": SubResource("Animation_6xte8"),
+"RESET": SubResource("Animation_37pfq"),
+"Walk": SubResource("Animation_l8txy")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vwr3s"]
+size = Vector2(11, 10)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0v2od"]
+resource_local_to_scene = true
+shader = ExtResource("7_hsfs1")
+shader_parameter/flash_color = Color(1, 0, 0, 1)
+shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxf5w"]
+atlas = ExtResource("5_hdiuc")
+region = Rect2(16, 0, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3vs8r"]
+atlas = ExtResource("5_hdiuc")
+region = Rect2(0, 0, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0j8m3"]
+atlas = ExtResource("5_hdiuc")
+region = Rect2(16, 0, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2kxbo"]
+atlas = ExtResource("5_hdiuc")
+region = Rect2(32, 0, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eotdx"]
+atlas = ExtResource("5_hdiuc")
+region = Rect2(48, 0, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dwll1"]
+atlas = ExtResource("5_hdiuc")
+region = Rect2(64, 0, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7iav"]
+atlas = ExtResource("5_hdiuc")
+region = Rect2(80, 0, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ym5gy"]
+atlas = ExtResource("5_hdiuc")
+region = Rect2(96, 0, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m8h50"]
+atlas = ExtResource("5_hdiuc")
+region = Rect2(112, 0, 16, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c58s5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxf5w")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vs8r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0j8m3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2kxbo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eotdx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dwll1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k7iav")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ym5gy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m8h50")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[node name="MiniOrc" type="CharacterBody2D" node_paths=PackedStringArray("moveComponent", "playerTracker", "healthManager", "deathManager", "shootManager")]
+collision_layer = 0
+collision_mask = 32
+script = ExtResource("1_w1fg2")
+moveComponent = NodePath("Move")
+playerTracker = NodePath("PlayerTracker")
+healthManager = NodePath("Health")
+deathManager = NodePath("DeathManager")
+shootManager = NodePath("ShooterComponent")
+miniOrcBulletStats = ExtResource("2_oubjv")
+
+[node name="TimerToExpode" type="Timer" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CapsuleShape2D_stryp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lasgw")
+}
+
+[node name="Health" parent="." node_paths=PackedStringArray("deathManager", "knockBack", "lifeBar") instance=ExtResource("1_a5e0l")]
+collision_layer = 8
+collision_mask = 0
+deathManager = NodePath("../DeathManager")
+knockBack = NodePath("../KnockBack")
+lifeBar = NodePath("../HealthBar")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Health"]
+position = Vector2(0.5, -5)
+shape = SubResource("RectangleShape2D_vwr3s")
+
+[node name="Move" parent="." instance=ExtResource("2_ai1y0")]
+
+[node name="ActiveHandleComponent" parent="." instance=ExtResource("3_cdsad")]
+activeOnLoad = true
+switch_nps = Array[NodePath]([NodePath("../Move"), NodePath("../Health"), NodePath("../GroupFlip/LookAtPlayerComponent"), NodePath("../DeathManager"), NodePath("../DeathExplosion"), NodePath("../KnockBack"), NodePath("../PlayerTracker"), NodePath("../ShooterComponent")])
+
+[node name="GroupFlip" type="Node2D" parent="."]
+
+[node name="LookAtPlayerComponent" parent="GroupFlip" node_paths=PackedStringArray("playerTracker") instance=ExtResource("4_tqfj2")]
+playerTracker = NodePath("../../PlayerTracker")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GroupFlip"]
+material = SubResource("ShaderMaterial_0v2od")
+position = Vector2(0, -10)
+sprite_frames = SubResource("SpriteFrames_c58s5")
+animation = &"Idle"
+flip_h = true
+
+[node name="DeathManager" parent="." node_paths=PackedStringArray("activeHandle") instance=ExtResource("6_noalf")]
+activeHandle = NodePath("../ActiveHandleComponent")
+switch_nps = Array[NodePath]([NodePath("../DeathExplosion")])
+
+[node name="DeathExplosion" parent="." instance=ExtResource("7_p68xh")]
+
+[node name="HealthBar" parent="." instance=ExtResource("9_55dq3")]
+offset_left = -9.0
+offset_top = -18.0
+offset_right = 182.0
+offset_bottom = 9.0
+
+[node name="KnockBack" parent="." instance=ExtResource("10_a816y")]
+
+[node name="PlayerTracker" parent="." instance=ExtResource("11_j4ejo")]
+
+[node name="ShooterComponent" parent="." instance=ExtResource("12_27l44")]

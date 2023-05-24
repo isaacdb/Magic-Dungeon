@@ -81,7 +81,7 @@ func ChangeState(state: States):
 	
 func AttackFinished():
 	var playerDirection = playerTracker.GetDirection()
-	shootManager.Fire(playerDirection, orcBullet, orcLowBulletStats)
+	shootManager.FireWithCooldown(playerDirection, orcBullet, orcLowBulletStats)
 	ChangeState(States.IDLE)
 	pass
 	
