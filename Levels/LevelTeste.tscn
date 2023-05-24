@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cmx7pnpls2gkt"]
+[gd_scene load_steps=32 format=3 uid="uid://cmx7pnpls2gkt"]
 
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_avsao"]
 [ext_resource type="PackedScene" uid="uid://03my8igrvwt8" path="res://Instances/Tilemap/TileMapWalls.tscn" id="1_fch5f"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://4jvawle2nm0s" path="res://Instances/Components/PlayerLife/PlayerLife.tscn" id="2_5g5bp"]
 [ext_resource type="PackedScene" uid="uid://d2iv4f2anflh4" path="res://Instances/Tilemap/TileMapGround.tscn" id="2_vbm8m"]
 [ext_resource type="PackedScene" uid="uid://wxjsqqs3f4v8" path="res://Instances/Mage1/Mage1.tscn" id="4_f7hcd"]
+[ext_resource type="PackedScene" uid="uid://c7tou3yg5pxkm" path="res://Instances/Components/LevelUpManager/LevelUpManager.tscn" id="4_mqs2s"]
 [ext_resource type="PackedScene" uid="uid://bch5uvc7lpin0" path="res://Instances/Enemies/LowOrcN/LowOrcN.tscn" id="6_2dt4y"]
 [ext_resource type="Script" path="res://Scripts/Room.gd" id="6_awtxp"]
 [ext_resource type="PackedScene" uid="uid://0cncowura4of" path="res://OldVersions/BossOrc/BossOrc.tscn" id="6_di7aa"]
@@ -188,6 +189,12 @@ libraries = {
 [node name="TimerDead" type="Timer" parent="CanvasLayer/DeadPanel"]
 wait_time = 3.0
 one_shot = true
+
+[node name="LevelUpManger" parent="CanvasLayer" instance=ExtResource("4_mqs2s")]
+offset_left = 306.0
+offset_top = 38.0
+offset_right = 1009.0
+offset_bottom = 71.0
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(1, 0.690196, 0.639216, 1)
