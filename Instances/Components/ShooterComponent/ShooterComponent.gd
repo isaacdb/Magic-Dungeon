@@ -23,22 +23,22 @@ func SetActive(active: bool):
 	isActive = active
 	pass
 
-func FireWithCooldown(direction: Vector2, bullet, bulletStats: BulletStats):
+func FireWithCooldown(direction: Vector2, bulletStats: BulletStats):
 	if !isActive or !canShoot:
 		return false
 	
-	Shoot(direction, bullet, bulletStats)
+	Shoot(direction, bulletStats)
 	
 	canShoot = false
 	fireTimer.start()	
 	return true
 	
-func JustFire(direction: Vector2, bullet, bulletStats: BulletStats):
-	Shoot(direction, bullet, bulletStats)
+func JustFire(direction: Vector2, bulletStats: BulletStats):
+	Shoot(direction, bulletStats)
 	pass
 
-func Shoot(direction: Vector2, bullet, bulletStats: BulletStats):
-	var newBullet = bullet.instantiate()
+func Shoot(direction: Vector2, bulletStats: BulletStats):
+	var newBullet = bulletStats.prefab.instantiate() as BulletN
 	get_tree().get_root().get_child(0).add_child(newBullet)
 	newBullet.UpdateStats(bulletStats)
 	newBullet.global_position = self.global_position

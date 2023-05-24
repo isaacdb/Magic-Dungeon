@@ -1,12 +1,10 @@
 extends Node2D
 class_name AttackManager
 
-@export var playerTracker : PlayerTracker
-
 @onready var timerAttack := $TimerAttack as Timer
 @onready var rnd := RandomNumberGenerator.new()
 
-signal attack_signal
+signal attack_is_ready
 
 var attackDelay := 0.0
 var attackReady := false
@@ -37,5 +35,5 @@ func Attack():
 	var randDelay = rnd.randf_range(0.0, 1.0)
 	timerAttack.wait_time = attackDelay + randDelay	
 	timerAttack.start()
-	attack_signal.emit()
+	attack_is_ready.emit()
 	pass

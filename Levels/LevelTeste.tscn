@@ -6,15 +6,15 @@
 [ext_resource type="PackedScene" uid="uid://4jvawle2nm0s" path="res://Instances/Components/PlayerLife/PlayerLife.tscn" id="2_5g5bp"]
 [ext_resource type="PackedScene" uid="uid://d2iv4f2anflh4" path="res://Instances/Tilemap/TileMapGround.tscn" id="2_vbm8m"]
 [ext_resource type="PackedScene" uid="uid://wxjsqqs3f4v8" path="res://Instances/Mage1/Mage1.tscn" id="4_f7hcd"]
-[ext_resource type="PackedScene" uid="uid://cjh67j7u0amal" path="res://Instances/Enemies/LowOrcN/LowOrcN.tscn" id="6_2dt4y"]
+[ext_resource type="PackedScene" uid="uid://bch5uvc7lpin0" path="res://Instances/Enemies/LowOrcN/LowOrcN.tscn" id="6_2dt4y"]
 [ext_resource type="Script" path="res://Scripts/Room.gd" id="6_awtxp"]
 [ext_resource type="PackedScene" uid="uid://0cncowura4of" path="res://OldVersions/BossOrc/BossOrc.tscn" id="6_di7aa"]
-[ext_resource type="PackedScene" uid="uid://il16ni6ku2om" path="res://Instances/Enemies/MageOrcN/MageOrcN.tscn" id="7_43g3d"]
+[ext_resource type="PackedScene" uid="uid://11xwfmh0obbe" path="res://Instances/Enemies/MageOrcN/MageOrcN.tscn" id="7_43g3d"]
 [ext_resource type="PackedScene" uid="uid://ccth7h5t4bfu" path="res://Instances/Props/Gate/Gate.tscn" id="7_pgs22"]
 [ext_resource type="Script" path="res://Scripts/BossRoom.gd" id="8_852hq"]
 [ext_resource type="Script" path="res://Scripts/Lobby.gd" id="8_kfohy"]
 [ext_resource type="PackedScene" uid="uid://dhqly5q1v8pys" path="res://Instances/Components/SpawnEffect/SpawnEffect.tscn" id="8_owyhm"]
-[ext_resource type="PackedScene" uid="uid://niy5aamwe7w0" path="res://Instances/Enemies/MiniOrc/MiniOrc.tscn" id="11_brv1s"]
+[ext_resource type="PackedScene" uid="uid://cqpmv5esb2s2l" path="res://Instances/Enemies/MiniOrc/MiniOrc.tscn" id="11_brv1s"]
 
 [sub_resource type="Gradient" id="Gradient_jo7ba"]
 offsets = PackedFloat32Array(0, 0.522988, 1)

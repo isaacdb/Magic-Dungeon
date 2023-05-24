@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Instances/Mage1/Mage1.gd" id="1_giwmu"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="1_hkxu6"]
-[ext_resource type="PackedScene" uid="uid://db4uuf766upgt" path="res://Instances/Components/Wand/Wand.tscn" id="2_540pc"]
+[ext_resource type="PackedScene" path="res://Instances/Components/Wand/Wand.tscn" id="2_540pc"]
 [ext_resource type="PackedScene" uid="uid://b4asjdyoyep5s" path="res://Instances/Components/Health/Health.tscn" id="3_gonwg"]
 [ext_resource type="Texture2D" uid="uid://dk66h00qimkf4" path="res://Instances/Mage1/Mage1.png" id="4_ftoke"]
 [ext_resource type="PackedScene" uid="uid://6fcg84clxst2" path="res://Instances/Components/Death/DeathManager.tscn" id="4_v7fsg"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://pnthfjsqolx2" path="res://Instances/Components/Camera/Camera.tscn" id="10_okhe8"]
 [ext_resource type="PackedScene" uid="uid://bcbgphbcmqgky" path="res://Instances/Components/KnockBack/KnockBack.tscn" id="12_b338j"]
 [ext_resource type="PackedScene" uid="uid://valwt38uo38s" path="res://Instances/Components/BulletPredict/BulletPredict.tscn" id="14_qybn2"]
+[ext_resource type="PackedScene" uid="uid://b4enx6olclngm" path="res://Instances/Components/FlashHit/FlashHit.tscn" id="15_34hya"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6gleb"]
 
@@ -26,36 +27,6 @@ shader_parameter/flash_modifier = 0.0
 resource_name = "Fire"
 length = 0.1
 step = 0.05
-
-[sub_resource type="Animation" id="Animation_wwtjb"]
-resource_name = "Hit"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:material:shader_parameter/flash_modifier")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.8, 0.0, 0.8, 0.0]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.4),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"EndHitFrame"
-}]
-}
 
 [sub_resource type="Animation" id="Animation_2iv2e"]
 resource_name = "Idle"
@@ -104,7 +75,6 @@ tracks/1/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_njtry"]
 _data = {
 "Fire": SubResource("Animation_pxje7"),
-"Hit": SubResource("Animation_wwtjb"),
 "Idle": SubResource("Animation_2iv2e"),
 "RESET": SubResource("Animation_pqqg8")
 }
@@ -132,12 +102,13 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 radius = 6.0
 height = 20.0
 
-[node name="Mage1" type="CharacterBody2D" node_paths=PackedStringArray("moveComponent", "healthManager", "wand") groups=["player"]]
+[node name="Mage1" type="CharacterBody2D" node_paths=PackedStringArray("moveComponent", "healthManager", "flashHit", "wand") groups=["player"]]
 collision_layer = 0
 collision_mask = 112
 script = ExtResource("1_giwmu")
 moveComponent = NodePath("Move")
 healthManager = NodePath("Health")
+flashHit = NodePath("FlashHit")
 wand = NodePath("Wand")
 lifeBase = 3.0
 fireRate = 0.4
@@ -224,3 +195,7 @@ zoom = Vector2(3, 3)
 [node name="KnockBack" parent="." instance=ExtResource("12_b338j")]
 
 [node name="BulletPredict" parent="." instance=ExtResource("14_qybn2")]
+
+[node name="TimerIFrame" type="Timer" parent="."]
+
+[node name="FlashHit" parent="." instance=ExtResource("15_34hya")]

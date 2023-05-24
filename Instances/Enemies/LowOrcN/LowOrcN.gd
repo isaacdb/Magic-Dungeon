@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var attackManager : AttackManager
 @export var healthManager : Health
 @export var shootManager : ShooterComponent
+@export var flashHit : FlashHit
 
 @export var speed := 50.0
 
@@ -21,14 +22,12 @@ extends CharacterBody2D
 @onready var timerIdle := $TimerIdle as Timer
 @onready var rnd := RandomNumberGenerator.new()
 
-@onready var orcBullet := preload("res://Instances/Bullet/BulletsEnemies/BulletEnemy1/BulletN.tscn")
 @export var orcLowBulletStats : BulletStats
 
 enum States
 {
 	IDLE,
 	CHASING,
-	HIT,
 	ATTACK,
 	DEATH,
 	ESCAPE
@@ -38,8 +37,8 @@ var currentState := States.IDLE
 var nextPostion := Vector2.ZERO
 
 func _ready():	
-	attackManager.connect("attack_signal", func(): ChangeState(States.ATTACK))
-	healthManager.connect("damage", func(): ChangeState(States.HIT))
+	attackManager.connect("attack_is_ready", func(): ChangeState(States.ATTACK))
+	healthManager.damage.connect(GetHit)
 	
 	attackManager.SetAttackDelay(attackDelay)
 	healthManager.SetLifeBase(lifeBase)
@@ -64,10 +63,6 @@ func _physics_process(delta):
 			moveComponent.Move(self, nextPositionDirection, delta, 1300, speed)			
 			pass
 			
-		States.HIT:
-			animPlayer.play("Hit")
-			pass
-			
 		States.ATTACK:
 			animPlayer.play("Attack")
 			pass
@@ -81,13 +76,13 @@ func ChangeState(state: States):
 	
 func AttackFinished():
 	var playerDirection = playerTracker.GetDirection()
-	shootManager.FireWithCooldown(playerDirection, orcBullet, orcLowBulletStats)
+	shootManager.FireWithCooldown(playerDirection, orcLowBulletStats)
 	ChangeState(States.IDLE)
 	pass
 	
-func HitFinished():
-	ChangeState(States.IDLE)
-	pass	
+func GetHit():
+	flashHit.Flash(sprite.material)
+	pass
 
 func TimerIdleTimeout():
 	var randTime = rnd.randf_range(0.0, 1.0)

@@ -2,21 +2,19 @@ extends CharacterBody2D
 
 @export var moveComponent : MoveComponent
 @export var playerTracker : PlayerTracker
-@export var attackManager : AttackManager
 @export var healthManager : Health
 @export var shootManager : ShooterComponent
-@export var speed := 80.0
+@export var flashHit : FlashHit
 
 @export var orcMageBulletStats : BulletStats
 
-@export var fireRate := 2.5
 @export var lifeBase := 5
+@export var speed := 80.0
 
 @export var timeIdle := 1.0
 @onready var timerIdle := $TimerIdle as Timer
 @onready var animPlayer := $AnimationPlayer as AnimationPlayer
 @onready var sprite := $GroupFlip/AnimatedSprite2D as AnimatedSprite2D
-@onready var orcBullet := preload("res://Instances/Bullet/BulletsEnemies/BulletEnemy1/BulletN.tscn")
 
 @onready var rnd := RandomNumberGenerator.new()
 
@@ -24,7 +22,6 @@ enum States
 {
 	IDLE,
 	CHASING,
-	HIT,
 	ATTACK,
 	DEATH
 }
@@ -32,11 +29,8 @@ enum States
 var currentState := States.IDLE
 var nextPostion := Vector2.ZERO
 
-func _ready():
-	attackManager.connect("attack_signal", func(): ChangeState(States.ATTACK))
-	healthManager.connect("damage", func(): ChangeState(States.HIT))
-	
-	attackManager.SetAttackDelay(fireRate)
+func _ready():	
+	healthManager.damage.connect(GetHit)	
 	healthManager.SetLifeBase(lifeBase)
 	
 	timerIdle.wait_time = timeIdle
@@ -44,29 +38,35 @@ func _ready():
 	timerIdle.autostart = false
 	timerIdle.timeout.connect(TimerIdleTimeout)
 	pass
-	
+
 func _physics_process(delta):
 	match currentState:
 		States.IDLE:
 			animPlayer.play("Idle")
+			
+			## Se movimentou até o proximo ponto, quando chegar já ataca
 			if timerIdle.is_stopped():
 				timerIdle.start()
+				ChangeState(States.ATTACK)
 			pass
 			
 		States.CHASING:
+			if global_position.distance_to(nextPostion) < 2.0:
+				ChangeState(States.IDLE)
+				return
+				
 			animPlayer.play("Walk")
 			var nextPositionDirection = (nextPostion - self.global_position).normalized()
-			moveComponent.Move(self, nextPositionDirection, delta, 1300, speed)		
+			moveComponent.Move(self, nextPositionDirection, delta, 1300, speed)
 			pass
-			
-		States.HIT:
-			animPlayer.play("Hit")
-			pass
-			
+
 		States.ATTACK:
 			animPlayer.play("Attack")
 			pass
-				
+			
+func GetHit():
+	flashHit.Flash(sprite.material)
+	pass
 
 func ChangeState(state: States):
 	currentState = state
@@ -74,14 +74,10 @@ func ChangeState(state: States):
 	
 func AttackFinished():
 	var playerDirection = playerTracker.GetDirection()
-	shootManager.FireWithCooldown(playerDirection, orcBullet, orcMageBulletStats)
+	shootManager.JustFire(playerDirection, orcMageBulletStats)
 	ChangeState(States.IDLE)
 	pass
 	
-func HitFinished():
-	ChangeState(States.IDLE)
-	pass	
-
 func SetNextPosition():
 	nextPostion = playerTracker.playerTrack.global_position	
 	

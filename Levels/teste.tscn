@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cb0j8ss8e4xpy"]
+[gd_scene load_steps=5 format=3 uid="uid://cb0j8ss8e4xpy"]
 
 [ext_resource type="PackedScene" uid="uid://wxjsqqs3f4v8" path="res://Instances/Mage1/Mage1.tscn" id="1_ttgvd"]
-[ext_resource type="PackedScene" uid="uid://il16ni6ku2om" path="res://Instances/Enemies/MageOrcN/MageOrcN.tscn" id="2_2p63l"]
-[ext_resource type="PackedScene" uid="uid://niy5aamwe7w0" path="res://Instances/Enemies/MiniOrc/MiniOrc.tscn" id="3_agonb"]
+[ext_resource type="PackedScene" uid="uid://11xwfmh0obbe" path="res://Instances/Enemies/MageOrcN/MageOrcN.tscn" id="2_2p63l"]
+[ext_resource type="PackedScene" uid="uid://bch5uvc7lpin0" path="res://Instances/Enemies/LowOrcN/LowOrcN.tscn" id="3_8uhud"]
+[ext_resource type="PackedScene" uid="uid://cqpmv5esb2s2l" path="res://Instances/Enemies/MiniOrc/MiniOrc.tscn" id="3_agonb"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -10,9 +11,10 @@
 position = Vector2(45, -29)
 
 [node name="MageOrcN" parent="." instance=ExtResource("2_2p63l")]
-position = Vector2(23, -34)
+position = Vector2(247, -166)
+
+[node name="LowOrcN" parent="." instance=ExtResource("3_8uhud")]
+position = Vector2(51, -165)
 
 [node name="MiniOrc" parent="." instance=ExtResource("3_agonb")]
-
-[node name="MiniOrc2" parent="." instance=ExtResource("3_agonb")]
-position = Vector2(180, -217)
+position = Vector2(327, -43)

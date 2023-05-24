@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4enx6olclngm"]
+
+[ext_resource type="Script" path="res://Instances/Components/FlashHit/FlashHit.gd" id="1_70m1x"]
+
+[node name="FlashHit" type="Node2D"]
+script = ExtResource("1_70m1x")

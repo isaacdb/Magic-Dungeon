@@ -1,8 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://db4uuf766upgt"]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource type="Script" path="res://Instances/Components/Wand/Wand.gd" id="1_3cjob"]
 [ext_resource type="Texture2D" uid="uid://dly6q5evuf44e" path="res://Instances/Weapon/Sprite.png" id="1_fj8tm"]
-[ext_resource type="Resource" uid="uid://bd56fgvk85f88" path="res://Instances/Resources/BulletMage1.tres" id="2_d602m"]
+[ext_resource type="Resource" uid="uid://bd56fgvk85f88" path="res://Instances/Resources/Bullets/BulletMage1.tres" id="2_d602m"]
 [ext_resource type="PackedScene" uid="uid://c4oywo6sm3beo" path="res://Instances/Components/WeaponRoundComponent/WeaponRoundComponent.tscn" id="2_lbcjr"]
 [ext_resource type="PackedScene" uid="uid://ca6aeltom7e7y" path="res://Instances/Components/ShooterComponent/ShooterComponent.tscn" id="3_1r5n4"]
 
