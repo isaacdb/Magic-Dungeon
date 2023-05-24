@@ -33,22 +33,25 @@ enum States
 	DEATH
 }
 
-var currentState := States.IDLE
+var currentState := States.CHASING
 var nextPostion := Vector2.ZERO
 
 func _ready():	
 	healthManager.damage.connect(GetHit)
 	healthManager.SetLifeBase(lifeBase)
 		
+	var randTime = rnd.randf_range(0.0, 1.0)
+	
 	timerIdle.wait_time = timeIdle
 	timerIdle.one_shot = true
 	timerIdle.autostart = false
 	timerIdle.timeout.connect(TimerIdleTimeout)
 	
-	timerWalk.wait_time = timeWalk
+	timerWalk.wait_time = randTime + timeWalk
 	timerWalk.one_shot = true
 	timerWalk.autostart = false
 	timerWalk.timeout.connect(TimerWalkTimeout)
+	
 	pass
 	
 func _physics_process(delta):

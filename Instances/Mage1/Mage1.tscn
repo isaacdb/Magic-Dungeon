@@ -19,6 +19,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_6gleb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0sxq4"]
+resource_local_to_scene = true
 shader = ExtResource("1_hkxu6")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifier = 0.0
