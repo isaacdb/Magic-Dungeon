@@ -21,18 +21,13 @@ func _ready():
 
 func player_dead():
 	deadPanelAnim.play("Dead")
-	timerDead.start()
-	
+	timerDead.start()	
 	pass
 
 func _on_timer_dead_timeout():
 	get_tree().reload_current_scene()
 	pass
 
-#func UpdatePlayerLife(currentLife: float):
-#	#playerLifeBar.UpdateHealthBar(currentLife)
-#	pass
-	
 func PlayerGetHit():
 	var tween = create_tween()
 	tween.tween_property(canvaModulate, "color", hitColorModulate, 0.1).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)

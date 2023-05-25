@@ -6,6 +6,6 @@
 script = ExtResource("1_5pk41")
 id = 4
 description = "Teste 4 descrição"
-title = "+ 1.2x DAMAGE"
+title = "+ DAMAGE"
 upgradeType = 3
-upgradeValue = 0.0
+upgradeValue = 1.0

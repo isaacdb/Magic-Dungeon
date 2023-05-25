@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Instances/Components/LevelUpManager/LevelUpManager.gd" id="1_5hbno"]
 
 [node name="LevelUpManger" type="ProgressBar"]
+process_mode = 3
 offset_left = 302.0
 offset_top = 664.0
 offset_right = 1005.0

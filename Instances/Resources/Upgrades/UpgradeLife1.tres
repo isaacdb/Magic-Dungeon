@@ -6,6 +6,6 @@
 script = ExtResource("1_h4rg8")
 id = 3
 description = "Teste  3descrição"
-title = "+1 LIFE"
+title = "+ LIFE"
 upgradeType = 1
 upgradeValue = 1.0

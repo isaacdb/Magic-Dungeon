@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://4jvawle2nm0s" path="res://Instances/Components/PlayerLife/PlayerLife.tscn" id="2_5g5bp"]
 [ext_resource type="PackedScene" uid="uid://bipohfp6birf5" path="res://Instances/Components/UpgradeSelector/UpgradeSelector.tscn" id="2_q6x83"]
 [ext_resource type="PackedScene" uid="uid://d2iv4f2anflh4" path="res://Instances/Tilemap/TileMapGround.tscn" id="2_vbm8m"]
-[ext_resource type="PackedScene" uid="uid://wxjsqqs3f4v8" path="res://Instances/Mage1/Mage1.tscn" id="4_f7hcd"]
+[ext_resource type="PackedScene" uid="uid://c6g7qwsljeavk" path="res://Instances/Mage1/Mage1.tscn" id="4_f7hcd"]
 [ext_resource type="PackedScene" uid="uid://c7tou3yg5pxkm" path="res://Instances/Components/LevelUpManager/LevelUpManager.tscn" id="4_mqs2s"]
 [ext_resource type="PackedScene" uid="uid://bch5uvc7lpin0" path="res://Instances/Enemies/LowOrcN/LowOrcN.tscn" id="6_2dt4y"]
 [ext_resource type="Script" path="res://Scripts/Room.gd" id="6_awtxp"]

@@ -29,13 +29,17 @@ func ActiveSelector():
 func UpgradeSelected(upgrade: UpgradeStats):
 	upgrade.ApplyUpgrade(player)
 	
+	CleanUpgradesListed()
+	
+	self.visible = false
+	get_tree().paused = false
+	pass
+
+func CleanUpgradesListed():
 	chosenUpgradesIndex.clear()
 	var upgrades = boxOptionList.get_children()
 	for i in upgrades:
 		i.queue_free()
-	
-	self.visible = false
-	get_tree().paused = false
 	pass
 
 func GetRandomUpgrade() -> UpgradeStats:

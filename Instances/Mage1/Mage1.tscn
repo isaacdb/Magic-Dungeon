@@ -1,9 +1,12 @@
-[gd_scene load_steps=27 format=3 uid="uid://wxjsqqs3f4v8"]
+[gd_scene load_steps=30 format=3 uid="uid://c6g7qwsljeavk"]
 
 [ext_resource type="Script" path="res://Instances/Mage1/Mage1.gd" id="1_giwmu"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="1_hkxu6"]
-[ext_resource type="PackedScene" path="res://Instances/Components/Wand/Wand.tscn" id="2_540pc"]
+[ext_resource type="PackedScene" uid="uid://ceg2p5rdoxduo" path="res://Instances/Components/Weapon/Weapon.tscn" id="2_540pc"]
+[ext_resource type="Resource" path="res://Instances/Resources/Bullets/BulletMage1.tres" id="2_jv4dm"]
+[ext_resource type="PackedScene" uid="uid://ca6aeltom7e7y" path="res://Instances/Components/ShooterComponent/ShooterComponent.tscn" id="3_elm5e"]
 [ext_resource type="PackedScene" uid="uid://b4asjdyoyep5s" path="res://Instances/Components/Health/Health.tscn" id="3_gonwg"]
+[ext_resource type="PackedScene" uid="uid://c4oywo6sm3beo" path="res://Instances/Components/WeaponRoundComponent/WeaponRoundComponent.tscn" id="4_f854t"]
 [ext_resource type="Texture2D" uid="uid://dk66h00qimkf4" path="res://Instances/Mage1/Mage1.png" id="4_ftoke"]
 [ext_resource type="PackedScene" uid="uid://6fcg84clxst2" path="res://Instances/Components/Death/DeathManager.tscn" id="4_v7fsg"]
 [ext_resource type="Texture2D" uid="uid://b6l8fu6uss63t" path="res://Assets/Dust.png" id="5_2k80y"]
@@ -103,18 +106,27 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 radius = 6.0
 height = 20.0
 
-[node name="Mage1" type="CharacterBody2D" node_paths=PackedStringArray("moveComponent", "healthManager", "flashHit", "wand") groups=["player"]]
+[node name="Mage1" type="CharacterBody2D" node_paths=PackedStringArray("moveComponent", "healthManager", "flashHit", "shootManager", "weapon") groups=["player"]]
 collision_layer = 0
 collision_mask = 112
 script = ExtResource("1_giwmu")
 moveComponent = NodePath("Move")
 healthManager = NodePath("Health")
 flashHit = NodePath("FlashHit")
-wand = NodePath("Wand")
+shootManager = NodePath("Weapon/ShooterComponent")
+bulletStats = ExtResource("2_jv4dm")
+weapon = NodePath("Weapon")
 lifeBase = 3.0
 fireRate = 0.4
 
-[node name="Wand" parent="." instance=ExtResource("2_540pc")]
+[node name="Weapon" parent="." instance=ExtResource("2_540pc")]
+
+[node name="ShooterComponent" parent="Weapon" instance=ExtResource("3_elm5e")]
+position = Vector2(15, -7)
+
+[node name="WeaponRoundComponent" parent="Weapon" node_paths=PackedStringArray("sprite2D", "spawnPoint") instance=ExtResource("4_f854t")]
+sprite2D = NodePath("../Sprite2D")
+spawnPoint = NodePath("../ShooterComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -180,7 +192,7 @@ switch_nps = Array[NodePath]([NodePath("../GameOverComponent")])
 
 [node name="ActiveHandleComponent" parent="." instance=ExtResource("5_mmgrx")]
 activeOnLoad = true
-switch_nps = Array[NodePath]([NodePath("../Health"), NodePath("../DeathManager"), NodePath("../Move"), NodePath("../DashSkill"), NodePath("../KnockBack"), NodePath("../Wand")])
+switch_nps = Array[NodePath]([NodePath("../Health"), NodePath("../DeathManager"), NodePath("../Move"), NodePath("../DashSkill"), NodePath("../KnockBack")])
 
 [node name="Move" parent="." node_paths=PackedStringArray("walkParticule") instance=ExtResource("6_nmcf8")]
 walkParticule = NodePath("../WalkParticle")

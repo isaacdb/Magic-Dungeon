@@ -31,6 +31,8 @@ func ApplyUpgrade(player: Mage1):
 	pass
 
 func UpgradeFireRate(player: Mage1):
+	player.fireRate -= upgradeValue
+	player.UpdateFireRate(player.fireRate)
 	pass
 	
 func UpgradeLife(player: Mage1):
@@ -39,8 +41,11 @@ func UpgradeLife(player: Mage1):
 	pass
 	
 func UpgradeBulletDamage(player: Mage1):
+	player.bulletStats.damage += upgradeValue
 	pass
 	
 func UpgradeMoveSpeed(player: Mage1):
-	player.speed += player.speed * upgradeValue
+	var upgradePercent = upgradeValue / player.speed
+	player.speed += upgradeValue
+	player.acceleration += player.acceleration * upgradePercent / 2
 	pass

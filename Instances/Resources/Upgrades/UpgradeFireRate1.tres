@@ -6,6 +6,6 @@
 script = ExtResource("1_lgw18")
 id = 1
 description = "Teste descrição"
-title = "+1 FIRE RATE"
+title = "+ FIRE RATE"
 upgradeType = 0
-upgradeValue = 0.0
+upgradeValue = 0.05

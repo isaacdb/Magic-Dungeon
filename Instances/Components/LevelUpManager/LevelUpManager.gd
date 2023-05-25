@@ -8,28 +8,38 @@ var currentXp := 0
 func _ready():
 	Global.xp_colleted.connect(AddXp)
 	xpNextLevel = xpRequiredPerLevel
-	SetMaxValue(xpNextLevel)
+	UpdateMaxValue()
 	UpdateProgressBar()
 	pass
 
 func AddXp():
-	currentXp += 1
-	CheckLevelUp()
-	UpdateProgressBar()
+	currentXp += 5
+	if CheckLevelUp():
+		LevelUpEffect()
+	else:
+		UpdateProgressBar()
 	pass
 
-func CheckLevelUp():
+func CheckLevelUp() -> bool:
 	if currentXp >= xpNextLevel:
-		print("level up")
 		currentXp = 0
-		xpNextLevel += 5
-		SetMaxValue(xpNextLevel)
+		xpNextLevel += 1
 		Global.level_up.emit()
+		return true
+	
+	return false
+
+func UpdateMaxValue():
+	max_value = xpNextLevel
 	pass
 
-func SetMaxValue(newMaxValue):
-	max_value = newMaxValue
-	pass
+func LevelUpEffect():
+	var tween = create_tween()
+	tween.tween_property(self, "value", max_value, 0.3).set_trans(Tween.TRANS_LINEAR)
+	tween.tween_property(self, "value", max_value, 2.0).set_trans(Tween.TRANS_LINEAR)
+	tween.tween_callback(UpdateMaxValue)
+	tween.tween_property(self, "value", currentXp, 0.8).set_trans(Tween.TRANS_LINEAR)
+	tween.play()		
 	
 func UpdateProgressBar():
 	var tween = create_tween()

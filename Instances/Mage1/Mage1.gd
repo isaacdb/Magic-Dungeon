@@ -4,10 +4,12 @@ class_name Mage1
 @export var moveComponent : MoveComponent
 @export var healthManager : Health
 @export var flashHit : FlashHit
-@export var wand : Wand
+@export var shootManager : ShooterComponent
+@export var bulletStats : BulletStats
+@export var weapon : Weapon
 
-@export var acceleration := 800.0
-@export var speed := 200.0
+@export var acceleration := 1400.0
+@export var speed := 150.0
 @export var lifeBase := 10.0
 @export var fireRate := 1.0
 
@@ -21,17 +23,25 @@ var durationIFrame := 0.6
 
 func _ready():
 	animationPlayer.play("Idle")
-	healthManager.damage.connect(GetHited)
 	
+	healthManager.damage.connect(GetHited)	
 	healthManager.SetLifeBase(lifeBase)
+	
 	Global.set_player_max_life.emit(lifeBase)
-	wand.UpdateFireRate(fireRate)
+	
+	shootManager.UpdateFireRate(fireRate)
 	
 	timerIFrame.wait_time = durationIFrame
 	timerIFrame.one_shot = true
 	timerIFrame.autostart = false
 	timerIFrame.timeout.connect(EndIFrame)
 	pass
+
+func _process(delta):	
+	if Input.is_action_pressed("fire"):
+		Fire()
+	pass
+
 
 func _physics_process(delta):
 	if !isAlive:
@@ -51,18 +61,8 @@ func GetHited():
 	Global.emit_signal("screen_shake", 10.0, .3, 1)
 	Global.player_hited.emit()
 	flashHit.Flash(sprite2D.material)
-	StartIFrame()	
-	ChangeFireRate()	
+	StartIFrame()
 	pass	
-	
-func ChangeFireRate():
-	var lifePercent = (healthManager.currentHealth * 100) / healthManager.lifeBase
-	if lifePercent > 80:
-		wand.UpdateFireRate(fireRate)
-	elif lifePercent >= 50:
-		wand.UpdateFireRate(fireRate / 2)
-	elif lifePercent >= 30:
-		wand.UpdateFireRate(fireRate / 4)
 
 func ChangeAnim(anim: String):
 	animationPlayer.play(anim)
@@ -80,3 +80,14 @@ func getAxisInput() -> Vector2:
 	var directionV = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")	
 	
 	return Vector2 (directionH, directionV).normalized()
+
+func UpdateFireRate(newFireRate: float):
+	shootManager.UpdateFireRate(newFireRate)
+	pass
+
+func Fire():
+	var targetDirection = (get_global_mouse_position() - shootManager.global_position).normalized()	
+	var shoot = shootManager.FireWithCooldown(targetDirection, bulletStats)
+	if shoot:
+		Global.emit_signal("screen_shake", 1, .1, 1)
+		weapon.animationPlayer.play("Fired")	
