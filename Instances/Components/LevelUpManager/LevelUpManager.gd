@@ -24,6 +24,7 @@ func CheckLevelUp():
 		currentXp = 0
 		xpNextLevel += 5
 		SetMaxValue(xpNextLevel)
+		Global.level_up.emit()
 	pass
 
 func SetMaxValue(newMaxValue):

@@ -1,6 +1,10 @@
-[gd_scene format=3 uid="uid://cqago4dchak01"]
+[gd_scene load_steps=2 format=3 uid="uid://cqago4dchak01"]
+
+[ext_resource type="Script" path="res://Instances/Components/UpgradeSelector/OptionItem.gd" id="1_tahdd"]
 
 [node name="Option" type="Panel"]
+process_mode = 2
+script = ExtResource("1_tahdd")
 
 [node name="OptionText" type="Label" parent="."]
 layout_mode = 0

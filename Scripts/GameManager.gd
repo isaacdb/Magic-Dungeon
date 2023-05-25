@@ -12,7 +12,6 @@ var pointer = load("res://Assets/pointer4.png")
 
 func _init():
 	Global.player_dead.connect(player_dead)
-#	Global.update_player_life.connect(UpdatePlayerLife)
 	Global.player_hited.connect(PlayerGetHit)
 	pass
 

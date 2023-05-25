@@ -1,8 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://o25n34i2u3tt"]
+[gd_scene load_steps=6 format=3 uid="uid://o25n34i2u3tt"]
 
-[ext_resource type="PackedScene" uid="uid://cqago4dchak01" path="res://Instances/Components/UpgradeSelector/OptionItem.tscn" id="1_mwy0m"]
+[ext_resource type="Script" path="res://Instances/Components/UpgradeSelector/UpgradeSelector.gd" id="1_exuln"]
+[ext_resource type="Resource" uid="uid://b7g6e2jq8sfs4" path="res://Instances/Resources/Upgrades/UpgradeTest1.tres" id="2_cjykd"]
+[ext_resource type="Resource" uid="uid://dykeqpoftq3a6" path="res://Instances/Resources/Upgrades/UpgradeTest2.tres" id="3_njkss"]
+[ext_resource type="Resource" uid="uid://c4wfb7vate6vv" path="res://Instances/Resources/Upgrades/UpgradeTest3.tres" id="4_vdteh"]
+[ext_resource type="Resource" uid="uid://ctxj1apwera67" path="res://Instances/Resources/Upgrades/UpgradeTest4.tres" id="5_o1lo3"]
 
 [node name="UpgradeSelector" type="Panel"]
+process_mode = 2
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -13,6 +18,8 @@ offset_bottom = -75.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
+script = ExtResource("1_exuln")
+listOfUpgradesAvaiable = Array[Resource("res://Instances/Resources/Upgrades/UpgradeStats.gd")]([ExtResource("2_cjykd"), ExtResource("3_njkss"), ExtResource("4_vdteh"), ExtResource("5_o1lo3")])
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 2
@@ -35,6 +42,3 @@ offset_bottom = -24.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 60
-
-[node name="Option" parent="OptionList" instance=ExtResource("1_mwy0m")]
-layout_mode = 2

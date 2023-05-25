@@ -8,6 +8,7 @@ signal set_player_max_life
 signal player_hited
 
 signal xp_colleted
+signal level_up
 
 signal enemy_killed
 signal boss_killed

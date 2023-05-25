@@ -135,10 +135,12 @@ environment = SubResource("Environment_k8p4i")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="UpgradSelector" parent="CanvasLayer" instance=ExtResource("2_q6x83")]
+[node name="UpgradeSelector" parent="CanvasLayer" instance=ExtResource("2_q6x83")]
 visible = false
+offset_bottom = 99.0
 
-[node name="Control" parent="CanvasLayer" instance=ExtResource("2_5g5bp")]
+[node name="PlayerLife" parent="CanvasLayer" instance=ExtResource("2_5g5bp")]
+process_mode = 3
 
 [node name="BossHealthBar" parent="CanvasLayer" instance=ExtResource("2_3ryg4")]
 modulate = Color(1, 0, 0, 1)
