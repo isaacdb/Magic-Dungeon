@@ -3,9 +3,9 @@ extends Node
 signal screen_shake
 
 signal player_dead
-signal update_player_life
 signal set_player_max_life
 signal player_hited
+signal player_add_life
 
 signal xp_colleted
 signal level_up

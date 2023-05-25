@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Mage1
 
 @export var moveComponent : MoveComponent
 @export var healthManager : Health
@@ -24,7 +25,6 @@ func _ready():
 	
 	healthManager.SetLifeBase(lifeBase)
 	Global.set_player_max_life.emit(lifeBase)
-	Global.update_player_life.emit(lifeBase)
 	wand.UpdateFireRate(fireRate)
 	
 	timerIFrame.wait_time = durationIFrame
@@ -53,7 +53,7 @@ func GetHited():
 	flashHit.Flash(sprite2D.material)
 	StartIFrame()	
 	ChangeFireRate()	
-	pass
+	pass	
 	
 func ChangeFireRate():
 	var lifePercent = (healthManager.currentHealth * 100) / healthManager.lifeBase

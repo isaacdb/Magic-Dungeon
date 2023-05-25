@@ -1,10 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://o25n34i2u3tt"]
+[gd_scene load_steps=6 format=3 uid="uid://bipohfp6birf5"]
 
 [ext_resource type="Script" path="res://Instances/Components/UpgradeSelector/UpgradeSelector.gd" id="1_exuln"]
-[ext_resource type="Resource" uid="uid://b7g6e2jq8sfs4" path="res://Instances/Resources/Upgrades/UpgradeTest1.tres" id="2_cjykd"]
-[ext_resource type="Resource" uid="uid://dykeqpoftq3a6" path="res://Instances/Resources/Upgrades/UpgradeTest2.tres" id="3_njkss"]
-[ext_resource type="Resource" uid="uid://c4wfb7vate6vv" path="res://Instances/Resources/Upgrades/UpgradeTest3.tres" id="4_vdteh"]
-[ext_resource type="Resource" uid="uid://ctxj1apwera67" path="res://Instances/Resources/Upgrades/UpgradeTest4.tres" id="5_o1lo3"]
+[ext_resource type="Resource" uid="uid://b7g6e2jq8sfs4" path="res://Instances/Resources/Upgrades/UpgradeFireRate1.tres" id="2_xmpim"]
+[ext_resource type="Resource" uid="uid://dykeqpoftq3a6" path="res://Instances/Resources/Upgrades/UpgradeMoveSpeed1.tres" id="3_jy3fs"]
+[ext_resource type="Resource" uid="uid://c4wfb7vate6vv" path="res://Instances/Resources/Upgrades/UpgradeLife1.tres" id="4_0tsou"]
+[ext_resource type="Resource" uid="uid://ctxj1apwera67" path="res://Instances/Resources/Upgrades/UpgradeBulletDamage1.tres" id="5_vs3ld"]
 
 [node name="UpgradeSelector" type="Panel"]
 process_mode = 2
@@ -19,7 +19,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 script = ExtResource("1_exuln")
-listOfUpgradesAvaiable = Array[Resource("res://Instances/Resources/Upgrades/UpgradeStats.gd")]([ExtResource("2_cjykd"), ExtResource("3_njkss"), ExtResource("4_vdteh"), ExtResource("5_o1lo3")])
+listOfUpgradesAvaiable = Array[Resource("res://Instances/Resources/Upgrades/UpgradeStats.gd")]([ExtResource("2_xmpim"), ExtResource("3_jy3fs"), ExtResource("4_0tsou"), ExtResource("5_vs3ld")])
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 2

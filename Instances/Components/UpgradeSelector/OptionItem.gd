@@ -18,6 +18,6 @@ func Initialize(upgradeSelectorInject: UpgradeSelector, upgradeStatsInject: Upgr
 	pass
 	
 func Selected():
-	upgradeSelector.UpgradeSelected(upgradeStats.id)
+	upgradeSelector.UpgradeSelected(upgradeStats)
 	pass
 

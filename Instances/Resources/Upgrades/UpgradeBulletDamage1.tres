@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="UpgradeStats" load_steps=2 format=3 uid="uid://ctxj1apwera67"]
+
+[ext_resource type="Script" path="res://Instances/Resources/Upgrades/UpgradeStats.gd" id="1_5pk41"]
+
+[resource]
+script = ExtResource("1_5pk41")
+id = 4
+description = "Teste 4 descrição"
+title = "+ 1.2x DAMAGE"
+upgradeType = 3
+upgradeValue = 0.0

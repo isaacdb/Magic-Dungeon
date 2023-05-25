@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://03my8igrvwt8" path="res://Instances/Tilemap/TileMapWalls.tscn" id="1_fch5f"]
 [ext_resource type="PackedScene" uid="uid://8mpq1pm143kp" path="res://Instances/Components/HealthBar/HealthBar.tscn" id="2_3ryg4"]
 [ext_resource type="PackedScene" uid="uid://4jvawle2nm0s" path="res://Instances/Components/PlayerLife/PlayerLife.tscn" id="2_5g5bp"]
-[ext_resource type="PackedScene" uid="uid://o25n34i2u3tt" path="res://Instances/Components/UpgradeSelector/UpgradeSelector.tscn" id="2_q6x83"]
+[ext_resource type="PackedScene" uid="uid://bipohfp6birf5" path="res://Instances/Components/UpgradeSelector/UpgradeSelector.tscn" id="2_q6x83"]
 [ext_resource type="PackedScene" uid="uid://d2iv4f2anflh4" path="res://Instances/Tilemap/TileMapGround.tscn" id="2_vbm8m"]
 [ext_resource type="PackedScene" uid="uid://wxjsqqs3f4v8" path="res://Instances/Mage1/Mage1.tscn" id="4_f7hcd"]
 [ext_resource type="PackedScene" uid="uid://c7tou3yg5pxkm" path="res://Instances/Components/LevelUpManager/LevelUpManager.tscn" id="4_mqs2s"]
@@ -135,9 +135,10 @@ environment = SubResource("Environment_k8p4i")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="UpgradeSelector" parent="CanvasLayer" instance=ExtResource("2_q6x83")]
+[node name="UpgradeSelector" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("2_q6x83")]
 visible = false
 offset_bottom = 99.0
+player = NodePath("../../Mage1")
 
 [node name="PlayerLife" parent="CanvasLayer" instance=ExtResource("2_5g5bp")]
 process_mode = 3

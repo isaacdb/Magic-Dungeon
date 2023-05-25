@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="UpgradeStats" load_steps=2 format=3 uid="uid://c4wfb7vate6vv"]
-
-[ext_resource type="Script" path="res://Instances/Resources/Upgrades/UpgradeStats.gd" id="1_qpoii"]
-
-[resource]
-script = ExtResource("1_qpoii")
-id = 3
-description = "Teste  3descrição"
-title = "TITULO 3"

@@ -3,6 +3,7 @@ class_name UpgradeSelector
 
 @export var optionUpgrade = preload("res://Instances/Components/UpgradeSelector/OptionItem.tscn")
 @export var listOfUpgradesAvaiable : Array[UpgradeStats] = []
+@export var player : Mage1
 
 @onready var boxOptionList = $OptionList as VBoxContainer
 @onready var rnd = RandomNumberGenerator.new()
@@ -25,10 +26,13 @@ func ActiveSelector():
 		newOption.Initialize(self, upgradeStats)
 	pass
 
-func UpgradeSelected(upgradeId: int):
-	print("Upgrade selecionado id: ", upgradeId)
+func UpgradeSelected(upgrade: UpgradeStats):
+	upgrade.ApplyUpgrade(player)
 	
-	# TODO - Passar o upgrade pro player
+	chosenUpgradesIndex.clear()
+	var upgrades = boxOptionList.get_children()
+	for i in upgrades:
+		i.queue_free()
 	
 	self.visible = false
 	get_tree().paused = false
@@ -38,7 +42,7 @@ func GetRandomUpgrade() -> UpgradeStats:
 	var randIndex := rnd.randi_range(0, listOfUpgradesAvaiable.size() -1)
 	
 	while chosenUpgradesIndex.find(randIndex) != -1:
-		randIndex = rnd.randi_range(0, listOfUpgradesAvaiable.size())
+		randIndex = rnd.randi_range(0, listOfUpgradesAvaiable.size() -1)
 	
 	chosenUpgradesIndex.append(randIndex)
 	

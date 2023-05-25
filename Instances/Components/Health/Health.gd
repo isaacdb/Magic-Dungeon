@@ -27,7 +27,7 @@ func SetLifeBase(newLifeBase: float):
 	if lifeBar:
 		lifeBar.SetMaxValue(lifeBase)
 	
-	pass	
+	pass
 
 func _process(delta):
 	pass
@@ -55,3 +55,11 @@ func take_damage(attack: Attack):
 	
 	if (currentHealth <= 0):
 		deathManager.Execute()
+		
+	pass
+	
+func AddHealth(amount: float):
+	currentHealth += amount
+	if lifeBar:
+		lifeBar.UpdateHealthBar(currentHealth)
+	pass

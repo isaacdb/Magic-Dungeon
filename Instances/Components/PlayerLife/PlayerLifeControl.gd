@@ -9,18 +9,9 @@ var lifes : Array[LifeIcon]
 
 func _ready():
 	Global.set_player_max_life.connect(SetPlayerLife)
-	Global.player_hited.connect(RemoveLife)	
+	Global.player_hited.connect(RemoveLife)
+	Global.player_add_life.connect(AddLife)
 	pass
-
-
-func _process(delta):
-#	if Input.is_action_just_pressed("fire"):
-#		AddLife()
-#
-#	if Input.is_action_just_pressed("dash"):
-#		RemoveLife()
-	pass
-
 
 func SetPlayerLife(maxLife: int):
 	for i in range(maxLife):

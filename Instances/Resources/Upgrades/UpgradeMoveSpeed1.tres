@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="UpgradeStats" load_steps=2 format=3 uid="uid://dykeqpoftq3a6"]
+
+[ext_resource type="Script" path="res://Instances/Resources/Upgrades/UpgradeStats.gd" id="1_886lw"]
+
+[resource]
+script = ExtResource("1_886lw")
+id = 2
+description = "Teste 2 descrição"
+title = "x2 MOVE SPEED"
+upgradeType = 2
+upgradeValue = 1.0
