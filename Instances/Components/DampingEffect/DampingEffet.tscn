@@ -1,0 +1,70 @@
+[gd_scene load_steps=2 format=3 uid="uid://bebw23607vt7v"]
+
+[ext_resource type="Script" path="res://Instances/Components/DampingEffect/DampingEffet.gd" id="1_fbd7w"]
+
+[node name="DampingEffect" type="Node2D"]
+script = ExtResource("1_fbd7w")
+
+[node name="Control" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HSliderSpring" type="HSlider" parent="Control"]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 139.0
+offset_right = 375.0
+offset_bottom = 155.0
+max_value = 2000.0
+
+[node name="LabelSpring" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 83.0
+offset_top = 113.0
+offset_right = 123.0
+offset_bottom = 136.0
+text = "Spring"
+
+[node name="HSlider2Damp" type="HSlider" parent="Control"]
+layout_mode = 0
+offset_left = 74.0
+offset_top = 203.0
+offset_right = 375.0
+offset_bottom = 219.0
+max_value = 1000.0
+
+[node name="Label2Damp" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 177.0
+offset_right = 134.0
+offset_bottom = 203.0
+text = "Damp"
+
+[node name="SLIDERTEST" type="HSlider" parent="Control"]
+offset_left = 188.0
+offset_top = 376.0
+offset_right = 1133.0
+offset_bottom = 468.0
+max_value = 1000.0
+
+[node name="LabelVELOCITY" type="Label" parent="Control"]
+offset_left = 87.0
+offset_top = 249.0
+offset_right = 137.0
+offset_bottom = 275.0
+text = "Damp"
+
+[node name="SliderVelocity" type="HSlider" parent="Control"]
+offset_left = 83.0
+offset_top = 243.0
+offset_right = 367.0
+offset_bottom = 335.0
+max_value = 1000.0
+
+[connection signal="value_changed" from="Control/HSliderSpring" to="." method="_on_h_slider_spring_value_changed"]
+[connection signal="value_changed" from="Control/HSlider2Damp" to="." method="_on_h_slider_2_damp_value_changed"]
+[connection signal="value_changed" from="Control/SliderVelocity" to="." method="_on_slider_velocity_value_changed"]

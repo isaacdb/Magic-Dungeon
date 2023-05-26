@@ -90,4 +90,4 @@ func Fire():
 	var shoot = shootManager.FireWithCooldown(targetDirection, bulletStats)
 	if shoot:
 		Global.emit_signal("screen_shake", 1, .1, 1)
-		weapon.animationPlayer.play("Fired")	
+		weapon.PlayAnimFire()

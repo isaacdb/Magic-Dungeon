@@ -7,7 +7,6 @@ class_name LifeIcon
 
 var amplitude := 0.3
 var frequency := 2.0
-var speed := 5.0
 
 func _ready():
 	var tween = create_tween()
@@ -15,7 +14,7 @@ func _ready():
 	pass 
 	
 func _physics_process(delta):
-	global_position.y = default_pos.y + (sin(Time.get_ticks_msec() * delta * amplitude) * frequency)
+	global_position.y = default_pos.y + Global.CalculeFloatVariation(delta, amplitude, frequency)
 	
 func Destroy():
 	explostion.emitting = true

@@ -14,3 +14,7 @@ signal enemy_killed
 signal boss_killed
 
 var camera : Camera2D
+
+
+func CalculeFloatVariation(delta: float, amplitude: float, frequency: float) -> float:
+	return (sin(Time.get_ticks_msec() * delta * amplitude) * frequency)
