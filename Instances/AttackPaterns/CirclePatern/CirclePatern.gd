@@ -7,8 +7,11 @@ class_name CirclePatern
 @export var bulletAmount : int = 4
 @export var bullet : BulletStats
 
+var attackManager : AttackManager
+
 func _ready():
 	rnd.randomize()
+	attackManager = get_parent() as AttackManager
 	pass
 
 func Execute():
@@ -17,4 +20,6 @@ func Execute():
 	for i in bulletAmount:
 		shooter.JustFire(Vector2.RIGHT.rotated(deg_to_rad(angleFire)), bullet)
 		angleFire += angleBetweenBullets
+		
+	attackManager.AttackCompleted()
 	pass

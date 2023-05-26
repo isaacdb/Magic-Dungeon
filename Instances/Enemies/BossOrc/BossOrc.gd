@@ -48,7 +48,12 @@ func _ready():
 	
 func _physics_process(delta):
 	match currentState:
-		States.IDLE:			
+		States.IDLE:
+			animPlayer.play("Idle")
+			
+			if attackManager.attackIsRunning:
+				return
+			
 			## Se movimentou até o proximo ponto, quando chegar já ataca
 			if !tweenIdle or !tweenIdle.is_running():
 				var randTime = rnd.randf_range(0.0, 1.0)
@@ -56,21 +61,21 @@ func _physics_process(delta):
 				tweenIdle.tween_callback(func(): ChangeState(States.CHASING)).set_delay(timeIdle + randTime)
 				ChangeState(States.ATTACK)
 				
-			animPlayer.play("Idle")
 			pass
 			
 		States.CHASING:
+			
+			if playerTracker.GetDistance() < 5.0 or attackManager.attackIsRunning:
+				tweenWalk.stop()
+				ChangeState(States.IDLE)
+				return
+				
 			## Contagem de tempo que ficará perseguindo
 			if !tweenWalk or !tweenWalk.is_running():
 				var randTime = rnd.randf_range(0.0, 1.0)
 				tweenWalk = create_tween()
 				tweenWalk.tween_callback(func(): ChangeState(States.IDLE)).set_delay(timeWalk + randTime)
-			
-			if playerTracker.GetDistance() < 5.0:
-				tweenWalk.stop()
-				ChangeState(States.IDLE)
-				return
-			
+						
 			animPlayer.play("Walk")
 			moveComponent.Move(self, playerTracker.GetDirection(), delta, 1300, speed)			
 			pass

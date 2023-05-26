@@ -11,9 +11,11 @@ class_name EspiralPatern
 @export var bullet : BulletStats
 
 var angleFire : float = 0.0
+var attackManager : AttackManager
 
 func _ready():
 	rnd.randomize()
+	attackManager = get_parent() as AttackManager
 	pass
 
 func Execute():
@@ -22,6 +24,7 @@ func Execute():
 	
 	var tween = create_tween().set_loops(fireAmount)
 	tween.tween_callback(Fire).set_delay(delayBetweenFire)
+	tween.finished.connect(func(): attackManager.AttackCompleted())
 	tween.play()
 	pass
 	
