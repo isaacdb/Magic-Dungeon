@@ -70,8 +70,7 @@ func _physics_process(delta):
 			if timerWalk.is_stopped():
 				timerWalk.start()
 			
-			var playerPosition = playerTracker.playerTrack.global_position
-			if global_position.distance_to(playerPosition) < 5.0:
+			if playerTracker.GetDistance() < 5.0:
 				timerWalk.stop()
 				ChangeState(States.IDLE)
 				return

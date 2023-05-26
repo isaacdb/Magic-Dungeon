@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6sck5smlg7pc"]
+
+[ext_resource type="Script" path="res://Instances/AttackPaterns/CirclePatern/CirclePatern.gd" id="1_vjl61"]
+[ext_resource type="PackedScene" uid="uid://ca6aeltom7e7y" path="res://Instances/Components/ShooterComponent/ShooterComponent.tscn" id="2_fyu3g"]
+
+[node name="CirclePatern" type="Node2D"]
+script = ExtResource("1_vjl61")
+
+[node name="ShooterComponent" parent="." instance=ExtResource("2_fyu3g")]

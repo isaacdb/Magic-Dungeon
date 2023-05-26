@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://chnrkh73i0s31"]
+[gd_scene load_steps=36 format=3 uid="uid://chnrkh73i0s31"]
 
 [ext_resource type="PackedScene" uid="uid://d1loimaxqs6y6" path="res://Instances/Components/LookAtPlayerComponent/LookAtPlayerComponent.tscn" id="1_4mr3o"]
 [ext_resource type="Script" path="res://Instances/Enemies/BossOrc/BossOrc.gd" id="1_38hcy"]
@@ -10,8 +10,12 @@
 [ext_resource type="PackedScene" uid="uid://6fcg84clxst2" path="res://Instances/Components/Death/DeathManager.tscn" id="5_47m65"]
 [ext_resource type="PackedScene" uid="uid://bjwrgsdbjvqw3" path="res://Instances/Components/DeathEffect/DeathExplosion.tscn" id="6_wg2kf"]
 [ext_resource type="PackedScene" uid="uid://cwyxu1ysjtku7" path="res://Instances/Components/DropXp/DropXp.tscn" id="7_5ok6n"]
+[ext_resource type="PackedScene" uid="uid://wwc5nmv5yn2j" path="res://Instances/Components/AttackManager/AttackManager.tscn" id="7_qdm3p"]
+[ext_resource type="PackedScene" uid="uid://c6sck5smlg7pc" path="res://Instances/AttackPaterns/CirclePatern/CirclePatern.tscn" id="8_afanf"]
 [ext_resource type="PackedScene" uid="uid://b4enx6olclngm" path="res://Instances/Components/FlashHit/FlashHit.tscn" id="8_w2yds"]
 [ext_resource type="PackedScene" uid="uid://dx8h735nl0e2d" path="res://Instances/Components/Move/Move.tscn" id="9_4wogm"]
+[ext_resource type="Resource" path="res://Instances/Resources/Bullets/BulletEnemy.tres" id="9_wdquq"]
+[ext_resource type="PackedScene" uid="uid://hvcinbdpqx2q" path="res://Instances/AttackPaterns/EspiralPatern/EspiralPatern.tscn" id="10_7ujot"]
 [ext_resource type="PackedScene" uid="uid://c1sky0kyn05tc" path="res://Instances/Components/PlayerTracker/PlayerTracker.tscn" id="10_q78kx"]
 [ext_resource type="PackedScene" uid="uid://ca6aeltom7e7y" path="res://Instances/Components/ShooterComponent/ShooterComponent.tscn" id="11_gefv3"]
 [ext_resource type="PackedScene" uid="uid://8mpq1pm143kp" path="res://Instances/Components/HealthBar/HealthBar.tscn" id="12_cp5v3"]
@@ -92,6 +96,20 @@ size = Vector2(20, 26)
 
 [sub_resource type="Animation" id="Animation_rurjw"]
 resource_name = "Attack"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"AttackFinished"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_xodle"]
 resource_name = "Idle"
@@ -106,7 +124,7 @@ _data = {
 "Walk": SubResource("Animation_y1p4g")
 }
 
-[node name="BossOrc" type="CharacterBody2D" node_paths=PackedStringArray("moveComponent", "playerTracker", "healthManager", "shootManager", "flashHit")]
+[node name="BossOrc" type="CharacterBody2D" node_paths=PackedStringArray("moveComponent", "playerTracker", "healthManager", "shootManager", "flashHit", "attackManager")]
 collision_layer = 0
 collision_mask = 32
 script = ExtResource("1_38hcy")
@@ -115,10 +133,13 @@ playerTracker = NodePath("PlayerTracker")
 healthManager = NodePath("Health")
 shootManager = NodePath("ShooterComponent")
 flashHit = NodePath("FlashHit")
-orcMageBulletStats = ExtResource("2_pc7t6")
-lifeBase = 100
+attackManager = NodePath("AttackManager")
+lifeBase = 100.0
+timeIdle = 5.0
+orcLowBulletStats = ExtResource("2_pc7t6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(2, -10)
 shape = SubResource("CircleShape2D_nmnha")
 
@@ -137,6 +158,7 @@ frame_progress = 0.869444
 flip_h = true
 
 [node name="Health" parent="." node_paths=PackedStringArray("deathManager", "lifeBar") instance=ExtResource("3_uvpwl")]
+visible = false
 collision_layer = 8
 collision_mask = 0
 deathManager = NodePath("../DeathManager")
@@ -145,6 +167,18 @@ lifeBar = NodePath("../CanvasLayer/HealthBar")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Health"]
 position = Vector2(0, -13)
 shape = SubResource("RectangleShape2D_5v3u6")
+
+[node name="AttackManager" parent="." instance=ExtResource("7_qdm3p")]
+pathsAttackPaterns = Array[NodePath]([NodePath("EspiralPatern"), NodePath("CirclePatern")])
+
+[node name="CirclePatern" parent="AttackManager" instance=ExtResource("8_afanf")]
+bulletAmount = 50
+bullet = ExtResource("9_wdquq")
+
+[node name="EspiralPatern" parent="AttackManager" instance=ExtResource("10_7ujot")]
+bulletAmount = 5
+fireAmount = 15
+delayBetweenFire = 0.1
 
 [node name="ActiveHandleComponent" parent="." instance=ExtResource("4_c4ky7")]
 activeOnLoad = true
@@ -189,5 +223,3 @@ grow_vertical = 2
 libraries = {
 "": SubResource("AnimationLibrary_grafs")
 }
-
-[node name="TimerIdle" type="Timer" parent="."]

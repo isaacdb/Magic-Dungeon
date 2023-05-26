@@ -78,7 +78,7 @@ func AttackFinished():
 	pass
 	
 func SetNextPosition():
-	nextPostion = playerTracker.playerTrack.global_position	
+	nextPostion = playerTracker.GetPosition()
 	
 func TimerIdleTimeout():
 	var randTime = rnd.randf_range(0.0, 1.0)
