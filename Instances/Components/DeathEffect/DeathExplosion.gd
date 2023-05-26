@@ -3,6 +3,7 @@ extends Node2D
 
 @onready var explosionAnimPlayer := $ExplosionSprite/AnimationPlayerExplosion as AnimationPlayer
 @onready var explosionParticle := $ExplosionSprite/ExplosionParticle as CPUParticles2D
+@onready var smokeParticle := $ExplosionSprite/SmokeParticle as CPUParticles2D
 
 var isActive := false
 
@@ -16,4 +17,5 @@ func Execute():
 		
 	Global.emit_signal("screen_shake", 2, .2, 1)
 	explosionParticle.emitting = true
+	smokeParticle.emitting = true
 	explosionAnimPlayer.play("Explosion")

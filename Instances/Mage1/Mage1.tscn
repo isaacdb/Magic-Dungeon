@@ -98,7 +98,7 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="Gradient" id="Gradient_f3y8h"]
-offsets = PackedFloat32Array(0, 0.71134, 1)
+offsets = PackedFloat32Array(0, 0.455696, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2uere"]

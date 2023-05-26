@@ -44,7 +44,7 @@ func _physics_process(delta):
 		States.IDLE:
 			animPlayer.play("Idle")
 			
-			if global_position.distance_to(playerTracker.playerTrack.position) > 2.0:
+			if playerTracker.GetDistance() > 2.0:
 				ChangeState(States.CHASING)
 			pass
 			
@@ -52,7 +52,7 @@ func _physics_process(delta):
 			animPlayer.play("Walk")
 			moveComponent.Move(self, playerTracker.GetDirection(), delta, 1300, speed)		
 
-			if global_position.distance_to(playerTracker.playerTrack.position) < 2.0:
+			if playerTracker.GetDistance() < 2.0:
 				ChangeState(States.IDLE)
 			pass
 			

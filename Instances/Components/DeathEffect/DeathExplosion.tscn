@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bjwrgsdbjvqw3"]
+[gd_scene load_steps=32 format=3 uid="uid://bjwrgsdbjvqw3"]
 
 [ext_resource type="Script" path="res://Instances/Components/DeathEffect/DeathExplosion.gd" id="1_wxamv"]
 [ext_resource type="Texture2D" uid="uid://bmthaf8sd0d62" path="res://Assets/magic-explosion.png" id="2_yys38"]
@@ -124,6 +124,19 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kajsd"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Gradient" id="Gradient_vsq83"]
+offsets = PackedFloat32Array(0.0126582, 0.601266, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_pqsus"]
+colors = PackedColorArray(0.316749, 0.422333, 0.477803, 1, 1, 1, 1, 1)
+
 [sub_resource type="Gradient" id="Gradient_ck05n"]
 offsets = PackedFloat32Array(0, 0.416129, 0.741935)
 colors = PackedColorArray(0.175756, 0.403577, 0.983566, 1, 1, 1, 1, 1, 1, 1, 1, 0)
@@ -246,7 +259,7 @@ _data = {
 particles_animation = true
 particles_anim_h_frames = 3
 particles_anim_v_frames = 1
-particles_anim_loop = false
+particles_anim_loop = true
 
 [sub_resource type="Curve" id="Curve_qg3tb"]
 min_value = -360.0
@@ -263,9 +276,33 @@ script = ExtResource("1_wxamv")
 
 [node name="ExplosionSprite" type="AnimatedSprite2D" parent="."]
 z_index = 10
-position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_vy161")
 animation = &"Explosion"
+
+[node name="SmokeParticle" type="CPUParticles2D" parent="ExplosionSprite"]
+y_sort_enabled = true
+material = SubResource("CanvasItemMaterial_kajsd")
+emitting = false
+amount = 30
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.36
+texture = ExtResource("3_7iwgy")
+emission_shape = 1
+emission_sphere_radius = 24.84
+direction = Vector2(0, -1)
+spread = 135.0
+gravity = Vector2(0, 3)
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+angular_velocity_min = 10.0
+angular_velocity_max = 30.0
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+color_ramp = SubResource("Gradient_vsq83")
+color_initial_ramp = SubResource("Gradient_pqsus")
+anim_offset_max = 1.0
 
 [node name="PointLight2D" type="PointLight2D" parent="ExplosionSprite"]
 enabled = false

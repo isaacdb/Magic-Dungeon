@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Instances/Enemies/LowOrcN/LowOrcN.gd" id="1_v5u44"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="2_0f6yl"]
-[ext_resource type="Resource" path="res://Instances/Resources/Bullets/BulletE1.tres" id="2_bxnmk"]
+[ext_resource type="Resource" uid="uid://c02atp32fln73" path="res://Instances/Resources/Bullets/BulletE1.tres" id="2_bxnmk"]
 [ext_resource type="Texture2D" uid="uid://dd802vu3oo82g" path="res://OldVersions/LowOrc/low-orc.png" id="3_h48cw"]
 [ext_resource type="PackedScene" uid="uid://b4asjdyoyep5s" path="res://Instances/Components/Health/Health.tscn" id="5_ybllr"]
 [ext_resource type="PackedScene" uid="uid://6fcg84clxst2" path="res://Instances/Components/Death/DeathManager.tscn" id="6_y0wxg"]

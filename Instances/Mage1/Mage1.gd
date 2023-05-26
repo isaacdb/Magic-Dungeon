@@ -40,6 +40,7 @@ func _ready():
 func _process(delta):	
 	if Input.is_action_pressed("fire"):
 		Fire()
+		
 	pass
 
 
@@ -50,7 +51,7 @@ func _physics_process(delta):
 	var input = getAxisInput()
 	
 	if Input.is_action_just_pressed("dash") and dashSkill.canDash:
-		dashSkill.Dash(input, self, speed)
+		dashSkill.Dash(GetMouseDirection(), self, speed)
 	else:
 		moveComponent.Move(self, input, delta, acceleration, speed)
 		
@@ -86,8 +87,10 @@ func UpdateFireRate(newFireRate: float):
 	pass
 
 func Fire():
-	var targetDirection = (get_global_mouse_position() - shootManager.global_position).normalized()	
-	var shoot = shootManager.FireWithCooldown(targetDirection, bulletStats)
+	var shoot = shootManager.FireWithCooldown(GetMouseDirection(), bulletStats)
 	if shoot:
 		Global.emit_signal("screen_shake", 1, .1, 1)
 		weapon.PlayAnimFire()
+		
+func GetMouseDirection() -> Vector2:
+	return (get_global_mouse_position() - shootManager.global_position).normalized()	

@@ -20,4 +20,4 @@ show_behind_parent = true
 width = 7.0
 width_curve = SubResource("Curve_oxg78")
 script = ExtResource("2_v37mh")
-lenght = 10
+lenght = 0

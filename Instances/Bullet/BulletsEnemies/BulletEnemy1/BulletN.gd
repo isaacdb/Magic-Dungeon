@@ -77,7 +77,14 @@ func Destroy():
 	pass
 
 func WorldCollision(body):
+	SetParticleToWallCollision()	
 	Destroy()
 	pass
 
+func SetParticleToWallCollision():
+	impactParticle.rotate(deg_to_rad(180))
+	impactParticle.spread = 180
+	impactParticle.initial_velocity_min = 100
+	impactParticle.initial_velocity_min = 150	
+	pass
 
