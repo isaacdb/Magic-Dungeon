@@ -18,7 +18,10 @@ func Execute():
 	
 	for action in deathActions:
 		action.Execute()
+		action.reparent(get_tree().get_root())
+	
+	Global.emit_signal("enemy_killed")
 	
 	activeHandle.Execute(false)
-	
+	queue_free()	
 	pass

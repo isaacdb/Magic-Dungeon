@@ -1,0 +1,193 @@
+[gd_scene load_steps=32 format=3 uid="uid://chnrkh73i0s31"]
+
+[ext_resource type="PackedScene" uid="uid://d1loimaxqs6y6" path="res://Instances/Components/LookAtPlayerComponent/LookAtPlayerComponent.tscn" id="1_4mr3o"]
+[ext_resource type="Script" path="res://Instances/Enemies/BossOrc/BossOrc.gd" id="1_38hcy"]
+[ext_resource type="Resource" path="res://Instances/Resources/Bullets/BulletMage1.tres" id="2_pc7t6"]
+[ext_resource type="Texture2D" uid="uid://cn61j0eedmjw0" path="res://Instances/Enemies/BossOrc/boss-orc.png" id="2_td053"]
+[ext_resource type="PackedScene" uid="uid://b4asjdyoyep5s" path="res://Instances/Components/Health/Health.tscn" id="3_uvpwl"]
+[ext_resource type="PackedScene" path="res://Instances/Components/ActiveHandleComponent/ActiveHandleComponent.tscn" id="4_c4ky7"]
+[ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="4_g4uk6"]
+[ext_resource type="PackedScene" uid="uid://6fcg84clxst2" path="res://Instances/Components/Death/DeathManager.tscn" id="5_47m65"]
+[ext_resource type="PackedScene" uid="uid://bjwrgsdbjvqw3" path="res://Instances/Components/DeathEffect/DeathExplosion.tscn" id="6_wg2kf"]
+[ext_resource type="PackedScene" uid="uid://cwyxu1ysjtku7" path="res://Instances/Components/DropXp/DropXp.tscn" id="7_5ok6n"]
+[ext_resource type="PackedScene" uid="uid://b4enx6olclngm" path="res://Instances/Components/FlashHit/FlashHit.tscn" id="8_w2yds"]
+[ext_resource type="PackedScene" uid="uid://dx8h735nl0e2d" path="res://Instances/Components/Move/Move.tscn" id="9_4wogm"]
+[ext_resource type="PackedScene" uid="uid://c1sky0kyn05tc" path="res://Instances/Components/PlayerTracker/PlayerTracker.tscn" id="10_q78kx"]
+[ext_resource type="PackedScene" uid="uid://ca6aeltom7e7y" path="res://Instances/Components/ShooterComponent/ShooterComponent.tscn" id="11_gefv3"]
+[ext_resource type="PackedScene" uid="uid://8mpq1pm143kp" path="res://Instances/Components/HealthBar/HealthBar.tscn" id="12_cp5v3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nmnha"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wa0hw"]
+shader = ExtResource("4_g4uk6")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ivax6"]
+atlas = ExtResource("2_td053")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0lvh"]
+atlas = ExtResource("2_td053")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_co4w2"]
+atlas = ExtResource("2_td053")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pn2ja"]
+atlas = ExtResource("2_td053")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_84p3y"]
+atlas = ExtResource("2_td053")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14wtn"]
+atlas = ExtResource("2_td053")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_07xq1"]
+atlas = ExtResource("2_td053")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1n0kv"]
+atlas = ExtResource("2_td053")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bxi7d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ivax6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0lvh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_co4w2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pn2ja")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_84p3y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_14wtn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_07xq1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1n0kv")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5v3u6"]
+size = Vector2(20, 26)
+
+[sub_resource type="Animation" id="Animation_rurjw"]
+resource_name = "Attack"
+
+[sub_resource type="Animation" id="Animation_xodle"]
+resource_name = "Idle"
+
+[sub_resource type="Animation" id="Animation_y1p4g"]
+resource_name = "Walk"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_grafs"]
+_data = {
+"Attack": SubResource("Animation_rurjw"),
+"Idle": SubResource("Animation_xodle"),
+"Walk": SubResource("Animation_y1p4g")
+}
+
+[node name="BossOrc" type="CharacterBody2D" node_paths=PackedStringArray("moveComponent", "playerTracker", "healthManager", "shootManager", "flashHit")]
+collision_layer = 0
+collision_mask = 32
+script = ExtResource("1_38hcy")
+moveComponent = NodePath("Move")
+playerTracker = NodePath("PlayerTracker")
+healthManager = NodePath("Health")
+shootManager = NodePath("ShooterComponent")
+flashHit = NodePath("FlashHit")
+orcMageBulletStats = ExtResource("2_pc7t6")
+lifeBase = 100
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, -10)
+shape = SubResource("CircleShape2D_nmnha")
+
+[node name="GroupFlip" type="Node2D" parent="."]
+
+[node name="LookAtPlayerComponent" parent="GroupFlip" node_paths=PackedStringArray("playerTracker") instance=ExtResource("1_4mr3o")]
+playerTracker = NodePath("../../PlayerTracker")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GroupFlip"]
+material = SubResource("ShaderMaterial_wa0hw")
+position = Vector2(1, -16)
+sprite_frames = SubResource("SpriteFrames_bxi7d")
+animation = &"Idle"
+frame = 7
+frame_progress = 0.869444
+flip_h = true
+
+[node name="Health" parent="." node_paths=PackedStringArray("deathManager", "lifeBar") instance=ExtResource("3_uvpwl")]
+collision_layer = 8
+collision_mask = 0
+deathManager = NodePath("../DeathManager")
+lifeBar = NodePath("../CanvasLayer/HealthBar")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Health"]
+position = Vector2(0, -13)
+shape = SubResource("RectangleShape2D_5v3u6")
+
+[node name="ActiveHandleComponent" parent="." instance=ExtResource("4_c4ky7")]
+activeOnLoad = true
+switch_nps = Array[NodePath]([NodePath("../GroupFlip/LookAtPlayerComponent"), NodePath("../Health"), NodePath("../DeathManager"), NodePath("../DeathExplosion"), NodePath("../Move"), NodePath("../PlayerTracker")])
+
+[node name="DeathManager" parent="." node_paths=PackedStringArray("activeHandle") instance=ExtResource("5_47m65")]
+activeHandle = NodePath("../ActiveHandleComponent")
+switch_nps = Array[NodePath]([NodePath("../DeathExplosion")])
+
+[node name="DeathExplosion" parent="." instance=ExtResource("6_wg2kf")]
+position = Vector2(-8, -16)
+
+[node name="DeathExplosion2" parent="." instance=ExtResource("6_wg2kf")]
+
+[node name="DeathExplosion3" parent="." instance=ExtResource("6_wg2kf")]
+position = Vector2(11, -19)
+
+[node name="DropXp" parent="." instance=ExtResource("7_5ok6n")]
+
+[node name="FlashHit" parent="." instance=ExtResource("8_w2yds")]
+
+[node name="Move" parent="." instance=ExtResource("9_4wogm")]
+
+[node name="PlayerTracker" parent="." instance=ExtResource("10_q78kx")]
+
+[node name="ShooterComponent" parent="." instance=ExtResource("11_gefv3")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" parent="CanvasLayer" instance=ExtResource("12_cp5v3")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 279.0
+offset_top = 637.0
+offset_right = 5849.0
+offset_bottom = 417.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_grafs")
+}
+
+[node name="TimerIdle" type="Timer" parent="."]

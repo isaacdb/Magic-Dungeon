@@ -15,8 +15,5 @@ func Execute():
 		return
 		
 	Global.emit_signal("screen_shake", 2, .2, 1)
-	Global.emit_signal("enemy_killed")
 	explosionParticle.emitting = true
 	explosionAnimPlayer.play("Explosion")
-	explosionAnimPlayer.get_parent().reparent(get_tree().get_root())
-	get_parent().queue_free()
