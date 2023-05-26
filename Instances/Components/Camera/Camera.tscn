@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://pnthfjsqolx2"]
+[gd_scene load_steps=3 format=3 uid="uid://pnthfjsqolx2"]
 
 [ext_resource type="Script" path="res://Scripts/Camera.gd" id="1_ywhl6"]
+[ext_resource type="PackedScene" uid="uid://c1sky0kyn05tc" path="res://Instances/Components/PlayerTracker/PlayerTracker.tscn" id="2_8rf1v"]
 
 [node name="Camera2D" type="Camera2D"]
 zoom = Vector2(2.5, 2.5)
@@ -12,5 +13,7 @@ script = ExtResource("1_ywhl6")
 
 [node name="ShakeTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="PlayerTracker" parent="." instance=ExtResource("2_8rf1v")]
 
 [connection signal="timeout" from="ShakeTimer" to="." method="_on_shake_timer_timeout"]

@@ -21,6 +21,7 @@ func _ready():
 
 func player_dead():
 	deadPanelAnim.play("Dead")
+	Global.screen_shake.emit(10, 2, 1)
 	timerDead.start()	
 	pass
 

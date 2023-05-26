@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://c6g7qwsljeavk"]
+[gd_scene load_steps=29 format=3 uid="uid://c6g7qwsljeavk"]
 
 [ext_resource type="Script" path="res://Instances/Mage1/Mage1.gd" id="1_giwmu"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="1_hkxu6"]
@@ -14,7 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://dx8h735nl0e2d" path="res://Instances/Components/Move/Move.tscn" id="6_nmcf8"]
 [ext_resource type="PackedScene" uid="uid://deb4quwds46cx" path="res://Instances/Components/GameOverComponent/GameOverComponent.tscn" id="8_e43ia"]
 [ext_resource type="PackedScene" uid="uid://dc4pbmv3yevoo" path="res://Instances/Components/DashSkill/DashSkill.tscn" id="8_hx86t"]
-[ext_resource type="PackedScene" uid="uid://pnthfjsqolx2" path="res://Instances/Components/Camera/Camera.tscn" id="10_okhe8"]
 [ext_resource type="PackedScene" uid="uid://bcbgphbcmqgky" path="res://Instances/Components/KnockBack/KnockBack.tscn" id="12_b338j"]
 [ext_resource type="PackedScene" uid="uid://valwt38uo38s" path="res://Instances/Components/BulletPredict/BulletPredict.tscn" id="14_qybn2"]
 [ext_resource type="PackedScene" uid="uid://b4enx6olclngm" path="res://Instances/Components/FlashHit/FlashHit.tscn" id="15_34hya"]
@@ -201,9 +200,6 @@ walkParticule = NodePath("../WalkParticle")
 dashSpeed = 550
 dashDuration = 0.07
 healthComponent = NodePath("../Health")
-
-[node name="Camera2D" parent="." instance=ExtResource("10_okhe8")]
-zoom = Vector2(3, 3)
 
 [node name="KnockBack" parent="." instance=ExtResource("12_b338j")]
 

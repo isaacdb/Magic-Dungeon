@@ -24,7 +24,7 @@ func GetDistance() -> float:
 	return global_position.distance_to(GetPosition())
 
 func GetPosition() -> Vector2:
-	if playerTrack:
+	if playerTrack and playerTrack != null:
 		return playerTrack.global_position
 	else:
 		return get_global_mouse_position()
