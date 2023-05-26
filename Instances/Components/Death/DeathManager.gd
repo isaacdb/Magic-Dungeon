@@ -23,5 +23,5 @@ func Execute():
 	Global.emit_signal("enemy_killed")
 	
 	activeHandle.Execute(false)
-	queue_free()	
+	get_parent().queue_free()
 	pass

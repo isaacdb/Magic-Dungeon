@@ -13,9 +13,9 @@ extends CharacterBody2D
 @export var damage := 1.0
 @export var attackDelay := 1.5
 @export var knockBackForce := 300.0
-@export var lifeBase := 8.0
+@export var lifeBase := 100.0
 
-@export var timeIdle := 1.0
+@export var timeIdle := 3.0
 @export var timeWalk := 3.0
 
 @onready var animPlayer := $AnimationPlayer as AnimationPlayer
@@ -91,4 +91,11 @@ func AttackFinished():
 	
 func GetHit():
 	flashHit.Flash(sprite.material)
+	if healthManager.currentHealth < 50:
+		SetRageMode()
+	pass
+	
+func SetRageMode():
+	timeIdle = 1.0
+	speed = 130.0
 	pass

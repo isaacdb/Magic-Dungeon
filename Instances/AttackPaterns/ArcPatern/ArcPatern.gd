@@ -18,12 +18,6 @@ var direction : Vector2
 func _ready():
 	rnd.randomize()
 	pass
-	
-func _physics_process(delta):
-	
-	if Input.is_action_just_pressed("dash"):
-		Execute()
-	pass
 
 func Execute():
 	direction = playerTrack.GetDirection()
