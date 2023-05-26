@@ -1,9 +1,9 @@
-[gd_scene load_steps=35 format=3 uid="uid://cqpmv5esb2s2l"]
+[gd_scene load_steps=35 format=3 uid="uid://dmjqj7loxtlm8"]
 
 [ext_resource type="PackedScene" uid="uid://b4asjdyoyep5s" path="res://Instances/Components/Health/Health.tscn" id="1_a5e0l"]
 [ext_resource type="Script" path="res://Instances/Enemies/MiniOrc/MiniOrc.gd" id="1_w1fg2"]
+[ext_resource type="Resource" uid="uid://dush0xum1pf7q" path="res://Instances/Resources/Bullets/BulletE3.tres" id="2_15qqp"]
 [ext_resource type="PackedScene" uid="uid://dx8h735nl0e2d" path="res://Instances/Components/Move/Move.tscn" id="2_ai1y0"]
-[ext_resource type="Resource" path="res://Instances/Resources/Bullets/BulletOrcLow.tres" id="2_rj5vh"]
 [ext_resource type="PackedScene" path="res://Instances/Components/ActiveHandleComponent/ActiveHandleComponent.tscn" id="3_cdsad"]
 [ext_resource type="PackedScene" uid="uid://d1loimaxqs6y6" path="res://Instances/Components/LookAtPlayerComponent/LookAtPlayerComponent.tscn" id="4_tqfj2"]
 [ext_resource type="Texture2D" uid="uid://dq672djydkruv" path="res://Instances/Enemies/MiniOrc/miniOrc.png" id="5_hdiuc"]
@@ -358,7 +358,8 @@ healthManager = NodePath("Health")
 deathManager = NodePath("DeathManager")
 shootManager = NodePath("ShooterComponent")
 flashHit = NodePath("FlashHit")
-miniOrcBulletStats = ExtResource("2_rj5vh")
+miniOrcBulletStats = ExtResource("2_15qqp")
+lifeBase = 12.0
 
 [node name="TimerToExpode" type="Timer" parent="."]
 

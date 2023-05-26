@@ -1,8 +1,8 @@
-[gd_scene load_steps=35 format=3 uid="uid://11xwfmh0obbe"]
+[gd_scene load_steps=35 format=3 uid="uid://d3j4vevwj6ecg"]
 
 [ext_resource type="Script" path="res://Instances/Enemies/MageOrcN/MageOrcN.gd" id="1_mpfqp"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="1_rj5j8"]
-[ext_resource type="Resource" path="res://Instances/Resources/Bullets/BulletEnemy.tres" id="2_g2vlr"]
+[ext_resource type="Resource" uid="uid://d2m56lunijwd2" path="res://Instances/Resources/Bullets/BulletE2.tres" id="2_is0ku"]
 [ext_resource type="Texture2D" uid="uid://c4qxerf4msgyu" path="res://OldVersions/MageOrc/mage-orc.png" id="2_v83le"]
 [ext_resource type="PackedScene" uid="uid://b4enx6olclngm" path="res://Instances/Components/FlashHit/FlashHit.tscn" id="3_5fn7d"]
 [ext_resource type="PackedScene" uid="uid://b4asjdyoyep5s" path="res://Instances/Components/Health/Health.tscn" id="3_k0wef"]
@@ -351,7 +351,8 @@ playerTracker = NodePath("PlayerTracker")
 healthManager = NodePath("Health")
 shootManager = NodePath("ShooterComponent")
 flashHit = NodePath("FlashHit")
-orcMageBulletStats = ExtResource("2_g2vlr")
+orcMageBulletStats = ExtResource("2_is0ku")
+lifeBase = 8
 timeIdle = 2.0
 
 [node name="FlashHit" parent="." instance=ExtResource("3_5fn7d")]

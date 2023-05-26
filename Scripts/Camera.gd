@@ -13,6 +13,13 @@ func _ready():
 	Global.screen_shake.connect(screen_shake)
 	Global.player_dead.connect(ZoomPlayerDead)
 	Global.camera = self
+	SetFirstPosition()
+	pass
+
+func SetFirstPosition():
+	position_smoothing_enabled = false
+	global_position = playerTracker.GetPosition()
+	position_smoothing_enabled = true	
 	pass
 	
 func _process(delta):

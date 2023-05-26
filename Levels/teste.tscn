@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://cb0j8ss8e4xpy"]
 
 [ext_resource type="PackedScene" uid="uid://c6g7qwsljeavk" path="res://Instances/Mage1/Mage1.tscn" id="1_ttgvd"]
-[ext_resource type="PackedScene" uid="uid://11xwfmh0obbe" path="res://Instances/Enemies/MageOrcN/MageOrcN.tscn" id="2_2p63l"]
-[ext_resource type="PackedScene" uid="uid://bch5uvc7lpin0" path="res://Instances/Enemies/LowOrcN/LowOrcN.tscn" id="3_8uhud"]
-[ext_resource type="PackedScene" uid="uid://cqpmv5esb2s2l" path="res://Instances/Enemies/MiniOrc/MiniOrc.tscn" id="3_agonb"]
+[ext_resource type="PackedScene" path="res://Instances/Enemies/MageOrcN/MageOrcN.tscn" id="2_2p63l"]
+[ext_resource type="PackedScene" path="res://Instances/Enemies/LowOrcN/LowOrcN.tscn" id="3_8uhud"]
+[ext_resource type="PackedScene" path="res://Instances/Enemies/MiniOrc/MiniOrc.tscn" id="3_agonb"]
 [ext_resource type="PackedScene" path="res://Instances/Components/ReloadSceneToTest/ReloadSceneTotest.tscn" id="5_mfgak"]
 
 [node name="Node2D" type="Node2D"]

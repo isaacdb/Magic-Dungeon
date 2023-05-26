@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://chnrkh73i0s31"]
+[gd_scene load_steps=38 format=3 uid="uid://owdfvvvn7ja3"]
 
 [ext_resource type="PackedScene" uid="uid://d1loimaxqs6y6" path="res://Instances/Components/LookAtPlayerComponent/LookAtPlayerComponent.tscn" id="1_4mr3o"]
 [ext_resource type="Script" path="res://Instances/Enemies/BossOrc/BossOrc.gd" id="1_38hcy"]
@@ -12,12 +12,12 @@
 [ext_resource type="PackedScene" uid="uid://cwyxu1ysjtku7" path="res://Instances/Components/DropXp/DropXp.tscn" id="7_5ok6n"]
 [ext_resource type="PackedScene" uid="uid://wwc5nmv5yn2j" path="res://Instances/Components/AttackManager/AttackManager.tscn" id="7_qdm3p"]
 [ext_resource type="PackedScene" uid="uid://c6sck5smlg7pc" path="res://Instances/AttackPaterns/CirclePatern/CirclePatern.tscn" id="8_afanf"]
-[ext_resource type="PackedScene" uid="uid://beoof56p6y32l" path="res://Instances/AttackPaterns/ArcPatern/ArcPatern.tscn" id="8_ts25e"]
+[ext_resource type="PackedScene" uid="uid://bs5y7eh8kgpuo" path="res://Instances/AttackPaterns/ArcPatern/ArcPatern.tscn" id="8_ts25e"]
 [ext_resource type="PackedScene" uid="uid://b4enx6olclngm" path="res://Instances/Components/FlashHit/FlashHit.tscn" id="8_w2yds"]
 [ext_resource type="PackedScene" uid="uid://dx8h735nl0e2d" path="res://Instances/Components/Move/Move.tscn" id="9_4wogm"]
-[ext_resource type="Resource" path="res://Instances/Resources/Bullets/BulletEnemy.tres" id="9_wdquq"]
-[ext_resource type="PackedScene" uid="uid://hvcinbdpqx2q" path="res://Instances/AttackPaterns/EspiralPatern/EspiralPatern.tscn" id="10_7ujot"]
+[ext_resource type="PackedScene" uid="uid://de18hnbsclqlr" path="res://Instances/AttackPaterns/EspiralPatern/EspiralPatern.tscn" id="10_7ujot"]
 [ext_resource type="PackedScene" uid="uid://c1sky0kyn05tc" path="res://Instances/Components/PlayerTracker/PlayerTracker.tscn" id="10_q78kx"]
+[ext_resource type="Resource" uid="uid://d2m56lunijwd2" path="res://Instances/Resources/Bullets/BulletE2.tres" id="10_vbjbx"]
 [ext_resource type="PackedScene" uid="uid://ca6aeltom7e7y" path="res://Instances/Components/ShooterComponent/ShooterComponent.tscn" id="11_gefv3"]
 [ext_resource type="PackedScene" uid="uid://8mpq1pm143kp" path="res://Instances/Components/HealthBar/HealthBar.tscn" id="12_cp5v3"]
 
@@ -324,7 +324,7 @@ pathsAttackPaterns = Array[NodePath]([NodePath("EspiralPatern"), NodePath("Circl
 
 [node name="CirclePatern" parent="AttackManager" instance=ExtResource("8_afanf")]
 bulletAmount = 50
-bullet = ExtResource("9_wdquq")
+bullet = ExtResource("10_vbjbx")
 
 [node name="EspiralPatern" parent="AttackManager" instance=ExtResource("10_7ujot")]
 bulletAmount = 5

@@ -6,7 +6,7 @@ class_name ArcPatern
 @onready var rnd := RandomNumberGenerator.new()
 
 @export var fireAmount : int = 5
-@export var anglePerFire : float = 2.0
+@export var anglePerFire : float = 5.0
 @export var delayBetweenFire : float = 0.1
 @export var bullet : BulletStats
 
