@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://chnrkh73i0s31"]
+[gd_scene load_steps=37 format=3 uid="uid://chnrkh73i0s31"]
 
 [ext_resource type="PackedScene" uid="uid://d1loimaxqs6y6" path="res://Instances/Components/LookAtPlayerComponent/LookAtPlayerComponent.tscn" id="1_4mr3o"]
 [ext_resource type="Script" path="res://Instances/Enemies/BossOrc/BossOrc.gd" id="1_38hcy"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cwyxu1ysjtku7" path="res://Instances/Components/DropXp/DropXp.tscn" id="7_5ok6n"]
 [ext_resource type="PackedScene" uid="uid://wwc5nmv5yn2j" path="res://Instances/Components/AttackManager/AttackManager.tscn" id="7_qdm3p"]
 [ext_resource type="PackedScene" uid="uid://c6sck5smlg7pc" path="res://Instances/AttackPaterns/CirclePatern/CirclePatern.tscn" id="8_afanf"]
+[ext_resource type="PackedScene" uid="uid://beoof56p6y32l" path="res://Instances/AttackPaterns/ArcPatern/ArcPatern.tscn" id="8_ts25e"]
 [ext_resource type="PackedScene" uid="uid://b4enx6olclngm" path="res://Instances/Components/FlashHit/FlashHit.tscn" id="8_w2yds"]
 [ext_resource type="PackedScene" uid="uid://dx8h735nl0e2d" path="res://Instances/Components/Move/Move.tscn" id="9_4wogm"]
 [ext_resource type="Resource" path="res://Instances/Resources/Bullets/BulletEnemy.tres" id="9_wdquq"]
@@ -135,7 +136,7 @@ shootManager = NodePath("ShooterComponent")
 flashHit = NodePath("FlashHit")
 attackManager = NodePath("AttackManager")
 lifeBase = 100.0
-timeIdle = 5.0
+timeIdle = 3.0
 orcLowBulletStats = ExtResource("2_pc7t6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -169,7 +170,9 @@ position = Vector2(0, -13)
 shape = SubResource("RectangleShape2D_5v3u6")
 
 [node name="AttackManager" parent="." instance=ExtResource("7_qdm3p")]
-pathsAttackPaterns = Array[NodePath]([NodePath("EspiralPatern"), NodePath("CirclePatern")])
+pathsAttackPaterns = Array[NodePath]([NodePath("EspiralPatern"), NodePath("CirclePatern"), NodePath("ArcPatern")])
+
+[node name="ArcPatern" parent="AttackManager" instance=ExtResource("8_ts25e")]
 
 [node name="CirclePatern" parent="AttackManager" instance=ExtResource("8_afanf")]
 bulletAmount = 50

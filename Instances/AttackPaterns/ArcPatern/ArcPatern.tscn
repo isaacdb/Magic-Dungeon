@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://beoof56p6y32l"]
+
+[ext_resource type="Script" path="res://Instances/AttackPaterns/ArcPatern/ArcPatern.gd" id="1_ec5vu"]
+[ext_resource type="PackedScene" uid="uid://ca6aeltom7e7y" path="res://Instances/Components/ShooterComponent/ShooterComponent.tscn" id="1_nfgti"]
+[ext_resource type="Resource" path="res://Instances/Resources/Bullets/BulletEnemy.tres" id="2_7hr4m"]
+[ext_resource type="PackedScene" uid="uid://c1sky0kyn05tc" path="res://Instances/Components/PlayerTracker/PlayerTracker.tscn" id="3_at0qf"]
+
+[node name="ArcPatern" type="Node2D"]
+script = ExtResource("1_ec5vu")
+delayBetweenFire = 0.05
+bullet = ExtResource("2_7hr4m")
+
+[node name="ShooterComponent" parent="." instance=ExtResource("1_nfgti")]
+
+[node name="PlayerTracker" parent="." instance=ExtResource("3_at0qf")]
+isActive = true
