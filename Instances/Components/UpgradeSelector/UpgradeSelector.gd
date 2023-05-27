@@ -32,7 +32,11 @@ func UpgradeSelected(upgrade: UpgradeStats):
 	CleanUpgradesListed()
 	
 	self.visible = false
-	get_tree().paused = false
+	
+	# Usefull for dant catch click input of button to fire in game
+	var tween = create_tween()
+	tween.tween_callback(func(): get_tree().paused = false).set_delay(0.5)
+	tween.play()
 	pass
 
 func CleanUpgradesListed():

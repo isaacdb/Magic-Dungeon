@@ -98,6 +98,10 @@ func GetHit():
 	flashHit.Flash(sprite.material)
 	if healthManager.currentHealth < 50:
 		SetRageMode()
+		
+	if healthManager.currentHealth <= 0:
+		Global.boss_killed.emit()
+	
 	pass
 	
 func SetRageMode():
