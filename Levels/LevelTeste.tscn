@@ -149,8 +149,7 @@ offset_right = 182.0
 offset_bottom = -141.0
 rotation = 0.00110795
 theme_override_fonts/font = ExtResource("2_a82mv")
-text = "Left Shift
-Dash"
+text = "F to Dash"
 
 [node name="Monsters" type="Label" parent="MsgTutorial"]
 layout_mode = 0
