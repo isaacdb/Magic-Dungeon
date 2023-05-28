@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://b1ihv7h1usawy"]
+
+[ext_resource type="Script" path="res://Instances/Props/Flags/Flag.gd" id="1_03kab"]
+[ext_resource type="Shader" path="res://Scripts/Shaders/Flag.gdshader" id="1_vi0pn"]
+[ext_resource type="Texture2D" uid="uid://c1teia1qr33u4" path="res://Instances/Props/Flags/flags.png" id="2_6skqi"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gi1mf"]
+resource_local_to_scene = true
+shader = ExtResource("1_vi0pn")
+shader_parameter/speed = 5.0
+shader_parameter/dis = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6rrs4"]
+size = Vector2(7, 8)
+
+[node name="Flags" type="Node2D"]
+script = ExtResource("1_03kab")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_gi1mf")
+texture = ExtResource("2_6skqi")
+offset = Vector2(0, -8)
+hframes = 4
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, -4)
+shape = SubResource("RectangleShape2D_6rrs4")

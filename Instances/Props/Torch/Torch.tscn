@@ -1,0 +1,118 @@
+[gd_scene load_steps=15 format=3 uid="uid://cfc0jruo74mst"]
+
+[ext_resource type="Texture2D" uid="uid://ccne1xsk1e6dh" path="res://Instances/Props/Torch/torch.png" id="1_7aril"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i5vfp"]
+atlas = ExtResource("1_7aril")
+region = Rect2(0, 0, 16, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dm0o2"]
+atlas = ExtResource("1_7aril")
+region = Rect2(16, 0, 16, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_556xi"]
+atlas = ExtResource("1_7aril")
+region = Rect2(32, 0, 16, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rr2wc"]
+atlas = ExtResource("1_7aril")
+region = Rect2(48, 0, 16, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xb3n8"]
+atlas = ExtResource("1_7aril")
+region = Rect2(64, 0, 16, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_th723"]
+atlas = ExtResource("1_7aril")
+region = Rect2(80, 0, 16, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wk7tv"]
+atlas = ExtResource("1_7aril")
+region = Rect2(96, 0, 16, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_htklx"]
+atlas = ExtResource("1_7aril")
+region = Rect2(112, 0, 16, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_txtrf"]
+atlas = ExtResource("1_7aril")
+region = Rect2(128, 0, 16, 22)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dnlb1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i5vfp")
+}],
+"loop": true,
+"name": &"LightDown",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dm0o2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_556xi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rr2wc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xb3n8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_th723")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wk7tv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_htklx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_txtrf")
+}],
+"loop": true,
+"name": &"LightUp",
+"speed": 5.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_vgptn"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ag5ab"]
+gradient = SubResource("Gradient_vgptn")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.825688, 0.802752)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s2uaj"]
+size = Vector2(2, 3)
+
+[node name="Torch" type="AnimatedSprite2D"]
+y_sort_enabled = true
+sprite_frames = SubResource("SpriteFrames_dnlb1")
+animation = &"LightUp"
+autoplay = "LightUp"
+frame_progress = 0.568766
+offset = Vector2(0, -2.064)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+modulate = Color(1, 1, 0.419608, 1)
+scale = Vector2(2.08026, 1.88008)
+energy = 0.6
+shadow_enabled = true
+shadow_filter_smooth = 20.3
+texture = SubResource("GradientTexture2D_ag5ab")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(0, -3)
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 4.5)
+shape = SubResource("RectangleShape2D_s2uaj")

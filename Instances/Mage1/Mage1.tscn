@@ -18,7 +18,9 @@
 [ext_resource type="PackedScene" uid="uid://valwt38uo38s" path="res://Instances/Components/BulletPredict/BulletPredict.tscn" id="14_qybn2"]
 [ext_resource type="PackedScene" uid="uid://b4enx6olclngm" path="res://Instances/Components/FlashHit/FlashHit.tscn" id="15_34hya"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_6gleb"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0wwrl"]
+radius = 6.0
+height = 14.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0sxq4"]
 resource_local_to_scene = true
@@ -82,11 +84,11 @@ _data = {
 "RESET": SubResource("Animation_pqqg8")
 }
 
-[sub_resource type="Gradient" id="Gradient_vgptn"]
+[sub_resource type="Gradient" id="Gradient_jfxax"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_vpnaj"]
-gradient = SubResource("Gradient_vgptn")
+gradient = SubResource("Gradient_jfxax")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.825688, 0.802752)
@@ -103,7 +105,7 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2uere"]
 radius = 6.0
-height = 20.0
+height = 16.0
 
 [node name="Mage1" type="CharacterBody2D" node_paths=PackedStringArray("moveComponent", "healthManager", "flashHit", "shootManager", "weapon") groups=["player"]]
 collision_layer = 0
@@ -119,6 +121,7 @@ lifeBase = 3.0
 fireRate = 0.4
 
 [node name="Weapon" parent="." instance=ExtResource("2_540pc")]
+position = Vector2(0, -9)
 
 [node name="ShooterComponent" parent="Weapon" instance=ExtResource("3_elm5e")]
 position = Vector2(15, -7)
@@ -128,16 +131,16 @@ sprite2D = NodePath("../Sprite2D")
 spawnPoint = NodePath("../ShooterComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-shape = SubResource("CircleShape2D_6gleb")
+z_index = 1
+position = Vector2(0, -7)
+shape = SubResource("CapsuleShape2D_0wwrl")
+debug_color = Color(0, 0.635294, 0.415686, 0.419608)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_0sxq4")
-position = Vector2(0, 9.737)
 texture = ExtResource("4_ftoke")
-centered = false
-offset = Vector2(-7.494, -22.721)
+offset = Vector2(0, -11.372)
 hframes = 9
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -146,6 +149,7 @@ libraries = {
 }
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -9)
 scale = Vector2(2.08026, 1.88008)
 energy = 0.2
 shadow_enabled = true
@@ -155,7 +159,6 @@ texture = SubResource("GradientTexture2D_vpnaj")
 [node name="WalkParticle" type="CPUParticles2D" parent="."]
 z_index = -1
 material = SubResource("CanvasItemMaterial_mhr2p")
-position = Vector2(0, 9)
 emitting = false
 amount = 32
 randomness = 0.2
@@ -181,6 +184,7 @@ knockBack = NodePath("../KnockBack")
 lifeBar = NodePath("")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Health" groups=["player"]]
+position = Vector2(0, -8)
 shape = SubResource("CapsuleShape2D_2uere")
 
 [node name="DeathManager" parent="." node_paths=PackedStringArray("activeHandle") instance=ExtResource("4_v7fsg")]
