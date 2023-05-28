@@ -56,4 +56,12 @@ func PlayerGetHit():
 	tween.tween_property(canvaModulate, "color", defaultColorModulate, 0.1).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
 	tween.tween_property(canvaModulate, "color", hitColorModulate, 0.1).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
 	tween.tween_property(canvaModulate, "color", defaultColorModulate, 0.1).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
+	tween.play()
+	
+	var tweenTime = create_tween()
+	tweenTime.tween_property(Engine, "time_scale", 0.3, 0.3).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
+	tweenTime.tween_property(Engine, "time_scale", 1.0, 0.3).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)	
+	tweenTime.play()
+	
+	
 	pass
