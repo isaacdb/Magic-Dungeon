@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=3 uid="uid://7so4v4xjp5xx"]
+
+[ext_resource type="Texture2D" uid="uid://coh8f5n2uvuca" path="res://Instances/Props/Gargoyle/gargoyle.png" id="1_5kv4g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jwx45"]
+atlas = ExtResource("1_5kv4g")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nngds"]
+atlas = ExtResource("1_5kv4g")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vfm0q"]
+atlas = ExtResource("1_5kv4g")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_supix"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jwx45")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nngds")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vfm0q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_vgptn"]
+offsets = PackedFloat32Array(0, 0.327161, 1)
+colors = PackedColorArray(0.666569, 0.666569, 0.666569, 1, 0.419813, 0.419813, 0.419813, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_li4yr"]
+gradient = SubResource("Gradient_vgptn")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.825688, 0.802752)
+
+[node name="Gargoyle" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+texture = ExtResource("1_5kv4g")
+offset = Vector2(0, 16)
+hframes = 4
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(1.5, 1.5, 1.5, 1)
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_supix")
+autoplay = "default"
+frame_progress = 0.111786
+offset = Vector2(0, 16)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+modulate = Color(1, 0.219608, 0.141176, 1)
+scale = Vector2(2.08026, 1.88008)
+energy = 0.3
+shadow_enabled = true
+shadow_filter_smooth = 20.3
+texture = SubResource("GradientTexture2D_li4yr")

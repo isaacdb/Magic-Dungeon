@@ -1,15 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://ceg2p5rdoxduo"]
+[gd_scene load_steps=3 format=3 uid="uid://ceg2p5rdoxduo"]
 
 [ext_resource type="Script" path="res://Instances/Components/Weapon/Weapon.gd" id="1_7a4g5"]
 [ext_resource type="Texture2D" uid="uid://dly6q5evuf44e" path="res://Instances/Weapon/Sprite.png" id="2_6leia"]
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_x2n5u"]
-light_mode = 1
 
 [node name="Wand" type="Node2D"]
 script = ExtResource("1_7a4g5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("CanvasItemMaterial_x2n5u")
 texture = ExtResource("2_6leia")
 offset = Vector2(15, 0)

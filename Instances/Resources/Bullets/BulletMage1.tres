@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="BulletStats" load_steps=3 format=3]
+[gd_resource type="Resource" script_class="BulletStats" load_steps=3 format=3 uid="uid://djtpaou5g32gg"]
 
 [ext_resource type="Script" path="res://Instances/Resources/Bullets/BulletStats.gd" id="1_54m2v"]
 [ext_resource type="PackedScene" uid="uid://ckmrkojeday20" path="res://Instances/Bullet/BulletsEnemies/BulletEnemy1/BulletN.tscn" id="1_o5cyb"]

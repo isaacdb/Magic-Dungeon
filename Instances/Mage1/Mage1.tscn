@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Instances/Mage1/Mage1.gd" id="1_giwmu"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="1_hkxu6"]
 [ext_resource type="PackedScene" uid="uid://ceg2p5rdoxduo" path="res://Instances/Components/Weapon/Weapon.tscn" id="2_540pc"]
-[ext_resource type="Resource" path="res://Instances/Resources/Bullets/BulletMage1.tres" id="2_jv4dm"]
+[ext_resource type="Resource" uid="uid://djtpaou5g32gg" path="res://Instances/Resources/Bullets/BulletMage1.tres" id="2_jv4dm"]
 [ext_resource type="PackedScene" uid="uid://ca6aeltom7e7y" path="res://Instances/Components/ShooterComponent/ShooterComponent.tscn" id="3_elm5e"]
 [ext_resource type="PackedScene" uid="uid://b4asjdyoyep5s" path="res://Instances/Components/Health/Health.tscn" id="3_gonwg"]
 [ext_resource type="PackedScene" uid="uid://c4oywo6sm3beo" path="res://Instances/Components/WeaponRoundComponent/WeaponRoundComponent.tscn" id="4_f854t"]
