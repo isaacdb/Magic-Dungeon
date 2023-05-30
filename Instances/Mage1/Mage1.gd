@@ -58,7 +58,7 @@ func _physics_process(delta):
 	sprite2D.flip_h = (get_global_mouse_position() - position).x < 0
 	pass	
 
-func GetHited():
+func GetHited(attack: Attack):
 	Global.emit_signal("screen_shake", 10.0, .3, 1)
 	Global.player_hited.emit()
 	flashHit.Flash(sprite2D.material)

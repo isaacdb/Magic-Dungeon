@@ -64,7 +64,7 @@ func _physics_process(delta):
 			animPlayer.play("Attack")
 			pass
 			
-func GetHit():
+func GetHit(attack: Attack):
 	flashHit.Flash(sprite.material)
 	pass
 

@@ -64,7 +64,7 @@ func ChangeState(state: States):
 	currentState = state
 	pass
 
-func GetHit():
+func GetHit(attack: Attack):
 	flashHit.Flash(sprite.material)
 	pass	
 	

@@ -5,7 +5,7 @@ extends Node2D
 @onready var explosionParticle := $ExplosionSprite/ExplosionParticle as CPUParticles2D
 @onready var smokeParticle := $ExplosionSprite/SmokeParticle as CPUParticles2D
 
-var isActive := false
+var isActive := true
 
 func SetActive(active: bool):
 	isActive = active
@@ -19,3 +19,4 @@ func Execute():
 	explosionParticle.emitting = true
 	smokeParticle.emitting = true
 	explosionAnimPlayer.play("Explosion")
+	self.reparent(get_tree().get_root())

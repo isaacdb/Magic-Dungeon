@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://bao0oq6xak2nx"]
+
+[ext_resource type="Texture2D" uid="uid://moadwha10gdl" path="res://Instances/Props/Jars/jars.png" id="1_siqhe"]
+[ext_resource type="Script" path="res://Instances/Props/Jars/Jar.gd" id="1_vi3w1"]
+[ext_resource type="PackedScene" uid="uid://b4asjdyoyep5s" path="res://Instances/Components/Health/Health.tscn" id="2_quj8o"]
+[ext_resource type="PackedScene" uid="uid://6fcg84clxst2" path="res://Instances/Components/Death/DeathManager.tscn" id="3_dmkuv"]
+[ext_resource type="PackedScene" uid="uid://bdh7yqt03o3v4" path="res://Instances/Components/PropDestruction/PropDestruction.tscn" id="5_5y4uv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xysgp"]
+radius = 5.0
+
+[node name="Jar" type="Node2D" node_paths=PackedStringArray("healthManager")]
+script = ExtResource("1_vi3w1")
+healthManager = NodePath("Health")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+texture = ExtResource("1_siqhe")
+hframes = 3
+vframes = 4
+frame = 11
+
+[node name="Health" parent="." node_paths=PackedStringArray("deathManager") instance=ExtResource("2_quj8o")]
+position = Vector2(0, -7)
+collision_layer = 10
+collision_mask = 0
+deathManager = NodePath("../DeathManager")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Health"]
+visible = false
+z_index = 1
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_xysgp")
+
+[node name="DeathManager" parent="." instance=ExtResource("3_dmkuv")]
+switch_nps = Array[NodePath]([NodePath("../PropDestruction")])
+
+[node name="PropDestruction" parent="." instance=ExtResource("5_5y4uv")]

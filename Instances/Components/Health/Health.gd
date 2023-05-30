@@ -9,7 +9,7 @@ class_name Health
 
 var lifeBase := 0
 var currentHealth := 0
-var isActive := false
+var isActive := true
 var usedLayer := 0
 
 signal damage
@@ -48,7 +48,7 @@ func take_damage(attack: Attack):
 	if lifeBar:
 		lifeBar.UpdateHealthBar(currentHealth)
 	
-	damage.emit()
+	damage.emit(attack)
 		
 	if knockBack:
 		knockBack.Execute(get_parent(), attack.knock_back, attack.direction)

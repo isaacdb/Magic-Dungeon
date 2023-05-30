@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://d3j4vevwj6ecg"]
+[gd_scene load_steps=36 format=3 uid="uid://d3j4vevwj6ecg"]
 
 [ext_resource type="Script" path="res://Instances/Enemies/MageOrcN/MageOrcN.gd" id="1_mpfqp"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="1_rj5j8"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dx8h735nl0e2d" path="res://Instances/Components/Move/Move.tscn" id="6_oin3v"]
 [ext_resource type="PackedScene" uid="uid://c1sky0kyn05tc" path="res://Instances/Components/PlayerTracker/PlayerTracker.tscn" id="7_mtjfn"]
 [ext_resource type="PackedScene" uid="uid://d1loimaxqs6y6" path="res://Instances/Components/LookAtPlayerComponent/LookAtPlayerComponent.tscn" id="9_166lo"]
+[ext_resource type="PackedScene" uid="uid://of0xsffqavim" path="res://Instances/Components/EnemyDeath/EnemyDeath.tscn" id="9_xxcs3"]
 [ext_resource type="PackedScene" uid="uid://cwyxu1ysjtku7" path="res://Instances/Components/DropXp/DropXp.tscn" id="10_1pkgr"]
 [ext_resource type="PackedScene" uid="uid://bcbgphbcmqgky" path="res://Instances/Components/KnockBack/KnockBack.tscn" id="10_5ip6j"]
 [ext_resource type="PackedScene" uid="uid://ca6aeltom7e7y" path="res://Instances/Components/ShooterComponent/ShooterComponent.tscn" id="13_hksvg"]
@@ -402,7 +403,9 @@ debug_color = Color(0, 0.52549, 0, 0.419608)
 
 [node name="DeathManager" parent="." node_paths=PackedStringArray("activeHandle") instance=ExtResource("4_s32rd")]
 activeHandle = NodePath("../ActiveHandleComponent")
-switch_nps = Array[NodePath]([NodePath("../DropXp"), NodePath("../DeathExplosion")])
+switch_nps = Array[NodePath]([NodePath("../DropXp"), NodePath("../DeathExplosion"), NodePath("../EnemyDeath")])
+
+[node name="EnemyDeath" parent="." instance=ExtResource("9_xxcs3")]
 
 [node name="DeathExplosion" parent="." instance=ExtResource("5_5fvh3")]
 

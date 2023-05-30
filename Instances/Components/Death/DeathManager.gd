@@ -6,7 +6,7 @@ extends Node2D
 @export var switch_nps: Array[NodePath]
 @onready var deathActions = switch_nps.map(get_node)  # feels hacky but works, not in editor though!
 
-var isActive := false
+var isActive := true
 
 func SetActive(active: bool):
 	isActive = active
@@ -18,10 +18,9 @@ func Execute():
 	
 	for action in deathActions:
 		action.Execute()
-		action.reparent(get_tree().get_root())
 	
-	Global.emit_signal("enemy_killed")
+	if activeHandle:
+		activeHandle.Execute(false)
 	
-	activeHandle.Execute(false)
 	get_parent().queue_free()
 	pass

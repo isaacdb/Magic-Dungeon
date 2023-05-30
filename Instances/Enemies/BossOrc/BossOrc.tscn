@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://d1loimaxqs6y6" path="res://Instances/Components/LookAtPlayerComponent/LookAtPlayerComponent.tscn" id="1_4mr3o"]
 [ext_resource type="Script" path="res://Instances/Enemies/BossOrc/BossOrc.gd" id="1_38hcy"]
-[ext_resource type="Resource" path="res://Instances/Resources/Bullets/BulletMage1.tres" id="2_pc7t6"]
+[ext_resource type="Resource" uid="uid://djtpaou5g32gg" path="res://Instances/Resources/Bullets/BulletMage1.tres" id="2_pc7t6"]
 [ext_resource type="Texture2D" uid="uid://cn61j0eedmjw0" path="res://Instances/Enemies/BossOrc/boss-orc.png" id="2_td053"]
 [ext_resource type="PackedScene" uid="uid://b4asjdyoyep5s" path="res://Instances/Components/Health/Health.tscn" id="3_uvpwl"]
 [ext_resource type="PackedScene" path="res://Instances/Components/ActiveHandleComponent/ActiveHandleComponent.tscn" id="4_c4ky7"]
@@ -337,7 +337,7 @@ switch_nps = Array[NodePath]([NodePath("../GroupFlip/LookAtPlayerComponent"), No
 
 [node name="DeathManager" parent="." node_paths=PackedStringArray("activeHandle") instance=ExtResource("5_47m65")]
 activeHandle = NodePath("../ActiveHandleComponent")
-switch_nps = Array[NodePath]([NodePath("../DeathExplosion")])
+switch_nps = Array[NodePath]([NodePath("../DeathExplosion"), NodePath("../DeathExplosion3"), NodePath("../DeathExplosion2")])
 
 [node name="DeathExplosion" parent="." instance=ExtResource("6_wg2kf")]
 position = Vector2(-8, -16)

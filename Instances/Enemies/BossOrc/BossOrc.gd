@@ -94,7 +94,7 @@ func AttackFinished():
 	ChangeState(States.IDLE)
 	pass
 	
-func GetHit():
+func GetHit(attack: Attack):
 	flashHit.Flash(sprite.material)
 	if healthManager.currentHealth < 50:
 		SetRageMode()
