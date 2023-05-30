@@ -63,7 +63,6 @@ anim_offset_max = 1.0
 [node name="ExplosionParticle" type="CPUParticles2D" parent="."]
 y_sort_enabled = true
 material = SubResource("CanvasItemMaterial_o20rm")
-position = Vector2(0, 9)
 emitting = false
 amount = 10
 lifetime = 0.3
