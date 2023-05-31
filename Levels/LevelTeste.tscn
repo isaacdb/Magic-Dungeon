@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cmx7pnpls2gkt"]
+[gd_scene load_steps=37 format=3 uid="uid://cmx7pnpls2gkt"]
 
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_avsao"]
 [ext_resource type="PackedScene" uid="uid://03my8igrvwt8" path="res://Instances/Tilemap/TileMapWalls.tscn" id="1_fch5f"]
@@ -17,6 +17,8 @@
 [ext_resource type="Script" path="res://Scripts/Lobby.gd" id="8_kfohy"]
 [ext_resource type="PackedScene" uid="uid://dhqly5q1v8pys" path="res://Instances/Components/SpawnEffect/SpawnEffect.tscn" id="8_owyhm"]
 [ext_resource type="PackedScene" uid="uid://dmjqj7loxtlm8" path="res://Instances/Enemies/MiniOrc/MiniOrc.tscn" id="11_brv1s"]
+[ext_resource type="PackedScene" uid="uid://ckmrkojeday20" path="res://Instances/Bullet/BulletsEnemies/BulletEnemy1/BulletN.tscn" id="11_ycdyd"]
+[ext_resource type="Script" path="res://Instances/Resources/Bullets/BulletStats.gd" id="12_5cc7y"]
 [ext_resource type="PackedScene" uid="uid://owdfvvvn7ja3" path="res://Instances/Enemies/BossOrc/BossOrc.tscn" id="13_va7ux"]
 [ext_resource type="PackedScene" uid="uid://cfc0jruo74mst" path="res://Instances/Props/Torch/Torch.tscn" id="20_gl0pj"]
 [ext_resource type="PackedScene" uid="uid://dnou7mrnifiye" path="res://Instances/Props/Mushroom/Mushroom.tscn" id="21_fnvuu"]
@@ -45,6 +47,15 @@ glow_blend_mode = 1
 glow_hdr_threshold = 0.0
 glow_hdr_scale = 1.5
 adjustment_color_correction = SubResource("GradientTexture2D_q6po8")
+
+[sub_resource type="Resource" id="Resource_kyaog"]
+resource_local_to_scene = true
+script = ExtResource("12_5cc7y")
+damage = 1.0
+knockBackForce = 30.0
+speed = 500.0
+origin = "Player"
+prefab = ExtResource("11_ycdyd")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fsra8"]
 size = Vector2(631, 298)
@@ -326,7 +337,7 @@ player = NodePath("../../Mage1")
 color = Color(0.454902, 0.447059, 0.72549, 1)
 
 [node name="Camera2D" parent="." instance=ExtResource("5_bvpu5")]
-zoom = Vector2(3, 3)
+zoom = Vector2(4, 4)
 
 [node name="TileMapWall" parent="." instance=ExtResource("1_fch5f")]
 position = Vector2(178, -472)
@@ -340,6 +351,7 @@ layer_1/tile_data = PackedInt32Array(0, 0, 8, 1, 0, 8, 2, 0, 8, 3, 0, 8, 4, 0, 8
 
 [node name="Mage1" parent="." instance=ExtResource("4_f7hcd")]
 position = Vector2(350, -150)
+bulletStats = SubResource("Resource_kyaog")
 
 [node name="Room-1" type="Node2D" parent="." node_paths=PackedStringArray("gateEnter", "gateExit")]
 visible = false
@@ -847,18 +859,6 @@ position = Vector2(268, -167)
 [node name="Flag2" parent="Props/Lobby" instance=ExtResource("22_50bky")]
 position = Vector2(360, -168)
 
-[node name="Flag3" parent="Props/Lobby" instance=ExtResource("22_50bky")]
-position = Vector2(346, -264)
-
-[node name="Flag4" parent="Props/Lobby" instance=ExtResource("22_50bky")]
-position = Vector2(281, -266)
-
-[node name="Flag5" parent="Props/Lobby" instance=ExtResource("22_50bky")]
-position = Vector2(281, -253)
-
-[node name="Flag6" parent="Props/Lobby" instance=ExtResource("22_50bky")]
-position = Vector2(346, -252)
-
 [node name="Jar" parent="Props/Lobby" instance=ExtResource("22_n8q72")]
 position = Vector2(399, -151)
 
@@ -904,3 +904,117 @@ frame_progress = 0.271124
 [node name="Torch4" parent="Props/Room1" instance=ExtResource("20_gl0pj")]
 position = Vector2(134, -536)
 frame_progress = 0.461133
+
+[node name="Jar" parent="Props/Room1" instance=ExtResource("22_n8q72")]
+position = Vector2(158, -362)
+
+[node name="Jar2" parent="Props/Room1" instance=ExtResource("22_n8q72")]
+position = Vector2(139, -377)
+
+[node name="Jar3" parent="Props/Room1" instance=ExtResource("22_n8q72")]
+position = Vector2(137, -394)
+
+[node name="Jar4" parent="Props/Room1" instance=ExtResource("22_n8q72")]
+position = Vector2(135, -291)
+
+[node name="Jar5" parent="Props/Room1" instance=ExtResource("22_n8q72")]
+position = Vector2(135, -303)
+
+[node name="Jar6" parent="Props/Room1" instance=ExtResource("22_n8q72")]
+position = Vector2(141, -286)
+
+[node name="Jar7" parent="Props/Room1" instance=ExtResource("22_n8q72")]
+position = Vector2(470, -531)
+
+[node name="Jar8" parent="Props/Room1" instance=ExtResource("22_n8q72")]
+position = Vector2(459, -525)
+
+[node name="Jar9" parent="Props/Room1" instance=ExtResource("22_n8q72")]
+position = Vector2(450, -531)
+
+[node name="Mushroom" parent="Props/Room1" instance=ExtResource("21_fnvuu")]
+position = Vector2(461, -302)
+
+[node name="Mushroom2" parent="Props/Room1" instance=ExtResource("21_fnvuu")]
+position = Vector2(449, -294)
+
+[node name="Mushroom3" parent="Props/Room1" instance=ExtResource("21_fnvuu")]
+position = Vector2(477, -335)
+
+[node name="Mushroom4" parent="Props/Room1" instance=ExtResource("21_fnvuu")]
+position = Vector2(452, -346)
+
+[node name="Mushroom5" parent="Props/Room1" instance=ExtResource("21_fnvuu")]
+position = Vector2(413, -333)
+
+[node name="Mushroom6" parent="Props/Room1" instance=ExtResource("21_fnvuu")]
+position = Vector2(480, -387)
+
+[node name="Mushroom7" parent="Props/Room1" instance=ExtResource("21_fnvuu")]
+position = Vector2(468, -399)
+
+[node name="Mushroom8" parent="Props/Room1" instance=ExtResource("21_fnvuu")]
+position = Vector2(486, -287)
+
+[node name="Jar10" parent="Props/Room1" instance=ExtResource("22_n8q72")]
+position = Vector2(443, -527)
+
+[node name="Flag3" parent="Props/Room1" instance=ExtResource("22_50bky")]
+position = Vector2(346, -264)
+
+[node name="Flag4" parent="Props/Room1" instance=ExtResource("22_50bky")]
+position = Vector2(281, -266)
+
+[node name="Flag5" parent="Props/Room1" instance=ExtResource("22_50bky")]
+position = Vector2(281, -253)
+
+[node name="Flag6" parent="Props/Room1" instance=ExtResource("22_50bky")]
+position = Vector2(346, -252)
+
+[node name="Flag7" parent="Props/Room1" instance=ExtResource("22_50bky")]
+position = Vector2(346, -332)
+
+[node name="Flag8" parent="Props/Room1" instance=ExtResource("22_50bky")]
+position = Vector2(281, -334)
+
+[node name="Flag9" parent="Props/Room1" instance=ExtResource("22_50bky")]
+position = Vector2(281, -321)
+
+[node name="Flag10" parent="Props/Room1" instance=ExtResource("22_50bky")]
+position = Vector2(346, -320)
+
+[node name="Flag11" parent="Props/Room1" instance=ExtResource("22_50bky")]
+position = Vector2(346, -394)
+
+[node name="Flag12" parent="Props/Room1" instance=ExtResource("22_50bky")]
+position = Vector2(281, -396)
+
+[node name="Flag13" parent="Props/Room1" instance=ExtResource("22_50bky")]
+position = Vector2(281, -383)
+
+[node name="Flag14" parent="Props/Room1" instance=ExtResource("22_50bky")]
+position = Vector2(346, -382)
+
+[node name="Flag15" parent="Props/Room1" instance=ExtResource("22_50bky")]
+position = Vector2(346, -457)
+
+[node name="Flag16" parent="Props/Room1" instance=ExtResource("22_50bky")]
+position = Vector2(281, -459)
+
+[node name="Flag17" parent="Props/Room1" instance=ExtResource("22_50bky")]
+position = Vector2(281, -446)
+
+[node name="Flag18" parent="Props/Room1" instance=ExtResource("22_50bky")]
+position = Vector2(346, -445)
+
+[node name="Flag19" parent="Props/Room1" instance=ExtResource("22_50bky")]
+position = Vector2(346, -521)
+
+[node name="Flag20" parent="Props/Room1" instance=ExtResource("22_50bky")]
+position = Vector2(281, -523)
+
+[node name="Flag21" parent="Props/Room1" instance=ExtResource("22_50bky")]
+position = Vector2(281, -510)
+
+[node name="Flag22" parent="Props/Room1" instance=ExtResource("22_50bky")]
+position = Vector2(346, -509)

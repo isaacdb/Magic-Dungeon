@@ -130,6 +130,9 @@ position = Vector2(15, -7)
 sprite2D = NodePath("../Sprite2D")
 spawnPoint = NodePath("../ShooterComponent")
 
+[node name="BulletPredict" parent="." instance=ExtResource("14_qybn2")]
+position = Vector2(0, -8)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 1
 position = Vector2(0, -7)
@@ -206,8 +209,6 @@ dashDuration = 0.07
 healthComponent = NodePath("../Health")
 
 [node name="KnockBack" parent="." instance=ExtResource("12_b338j")]
-
-[node name="BulletPredict" parent="." instance=ExtResource("14_qybn2")]
 
 [node name="TimerIFrame" type="Timer" parent="."]
 

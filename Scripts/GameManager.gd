@@ -46,7 +46,7 @@ func PlayerDead():
 	tweenDeadPanel.play()
 	
 	var tween = create_tween()
-	tween.tween_callback(func(): get_tree().reload_current_scene()).set_delay(7)
+	tween.tween_callback(func(): get_tree().change_scene_to_file("res://Levels/LevelTeste.tscn")).set_delay(7)
 	tween.play()
 	pass
 
