@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bfeok0rvx26n0"]
+
+[ext_resource type="Script" path="res://Instances/Components/ShockWave/ShockWave.gd" id="1_iv78p"]
+[ext_resource type="Shader" path="res://Scripts/Shaders/ShockWave.gdshader" id="2_ibdxu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_djccg"]
+resource_local_to_scene = true
+shader = ExtResource("2_ibdxu")
+shader_parameter/global_position = Vector2(320, 180)
+shader_parameter/screen_size = Vector2(640, 360)
+shader_parameter/force = 1.0
+shader_parameter/size = 0.0
+shader_parameter/thickness = 0.0
+
+[node name="ShockWave" type="Node2D"]
+script = ExtResource("1_iv78p")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_djccg")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
