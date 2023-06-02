@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cmx7pnpls2gkt"]
+[gd_scene load_steps=43 format=3 uid="uid://cmx7pnpls2gkt"]
 
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_avsao"]
 [ext_resource type="PackedScene" uid="uid://03my8igrvwt8" path="res://Instances/Tilemap/TileMapWalls.tscn" id="1_fch5f"]
@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://b1ihv7h1usawy" path="res://Instances/Props/Flags/Flag.tscn" id="22_50bky"]
 [ext_resource type="PackedScene" uid="uid://bao0oq6xak2nx" path="res://Instances/Props/Jars/Jar.tscn" id="22_n8q72"]
 [ext_resource type="PackedScene" uid="uid://7so4v4xjp5xx" path="res://Instances/Props/Gargoyle/Gargoyle.tscn" id="23_7svb7"]
+[ext_resource type="Shader" path="res://Scripts/Shaders/Fog.gdshader" id="26_ntkou"]
 
 [sub_resource type="Gradient" id="Gradient_jo7ba"]
 offsets = PackedFloat32Array(0, 0.522988, 1)
@@ -36,7 +37,6 @@ gradient = SubResource("Gradient_jo7ba")
 [sub_resource type="Environment" id="Environment_k8p4i"]
 background_mode = 3
 tonemap_mode = 3
-glow_enabled = true
 glow_levels/3 = 30.0
 glow_levels/4 = 10.0
 glow_levels/5 = 0.0
@@ -48,7 +48,35 @@ glow_hdr_threshold = 0.0
 glow_hdr_scale = 1.5
 adjustment_color_correction = SubResource("GradientTexture2D_q6po8")
 
-[sub_resource type="Resource" id="Resource_kyaog"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_424jm"]
+noise_type = 5
+seed = 6
+frequency = 0.005
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yuqon"]
+seamless = true
+seamless_blend_skirt = 1.0
+noise = SubResource("FastNoiseLite_424jm")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iti72"]
+resource_local_to_scene = true
+shader = ExtResource("26_ntkou")
+shader_parameter/octaves = 4
+shader_parameter/starting_amplitude = 0.5
+shader_parameter/starting_frequency = 1.0
+shader_parameter/shift = -0.3
+shader_parameter/velocity = Vector2(0.05, 0.005)
+shader_parameter/fog_color = Color(0, 0, 0, 1)
+shader_parameter/noise = SubResource("NoiseTexture2D_yuqon")
+
+[sub_resource type="Gradient" id="Gradient_kx2mx"]
+offsets = PackedFloat32Array(0.0126582, 0.512821, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.627451, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_xsmxh"]
+colors = PackedColorArray(0.316749, 0.422333, 0.477803, 1, 1, 1, 1, 1)
+
+[sub_resource type="Resource" id="Resource_y2m83"]
 resource_local_to_scene = true
 script = ExtResource("12_5cc7y")
 damage = 1.0
@@ -336,6 +364,34 @@ player = NodePath("../../Mage1")
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.454902, 0.447059, 0.72549, 1)
 
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_iti72")
+offset_left = 4.0
+offset_top = -2331.0
+offset_right = 639.0
+offset_bottom = -18.0
+
+[node name="SmokeParticle" type="CPUParticles2D" parent="."]
+y_sort_enabled = true
+position = Vector2(293, -1119)
+amount = 200
+lifetime = 3.0
+emission_shape = 3
+emission_rect_extents = Vector2(300, 1500)
+direction = Vector2(0, -1)
+spread = 135.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+angular_velocity_min = 10.0
+angular_velocity_max = 30.0
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+color_ramp = SubResource("Gradient_kx2mx")
+color_initial_ramp = SubResource("Gradient_xsmxh")
+
 [node name="Camera2D" parent="." instance=ExtResource("5_bvpu5")]
 zoom = Vector2(4, 4)
 
@@ -351,7 +407,7 @@ layer_1/tile_data = PackedInt32Array(0, 0, 8, 1, 0, 8, 2, 0, 8, 3, 0, 8, 4, 0, 8
 
 [node name="Mage1" parent="." instance=ExtResource("4_f7hcd")]
 position = Vector2(350, -150)
-bulletStats = SubResource("Resource_kyaog")
+bulletStats = SubResource("Resource_y2m83")
 
 [node name="Room-1" type="Node2D" parent="." node_paths=PackedStringArray("gateEnter", "gateExit")]
 visible = false
@@ -851,7 +907,7 @@ position = Vector2(203, -117)
 position = Vector2(268, -185)
 
 [node name="Torch2" parent="Props/Lobby" instance=ExtResource("20_gl0pj")]
-position = Vector2(360, -185)
+position = Vector2(360, -186)
 
 [node name="Flag" parent="Props/Lobby" instance=ExtResource("22_50bky")]
 position = Vector2(268, -167)
