@@ -14,69 +14,40 @@ extends CharacterBody2D
 @export var knockBackForce := 300.0
 @export var lifeBase := 8.0
 
-@export var timeIdle := 1.0
-@export var timeWalk := 3.0
-
 @onready var animPlayer := $AnimationPlayer as AnimationPlayer
 @onready var sprite := $GroupFlip/AnimatedSprite2D as AnimatedSprite2D
-@onready var timerIdle := $TimerIdle as Timer
-@onready var timerWalk := $TimerWalk as Timer
 @onready var rnd := RandomNumberGenerator.new()
 
 @export var orcLowBulletStats : BulletStats
 
 enum States
 {
-	IDLE,
 	CHASING,
 	ATTACK,
 	DEATH
 }
 
 var currentState := States.CHASING
-var nextPostion := Vector2.ZERO
+var roundDirection := 1
+
+var tweenAttack : Tween
 
 func _ready():	
 	healthManager.damage.connect(GetHit)
-	healthManager.SetLifeBase(lifeBase)
-		
-	var randTime = rnd.randf_range(0.0, 1.0)
-	
-	timerIdle.wait_time = timeIdle
-	timerIdle.one_shot = true
-	timerIdle.autostart = false
-	timerIdle.timeout.connect(TimerIdleTimeout)
-	
-	timerWalk.wait_time = randTime + timeWalk
-	timerWalk.one_shot = true
-	timerWalk.autostart = false
-	timerWalk.timeout.connect(TimerWalkTimeout)
-	
+	healthManager.SetLifeBase(lifeBase)	
 	pass
 	
 func _physics_process(delta):
 	match currentState:
-		States.IDLE:
-			animPlayer.play("Idle")
-			
-			## Se movimentou até o proximo ponto, quando chegar já ataca
-			if timerIdle.is_stopped():
-				timerIdle.start()
-				ChangeState(States.ATTACK)
-			pass
-			
 		States.CHASING:
-			## Contagem de tempo que ficará perseguindo
-			if timerWalk.is_stopped():
-				timerWalk.start()
-			
-			if playerTracker.GetDistance() < 5.0:
-				timerWalk.stop()
-				ChangeState(States.IDLE)
-				return
+			if !tweenAttack or !tweenAttack.is_running():
+				var randTime = rnd.randf_range(0.0, 1.0)
+				tweenAttack = create_tween()
+				tweenAttack.tween_callback(func(): ChangeState(States.ATTACK)).set_delay(attackDelay + randTime)
+				roundDirection = 1 if rnd.randf() > 0.5 else -1
 			
 			animPlayer.play("Walk")
-			moveComponent.Move(self, playerTracker.GetDirection(), delta, 1300, speed)			
+			moveComponent.Move(self, GetDirection(), delta, 1300, speed)
 			pass
 			
 		States.ATTACK:
@@ -89,20 +60,16 @@ func ChangeState(state: States):
 	
 func AttackFinished():
 	shootManager.FireWithCooldown(playerTracker.GetDirection(), orcLowBulletStats)
-	ChangeState(States.IDLE)
+	ChangeState(States.CHASING)
 	pass
 	
 func GetHit(attack: Attack):
 	flashHit.Flash(sprite.material)
 	pass
-
-func TimerIdleTimeout():
-	var randTime = rnd.randf_range(0.0, 1.0)
-	timerIdle.wait_time = randTime + timeIdle
-	ChangeState(States.CHASING)
 	
-func TimerWalkTimeout():
-	var randTime = rnd.randf_range(0.0, 1.0)
-	timerWalk.wait_time = randTime + timeWalk
-	ChangeState(States.IDLE)
-	pass
+func GetDirection() -> Vector2:
+	if playerTracker.GetDistance() >= 80.0:
+		return playerTracker.GetDirection()
+	else:
+		var directionRounded = Vector2(-playerTracker.GetDirection().y, playerTracker.GetDirection().x)
+		return directionRounded * roundDirection

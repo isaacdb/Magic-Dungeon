@@ -76,7 +76,7 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.627451, 1, 1, 1, 0)
 [sub_resource type="Gradient" id="Gradient_xsmxh"]
 colors = PackedColorArray(0.316749, 0.422333, 0.477803, 1, 1, 1, 1, 1)
 
-[sub_resource type="Resource" id="Resource_lj6na"]
+[sub_resource type="Resource" id="Resource_t5y6o"]
 resource_local_to_scene = true
 script = ExtResource("12_5cc7y")
 damage = 1.0
@@ -407,7 +407,7 @@ layer_1/tile_data = PackedInt32Array(0, 0, 8, 1, 0, 8, 2, 0, 8, 3, 0, 8, 4, 0, 8
 
 [node name="Mage1" parent="." instance=ExtResource("4_f7hcd")]
 position = Vector2(350, -150)
-bulletStats = SubResource("Resource_lj6na")
+bulletStats = SubResource("Resource_t5y6o")
 
 [node name="Room-1" type="Node2D" parent="." node_paths=PackedStringArray("gateEnter", "gateExit")]
 visible = false
@@ -416,8 +416,9 @@ script = ExtResource("6_awtxp")
 gateEnter = NodePath("../Gate-Lobby-Room1")
 gateExit = NodePath("../Gate-Room1-Room2")
 enemies = Array[PackedScene]([ExtResource("6_2dt4y")])
-qntdEnemies = Array[int]([5])
+qntdEnemies = Array[int]([3])
 spawnAlert = ExtResource("8_owyhm")
+waveAmount = 2
 
 [node name="Area2D" type="Area2D" parent="Room-1"]
 collision_layer = 0
@@ -492,8 +493,9 @@ script = ExtResource("6_awtxp")
 gateEnter = NodePath("../Gate-Room1-Room2")
 gateExit = NodePath("../Gate-Room2-Room3")
 enemies = Array[PackedScene]([ExtResource("6_2dt4y"), ExtResource("7_43g3d")])
-qntdEnemies = Array[int]([5, 2])
+qntdEnemies = Array[int]([4, 2])
 spawnAlert = ExtResource("8_owyhm")
+waveAmount = 2
 
 [node name="Area2D" type="Area2D" parent="Room-2"]
 collision_layer = 0
@@ -565,8 +567,9 @@ script = ExtResource("6_awtxp")
 gateEnter = NodePath("../Gate-Room2-Room3")
 gateExit = NodePath("../Gate-Room3-Room4")
 enemies = Array[PackedScene]([ExtResource("6_2dt4y"), ExtResource("7_43g3d"), ExtResource("11_brv1s")])
-qntdEnemies = Array[int]([4, 4, 3])
+qntdEnemies = Array[int]([3, 2, 2])
 spawnAlert = ExtResource("8_owyhm")
+waveAmount = 2
 
 [node name="Area2D" type="Area2D" parent="Room-3"]
 collision_layer = 0
@@ -653,8 +656,9 @@ script = ExtResource("6_awtxp")
 gateEnter = NodePath("../Gate-Room3-Room4")
 gateExit = NodePath("../Gate-Room4-Room5")
 enemies = Array[PackedScene]([ExtResource("6_2dt4y"), ExtResource("7_43g3d"), ExtResource("11_brv1s")])
-qntdEnemies = Array[int]([6, 4, 5])
+qntdEnemies = Array[int]([4, 2, 2])
 spawnAlert = ExtResource("8_owyhm")
+waveAmount = 2
 
 [node name="Area2D" type="Area2D" parent="Room-4"]
 collision_layer = 0
@@ -741,8 +745,9 @@ script = ExtResource("6_awtxp")
 gateEnter = NodePath("../Gate-Room4-Room5")
 gateExit = NodePath("../Gate-Room5-Room6")
 enemies = Array[PackedScene]([ExtResource("6_2dt4y"), ExtResource("7_43g3d"), ExtResource("11_brv1s")])
-qntdEnemies = Array[int]([3, 5, 6])
+qntdEnemies = Array[int]([6, 3, 3])
 spawnAlert = ExtResource("8_owyhm")
+waveAmount = 2
 
 [node name="Area2D" type="Area2D" parent="Room-5"]
 collision_layer = 0

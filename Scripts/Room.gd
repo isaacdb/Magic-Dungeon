@@ -5,6 +5,8 @@ extends Node2D
 @export var enemies : Array[PackedScene]
 @export var qntdEnemies : Array[int]
 @export var spawnAlert : PackedScene
+@export var waveAmount := 1
+
 
 @onready var areaRoom := $Area2D as Area2D
 @onready var spawnPoints = self.get_node("SpawnPoints").get_children() as Array[Node2D]
@@ -15,6 +17,8 @@ var areaActive = false
 var spawnPointsUsed : Array[int]
 var enemiesCount := 0
 var enemiesKilled := 0 
+var waveCount := 0
+
 
 func _ready():
 	rand.randomize()
@@ -30,6 +34,7 @@ func area_room_area_entered(area):
 	pass
 	
 func spawn_enemies():
+	waveCount += 1
 	var enemyNum := 0
 	for enemy in enemies:
 		for qntd in range(0, qntdEnemies[enemyNum]):
@@ -55,9 +60,15 @@ func get_random_spawn_point() -> Vector2:
 func enemy_killed():
 	if areaActive and not areaClean:
 		enemiesKilled += 1
-	
+			
 		if enemiesKilled >= enemiesCount:
-			gateExit.open()
-			gateEnter.open() 
-			areaActive = false
-			areaClean = true
+			if waveCount >= waveAmount:
+				gateExit.open()
+				gateEnter.open() 
+				areaActive = false
+				areaClean = true
+			else:
+				enemiesKilled = 0
+				enemiesCount = 0
+				spawnPointsUsed.clear()
+				spawn_enemies()

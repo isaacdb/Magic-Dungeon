@@ -384,12 +384,7 @@ healthManager = NodePath("Health")
 shootManager = NodePath("ShooterComponent")
 flashHit = NodePath("FlashHit")
 lifeBase = 10.0
-timeWalk = 2.5
 orcLowBulletStats = ExtResource("2_bxnmk")
-
-[node name="TimerIdle" type="Timer" parent="."]
-
-[node name="TimerWalk" type="Timer" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

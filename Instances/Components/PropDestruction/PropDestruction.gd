@@ -9,3 +9,6 @@ func Execute():
 	explosionParticle.emitting = true
 	smokeParticle.emitting = true
 	self.reparent(get_tree().get_root())
+	
+	var tween = create_tween()
+	tween.tween_callback(func(): queue_free()).set_delay(2.0)
