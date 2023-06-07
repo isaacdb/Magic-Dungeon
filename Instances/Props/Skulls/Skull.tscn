@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=3 uid="uid://cimdu4a6cec3m"]
+
+[ext_resource type="Texture2D" uid="uid://slkuyskcp0m0" path="res://Instances/Props/Skulls/skulls.png" id="1_mntwj"]
+[ext_resource type="Script" path="res://Instances/Props/Skulls/Skull.gd" id="1_r7gfs"]
+[ext_resource type="PackedScene" uid="uid://b4asjdyoyep5s" path="res://Instances/Components/Health/Health.tscn" id="2_8dpoe"]
+[ext_resource type="PackedScene" uid="uid://6fcg84clxst2" path="res://Instances/Components/Death/DeathManager.tscn" id="3_bww5a"]
+[ext_resource type="PackedScene" uid="uid://bdh7yqt03o3v4" path="res://Instances/Components/PropDestruction/PropDestruction.tscn" id="4_v6kdo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hr23i"]
+radius = 4.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qtah1"]
+radius = 4.03113
+
+[node name="Skull" type="StaticBody2D" node_paths=PackedStringArray("healthManager")]
+collision_layer = 0
+collision_mask = 32
+script = ExtResource("1_r7gfs")
+healthManager = NodePath("Health")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_mntwj")
+hframes = 3
+
+[node name="Health" parent="." node_paths=PackedStringArray("deathManager") instance=ExtResource("2_8dpoe")]
+position = Vector2(0, -7)
+collision_layer = 10
+collision_mask = 0
+deathManager = NodePath("../DeathManager")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Health"]
+z_index = 1
+position = Vector2(1, 8)
+shape = SubResource("CircleShape2D_hr23i")
+
+[node name="DeathManager" parent="." instance=ExtResource("3_bww5a")]
+switch_nps = Array[NodePath]([NodePath("../PropDestruction")])
+
+[node name="PropDestruction" parent="." instance=ExtResource("4_v6kdo")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 1)
+shape = SubResource("CircleShape2D_qtah1")

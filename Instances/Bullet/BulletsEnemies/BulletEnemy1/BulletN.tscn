@@ -223,6 +223,8 @@ script = ExtResource("4_nl1ph")
 lenght = 5
 
 [node name="ImpactPaticle" type="CPUParticles2D" parent="."]
+z_index = 9
+z_as_relative = false
 material = SubResource("CanvasItemMaterial_2832l")
 emitting = false
 amount = 5

@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://cmx7pnpls2gkt"]
+[gd_scene load_steps=46 format=3 uid="uid://cmx7pnpls2gkt"]
 
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_avsao"]
 [ext_resource type="PackedScene" uid="uid://03my8igrvwt8" path="res://Instances/Tilemap/TileMapWalls.tscn" id="1_fch5f"]
@@ -25,7 +25,10 @@
 [ext_resource type="PackedScene" uid="uid://b1ihv7h1usawy" path="res://Instances/Props/Flags/Flag.tscn" id="22_50bky"]
 [ext_resource type="PackedScene" uid="uid://bao0oq6xak2nx" path="res://Instances/Props/Jars/Jar.tscn" id="22_n8q72"]
 [ext_resource type="PackedScene" uid="uid://7so4v4xjp5xx" path="res://Instances/Props/Gargoyle/Gargoyle.tscn" id="23_7svb7"]
+[ext_resource type="PackedScene" uid="uid://bbkcg4cd5cjn6" path="res://Instances/Props/Shields/Shield.tscn" id="26_nskup"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Fog.gdshader" id="26_ntkou"]
+[ext_resource type="PackedScene" uid="uid://ckji28dievdf" path="res://Instances/Props/Box/Box.tscn" id="27_v6fap"]
+[ext_resource type="PackedScene" uid="uid://cimdu4a6cec3m" path="res://Instances/Props/Skulls/Skull.tscn" id="28_8d36h"]
 
 [sub_resource type="Gradient" id="Gradient_jo7ba"]
 offsets = PackedFloat32Array(0, 0.522988, 1)
@@ -76,7 +79,7 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.627451, 1, 1, 1, 0)
 [sub_resource type="Gradient" id="Gradient_xsmxh"]
 colors = PackedColorArray(0.316749, 0.422333, 0.477803, 1, 1, 1, 1, 1)
 
-[sub_resource type="Resource" id="Resource_ujq2a"]
+[sub_resource type="Resource" id="Resource_e38cs"]
 resource_local_to_scene = true
 script = ExtResource("12_5cc7y")
 damage = 1.0
@@ -407,7 +410,7 @@ layer_1/tile_data = PackedInt32Array(0, 0, 8, 1, 0, 8, 2, 0, 8, 3, 0, 8, 4, 0, 8
 
 [node name="Mage1" parent="." instance=ExtResource("4_f7hcd")]
 position = Vector2(350, -150)
-bulletStats = SubResource("Resource_ujq2a")
+bulletStats = SubResource("Resource_e38cs")
 
 [node name="Room-1" type="Node2D" parent="." node_paths=PackedStringArray("gateEnter", "gateExit")]
 visible = false
@@ -946,6 +949,45 @@ position = Vector2(412, -172)
 
 [node name="Jar9" parent="Props/Lobby" instance=ExtResource("22_n8q72")]
 position = Vector2(428, -177)
+
+[node name="Shield" parent="Props/Lobby" instance=ExtResource("26_nskup")]
+position = Vector2(242, -178)
+
+[node name="Shield2" parent="Props/Lobby" instance=ExtResource("26_nskup")]
+position = Vector2(399, -178)
+
+[node name="Box" parent="Props/Lobby" instance=ExtResource("27_v6fap")]
+position = Vector2(281, -92)
+
+[node name="Box2" parent="Props/Lobby" instance=ExtResource("27_v6fap")]
+position = Vector2(296, -92)
+
+[node name="Box3" parent="Props/Lobby" instance=ExtResource("27_v6fap")]
+position = Vector2(288, -102)
+
+[node name="Box4" parent="Props/Lobby" instance=ExtResource("27_v6fap")]
+position = Vector2(272, -102)
+
+[node name="Skull" parent="Props/Lobby" instance=ExtResource("28_8d36h")]
+position = Vector2(299, -152)
+
+[node name="Skull2" parent="Props/Lobby" instance=ExtResource("28_8d36h")]
+position = Vector2(304, -145)
+
+[node name="Skull3" parent="Props/Lobby" instance=ExtResource("28_8d36h")]
+position = Vector2(308, -151)
+
+[node name="Skull4" parent="Props/Lobby" instance=ExtResource("28_8d36h")]
+position = Vector2(297, -145)
+
+[node name="Skull5" parent="Props/Lobby" instance=ExtResource("28_8d36h")]
+position = Vector2(381, -109)
+
+[node name="Skull6" parent="Props/Lobby" instance=ExtResource("28_8d36h")]
+position = Vector2(386, -117)
+
+[node name="Skull7" parent="Props/Lobby" instance=ExtResource("28_8d36h")]
+position = Vector2(382, -121)
 
 [node name="Room1" type="Node2D" parent="Props"]
 y_sort_enabled = true

@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://ckji28dievdf"]
+
+[ext_resource type="Texture2D" uid="uid://bhpjkg5womx6v" path="res://Instances/Props/Box/box.png" id="1_kfi6q"]
+[ext_resource type="Script" path="res://Instances/Props/Box/Box.gd" id="1_xwt5u"]
+[ext_resource type="PackedScene" uid="uid://b4asjdyoyep5s" path="res://Instances/Components/Health/Health.tscn" id="2_f7a82"]
+[ext_resource type="PackedScene" uid="uid://6fcg84clxst2" path="res://Instances/Components/Death/DeathManager.tscn" id="3_27yqm"]
+[ext_resource type="PackedScene" uid="uid://bdh7yqt03o3v4" path="res://Instances/Components/PropDestruction/PropDestruction.tscn" id="4_blv3r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mfiuh"]
+size = Vector2(18, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ulad0"]
+size = Vector2(16, 9)
+
+[node name="Box" type="Node2D" node_paths=PackedStringArray("healthManager")]
+script = ExtResource("1_xwt5u")
+healthManager = NodePath("Health")
+lifeBase = 12
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_kfi6q")
+
+[node name="Health" parent="." node_paths=PackedStringArray("deathManager") instance=ExtResource("2_f7a82")]
+position = Vector2(0, -7)
+collision_layer = 10
+collision_mask = 0
+deathManager = NodePath("../DeathManager")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Health"]
+visible = false
+z_index = 1
+position = Vector2(0, 9)
+shape = SubResource("RectangleShape2D_mfiuh")
+
+[node name="DeathManager" parent="." instance=ExtResource("3_27yqm")]
+switch_nps = Array[NodePath]([NodePath("../PropDestruction")])
+
+[node name="PropDestruction" parent="." instance=ExtResource("4_blv3r")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(0, 2)
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_ulad0")
