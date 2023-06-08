@@ -25,4 +25,7 @@ func Execute():
 	tween.play()
 	
 	self.reparent(get_tree().get_root().get_child(0))
+	
+	var tweenDestroy = create_tween()
+	tweenDestroy.tween_callback(func(): queue_free()).set_delay(2.0)
 	pass
