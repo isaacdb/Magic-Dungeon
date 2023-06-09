@@ -13,7 +13,7 @@ func _ready():
 	pass
 
 func AddXp():
-	currentXp += 1
+	currentXp += 2
 	if CheckLevelUp():
 		LevelUpEffect()
 	else:

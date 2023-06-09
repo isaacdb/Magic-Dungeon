@@ -13,9 +13,11 @@ shader_parameter/size = 0.0
 shader_parameter/thickness = 0.0
 
 [node name="ShockWave" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_iv78p")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_djccg")

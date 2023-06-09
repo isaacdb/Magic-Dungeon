@@ -20,4 +20,3 @@ func Initialize(upgradeSelectorInject: UpgradeSelector, upgradeStatsInject: Upgr
 func Selected():
 	upgradeSelector.UpgradeSelected(upgradeStats)
 	pass
-
