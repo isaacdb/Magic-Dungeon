@@ -11,19 +11,21 @@ var forceApplied := 0.0
 var direction := Vector2.ZERO
 var velocity := Vector2.ZERO
 
-func _ready():
+func _ready() -> void:
 	rnd.randomize()
 	healthManager.SetLifeBase(lifeBase)
 	healthManager.damage.connect(Shake)
+	sprite.rotation_degrees = rnd.randi_range(0, 360)
 	pass
 	
-func _physics_process(delta):
-	velocity = forceApplied * direction * delta
-	move_and_collide(velocity)
-	sprite.rotation += delta * (forceApplied / 3) * direction.x
+func _physics_process(delta) -> void:
+	if forceApplied > 0:
+		velocity = forceApplied * direction * delta
+		move_and_collide(velocity)
+		sprite.rotation += delta * (forceApplied / 3) * direction.x
 	pass
 	
-func Shake(attack: Attack):
+func Shake(attack: Attack) -> void:
 	direction = (self.global_position - attack.direction).normalized()
 	forceApplied = 60.0
 	
