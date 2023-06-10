@@ -7,6 +7,8 @@ extends Node2D
 @onready var deadPanel := $CanvasLayer/DeadPanel as ColorRect
 @onready var congrats := $CanvasLayer/CongratsPanel as ColorRect
 @onready var canvaModulate := $CanvasModulate as CanvasModulate
+@onready var audioGameOver := $AudioGameOver as AudioStreamPlayer2D
+@onready var audioWinGame := $AudioWinGame as AudioStreamPlayer2D
 
 var pointer = load("res://Assets/pointer4.png")
 
@@ -35,10 +37,12 @@ func BossKilled():
 	var tween = create_tween()
 	tween.tween_callback(func(): get_tree().reload_current_scene()).set_delay(7)
 	tween.play()
+	audioWinGame.play()
 	pass
 
 func PlayerDead():
 	Global.screen_shake.emit(10, 2, 1)
+	audioGameOver.play()
 	
 	deadPanel.visible = true
 	var tweenDeadPanel = create_tween()

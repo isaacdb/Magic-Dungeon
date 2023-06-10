@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://rdglfbq61btc"]
+[gd_scene load_steps=39 format=3 uid="uid://rdglfbq61btc"]
 
 [ext_resource type="Script" path="res://Instances/Enemies/LowOrcN/LowOrcN.gd" id="1_v5u44"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="2_0f6yl"]
@@ -6,10 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://dd802vu3oo82g" path="res://OldVersions/LowOrc/low-orc.png" id="3_h48cw"]
 [ext_resource type="PackedScene" uid="uid://b4asjdyoyep5s" path="res://Instances/Components/Health/Health.tscn" id="5_ybllr"]
 [ext_resource type="PackedScene" uid="uid://6fcg84clxst2" path="res://Instances/Components/Death/DeathManager.tscn" id="6_y0wxg"]
+[ext_resource type="AudioStream" uid="uid://hhj8od3wlwnn" path="res://Instances/Enemies/Audio/enemyHit.ogg" id="7_3v1x2"]
 [ext_resource type="PackedScene" uid="uid://bjwrgsdbjvqw3" path="res://Instances/Components/DeathEffect/DeathExplosion.tscn" id="7_0143p"]
 [ext_resource type="PackedScene" uid="uid://of0xsffqavim" path="res://Instances/Components/EnemyDeath/EnemyDeath.tscn" id="8_3sbaw"]
 [ext_resource type="PackedScene" uid="uid://dx8h735nl0e2d" path="res://Instances/Components/Move/Move.tscn" id="8_irqj0"]
 [ext_resource type="PackedScene" uid="uid://cwyxu1ysjtku7" path="res://Instances/Components/DropXp/DropXp.tscn" id="8_pw8x6"]
+[ext_resource type="AudioStream" uid="uid://dmup1gun0pjth" path="res://Instances/Enemies/Audio/Explosion_04.mp3" id="9_bpqu5"]
 [ext_resource type="PackedScene" uid="uid://c1sky0kyn05tc" path="res://Instances/Components/PlayerTracker/PlayerTracker.tscn" id="10_25ldp"]
 [ext_resource type="PackedScene" uid="uid://bfeok0rvx26n0" path="res://Instances/Components/ShockWave/ShockWave.tscn" id="11_5r17v"]
 [ext_resource type="PackedScene" uid="uid://bcbgphbcmqgky" path="res://Instances/Components/KnockBack/KnockBack.tscn" id="12_hk3au"]
@@ -18,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://ca6aeltom7e7y" path="res://Instances/Components/ShooterComponent/ShooterComponent.tscn" id="15_3v3iq"]
 [ext_resource type="PackedScene" uid="uid://8mpq1pm143kp" path="res://Instances/Components/HealthBar/HealthBar.tscn" id="15_8376v"]
 [ext_resource type="PackedScene" uid="uid://b4enx6olclngm" path="res://Instances/Components/FlashHit/FlashHit.tscn" id="16_n4vfa"]
+[ext_resource type="AudioStream" uid="uid://bykjueqtfwcyp" path="res://Instances/Enemies/Audio/FireEnemy.ogg" id="18_nskge"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xek6w"]
 radius = 7.0
@@ -417,6 +420,7 @@ collision_mask = 0
 deathManager = NodePath("../DeathManager")
 knockBack = NodePath("../KnockBack")
 lifeBar = NodePath("../HealthBar")
+hitAudio = ExtResource("7_3v1x2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Health"]
 shape = SubResource("CapsuleShape2D_axq1k")
@@ -425,6 +429,7 @@ debug_color = Color(0, 0.6, 0, 0.419608)
 [node name="DeathManager" parent="." node_paths=PackedStringArray("activeHandle") instance=ExtResource("6_y0wxg")]
 position = Vector2(0, -8)
 activeHandle = NodePath("../ActiveHandleComponent")
+deathAudio = ExtResource("9_bpqu5")
 switch_nps = Array[NodePath]([NodePath("../DropXp"), NodePath("../DeathExplosion"), NodePath("../EnemyDeath"), NodePath("../ShockWave")])
 
 [node name="EnemyDeath" parent="." instance=ExtResource("8_3sbaw")]
@@ -458,5 +463,6 @@ fill_mode = 1
 
 [node name="ShooterComponent" parent="." instance=ExtResource("15_3v3iq")]
 position = Vector2(0, -8)
+fireAudio = ExtResource("18_nskge")
 
 [node name="FlashHit" parent="." instance=ExtResource("16_n4vfa")]

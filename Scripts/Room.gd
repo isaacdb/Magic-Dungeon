@@ -6,7 +6,7 @@ extends Node2D
 @export var qntdEnemies : Array[int]
 @export var spawnAlert : PackedScene
 @export var waveAmount := 1
-
+@export var audioPlayer : AudioStreamPlayer2D
 
 @onready var areaRoom := $Area2D as Area2D
 @onready var spawnPoints = self.get_node("SpawnPoints").get_children() as Array[Node2D]
@@ -30,6 +30,7 @@ func area_room_area_entered(area):
 	if !areaClean and !areaActive and area.is_in_group("player"):
 		areaActive = true
 		gateEnter.close()
+		audioPlayer.play()
 		spawn_enemies()
 	pass
 	
@@ -67,6 +68,7 @@ func enemy_killed():
 				gateEnter.open() 
 				areaActive = false
 				areaClean = true
+				audioPlayer.play()
 			else:
 				enemiesKilled = 0
 				enemiesCount = 0

@@ -4,8 +4,10 @@ class_name Health
 @export var deathManager : DeathManager
 @export var knockBack : KnockBack
 @export var lifeBar : HealthBar
+@export var hitAudio : AudioStream
 
 @onready var collisionShape := $CollisionShape2D as CollisionShape2D
+@onready var audioPlayer := $AudioStreamPlayer2D as AudioStreamPlayer2D
 
 var lifeBase := 0
 var currentHealth := 0
@@ -18,6 +20,10 @@ func _ready():
 	monitorable = true
 	monitoring = true
 	usedLayer = collision_layer
+	
+	if hitAudio:
+		audioPlayer.stream = hitAudio
+	
 	pass
 
 func SetLifeBase(newLifeBase: float):
@@ -49,9 +55,12 @@ func take_damage(attack: Attack):
 		lifeBar.UpdateHealthBar(currentHealth)
 	
 	damage.emit(attack)
-		
+	
 	if knockBack:
 		knockBack.Execute(get_parent(), attack.knock_back, attack.direction)
+	
+	if hitAudio:
+		audioPlayer.play()
 	
 	if (currentHealth <= 0):
 		deathManager.Execute()

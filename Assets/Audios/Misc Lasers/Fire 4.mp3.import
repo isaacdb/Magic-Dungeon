@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cc7acyb3uvnje"
+path="res://.godot/imported/Fire 4.mp3-c24abb13189ac6cfe4a2b83c0b065db8.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audios/Misc Lasers/Fire 4.mp3"
+dest_files=["res://.godot/imported/Fire 4.mp3-c24abb13189ac6cfe4a2b83c0b065db8.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

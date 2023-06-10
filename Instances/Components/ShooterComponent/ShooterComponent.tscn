@@ -6,3 +6,5 @@
 script = ExtResource("1_5eups")
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

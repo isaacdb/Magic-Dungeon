@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://owdfvvvn7ja3"]
+[gd_scene load_steps=44 format=3 uid="uid://owdfvvvn7ja3"]
 
 [ext_resource type="PackedScene" uid="uid://d1loimaxqs6y6" path="res://Instances/Components/LookAtPlayerComponent/LookAtPlayerComponent.tscn" id="1_4mr3o"]
 [ext_resource type="Script" path="res://Instances/Enemies/BossOrc/BossOrc.gd" id="1_38hcy"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://6fcg84clxst2" path="res://Instances/Components/Death/DeathManager.tscn" id="5_47m65"]
 [ext_resource type="PackedScene" uid="uid://bjwrgsdbjvqw3" path="res://Instances/Components/DeathEffect/DeathExplosion.tscn" id="6_wg2kf"]
 [ext_resource type="PackedScene" uid="uid://cwyxu1ysjtku7" path="res://Instances/Components/DropXp/DropXp.tscn" id="7_5ok6n"]
+[ext_resource type="AudioStream" uid="uid://hhj8od3wlwnn" path="res://Instances/Enemies/Audio/enemyHit.ogg" id="7_kgjiu"]
 [ext_resource type="PackedScene" uid="uid://wwc5nmv5yn2j" path="res://Instances/Components/AttackManager/AttackManager.tscn" id="7_qdm3p"]
 [ext_resource type="PackedScene" uid="uid://c6sck5smlg7pc" path="res://Instances/AttackPaterns/CirclePatern/CirclePatern.tscn" id="8_afanf"]
 [ext_resource type="PackedScene" uid="uid://bs5y7eh8kgpuo" path="res://Instances/AttackPaterns/ArcPatern/ArcPatern.tscn" id="8_ts25e"]
@@ -22,6 +23,7 @@
 [ext_resource type="Resource" uid="uid://d2m56lunijwd2" path="res://Instances/Resources/Bullets/BulletE2.tres" id="10_vbjbx"]
 [ext_resource type="PackedScene" uid="uid://ca6aeltom7e7y" path="res://Instances/Components/ShooterComponent/ShooterComponent.tscn" id="11_gefv3"]
 [ext_resource type="PackedScene" uid="uid://8mpq1pm143kp" path="res://Instances/Components/HealthBar/HealthBar.tscn" id="12_cp5v3"]
+[ext_resource type="AudioStream" uid="uid://dmup1gun0pjth" path="res://Instances/Enemies/Audio/Explosion_04.mp3" id="17_fge52"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nmnha"]
 
@@ -97,7 +99,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5v3u6"]
 size = Vector2(20, 26)
 
-[sub_resource type="Resource" id="Resource_kq7xl"]
+[sub_resource type="Resource" id="Resource_2sb4f"]
 resource_local_to_scene = true
 script = ExtResource("10_f14nk")
 damage = 1.0
@@ -106,7 +108,7 @@ speed = 200.0
 origin = "Enemy"
 prefab = ExtResource("9_uueks")
 
-[sub_resource type="Resource" id="Resource_83oi1"]
+[sub_resource type="Resource" id="Resource_sdl0y"]
 resource_local_to_scene = true
 script = ExtResource("10_f14nk")
 damage = 1.0
@@ -333,6 +335,7 @@ collision_layer = 8
 collision_mask = 0
 deathManager = NodePath("../DeathManager")
 lifeBar = NodePath("../CanvasLayer/HealthBar")
+hitAudio = ExtResource("7_kgjiu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Health"]
 position = Vector2(0, -13)
@@ -342,7 +345,7 @@ shape = SubResource("RectangleShape2D_5v3u6")
 pathsAttackPaterns = Array[NodePath]([NodePath("EspiralPatern"), NodePath("CirclePatern"), NodePath("ArcPatern")])
 
 [node name="ArcPatern" parent="AttackManager" instance=ExtResource("8_ts25e")]
-bullet = SubResource("Resource_kq7xl")
+bullet = SubResource("Resource_2sb4f")
 
 [node name="CirclePatern" parent="AttackManager" instance=ExtResource("8_afanf")]
 bulletAmount = 50
@@ -352,7 +355,7 @@ bullet = ExtResource("10_vbjbx")
 bulletAmount = 5
 fireAmount = 15
 delayBetweenFire = 0.1
-bullet = SubResource("Resource_83oi1")
+bullet = SubResource("Resource_sdl0y")
 
 [node name="ActiveHandleComponent" parent="." instance=ExtResource("4_c4ky7")]
 activeOnLoad = true
@@ -360,6 +363,7 @@ switch_nps = Array[NodePath]([NodePath("../GroupFlip/LookAtPlayerComponent"), No
 
 [node name="DeathManager" parent="." node_paths=PackedStringArray("activeHandle") instance=ExtResource("5_47m65")]
 activeHandle = NodePath("../ActiveHandleComponent")
+deathAudio = ExtResource("17_fge52")
 switch_nps = Array[NodePath]([NodePath("../DeathExplosion"), NodePath("../DeathExplosion3"), NodePath("../DeathExplosion2")])
 
 [node name="DeathExplosion" parent="." instance=ExtResource("6_wg2kf")]
