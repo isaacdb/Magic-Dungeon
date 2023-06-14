@@ -194,7 +194,8 @@ collision_mask = 32
 shape = SubResource("CircleShape2D_koult")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
-y_sort_enabled = true
+z_index = 10
+z_as_relative = false
 scale = Vector2(0.445, 0.445)
 sprite_frames = SubResource("SpriteFrames_d5xyr")
 animation = &"Idle"

@@ -28,7 +28,7 @@ func Execute():
 	tween.tween_property(colorRect.material, "shader_parameter/size", 0.2, 0.4).from(0.0).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	tween.play()
 	
-	self.reparent(get_tree().get_root().get_child(0))
+	self.reparent(get_tree().get_root().get_node("Node2D"))
 	
 	var tweenDestroy = create_tween()
 	tweenDestroy.tween_callback(func(): queue_free()).set_delay(1.0)

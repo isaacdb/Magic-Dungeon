@@ -36,7 +36,7 @@ point_count = 3
 script = ExtResource("1_a6ymy")
 
 [node name="SmokeParticle" type="CPUParticles2D" parent="."]
-y_sort_enabled = true
+z_index = 12
 material = SubResource("CanvasItemMaterial_kajsd")
 emitting = false
 amount = 15
@@ -61,7 +61,7 @@ color_initial_ramp = SubResource("Gradient_pqsus")
 anim_offset_max = 1.0
 
 [node name="ExplosionParticle" type="CPUParticles2D" parent="."]
-y_sort_enabled = true
+z_index = 11
 material = SubResource("CanvasItemMaterial_o20rm")
 emitting = false
 amount = 10

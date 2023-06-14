@@ -19,7 +19,7 @@ func Execute():
 	explosionParticle.emitting = true
 	smokeParticle.emitting = true
 	explosionAnimPlayer.play("Explosion")
-	self.reparent(get_tree().get_root())
+	self.reparent(get_parent().get_parent())
 	
 	var tween = create_tween()
 	tween.tween_callback(func(): queue_free()).set_delay(2.0)
