@@ -411,7 +411,7 @@ position = Vector2(0, -4)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_rckoi")
 autoplay = "default"
-frame_progress = 0.101708
+frame_progress = 0.752977
 offset = Vector2(0, -2)
 
 [node name="Eye2" type="AnimatedSprite2D" parent="GroupFlip/AnimatedSprite2D"]
@@ -420,7 +420,7 @@ position = Vector2(-6, -4)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_rckoi")
 autoplay = "default"
-frame_progress = 0.93954
+frame_progress = 0.59081
 offset = Vector2(0, -2)
 
 [node name="PointLight2D" type="PointLight2D" parent="GroupFlip"]

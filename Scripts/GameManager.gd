@@ -3,12 +3,12 @@ extends Node2D
 @export var bossLifeBar : HealthBar
 @export var defaultColorModulate : Color
 @export var hitColorModulate : Color
+@export var audioGameOver : AudioStreamPlayer2D
+@export var audioWinGame : AudioStreamPlayer2D
 
 @onready var deadPanel := $CanvasLayer/PanelGameOver as Panel
 @onready var congrats := $CanvasLayer/PanelCongrats as Panel
 @onready var canvaModulate := $CanvasModulate as CanvasModulate
-@onready var audioGameOver := $AudioGameOver as AudioStreamPlayer2D
-@onready var audioWinGame := $AudioWinGame as AudioStreamPlayer2D
 
 var pointer = load("res://Assets/pointer4.png")
 
