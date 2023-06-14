@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://owdfvvvn7ja3"]
+[gd_scene load_steps=57 format=3 uid="uid://owdfvvvn7ja3"]
 
 [ext_resource type="PackedScene" uid="uid://d1loimaxqs6y6" path="res://Instances/Components/LookAtPlayerComponent/LookAtPlayerComponent.tscn" id="1_4mr3o"]
 [ext_resource type="Script" path="res://Instances/Enemies/BossOrc/BossOrc.gd" id="1_38hcy"]
@@ -156,7 +156,7 @@ fill_to = Vector2(0.858696, 0.798913)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5v3u6"]
 size = Vector2(20, 26)
 
-[sub_resource type="Resource" id="Resource_et513"]
+[sub_resource type="Resource" id="Resource_0nccf"]
 resource_local_to_scene = true
 script = ExtResource("10_f14nk")
 damage = 1.0
@@ -165,7 +165,7 @@ speed = 200.0
 origin = "Enemy"
 prefab = ExtResource("9_uueks")
 
-[sub_resource type="Resource" id="Resource_2v4il"]
+[sub_resource type="Resource" id="Resource_73e7y"]
 resource_local_to_scene = true
 script = ExtResource("10_f14nk")
 damage = 1.0
@@ -173,6 +173,30 @@ knockBackForce = 0.0
 speed = 120.0
 origin = "Enemy"
 prefab = ExtResource("9_uueks")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6synx"]
+bg_color = Color(0.164706, 0.164706, 0.164706, 1)
+border_width_left = 30
+border_width_top = 30
+border_width_right = 30
+border_width_bottom = 30
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 90
+corner_radius_top_right = 90
+corner_radius_bottom_right = 90
+corner_radius_bottom_left = 90
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rsy0i"]
+bg_color = Color(0.584314, 0.584314, 0.584314, 1)
+border_width_left = 30
+border_width_top = 30
+border_width_right = 30
+border_width_bottom = 30
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 90
+corner_radius_top_right = 90
+corner_radius_bottom_right = 90
+corner_radius_bottom_left = 90
 
 [sub_resource type="Animation" id="Animation_rurjw"]
 resource_name = "Attack"
@@ -448,7 +472,7 @@ shape = SubResource("RectangleShape2D_5v3u6")
 pathsAttackPaterns = Array[NodePath]([NodePath("EspiralPatern"), NodePath("CirclePatern"), NodePath("ArcPatern")])
 
 [node name="ArcPatern" parent="AttackManager" instance=ExtResource("8_ts25e")]
-bullet = SubResource("Resource_et513")
+bullet = SubResource("Resource_0nccf")
 
 [node name="CirclePatern" parent="AttackManager" instance=ExtResource("8_afanf")]
 bulletAmount = 50
@@ -458,7 +482,7 @@ bullet = ExtResource("10_vbjbx")
 bulletAmount = 5
 fireAmount = 15
 delayBetweenFire = 0.1
-bullet = SubResource("Resource_2v4il")
+bullet = SubResource("Resource_73e7y")
 
 [node name="ActiveHandleComponent" parent="." instance=ExtResource("4_c4ky7")]
 activeOnLoad = true
@@ -494,11 +518,14 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 279.0
-offset_top = 637.0
+offset_top = 655.0
 offset_right = 5849.0
-offset_bottom = 417.0
+offset_bottom = 255.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_6synx")
+theme_override_styles/fill = SubResource("StyleBoxFlat_rsy0i")
+value = 90.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

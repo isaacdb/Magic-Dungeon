@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://dh63bq1n8ka7j"]
+[gd_scene load_steps=4 format=3 uid="uid://dh63bq1n8ka7j"]
 
 [ext_resource type="Script" path="res://Instances/Components/Audio/SoundTrack.gd" id="1_8w34x"]
 [ext_resource type="AudioStream" uid="uid://bjsjq7cjds8g" path="res://Instances/Components/Audio/sound-track.mp3" id="2_aynnb"]
+[ext_resource type="AudioStream" uid="uid://c3r3giiums66i" path="res://Assets/Audios/Boss-fight.mp3" id="3_hqhtc"]
 
 [node name="SoundTrack" type="Node"]
 process_mode = 3
 script = ExtResource("1_8w34x")
+soundTrackGeneral = ExtResource("2_aynnb")
+bossTrack = ExtResource("3_hqhtc")
 
 [node name="AudioPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_aynnb")

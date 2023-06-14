@@ -25,6 +25,8 @@ func _ready():
 	
 	congrats.visible = false
 	congrats.position.y = -600
+	
+	Global.game_start.emit()
 	pass
 
 

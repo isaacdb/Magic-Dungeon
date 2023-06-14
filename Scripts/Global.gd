@@ -12,9 +12,11 @@ signal level_up
 
 signal enemy_killed
 signal boss_killed
+signal enter_boss_room
+
+signal game_start
 
 var camera : Camera2D
-
 
 func CalculeFloatVariation(delta: float, amplitude: float, frequency: float) -> float:
 	return (sin(Time.get_ticks_msec() * delta * amplitude) * frequency)

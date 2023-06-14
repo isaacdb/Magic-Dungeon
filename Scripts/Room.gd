@@ -7,6 +7,7 @@ extends Node2D
 @export var spawnAlert : PackedScene
 @export var waveAmount := 1
 @export var audioPlayer : AudioStreamPlayer2D
+@export var isBossRoom : bool = false
 
 @onready var areaRoom := $Area2D as Area2D
 @onready var spawnPoints = self.get_node("SpawnPoints").get_children() as Array[Node2D]
@@ -32,6 +33,9 @@ func area_room_area_entered(area):
 		gateEnter.close()
 		audioPlayer.play()
 		spawn_enemies()
+		
+		if isBossRoom:
+			Global.enter_boss_room.emit()
 	pass
 	
 func spawn_enemies():
