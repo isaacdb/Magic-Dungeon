@@ -1,14 +1,19 @@
 extends Line2D
 
 @export var lenght := 50
+@export var targetToFollow : Node2D
 
 var point := Vector2.ZERO
+
+func _ready():
+	if !targetToFollow:
+		targetToFollow = get_parent()
 
 func _process(delta):
 	global_position = Vector2.ZERO
 	global_rotation = 0
 	
-	point = get_parent().global_position
+	point = targetToFollow.global_position
 	add_point(point)
 	
 	while get_point_count() > lenght:

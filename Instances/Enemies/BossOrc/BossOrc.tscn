@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://owdfvvvn7ja3"]
+[gd_scene load_steps=55 format=3 uid="uid://owdfvvvn7ja3"]
 
 [ext_resource type="PackedScene" uid="uid://d1loimaxqs6y6" path="res://Instances/Components/LookAtPlayerComponent/LookAtPlayerComponent.tscn" id="1_4mr3o"]
 [ext_resource type="Script" path="res://Instances/Enemies/BossOrc/BossOrc.gd" id="1_38hcy"]
@@ -24,10 +24,21 @@
 [ext_resource type="PackedScene" uid="uid://ca6aeltom7e7y" path="res://Instances/Components/ShooterComponent/ShooterComponent.tscn" id="11_gefv3"]
 [ext_resource type="PackedScene" uid="uid://8mpq1pm143kp" path="res://Instances/Components/HealthBar/HealthBar.tscn" id="12_cp5v3"]
 [ext_resource type="AudioStream" uid="uid://dmup1gun0pjth" path="res://Instances/Enemies/Audio/Explosion_04.mp3" id="17_fge52"]
+[ext_resource type="Script" path="res://Scripts/LineTrail.gd" id="25_33vr0"]
+[ext_resource type="Texture2D" uid="uid://jjjmenug6gvc" path="res://Instances/Enemies/BossOrc/burning_loop_5.png" id="25_t8sfh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nmnha"]
 
+[sub_resource type="Curve" id="Curve_qojjg"]
+_data = [Vector2(0.0125, 0), 0.0, 0.0, 0, 0, Vector2(0.2125, 0.68421), 1.77778, 1.77778, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_ldir8"]
+_data = [Vector2(0, 0.0105263), 0.0, 0.0, 0, 0, Vector2(0.21875, 0.505263), 2.48622, 2.48622, 0, 0, Vector2(0.9875, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wa0hw"]
+resource_local_to_scene = true
 shader = ExtResource("4_g4uk6")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifier = 0.0
@@ -96,10 +107,56 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_orjvj"]
+atlas = ExtResource("25_t8sfh")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vy4b8"]
+atlas = ExtResource("25_t8sfh")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bry6x"]
+atlas = ExtResource("25_t8sfh")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lcfam"]
+atlas = ExtResource("25_t8sfh")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rckoi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_orjvj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vy4b8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bry6x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lcfam")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_jfxax"]
+offsets = PackedFloat32Array(0, 0.206612, 0.528926, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.505344, 0.505344, 0.505344, 1, 0.237539, 0.237539, 0.237539, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6ni8p"]
+gradient = SubResource("Gradient_jfxax")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.858696, 0.798913)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5v3u6"]
 size = Vector2(20, 26)
 
-[sub_resource type="Resource" id="Resource_2sb4f"]
+[sub_resource type="Resource" id="Resource_et513"]
 resource_local_to_scene = true
 script = ExtResource("10_f14nk")
 damage = 1.0
@@ -108,7 +165,7 @@ speed = 200.0
 origin = "Enemy"
 prefab = ExtResource("9_uueks")
 
-[sub_resource type="Resource" id="Resource_sdl0y"]
+[sub_resource type="Resource" id="Resource_2v4il"]
 resource_local_to_scene = true
 script = ExtResource("10_f14nk")
 damage = 1.0
@@ -297,7 +354,7 @@ _data = {
 "Walk": SubResource("Animation_y1p4g")
 }
 
-[node name="BossOrc" type="CharacterBody2D" node_paths=PackedStringArray("moveComponent", "playerTracker", "healthManager", "shootManager", "flashHit", "attackManager")]
+[node name="BossOrc" type="CharacterBody2D" node_paths=PackedStringArray("moveComponent", "playerTracker", "healthManager", "shootManager", "flashHit", "attackManager", "itensRage")]
 collision_layer = 0
 collision_mask = 32
 script = ExtResource("1_38hcy")
@@ -307,6 +364,7 @@ healthManager = NodePath("Health")
 shootManager = NodePath("ShooterComponent")
 flashHit = NodePath("FlashHit")
 attackManager = NodePath("AttackManager")
+itensRage = [NodePath("GroupFlip/AnimatedSprite2D/Eye"), NodePath("GroupFlip/AnimatedSprite2D/Eye2"), NodePath("RageLine2"), NodePath("RageLine1"), NodePath("GroupFlip/PointLight2D")]
 lifeBase = 250.0
 orcLowBulletStats = ExtResource("2_pc7t6")
 
@@ -314,6 +372,24 @@ orcLowBulletStats = ExtResource("2_pc7t6")
 visible = false
 position = Vector2(2, -10)
 shape = SubResource("CircleShape2D_nmnha")
+
+[node name="RageLine1" type="Line2D" parent="." node_paths=PackedStringArray("targetToFollow")]
+z_index = 15
+width = 1.0
+width_curve = SubResource("Curve_qojjg")
+default_color = Color(1, 0, 0, 1)
+script = ExtResource("25_33vr0")
+lenght = 20
+targetToFollow = NodePath("../GroupFlip/AnimatedSprite2D/Eye")
+
+[node name="RageLine2" type="Line2D" parent="." node_paths=PackedStringArray("targetToFollow")]
+z_index = 15
+width = 1.0
+width_curve = SubResource("Curve_ldir8")
+default_color = Color(1, 0, 0, 1)
+script = ExtResource("25_33vr0")
+lenght = 20
+targetToFollow = NodePath("../GroupFlip/AnimatedSprite2D/Eye2")
 
 [node name="GroupFlip" type="Node2D" parent="."]
 
@@ -328,6 +404,33 @@ animation = &"Idle"
 frame = 7
 frame_progress = 0.869444
 flip_h = true
+
+[node name="Eye" type="AnimatedSprite2D" parent="GroupFlip/AnimatedSprite2D"]
+modulate = Color(1, 0.129412, 0.2, 1)
+position = Vector2(0, -4)
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_rckoi")
+autoplay = "default"
+frame_progress = 0.101708
+offset = Vector2(0, -2)
+
+[node name="Eye2" type="AnimatedSprite2D" parent="GroupFlip/AnimatedSprite2D"]
+modulate = Color(1, 0.129412, 0.2, 1)
+position = Vector2(-6, -4)
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_rckoi")
+autoplay = "default"
+frame_progress = 0.93954
+offset = Vector2(0, -2)
+
+[node name="PointLight2D" type="PointLight2D" parent="GroupFlip"]
+position = Vector2(0, -9)
+scale = Vector2(2.08026, 1.88008)
+color = Color(1, 0, 0, 1)
+energy = 1.4
+shadow_enabled = true
+shadow_filter_smooth = 20.3
+texture = SubResource("GradientTexture2D_6ni8p")
 
 [node name="Health" parent="." node_paths=PackedStringArray("deathManager", "lifeBar") instance=ExtResource("3_uvpwl")]
 visible = false
@@ -345,7 +448,7 @@ shape = SubResource("RectangleShape2D_5v3u6")
 pathsAttackPaterns = Array[NodePath]([NodePath("EspiralPatern"), NodePath("CirclePatern"), NodePath("ArcPatern")])
 
 [node name="ArcPatern" parent="AttackManager" instance=ExtResource("8_ts25e")]
-bullet = SubResource("Resource_2sb4f")
+bullet = SubResource("Resource_et513")
 
 [node name="CirclePatern" parent="AttackManager" instance=ExtResource("8_afanf")]
 bulletAmount = 50
@@ -355,7 +458,7 @@ bullet = ExtResource("10_vbjbx")
 bulletAmount = 5
 fireAmount = 15
 delayBetweenFire = 0.1
-bullet = SubResource("Resource_sdl0y")
+bullet = SubResource("Resource_2v4il")
 
 [node name="ActiveHandleComponent" parent="." instance=ExtResource("4_c4ky7")]
 activeOnLoad = true

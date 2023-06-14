@@ -86,11 +86,11 @@ _data = {
 "RESET": SubResource("Animation_pqqg8")
 }
 
-[sub_resource type="Gradient" id="Gradient_jfxax"]
+[sub_resource type="Gradient" id="Gradient_0d5pp"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_vpnaj"]
-gradient = SubResource("Gradient_jfxax")
+gradient = SubResource("Gradient_0d5pp")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.825688, 0.802752)
@@ -182,12 +182,11 @@ scale_amount_max = 0.7
 color_ramp = SubResource("Gradient_f3y8h")
 anim_offset_max = 1.0
 
-[node name="Health" parent="." node_paths=PackedStringArray("deathManager", "knockBack", "lifeBar") groups=["player"] instance=ExtResource("3_gonwg")]
+[node name="Health" parent="." node_paths=PackedStringArray("deathManager", "knockBack") groups=["player"] instance=ExtResource("3_gonwg")]
 collision_layer = 2
 collision_mask = 0
 deathManager = NodePath("../DeathManager")
 knockBack = NodePath("../KnockBack")
-lifeBar = NodePath("")
 hitAudio = ExtResource("12_qa121")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Health" groups=["player"]]

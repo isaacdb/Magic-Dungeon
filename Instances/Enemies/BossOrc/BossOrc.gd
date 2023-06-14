@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+## Components
 @export var moveComponent : MoveComponent
 @export var playerTracker : PlayerTracker
 @export var healthManager : Health
@@ -7,9 +8,11 @@ extends CharacterBody2D
 @export var flashHit : FlashHit
 @export var attackManager : AttackManager
 
-@export var speed := 50.0
+## Rage
+@export var itensRage : Array[CanvasItem]
 
 # Combat vars
+@export var speed := 50.0
 @export var damage := 1.0
 @export var attackDelay := 1.5
 @export var knockBackForce := 300.0
@@ -44,8 +47,11 @@ func _ready():
 	healthManager.lifeBar.UpdateHealthBar(lifeBase)
 	
 	rnd.randomize()
-	pass
 	
+	for item in itensRage:
+		item.visible = false
+	pass
+
 func _physics_process(delta):
 	match currentState:
 		States.IDLE:
@@ -96,7 +102,7 @@ func AttackFinished():
 	
 func GetHit(attack: Attack):
 	flashHit.Flash(sprite.material)
-	if healthManager.currentHealth < 50:
+	if healthManager.currentHealth < lifeBase/2:
 		SetRageMode()
 		
 	if healthManager.currentHealth <= 0:
@@ -105,6 +111,9 @@ func GetHit(attack: Attack):
 	pass
 	
 func SetRageMode():
+	for item in itensRage:
+		item.visible = true
+	
 	timeIdle = 1.0
 	speed = 130.0
 	pass
