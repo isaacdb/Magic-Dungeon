@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="UpgradeStats" load_steps=2 format=3 uid="uid://b7g6e2jq8sfs4"]
+[gd_resource type="Resource" script_class="UpgradeStats" load_steps=3 format=3 uid="uid://b7g6e2jq8sfs4"]
 
+[ext_resource type="Texture2D" uid="uid://3nc8v12vb40w" path="res://Assets/GUI/icon-firerate.png" id="1_6l0yt"]
 [ext_resource type="Script" path="res://Instances/Resources/Upgrades/UpgradeStats.gd" id="1_lgw18"]
 
 [resource]
@@ -9,3 +10,4 @@ description = "Teste descrição"
 title = "+ FIRE RATE"
 upgradeType = 0
 upgradeValue = 0.05
+icon = ExtResource("1_6l0yt")

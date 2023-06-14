@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="UpgradeStats" load_steps=2 format=3 uid="uid://dykeqpoftq3a6"]
+[gd_resource type="Resource" script_class="UpgradeStats" load_steps=3 format=3 uid="uid://dykeqpoftq3a6"]
 
 [ext_resource type="Script" path="res://Instances/Resources/Upgrades/UpgradeStats.gd" id="1_886lw"]
+[ext_resource type="Texture2D" uid="uid://dwiwv7sga4qxi" path="res://Assets/GUI/icon-speed.png" id="1_nr05c"]
 
 [resource]
 script = ExtResource("1_886lw")
@@ -9,3 +10,4 @@ description = "Teste 2 descrição"
 title = "+ MOVE SPEED"
 upgradeType = 2
 upgradeValue = 30.0
+icon = ExtResource("1_nr05c")

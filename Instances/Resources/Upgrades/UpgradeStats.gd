@@ -13,6 +13,7 @@ enum UpgradeTypes{
 @export var title : String
 @export var upgradeType : UpgradeTypes
 @export var upgradeValue : float
+@export var icon : Texture2D
 
 func ApplyUpgrade(player: Mage1):
 	match upgradeType:

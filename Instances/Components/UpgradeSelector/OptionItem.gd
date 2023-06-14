@@ -3,6 +3,7 @@ class_name OptionItem
 
 @onready var button := $ButtonOption as Button
 @onready var text := $OptionText as Label
+@onready var iconRect := $iconPanel/icon as TextureRect
 
 var upgradeSelector : UpgradeSelector
 var upgradeStats : UpgradeStats
@@ -15,6 +16,7 @@ func Initialize(upgradeSelectorInject: UpgradeSelector, upgradeStatsInject: Upgr
 	upgradeSelector = upgradeSelectorInject
 	upgradeStats = upgradeStatsInject
 	text.text = upgradeStats.title
+	iconRect.texture = upgradeStats.icon
 	pass
 	
 func Selected():

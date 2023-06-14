@@ -1,6 +1,6 @@
 extends ProgressBar
 
-@export var xpRequiredPerLevel := 10
+@export var xpRequiredPerLevel := 100
 
 var xpNextLevel := 0
 var currentXp := 0
@@ -13,7 +13,7 @@ func _ready():
 	pass
 
 func AddXp():
-	currentXp += 2
+	currentXp += 20
 	if CheckLevelUp():
 		LevelUpEffect()
 	else:
@@ -23,7 +23,7 @@ func AddXp():
 func CheckLevelUp() -> bool:
 	if currentXp >= xpNextLevel:
 		currentXp = 0
-		xpNextLevel += 1
+		xpNextLevel += 10
 		Global.level_up.emit()
 		return true
 	

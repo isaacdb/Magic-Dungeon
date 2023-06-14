@@ -1,13 +1,28 @@
-[gd_scene load_steps=6 format=3 uid="uid://bipohfp6birf5"]
+[gd_scene load_steps=11 format=3 uid="uid://bipohfp6birf5"]
 
 [ext_resource type="Script" path="res://Instances/Components/UpgradeSelector/UpgradeSelector.gd" id="1_exuln"]
+[ext_resource type="Texture2D" uid="uid://8c6s72ifn40" path="res://Assets/GUI/panel.png" id="1_tuogw"]
 [ext_resource type="Resource" uid="uid://b7g6e2jq8sfs4" path="res://Instances/Resources/Upgrades/UpgradeFireRate1.tres" id="2_xmpim"]
 [ext_resource type="Resource" uid="uid://dykeqpoftq3a6" path="res://Instances/Resources/Upgrades/UpgradeMoveSpeed1.tres" id="3_jy3fs"]
 [ext_resource type="Resource" uid="uid://c4wfb7vate6vv" path="res://Instances/Resources/Upgrades/UpgradeLife1.tres" id="4_0tsou"]
 [ext_resource type="Resource" uid="uid://ctxj1apwera67" path="res://Instances/Resources/Upgrades/UpgradeBulletDamage1.tres" id="5_vs3ld"]
+[ext_resource type="Texture2D" uid="uid://b3gmb1kq3cxwk" path="res://Assets/GUI/background-panel.png" id="7_nir3b"]
+[ext_resource type="FontFile" uid="uid://dq8hbswcklqcs" path="res://Assets/Fonts/Bitfantasy.ttf" id="8_j4c7y"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yujky"]
+texture = ExtResource("1_tuogw")
+texture_margin_left = 40.0
+texture_margin_top = 40.0
+texture_margin_right = 40.0
+texture_margin_bottom = 40.0
+draw_center = false
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qplmb"]
+texture = ExtResource("7_nir3b")
 
 [node name="UpgradeSelector" type="Panel"]
 process_mode = 2
+self_modulate = Color(0.435294, 0.333333, 0.219608, 1)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -18,27 +33,48 @@ offset_bottom = -75.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_yujky")
 script = ExtResource("1_exuln")
 listOfUpgradesAvaiable = Array[Resource("res://Instances/Resources/Upgrades/UpgradeStats.gd")]([ExtResource("2_xmpim"), ExtResource("3_jy3fs"), ExtResource("4_0tsou"), ExtResource("5_vs3ld")])
 
-[node name="Title" type="Label" parent="."]
-layout_mode = 2
-offset_left = 20.0
-offset_right = 500.0
-offset_bottom = 90.0
-theme_override_font_sizes/font_size = 63
-text = "LEVEL UP"
-horizontal_alignment = 1
-
-[node name="OptionList" type="VBoxContainer" parent="."]
+[node name="Panel" type="Panel" parent="."]
+self_modulate = Color(0.713726, 0.713726, 0.713726, 1)
+show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = 98.0
-offset_right = -21.0
-offset_bottom = -24.0
+offset_left = 35.0
+offset_top = 35.0
+offset_right = -36.0
+offset_bottom = -33.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_qplmb")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 2
+offset_left = 19.0
+offset_top = 40.0
+offset_right = 499.0
+offset_bottom = 130.0
+theme_override_colors/font_color = Color(0.560784, 0, 0.141176, 1)
+theme_override_colors/font_shadow_color = Color(0.603922, 0.603922, 0.603922, 1)
+theme_override_fonts/font = ExtResource("8_j4c7y")
+theme_override_font_sizes/font_size = 90
+text = "LEVEL UP"
+horizontal_alignment = 1
+
+[node name="OptionList" type="VBoxContainer" parent="."]
+modulate = Color(0.831373, 0.831373, 0.831373, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 99.0
+offset_top = 140.0
+offset_right = -128.0
+offset_bottom = -109.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 60
