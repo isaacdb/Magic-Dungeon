@@ -1,9 +1,10 @@
-[gd_scene load_steps=52 format=3 uid="uid://cmx7pnpls2gkt"]
+[gd_scene load_steps=59 format=3 uid="uid://cmx7pnpls2gkt"]
 
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_avsao"]
 [ext_resource type="PackedScene" uid="uid://03my8igrvwt8" path="res://Instances/Tilemap/TileMapWalls.tscn" id="1_fch5f"]
 [ext_resource type="PackedScene" uid="uid://dak4jp66ns1mg" path="res://Instances/Components/PanelFade/PanelFade.tscn" id="2_4r5oc"]
 [ext_resource type="PackedScene" uid="uid://4jvawle2nm0s" path="res://Instances/Components/PlayerLife/PlayerLife.tscn" id="2_5g5bp"]
+[ext_resource type="PackedScene" path="res://Instances/Components/ReloadSceneToTest/ReloadSceneTotest.tscn" id="2_6oods"]
 [ext_resource type="FontFile" uid="uid://f5t35k6jiqnp" path="res://Assets/Fonts/Awexbmp.ttf" id="2_a82mv"]
 [ext_resource type="AudioStream" uid="uid://7rg6q1b0mlcl" path="res://Assets/Audios/Gates.ogg" id="2_gbbxt"]
 [ext_resource type="PackedScene" uid="uid://bipohfp6birf5" path="res://Instances/Components/UpgradeSelector/UpgradeSelector.tscn" id="2_q6x83"]
@@ -24,7 +25,11 @@
 [ext_resource type="PackedScene" uid="uid://dmjqj7loxtlm8" path="res://Instances/Enemies/MiniOrc/MiniOrc.tscn" id="11_brv1s"]
 [ext_resource type="PackedScene" uid="uid://ckmrkojeday20" path="res://Instances/Bullet/BulletsEnemies/BulletEnemy1/BulletN.tscn" id="11_ycdyd"]
 [ext_resource type="Script" path="res://Instances/Resources/Bullets/BulletStats.gd" id="12_5cc7y"]
+[ext_resource type="Texture2D" uid="uid://8c6s72ifn40" path="res://Assets/GUI/panel.png" id="12_xc8r2"]
+[ext_resource type="Texture2D" uid="uid://b3gmb1kq3cxwk" path="res://Assets/GUI/background-panel.png" id="13_4pdkx"]
 [ext_resource type="PackedScene" uid="uid://owdfvvvn7ja3" path="res://Instances/Enemies/BossOrc/BossOrc.tscn" id="13_va7ux"]
+[ext_resource type="FontFile" uid="uid://dq8hbswcklqcs" path="res://Assets/Fonts/Bitfantasy.ttf" id="14_s3igf"]
+[ext_resource type="Texture2D" uid="uid://dsa860i7r5ace" path="res://Assets/GUI/panel-adorn.png" id="15_vsgbi"]
 [ext_resource type="PackedScene" uid="uid://cfc0jruo74mst" path="res://Instances/Props/Torch/Torch.tscn" id="20_gl0pj"]
 [ext_resource type="PackedScene" uid="uid://dnou7mrnifiye" path="res://Instances/Props/Mushroom/Mushroom.tscn" id="21_fnvuu"]
 [ext_resource type="PackedScene" uid="uid://b1ihv7h1usawy" path="res://Instances/Props/Flags/Flag.tscn" id="22_50bky"]
@@ -42,6 +47,18 @@ texture = ExtResource("7_jnomm")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_igqsv"]
 resource_local_to_scene = true
 texture = ExtResource("8_x7cnd")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_visvm"]
+texture = ExtResource("12_xc8r2")
+texture_margin_left = 38.5402
+texture_margin_top = 37.4707
+texture_margin_right = 37.6638
+texture_margin_bottom = 38.6962
+region_rect = Rect2(0, 0, 128, 128)
+draw_center = false
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8jii4"]
+texture = ExtResource("13_4pdkx")
 
 [sub_resource type="Gradient" id="Gradient_jo7ba"]
 offsets = PackedFloat32Array(0, 0.522988, 1)
@@ -92,7 +109,7 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.627451, 1, 1, 1, 0)
 [sub_resource type="Gradient" id="Gradient_xsmxh"]
 colors = PackedColorArray(0.316749, 0.422333, 0.477803, 1, 1, 1, 1, 1)
 
-[sub_resource type="Resource" id="Resource_pdn50"]
+[sub_resource type="Resource" id="Resource_u2rkm"]
 resource_local_to_scene = true
 script = ExtResource("12_5cc7y")
 damage = 1.0
@@ -126,6 +143,8 @@ script = ExtResource("1_avsao")
 defaultColorModulate = Color(0.478431, 0.419608, 0.670588, 1)
 hitColorModulate = Color(0.877383, 0.398502, 0.375717, 1)
 
+[node name="ReloadSceneToTest" parent="." instance=ExtResource("2_6oods")]
+
 [node name="AudioRoomsGate" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_gbbxt")
 volume_db = 10.0
@@ -152,7 +171,7 @@ player = NodePath("../../Mage1")
 offset_left = 306.0
 offset_top = 38.0
 offset_right = 1009.0
-offset_bottom = 53.0
+offset_bottom = 46.0
 theme_override_styles/background = SubResource("StyleBoxTexture_bluxb")
 theme_override_styles/fill = SubResource("StyleBoxTexture_igqsv")
 rounded = true
@@ -161,22 +180,39 @@ rounded = true
 process_mode = 3
 
 [node name="PanelFade" parent="CanvasLayer" instance=ExtResource("2_4r5oc")]
-visible = true
 
-[node name="DeadPanel" type="ColorRect" parent="CanvasLayer"]
+[node name="PanelGameOver" type="Panel" parent="CanvasLayer"]
 visible = false
-modulate = Color(1, 1, 1, 0.9)
-anchors_preset = 14
-anchor_top = 0.5
+modulate = Color(0.698039, 0.698039, 0.698039, 1)
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -41.0
-offset_bottom = 103.0
+anchor_bottom = 1.0
+offset_left = 325.0
+offset_top = -350.0
+offset_right = -385.0
+offset_bottom = -770.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.25098, 0.25098, 0.25098, 1)
+pivot_offset = Vector2(285, 150)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_visvm")
 
-[node name="Label" type="Label" parent="CanvasLayer/DeadPanel"]
+[node name="Background" type="Panel" parent="CanvasLayer/PanelGameOver"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 31.0
+offset_right = -31.0
+offset_bottom = -29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_8jii4")
+
+[node name="GameOverText" type="Label" parent="CanvasLayer/PanelGameOver"]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 8
@@ -184,29 +220,85 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -132.0
-offset_top = -44.0
-offset_right = 102.0
-offset_bottom = 27.0
+offset_left = -233.0
+offset_top = -36.0
+offset_right = 218.0
+offset_bottom = 42.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_a82mv")
-theme_override_font_sizes/font_size = 74
+theme_override_fonts/font = ExtResource("14_s3igf")
+theme_override_font_sizes/font_size = 60
 text = "Game Over"
+horizontal_alignment = 1
 
-[node name="CongratsPanel" type="ColorRect" parent="CanvasLayer"]
-modulate = Color(1, 1, 1, 0.9)
-anchors_preset = 14
+[node name="TextureAdorno" type="TextureRect" parent="CanvasLayer/PanelGameOver"]
+modulate = Color(0.305882, 0.305882, 0.305882, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = -151.0
-offset_bottom = 159.0
+offset_left = -220.0
+offset_top = -91.0
+offset_right = 220.0
+offset_bottom = -67.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.639216, 0.639216, 0.639216, 1)
+texture = ExtResource("15_vsgbi")
+expand_mode = 2
+stretch_mode = 1
 
-[node name="Congrats" type="Label" parent="CanvasLayer/CongratsPanel"]
+[node name="TextureAdorno2" type="TextureRect" parent="CanvasLayer/PanelGameOver"]
+modulate = Color(0.305882, 0.305882, 0.305882, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = 62.0
+offset_right = 220.0
+offset_bottom = 86.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("15_vsgbi")
+expand_mode = 2
+stretch_mode = 1
+flip_v = true
+
+[node name="PanelCongrats" type="Panel" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 358.0
+offset_top = -600.0
+offset_right = -352.0
+offset_bottom = -820.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(285, 250)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_visvm")
+
+[node name="Background" type="Panel" parent="CanvasLayer/PanelCongrats"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 31.0
+offset_right = -31.0
+offset_bottom = -29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_8jii4")
+
+[node name="CongratsText" type="Label" parent="CanvasLayer/PanelCongrats"]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 8
@@ -214,17 +306,52 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -416.5
-offset_top = -108.0
-offset_right = 364.5
-offset_bottom = -30.0
+offset_left = -225.5
+offset_top = -180.0
+offset_right = 225.5
+offset_bottom = -102.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_a82mv")
-theme_override_font_sizes/font_size = 74
+theme_override_fonts/font = ExtResource("14_s3igf")
+theme_override_font_sizes/font_size = 60
 text = "CONGRATULATIONS"
 
-[node name="beatBoss" type="Label" parent="CanvasLayer/CongratsPanel"]
+[node name="TextureAdorno" type="TextureRect" parent="CanvasLayer/PanelCongrats"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -108.0
+offset_right = 220.0
+offset_bottom = -84.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("15_vsgbi")
+expand_mode = 2
+stretch_mode = 1
+
+[node name="TextureAdorno2" type="TextureRect" parent="CanvasLayer/PanelCongrats"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -77.0
+offset_right = 220.0
+offset_bottom = -53.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("15_vsgbi")
+expand_mode = 2
+stretch_mode = 1
+flip_v = true
+
+[node name="BeatBossText" type="Label" parent="CanvasLayer/PanelCongrats"]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 8
@@ -232,17 +359,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -427.0
-offset_top = -22.5
-offset_right = 502.0
-offset_bottom = 55.5
+offset_left = -220.5
+offset_top = -25.0
+offset_right = 197.5
+offset_bottom = 53.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_a82mv")
+theme_override_fonts/font = ExtResource("14_s3igf")
 theme_override_font_sizes/font_size = 33
 text = "You beat the first Boss!"
 
-[node name="But" type="Label" parent="CanvasLayer/CongratsPanel"]
+[node name="ButText" type="Label" parent="CanvasLayer/PanelCongrats"]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 8
@@ -250,17 +377,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -244.0
-offset_top = 17.5
-offset_right = 685.0
-offset_bottom = 95.5
+offset_left = -220.5
+offset_top = 10.0
+offset_right = 207.5
+offset_bottom = 88.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_a82mv")
+theme_override_fonts/font = ExtResource("14_s3igf")
 theme_override_font_sizes/font_size = 33
 text = "But is not over"
 
-[node name="Continue" type="Label" parent="CanvasLayer/CongratsPanel"]
+[node name="ContinueText" type="Label" parent="CanvasLayer/PanelCongrats"]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 8
@@ -268,13 +395,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -88.0
-offset_top = 53.5
-offset_right = 841.0
-offset_bottom = 131.5
+offset_left = -29.5
+offset_top = 45.0
+offset_right = 184.5
+offset_bottom = 123.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_a82mv")
+theme_override_fonts/font = ExtResource("14_s3igf")
 theme_override_font_sizes/font_size = 33
 text = "Continue..."
 
@@ -435,7 +562,7 @@ layer_1/tile_data = PackedInt32Array(0, 0, 8, 1, 0, 8, 2, 0, 8, 3, 0, 8, 4, 0, 8
 
 [node name="Mage1" parent="." instance=ExtResource("4_f7hcd")]
 position = Vector2(264, -71)
-bulletStats = SubResource("Resource_pdn50")
+bulletStats = SubResource("Resource_u2rkm")
 
 [node name="Room-1" type="Node2D" parent="." node_paths=PackedStringArray("gateEnter", "gateExit", "audioPlayer")]
 visible = false

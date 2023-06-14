@@ -4,8 +4,8 @@ extends Node2D
 @export var defaultColorModulate : Color
 @export var hitColorModulate : Color
 
-@onready var deadPanel := $CanvasLayer/DeadPanel as ColorRect
-@onready var congrats := $CanvasLayer/CongratsPanel as ColorRect
+@onready var deadPanel := $CanvasLayer/PanelGameOver as Panel
+@onready var congrats := $CanvasLayer/PanelCongrats as Panel
 @onready var canvaModulate := $CanvasModulate as CanvasModulate
 @onready var audioGameOver := $AudioGameOver as AudioStreamPlayer2D
 @onready var audioWinGame := $AudioWinGame as AudioStreamPlayer2D
@@ -20,18 +20,19 @@ func _init():
 
 func _ready():	
 	Input.set_custom_mouse_cursor(pointer, Input.CURSOR_ARROW, Vector2(16, 16))
-	deadPanel.modulate = Color(1, 1, 1, 0)
+	deadPanel.position.y = -350
 	deadPanel.visible = false
 	
-	congrats.modulate = Color(1, 1, 1, 0)
 	congrats.visible = false
+	congrats.position.y = -600
 	pass
 
 
 func BossKilled():	
 	congrats.visible = true
 	var tweenCongrats = create_tween()
-	tweenCongrats.tween_property(congrats, "modulate", Color(1, 1, 1, 1), 3)
+	tweenCongrats.tween_interval(1)
+	tweenCongrats.tween_property(congrats, "position:y", 100, 2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	tweenCongrats.play()
 	
 	var tween = create_tween()
@@ -46,7 +47,7 @@ func PlayerDead():
 	
 	deadPanel.visible = true
 	var tweenDeadPanel = create_tween()
-	tweenDeadPanel.tween_property(deadPanel, "modulate", Color(1, 1, 1, 1), 3)
+	tweenDeadPanel.tween_property(deadPanel, "position:y", 200, 3).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN_OUT)
 	tweenDeadPanel.play()
 	
 	var tween = create_tween()
