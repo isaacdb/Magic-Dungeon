@@ -7,6 +7,7 @@ class_name UpgradeSelector
 
 @onready var boxOptionList = $OptionList as VBoxContainer
 @onready var rnd = RandomNumberGenerator.new()
+@onready var audioConfirm := $AudioStreamPlayer2D as AudioStreamPlayer2D
 
 var chosenUpgradesIndex : Array[int] = []
 
@@ -28,6 +29,7 @@ func ActiveSelector():
 
 func UpgradeSelected(upgrade: UpgradeStats):
 	upgrade.ApplyUpgrade(player)
+	audioConfirm.play()
 	
 	CleanUpgradesListed()
 	

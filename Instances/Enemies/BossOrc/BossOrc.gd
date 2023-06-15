@@ -17,15 +17,18 @@ extends CharacterBody2D
 @export var attackDelay := 1.5
 @export var knockBackForce := 300.0
 @export var lifeBase := 100.0
-
 @export var timeIdle := 3.0
 @export var timeWalk := 3.0
+@export var orcLowBulletStats : BulletStats
+
+## Audios
+@export var audioRage : AudioStream
 
 @onready var animPlayer := $AnimationPlayer as AnimationPlayer
 @onready var sprite := $GroupFlip/AnimatedSprite2D as AnimatedSprite2D
 @onready var rnd := RandomNumberGenerator.new()
+@onready var audioPlayer := $AudioStreamPlayer2D as AudioStreamPlayer2D
 
-@export var orcLowBulletStats : BulletStats
 
 enum States
 {
@@ -40,8 +43,9 @@ var tweenWalk : Tween
 
 var currentState := States.CHASING
 var nextPostion := Vector2.ZERO
+var isInRage := false
 
-func _ready():	
+func _ready():
 	healthManager.damage.connect(GetHit)
 	healthManager.SetLifeBase(lifeBase)
 	healthManager.lifeBar.UpdateHealthBar(lifeBase)
@@ -111,9 +115,17 @@ func GetHit(attack: Attack):
 	pass
 	
 func SetRageMode():
+	if isInRage:
+		return
+	
+	isInRage = true
+	
 	for item in itensRage:
 		item.visible = true
 	
 	timeIdle = 1.0
 	speed = 130.0
+	
+	audioPlayer.stream = audioRage
+	audioPlayer.play()
 	pass

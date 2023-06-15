@@ -1,9 +1,10 @@
-[gd_scene load_steps=57 format=3 uid="uid://owdfvvvn7ja3"]
+[gd_scene load_steps=58 format=3 uid="uid://owdfvvvn7ja3"]
 
 [ext_resource type="PackedScene" uid="uid://d1loimaxqs6y6" path="res://Instances/Components/LookAtPlayerComponent/LookAtPlayerComponent.tscn" id="1_4mr3o"]
 [ext_resource type="Script" path="res://Instances/Enemies/BossOrc/BossOrc.gd" id="1_38hcy"]
 [ext_resource type="Resource" uid="uid://djtpaou5g32gg" path="res://Instances/Resources/Bullets/BulletMage1.tres" id="2_pc7t6"]
 [ext_resource type="Texture2D" uid="uid://cn61j0eedmjw0" path="res://Instances/Enemies/BossOrc/boss-orc.png" id="2_td053"]
+[ext_resource type="AudioStream" uid="uid://b55qulyblut5q" path="res://Assets/Audios/Boss-Rage.mp3" id="3_7l1vd"]
 [ext_resource type="PackedScene" uid="uid://b4asjdyoyep5s" path="res://Instances/Components/Health/Health.tscn" id="3_uvpwl"]
 [ext_resource type="PackedScene" path="res://Instances/Components/ActiveHandleComponent/ActiveHandleComponent.tscn" id="4_c4ky7"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="4_g4uk6"]
@@ -388,9 +389,12 @@ healthManager = NodePath("Health")
 shootManager = NodePath("ShooterComponent")
 flashHit = NodePath("FlashHit")
 attackManager = NodePath("AttackManager")
-itensRage = [NodePath("GroupFlip/AnimatedSprite2D/Eye"), NodePath("GroupFlip/AnimatedSprite2D/Eye2"), NodePath("RageLine2"), NodePath("RageLine1"), NodePath("GroupFlip/PointLight2D")]
+itensRage = [NodePath("RageLine1"), NodePath("RageLine2"), NodePath("GroupFlip/AnimatedSprite2D/Eye"), NodePath("GroupFlip/AnimatedSprite2D/Eye2"), NodePath("GroupFlip/PointLight2D")]
 lifeBase = 250.0
 orcLowBulletStats = ExtResource("2_pc7t6")
+audioRage = ExtResource("3_7l1vd")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
