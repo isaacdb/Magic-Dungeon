@@ -29,7 +29,6 @@ func _ready():
 	Global.game_start.emit()
 	pass
 
-
 func BossKilled():	
 	congrats.visible = true
 	var tweenCongrats = create_tween()

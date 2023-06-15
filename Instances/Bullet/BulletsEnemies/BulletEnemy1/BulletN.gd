@@ -9,8 +9,6 @@ class_name BulletN
 @export var playerColor : Color
 
 @onready var timer := $Timer as Timer
-@onready var animationPlayer := $AnimationPlayer as AnimationPlayer
-@onready var light := $PointLight2D as PointLight2D
 @onready var sprite := $Sprite2D as AnimatedSprite2D
 @onready var lineTrail := $Line2D as Line2D
 @onready var hitBox := $HitBox as HitBoxComponent
@@ -40,13 +38,11 @@ func UpdateStats(bulletStats: BulletStats):
 			hitBox.set_collision_mask_value(4, true) #Collision with enemy hurtBox
 			sprite.modulate = playerColor
 			lineTrail.modulate = playerColor
-			light.modulate = playerColor
 			impactParticle.modulate = playerColor
 		"Enemy":
 			hitBox.set_collision_mask_value(2, true) #Collision with player hurtBox
 			sprite.modulate = enemyColor
 			lineTrail.modulate = enemyColor
-			light.modulate = enemyColor
 			impactParticle.modulate = enemyColor
 			
 	speed = bulletStats.speed
@@ -63,9 +59,7 @@ func Destroy():
 	isRunning = false
 	#collisionShape.set_deferred("Disabled", true)
 	hitBox.queue_free()
-	animationPlayer.queue_free()
 	sprite.queue_free()
-	light.queue_free()
 	
 	impactParticle.emitting = true
 	timer.wait_time = 1.5
