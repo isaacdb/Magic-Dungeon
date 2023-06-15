@@ -7,7 +7,8 @@ class_name UpgradeSelector
 
 @onready var boxOptionList = $OptionList as VBoxContainer
 @onready var rnd = RandomNumberGenerator.new()
-@onready var audioConfirm := $AudioStreamPlayer2D as AudioStreamPlayer2D
+@onready var audioConfirm := $AudioPlayerSelectUpgrade as AudioStreamPlayer2D
+@onready var audioLevelUp := $AudioPlayerLevelUp as AudioStreamPlayer2D
 
 var chosenUpgradesIndex : Array[int] = []
 
@@ -18,6 +19,7 @@ func _ready():
 func ActiveSelector():
 	self.visible = true
 	get_tree().paused = true
+	audioLevelUp.play()
 	
 	for i in 3:
 		var upgradeStats = GetRandomUpgrade()

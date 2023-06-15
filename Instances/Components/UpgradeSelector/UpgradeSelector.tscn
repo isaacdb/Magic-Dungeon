@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bipohfp6birf5"]
+[gd_scene load_steps=13 format=3 uid="uid://bipohfp6birf5"]
 
 [ext_resource type="Script" path="res://Instances/Components/UpgradeSelector/UpgradeSelector.gd" id="1_exuln"]
 [ext_resource type="Texture2D" uid="uid://8c6s72ifn40" path="res://Assets/GUI/panel.png" id="1_tuogw"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b3gmb1kq3cxwk" path="res://Assets/GUI/background-panel.png" id="7_nir3b"]
 [ext_resource type="FontFile" uid="uid://dq8hbswcklqcs" path="res://Assets/Fonts/Bitfantasy.ttf" id="8_j4c7y"]
 [ext_resource type="AudioStream" uid="uid://cwuthsoolsen5" path="res://Assets/Audios/Confirm-upgrade.ogg" id="9_h34gq"]
+[ext_resource type="AudioStream" uid="uid://bu7ctpa77iw66" path="res://Assets/Audios/levelUp.mp3" id="10_ovjur"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yujky"]
 texture = ExtResource("1_tuogw")
@@ -80,6 +81,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 60
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioPlayerSelectUpgrade" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_h34gq")
-volume_db = 15.0
+
+[node name="AudioPlayerLevelUp" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_ovjur")
