@@ -7,7 +7,6 @@ extends CharacterBody2D
 @export var flashHit : FlashHit
 
 @export var orcMageBulletStats : BulletStats
-
 @export var lifeBase := 5
 @export var speed := 80.0
 
@@ -29,7 +28,12 @@ enum States
 var currentState := States.IDLE
 var nextPostion := Vector2.ZERO
 
-func _ready():	
+var _lastPositionCheckStuck : Vector2
+var _timeCheckIfStuck := 1.0
+var _currentTimeCheckStuck := 0.0
+
+
+func _ready() -> void:
 	healthManager.damage.connect(GetHit)	
 	healthManager.SetLifeBase(lifeBase)
 	
@@ -39,9 +43,10 @@ func _ready():
 	timerIdle.timeout.connect(TimerIdleTimeout)
 	pass
 
-func _physics_process(delta):
+func _physics_process(delta) -> void:
 	match currentState:
 		States.IDLE:
+			moveComponent.Move(self, Vector2.ZERO, delta, 1300, speed)
 			animPlayer.play("Idle")
 			
 			## Se movimentou até o proximo ponto, quando chegar já ataca
@@ -51,7 +56,16 @@ func _physics_process(delta):
 			pass
 			
 		States.CHASING:
-			if global_position.distance_to(nextPostion) < 2.0:
+			_currentTimeCheckStuck += delta
+			if _currentTimeCheckStuck > _timeCheckIfStuck:
+				_currentTimeCheckStuck = 0
+				if _lastPositionCheckStuck.distance_to(global_position) < 3.0:
+					ChangeState(States.IDLE)
+					return
+				else:
+					_lastPositionCheckStuck = global_position
+			
+			if global_position.distance_to(nextPostion) < 16.0:
 				ChangeState(States.IDLE)
 				return
 				
@@ -61,26 +75,27 @@ func _physics_process(delta):
 			pass
 
 		States.ATTACK:
+			moveComponent.Move(self, Vector2.ZERO, delta, 1300, speed)
 			animPlayer.play("Attack")
 			pass
 			
-func GetHit(attack: Attack):
+func GetHit(attack: Attack) -> void:
 	flashHit.Flash(sprite.material)
 	pass
 
-func ChangeState(state: States):
+func ChangeState(state: States) -> void:
 	currentState = state
 	pass
 	
-func AttackFinished():
+func AttackFinished() -> void:
 	shootManager.JustFire(playerTracker.GetDirection(), orcMageBulletStats)
 	ChangeState(States.IDLE)
 	pass
 	
-func SetNextPosition():
+func SetNextPosition() -> void:
 	nextPostion = playerTracker.GetPosition()
 	
-func TimerIdleTimeout():
+func TimerIdleTimeout() -> void:
 	var randTime = rnd.randf_range(0.0, 1.0)
 	timerIdle.wait_time = randTime + timeIdle
 	SetNextPosition()

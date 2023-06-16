@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://gwp2odvjwxx5"]
+
+[ext_resource type="Script" path="res://Instances/Components/NavAgent/NavAgent.gd" id="1_c3ci5"]
+
+[node name="NavAgent" type="NavigationAgent2D"]
+target_desired_distance = 50.0
+avoidance_enabled = true
+script = ExtResource("1_c3ci5")

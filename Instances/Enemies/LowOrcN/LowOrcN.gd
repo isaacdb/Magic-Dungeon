@@ -6,13 +6,12 @@ extends CharacterBody2D
 @export var shootManager : ShooterComponent
 @export var flashHit : FlashHit
 
-@export var speed := 50.0
-
 # Combat vars
 @export var damage := 1.0
 @export var attackDelay := 1.5
 @export var knockBackForce := 300.0
 @export var lifeBase := 8.0
+@export var speed := 50.0
 
 @onready var animPlayer := $AnimationPlayer as AnimationPlayer
 @onready var sprite := $GroupFlip/AnimatedSprite2D as AnimatedSprite2D
@@ -32,9 +31,9 @@ var roundDirection := 1
 
 var tweenAttack : Tween
 
-func _ready():	
+func _ready():
 	healthManager.damage.connect(GetHit)
-	healthManager.SetLifeBase(lifeBase)	
+	healthManager.SetLifeBase(lifeBase)
 	pass
 	
 func _physics_process(delta):
