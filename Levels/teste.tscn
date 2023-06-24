@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ckji28dievdf" path="res://Instances/Props/Box/Box.tscn" id="6_5d6vh"]
 [ext_resource type="Texture2D" uid="uid://tex64w1f7um8" path="res://Assets/0x72_16x16DungeonTileset.v5.png" id="6_06dxh"]
 
-[sub_resource type="Resource" id="Resource_83ylr"]
+[sub_resource type="Resource" id="Resource_qq84i"]
 resource_local_to_scene = true
 script = ExtResource("3_w8qxe")
 damage = 1.0
@@ -983,7 +983,7 @@ physics_layer_0/collision_mask = 0
 navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_iqrir")
 
-[sub_resource type="Resource" id="Resource_1w3wv"]
+[sub_resource type="Resource" id="Resource_nc6q0"]
 resource_local_to_scene = true
 script = ExtResource("3_w8qxe")
 damage = 1.0
@@ -1001,7 +1001,7 @@ zoom = Vector2(2, 2)
 
 [node name="Mage1" parent="." instance=ExtResource("1_hyt1n")]
 position = Vector2(791, 393)
-bulletStats = SubResource("Resource_83ylr")
+bulletStats = SubResource("Resource_qq84i")
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = -1
@@ -1012,7 +1012,7 @@ layer_0/tile_data = PackedInt32Array(131074, 262144, 7, 131075, 262144, 7, 13107
 [node name="MageOrcN" parent="." instance=ExtResource("4_05c31")]
 y_sort_enabled = true
 position = Vector2(656, 479)
-orcMageBulletStats = SubResource("Resource_1w3wv")
+orcMageBulletStats = SubResource("Resource_nc6q0")
 
 [node name="Box" parent="." instance=ExtResource("6_5d6vh")]
 y_sort_enabled = true
