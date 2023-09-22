@@ -21,7 +21,7 @@ class_name Mage1
 var isAlive = true
 var durationIFrame := 0.6
 
-func _ready():
+func _ready() -> void:
 	animationPlayer.play("Idle")
 	
 	healthManager.damage.connect(GetHited)	
@@ -37,46 +37,46 @@ func _ready():
 	timerIFrame.timeout.connect(EndIFrame)
 	pass
 
-func _process(delta):	
+func _process(delta) -> void:
 	if Input.is_action_pressed("fire"):
 		Fire()
 		
 	pass
 
 
-func _physics_process(delta):
+func _physics_process(delta) -> void:
 	if !isAlive:
 		return
 	
-	var input = getAxisInput()
+	var input = GetAxisInput()
 	
 	if Input.is_action_just_pressed("dash") and dashSkill.canDash:
-		dashSkill.Dash(GetMouseDirection(), self, speed)
+		dashSkill.Dash(GetAxisInput(), self, speed)
 	else:
 		moveComponent.Move(self, input, delta, acceleration, speed)
 		
 	sprite2D.flip_h = (get_global_mouse_position() - position).x < 0
 	pass	
 
-func GetHited(attack: Attack):
+func GetHited(attack: Attack) -> void:
 	Global.emit_signal("screen_shake", 10.0, .3, 1)
 	Global.player_hited.emit()
 	flashHit.Flash(sprite2D.material)
 	StartIFrame()
 	pass	
 
-func ChangeAnim(anim: String):
+func ChangeAnim(anim: String) -> void:
 	animationPlayer.play(anim)
 	
-func StartIFrame():
+func StartIFrame() -> void:
 	healthManager.SetActive(false)
 	timerIFrame.start()
 	
 # Chamado no timeout do timerIFrame
-func EndIFrame():
+func EndIFrame() -> void:
 	healthManager.SetActive(true)
 
-func getAxisInput() -> Vector2:
+func GetAxisInput() -> Vector2:
 	var directionH = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	var directionV = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")	
 	
@@ -86,7 +86,7 @@ func UpdateFireRate(newFireRate: float):
 	shootManager.UpdateFireRate(newFireRate)
 	pass
 
-func Fire():
+func Fire() -> void:
 	var shoot = shootManager.FireWithCooldown(GetMouseDirection(), bulletStats)
 	if shoot:
 		Global.emit_signal("screen_shake", 1, .1, 1)

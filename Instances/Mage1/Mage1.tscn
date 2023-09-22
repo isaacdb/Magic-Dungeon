@@ -208,7 +208,7 @@ walkParticule = NodePath("../WalkParticle")
 
 [node name="DashSkill" parent="." node_paths=PackedStringArray("healthComponent") instance=ExtResource("8_hx86t")]
 dashSpeed = 550
-dashDuration = 0.07
+dashDuration = 0.06
 healthComponent = NodePath("../Health")
 
 [node name="KnockBack" parent="." instance=ExtResource("12_b338j")]
