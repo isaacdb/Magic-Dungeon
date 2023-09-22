@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://cmx7pnpls2gkt"]
+[gd_scene load_steps=59 format=3 uid="uid://cmx7pnpls2gkt"]
 
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_avsao"]
 [ext_resource type="PackedScene" uid="uid://03my8igrvwt8" path="res://Instances/Tilemap/TileMapWalls.tscn" id="1_fch5f"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://4jvawle2nm0s" path="res://Instances/Components/PlayerLife/PlayerLife.tscn" id="2_5g5bp"]
 [ext_resource type="FontFile" uid="uid://f5t35k6jiqnp" path="res://Assets/Fonts/Awexbmp.ttf" id="2_a82mv"]
 [ext_resource type="AudioStream" uid="uid://7rg6q1b0mlcl" path="res://Assets/Audios/Gates.ogg" id="2_gbbxt"]
+[ext_resource type="PackedScene" path="res://Instances/Components/ReloadSceneToTest/ReloadSceneTotest.tscn" id="2_jkbpv"]
 [ext_resource type="PackedScene" uid="uid://bipohfp6birf5" path="res://Instances/Components/UpgradeSelector/UpgradeSelector.tscn" id="2_q6x83"]
 [ext_resource type="PackedScene" uid="uid://d2iv4f2anflh4" path="res://Instances/Tilemap/TileMapGround.tscn" id="2_vbm8m"]
 [ext_resource type="AudioStream" uid="uid://bxodjoixexwnf" path="res://Assets/Audios/game-over-2.ogg" id="3_qdsft"]
@@ -108,7 +109,7 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.627451, 1, 1, 1, 0)
 [sub_resource type="Gradient" id="Gradient_xsmxh"]
 colors = PackedColorArray(0.316749, 0.422333, 0.477803, 1, 1, 1, 1, 1)
 
-[sub_resource type="Resource" id="Resource_bnhco"]
+[sub_resource type="Resource" id="Resource_mvfyb"]
 resource_local_to_scene = true
 script = ExtResource("12_5cc7y")
 damage = 1.0
@@ -143,6 +144,13 @@ defaultColorModulate = Color(0.478431, 0.419608, 0.670588, 1)
 hitColorModulate = Color(0.877383, 0.398502, 0.375717, 1)
 audioGameOver = NodePath("Camera2D/AudioGameOver")
 audioWinGame = NodePath("Camera2D/AudioWinGame")
+
+[node name="ReloadSceneToTest" parent="." node_paths=PackedStringArray("player", "bossRommTp") instance=ExtResource("2_jkbpv")]
+player = NodePath("../Mage1")
+bossRommTp = NodePath("../BossRommTp")
+
+[node name="BossRommTp" type="Marker2D" parent="."]
+position = Vector2(315, -2306)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -560,7 +568,7 @@ layer_1/tile_data = PackedInt32Array(1966130, 0, 8, 1900594, 0, 8, 1835058, 0, 8
 
 [node name="Mage1" parent="." instance=ExtResource("4_f7hcd")]
 position = Vector2(313, -45)
-bulletStats = SubResource("Resource_bnhco")
+bulletStats = SubResource("Resource_mvfyb")
 
 [node name="Room-1" type="Node2D" parent="." node_paths=PackedStringArray("gateEnter", "gateExit", "audioPlayer")]
 visible = false
