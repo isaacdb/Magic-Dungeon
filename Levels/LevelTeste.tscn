@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://cmx7pnpls2gkt"]
+[gd_scene load_steps=60 format=3 uid="uid://cmx7pnpls2gkt"]
 
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_avsao"]
 [ext_resource type="PackedScene" uid="uid://03my8igrvwt8" path="res://Instances/Tilemap/TileMapWalls.tscn" id="1_fch5f"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://bxodjoixexwnf" path="res://Assets/Audios/game-over-2.ogg" id="3_qdsft"]
 [ext_resource type="AudioStream" uid="uid://dp6nfumb27dcl" path="res://Assets/Audios/Win.mp3" id="4_22iy5"]
 [ext_resource type="PackedScene" uid="uid://c6g7qwsljeavk" path="res://Instances/Mage1/Mage1.tscn" id="4_f7hcd"]
+[ext_resource type="PackedScene" uid="uid://cmcoex7vi3kc8" path="res://Instances/Components/LevelUpManager/LevelUpCount.tscn" id="4_ktwlu"]
 [ext_resource type="PackedScene" uid="uid://c7tou3yg5pxkm" path="res://Instances/Components/LevelUpManager/LevelUpManager.tscn" id="4_mqs2s"]
 [ext_resource type="PackedScene" uid="uid://pnthfjsqolx2" path="res://Instances/Components/Camera/Camera.tscn" id="5_bvpu5"]
 [ext_resource type="PackedScene" uid="uid://rdglfbq61btc" path="res://Instances/Enemies/LowOrcN/LowOrcN.tscn" id="6_2dt4y"]
@@ -109,7 +110,7 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.627451, 1, 1, 1, 0)
 [sub_resource type="Gradient" id="Gradient_xsmxh"]
 colors = PackedColorArray(0.316749, 0.422333, 0.477803, 1, 1, 1, 1, 1)
 
-[sub_resource type="Resource" id="Resource_mvfyb"]
+[sub_resource type="Resource" id="Resource_grxg2"]
 resource_local_to_scene = true
 script = ExtResource("12_5cc7y")
 damage = 1.0
@@ -161,6 +162,12 @@ offset_top = 133.0
 offset_right = -350.0
 offset_bottom = -136.0
 player = NodePath("../../Mage1")
+
+[node name="LevelUpCount" parent="CanvasLayer" instance=ExtResource("4_ktwlu")]
+offset_left = 263.0
+offset_top = 28.0
+offset_right = 303.0
+offset_bottom = 55.0
 
 [node name="LevelUpManger" parent="CanvasLayer" instance=ExtResource("4_mqs2s")]
 offset_left = 306.0
@@ -568,7 +575,7 @@ layer_1/tile_data = PackedInt32Array(1966130, 0, 8, 1900594, 0, 8, 1835058, 0, 8
 
 [node name="Mage1" parent="." instance=ExtResource("4_f7hcd")]
 position = Vector2(313, -45)
-bulletStats = SubResource("Resource_mvfyb")
+bulletStats = SubResource("Resource_grxg2")
 
 [node name="Room-1" type="Node2D" parent="." node_paths=PackedStringArray("gateEnter", "gateExit", "audioPlayer")]
 visible = false

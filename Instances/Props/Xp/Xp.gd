@@ -1,52 +1,51 @@
-extends Area2D
+extends Node2D
 
-@export var playerTracker : PlayerTracker
+@export var playerTracker : PlayerTracker;
 
 @onready var default_pos = self.global_position
+@onready var rnd := RandomNumberGenerator.new()
 
-var amplitude := 0.3
-var frequency := 2.0
-var speed := 5.0
+@export var defaultSpeed := 1.0;
+@export var explosionSpeed := 4.0;
+@export var increaseSpeed := 0.3;
 
-var moveToPlayer := false
+var randExpPosition : Vector2
+var navigateToPlayer := false
 
-func _ready():
-	var tween = create_tween().set_loops()
-	tween.tween_property(self, "scale", Vector2(1.2, 1.2), 1.0)
-	tween.tween_property(self, "scale", Vector2(0.9, 0.9), 1.0)
-	
+func _ready() -> void:	
 	var tweenRotate = create_tween().set_loops()
 	tweenRotate.tween_property(self, "rotation_degrees", 360, 3.0).from(0.0)
-	
-	area_entered.connect(on_area_entered)
-	pass
-
-
-func _physics_process(delta):		
-	if moveToPlayer:
-		if playerTracker.GetDistance() < 5.0:
-			Collected()
-			return 
-			
-		var velocity := Vector2.ZERO
-		speed += 0.5
-		velocity = speed * playerTracker.GetDirection() * delta * playerTracker.GetDistance()
-		translate(velocity)
-	else:
-		global_position.y = default_pos.y + (sin(Time.get_ticks_msec() * delta * amplitude) * frequency)
-	
+	rnd.randomize()
+	randExpPosition = SpawnExplosion();
 	pass
 	
-func Collected():
+func DynamicMoveSpawn(delta: float) -> void:
+	if navigateToPlayer:
+		defaultSpeed += increaseSpeed;
+		position = position.lerp(playerTracker.GetPosition(), delta * defaultSpeed);
+		return
+		
+	position = position.lerp(randExpPosition, delta * explosionSpeed);
+	
+	if position.distance_to(randExpPosition) <= 1:
+		navigateToPlayer = true;
+		
+	return
+
+func _physics_process(delta) -> void:
+	DynamicMoveSpawn(delta);
+	
+	if playerTracker.GetDistance() < 8.0:
+		Collected();
+		return
+	
+func SpawnExplosion() -> Vector2:
+	var randPos = Vector2(rnd.randf_range(-1, 1), rnd.randf_range(-1, 1))
+	var randVelocty = rnd.randf_range(60, 80);
+	var randPosition = randPos * randVelocty;
+	return (randPosition + self.global_position)
+	
+func Collected() -> void:
 	Global.xp_colleted.emit()
 	queue_free()
-	pass
-	
-func PlayerIsNear():
-	moveToPlayer = true
-	pass
-	
-func on_area_entered(area):
-	if area.is_in_group("player"):
-		PlayerIsNear()
 	pass

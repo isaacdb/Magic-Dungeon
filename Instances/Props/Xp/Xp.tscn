@@ -1,21 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://ccinp2n23llog"]
+[gd_scene load_steps=4 format=3 uid="uid://ccinp2n23llog"]
 
 [ext_resource type="Script" path="res://Instances/Props/Xp/Xp.gd" id="1_6tqay"]
 [ext_resource type="Texture2D" uid="uid://bdb0dphb58dvc" path="res://Instances/Props/Xp/xp2.png" id="2_18juo"]
 [ext_resource type="PackedScene" uid="uid://c1sky0kyn05tc" path="res://Instances/Components/PlayerTracker/PlayerTracker.tscn" id="3_vv7cg"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_l214y"]
-radius = 20.0
-
-[node name="Xp" type="Area2D" node_paths=PackedStringArray("playerTracker")]
-collision_layer = 0
-collision_mask = 2
+[node name="Xp" type="Node2D" node_paths=PackedStringArray("playerTracker")]
+z_index = 200
+z_as_relative = false
 script = ExtResource("1_6tqay")
 playerTracker = NodePath("PlayerTracker")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_l214y")
-debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_18juo")
