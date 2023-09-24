@@ -414,6 +414,7 @@ switch_nps = Array[NodePath]([NodePath("../DropXp"), NodePath("../DeathExplosion
 [node name="DeathExplosion" parent="." instance=ExtResource("5_5fvh3")]
 
 [node name="DropXp" parent="." instance=ExtResource("10_1pkgr")]
+xpAmount = 2
 
 [node name="Move" parent="." instance=ExtResource("6_oin3v")]
 

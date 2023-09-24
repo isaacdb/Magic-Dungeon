@@ -157,7 +157,7 @@ fill_to = Vector2(0.858696, 0.798913)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5v3u6"]
 size = Vector2(20, 26)
 
-[sub_resource type="Resource" id="Resource_0nccf"]
+[sub_resource type="Resource" id="Resource_i5dlc"]
 resource_local_to_scene = true
 script = ExtResource("10_f14nk")
 damage = 1.0
@@ -166,7 +166,7 @@ speed = 200.0
 origin = "Enemy"
 prefab = ExtResource("9_uueks")
 
-[sub_resource type="Resource" id="Resource_73e7y"]
+[sub_resource type="Resource" id="Resource_c1ioe"]
 resource_local_to_scene = true
 script = ExtResource("10_f14nk")
 damage = 1.0
@@ -390,7 +390,7 @@ shootManager = NodePath("ShooterComponent")
 flashHit = NodePath("FlashHit")
 attackManager = NodePath("AttackManager")
 itensRage = [NodePath("RageLine1"), NodePath("RageLine2"), NodePath("GroupFlip/AnimatedSprite2D/Eye"), NodePath("GroupFlip/AnimatedSprite2D/Eye2"), NodePath("GroupFlip/PointLight2D")]
-lifeBase = 250.0
+lifeBase = 350.0
 orcLowBulletStats = ExtResource("2_pc7t6")
 audioRage = ExtResource("3_7l1vd")
 
@@ -476,7 +476,7 @@ shape = SubResource("RectangleShape2D_5v3u6")
 pathsAttackPaterns = Array[NodePath]([NodePath("EspiralPatern"), NodePath("CirclePatern"), NodePath("ArcPatern")])
 
 [node name="ArcPatern" parent="AttackManager" instance=ExtResource("8_ts25e")]
-bullet = SubResource("Resource_0nccf")
+bullet = SubResource("Resource_i5dlc")
 
 [node name="CirclePatern" parent="AttackManager" instance=ExtResource("8_afanf")]
 bulletAmount = 50
@@ -486,7 +486,7 @@ bullet = ExtResource("10_vbjbx")
 bulletAmount = 5
 fireAmount = 15
 delayBetweenFire = 0.1
-bullet = SubResource("Resource_73e7y")
+bullet = SubResource("Resource_c1ioe")
 
 [node name="ActiveHandleComponent" parent="." instance=ExtResource("4_c4ky7")]
 activeOnLoad = true

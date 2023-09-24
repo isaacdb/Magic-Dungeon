@@ -411,6 +411,7 @@ deathAudio = ExtResource("11_8uk5u")
 switch_nps = Array[NodePath]([NodePath("../DropXp"), NodePath("../DeathExplosion"), NodePath("../EnemyDeath")])
 
 [node name="DropXp" parent="." instance=ExtResource("10_tpce3")]
+xpAmount = 2
 
 [node name="DeathExplosion" parent="." instance=ExtResource("7_p68xh")]
 
