@@ -113,7 +113,7 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.627451, 1, 1, 1, 0)
 [sub_resource type="Gradient" id="Gradient_xsmxh"]
 colors = PackedColorArray(0.316749, 0.422333, 0.477803, 1, 1, 1, 1, 1)
 
-[sub_resource type="Resource" id="Resource_p7okn"]
+[sub_resource type="Resource" id="Resource_g7w7q"]
 resource_local_to_scene = true
 script = ExtResource("12_5cc7y")
 damage = 1.0
@@ -475,10 +475,10 @@ text = "   ↑
 
 [node name="Move" type="Label" parent="MsgTutorial"]
 layout_mode = 0
-offset_left = 131.0
-offset_top = -80.0
-offset_right = 169.0
-offset_bottom = -35.0
+offset_left = 118.0
+offset_top = -53.0
+offset_right = 156.0
+offset_bottom = -8.0
 rotation = -0.158202
 theme_override_fonts/font = ExtResource("2_a82mv")
 text = "Move
@@ -487,19 +487,19 @@ text = "Move
 [node name="WASD" type="Label" parent="MsgTutorial"]
 layout_mode = 0
 offset_left = 126.0
-offset_top = -58.0
+offset_top = -39.0
 offset_right = 175.0
-offset_bottom = -13.0
+offset_bottom = 6.0
 rotation = 0.107785
 theme_override_fonts/font = ExtResource("2_a82mv")
 text = "WASD"
 
 [node name="Mouse" type="Label" parent="MsgTutorial"]
 layout_mode = 0
-offset_left = 105.0
-offset_top = -133.0
-offset_right = 187.0
-offset_bottom = -88.0
+offset_left = 100.0
+offset_top = -108.0
+offset_right = 182.0
+offset_bottom = -63.0
 rotation = -0.122767
 theme_override_fonts/font = ExtResource("2_a82mv")
 text = "Mouse Aim
@@ -507,13 +507,16 @@ and FIRE"
 
 [node name="Dash" type="Label" parent="MsgTutorial"]
 layout_mode = 0
-offset_left = 105.0
-offset_top = -186.0
-offset_right = 182.0
-offset_bottom = -141.0
+offset_left = 122.0
+offset_top = -199.0
+offset_right = 199.0
+offset_bottom = -123.0
 rotation = 0.00110795
 theme_override_fonts/font = ExtResource("2_a82mv")
-text = "F to Dash"
+text = "Dash
+- Space
+- L Shift
+- R Click	"
 
 [node name="Monsters" type="Label" parent="MsgTutorial"]
 layout_mode = 0
@@ -601,7 +604,7 @@ layer_1/tile_data = PackedInt32Array(1966130, 0, 8, 1900594, 0, 8, 1835058, 0, 8
 
 [node name="Mage1" parent="." instance=ExtResource("4_f7hcd")]
 position = Vector2(313, -45)
-bulletStats = SubResource("Resource_p7okn")
+bulletStats = SubResource("Resource_g7w7q")
 
 [node name="Room-1" type="Node2D" parent="." node_paths=PackedStringArray("gateEnter", "gateExit", "audioPlayer")]
 visible = false

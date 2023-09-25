@@ -51,6 +51,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_abcmy")
 
 [node name="Title" type="Label" parent="."]
+layout_mode = 0
 offset_left = 19.0
 offset_top = 40.0
 offset_right = 499.0
