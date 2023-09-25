@@ -30,7 +30,7 @@ func Execute():
 	if activeHandle:
 		activeHandle.Execute(false)
 	
-	if deathAudio:
+	if deathAudio && Settings.soundEffect:
 		audioPlayer.play()
 		audioPlayer.reparent(get_tree().get_root())
 		var tween = create_tween()

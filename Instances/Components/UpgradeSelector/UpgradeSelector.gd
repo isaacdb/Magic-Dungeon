@@ -19,7 +19,9 @@ func _ready():
 func ActiveSelector():
 	self.visible = true
 	get_tree().paused = true
-	audioLevelUp.play()
+	
+	if Settings.soundEffect:
+		audioLevelUp.play()
 	
 	for i in 3:
 		var upgradeStats = GetRandomUpgrade()
@@ -30,8 +32,10 @@ func ActiveSelector():
 	pass
 
 func UpgradeSelected(upgrade: UpgradeStats):
-	upgrade.ApplyUpgrade(player)
-	audioConfirm.play()
+	upgrade.ApplyUpgrade(player);
+	
+	if Settings.soundEffect:
+		audioConfirm.play();
 	
 	CleanUpgradesListed()
 	

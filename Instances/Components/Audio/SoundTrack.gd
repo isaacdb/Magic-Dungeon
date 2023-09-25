@@ -10,6 +10,10 @@ func _ready():
 	Global.enter_boss_room.connect(BossFight)
 	Global.player_dead.connect(EndGame)
 	Global.boss_killed.connect(EndGame)
+	
+func PlayStop(play: bool) -> void:
+	audioPlayer.playing = play;	
+	pass
 
 func GameStart():
 	ChangeTrackAndTweenPlay(soundTrackGeneral, -12)
@@ -26,8 +30,10 @@ func EndGame():
 
 func ChangeTrackAndTweenPlay(audio: AudioStream, finalVolume: int) -> void:
 	audioPlayer.volume_db = -100
-	audioPlayer.stream = audio
-	audioPlayer.play()
+	audioPlayer.stream = audio	
+	
+	if Settings.music:
+		audioPlayer.play()
 	
 	var tween = create_tween()
 	tween.tween_property(audioPlayer, "volume_db", finalVolume, 1)

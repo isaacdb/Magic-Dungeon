@@ -31,7 +31,10 @@ func area_room_area_entered(area):
 	if !areaClean and !areaActive and area.is_in_group("player"):
 		areaActive = true
 		gateEnter.close()
-		audioPlayer.play()
+		
+		if Settings.soundEffect:
+			audioPlayer.play();
+			
 		spawn_enemies()
 		
 		if isBossRoom:
@@ -72,7 +75,9 @@ func enemy_killed():
 				gateEnter.open() 
 				areaActive = false
 				areaClean = true
-				audioPlayer.play()
+				
+				if Settings.soundEffect:
+					audioPlayer.play()
 			else:
 				enemiesKilled = 0
 				enemiesCount = 0

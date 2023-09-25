@@ -59,7 +59,7 @@ func take_damage(attack: Attack):
 	if knockBack:
 		knockBack.Execute(get_parent(), attack.knock_back, attack.direction)
 	
-	if hitAudio:
+	if hitAudio && Settings.soundEffect:
 		audioPlayer.play()
 	
 	if (currentHealth <= 0):

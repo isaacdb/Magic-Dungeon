@@ -12,24 +12,24 @@ extends Node2D
 
 var pointer = load("res://Assets/pointer4.png")
 
-func _init():
+func _init() -> void:
 	Global.player_dead.connect(PlayerDead)
 	Global.player_hited.connect(PlayerGetHit)
 	Global.boss_killed.connect(BossKilled)
 	pass
 
-func _ready():	
+func _ready() -> void:	
 	Input.set_custom_mouse_cursor(pointer, Input.CURSOR_ARROW, Vector2(16, 16))
 	deadPanel.position.y = -350
 	deadPanel.visible = false
 	
 	congrats.visible = false
 	congrats.position.y = -600
-	
+		
 	Global.game_start.emit()
 	pass
 
-func BossKilled():	
+func BossKilled() -> void:
 	congrats.visible = true
 	var tweenCongrats = create_tween()
 	tweenCongrats.tween_interval(1)
@@ -39,12 +39,16 @@ func BossKilled():
 	var tween = create_tween()
 	tween.tween_callback(func(): get_tree().reload_current_scene()).set_delay(7)
 	tween.play()
-	audioWinGame.play()
+	
+	if Settings.soundEffect:
+		audioWinGame.play();
 	pass
 
-func PlayerDead():
+func PlayerDead() -> void:
 	Global.screen_shake.emit(10, 2, 1)
-	audioGameOver.play()
+	
+	if Settings.soundEffect:
+		audioGameOver.play();
 	
 	deadPanel.visible = true
 	var tweenDeadPanel = create_tween()
@@ -56,7 +60,7 @@ func PlayerDead():
 	tween.play()
 	pass
 
-func PlayerGetHit():
+func PlayerGetHit() -> void:
 	var tween = create_tween()
 	tween.tween_property(canvaModulate, "color", hitColorModulate, 0.1).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
 	tween.tween_property(canvaModulate, "color", defaultColorModulate, 0.1).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)

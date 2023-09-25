@@ -126,6 +126,7 @@ func SetRageMode():
 	timeIdle = 1.0
 	speed = 130.0
 	
-	audioPlayer.stream = audioRage
-	audioPlayer.play()
+	if Settings.soundEffect:
+		audioPlayer.stream = audioRage
+		audioPlayer.play()
 	pass

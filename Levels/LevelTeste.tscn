@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://cmx7pnpls2gkt"]
+[gd_scene load_steps=63 format=3 uid="uid://cmx7pnpls2gkt"]
 
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_avsao"]
 [ext_resource type="PackedScene" uid="uid://03my8igrvwt8" path="res://Instances/Tilemap/TileMapWalls.tscn" id="1_fch5f"]
@@ -30,7 +30,10 @@
 [ext_resource type="Texture2D" uid="uid://b3gmb1kq3cxwk" path="res://Assets/GUI/background-panel.png" id="13_4pdkx"]
 [ext_resource type="PackedScene" uid="uid://owdfvvvn7ja3" path="res://Instances/Enemies/BossOrc/BossOrc.tscn" id="13_va7ux"]
 [ext_resource type="FontFile" uid="uid://dq8hbswcklqcs" path="res://Assets/Fonts/Bitfantasy.ttf" id="14_s3igf"]
+[ext_resource type="PackedScene" uid="uid://b0w2fstnkg5ry" path="res://Instances/Components/SettingComponent/SettingMenu.tscn" id="14_trdaf"]
+[ext_resource type="Texture2D" uid="uid://bam2sv4p2ryc" path="res://Assets/GUI/settingIcon.png" id="15_jos43"]
 [ext_resource type="Texture2D" uid="uid://dsa860i7r5ace" path="res://Assets/GUI/panel-adorn.png" id="15_vsgbi"]
+[ext_resource type="Script" path="res://Scripts/GUI/SettingButton.gd" id="16_n46q2"]
 [ext_resource type="PackedScene" uid="uid://cfc0jruo74mst" path="res://Instances/Props/Torch/Torch.tscn" id="20_gl0pj"]
 [ext_resource type="PackedScene" uid="uid://dnou7mrnifiye" path="res://Instances/Props/Mushroom/Mushroom.tscn" id="21_fnvuu"]
 [ext_resource type="PackedScene" uid="uid://b1ihv7h1usawy" path="res://Instances/Props/Flags/Flag.tscn" id="22_50bky"]
@@ -110,7 +113,7 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.627451, 1, 1, 1, 0)
 [sub_resource type="Gradient" id="Gradient_xsmxh"]
 colors = PackedColorArray(0.316749, 0.422333, 0.477803, 1, 1, 1, 1, 1)
 
-[sub_resource type="Resource" id="Resource_nqkg3"]
+[sub_resource type="Resource" id="Resource_p7okn"]
 resource_local_to_scene = true
 script = ExtResource("12_5cc7y")
 damage = 1.0
@@ -407,6 +410,29 @@ theme_override_fonts/font = ExtResource("14_s3igf")
 theme_override_font_sizes/font_size = 33
 text = "Continue..."
 
+[node name="SettingMenu" parent="CanvasLayer" instance=ExtResource("14_trdaf")]
+
+[node name="SettingsButton" type="Button" parent="CanvasLayer" node_paths=PackedStringArray("settingMenu") groups=["UI"]]
+process_mode = 3
+modulate = Color(0.390625, 0.386719, 0.675781, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1143.0
+offset_top = 19.0
+offset_right = -113.0
+offset_bottom = -677.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(5.11253, 5.00471)
+focus_mode = 0
+theme_override_colors/icon_pressed_color = Color(0.52549, 0.529412, 0.792157, 1)
+theme_override_colors/icon_hover_color = Color(0.317647, 0.313726, 0.560784, 1)
+icon = ExtResource("15_jos43")
+flat = true
+script = ExtResource("16_n46q2")
+settingMenu = NodePath("../SettingMenu")
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_k8p4i")
 
@@ -575,7 +601,7 @@ layer_1/tile_data = PackedInt32Array(1966130, 0, 8, 1900594, 0, 8, 1835058, 0, 8
 
 [node name="Mage1" parent="." instance=ExtResource("4_f7hcd")]
 position = Vector2(313, -45)
-bulletStats = SubResource("Resource_nqkg3")
+bulletStats = SubResource("Resource_p7okn")
 
 [node name="Room-1" type="Node2D" parent="." node_paths=PackedStringArray("gateEnter", "gateExit", "audioPlayer")]
 visible = false

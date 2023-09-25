@@ -120,7 +120,7 @@ shootManager = NodePath("Weapon/ShooterComponent")
 bulletStats = ExtResource("2_jv4dm")
 weapon = NodePath("Weapon")
 lifeBase = 3.0
-fireRate = 0.4
+fireRate = 0.5
 
 [node name="Weapon" parent="." instance=ExtResource("2_540pc")]
 position = Vector2(0, -9)

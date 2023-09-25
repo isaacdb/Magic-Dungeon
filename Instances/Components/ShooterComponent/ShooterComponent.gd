@@ -51,7 +51,7 @@ func Shoot(direction: Vector2, bulletStats: BulletStats):
 	newBullet.moveDirection = direction
 	newBullet.look_at(self.global_position + (direction * 10))
 	
-	if fireAudio:
+	if fireAudio && Settings.soundEffect:
 		audioPlayer.play()
 		
 	pass

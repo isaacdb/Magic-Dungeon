@@ -1,5 +1,6 @@
 extends Node
 
+## Signals
 signal screen_shake
 
 signal player_dead
@@ -15,6 +16,9 @@ signal boss_killed
 signal enter_boss_room
 
 signal game_start
+
+## Variables
+var mouseOverGUI := false
 
 var camera : Camera2D
 

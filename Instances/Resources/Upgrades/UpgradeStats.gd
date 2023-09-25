@@ -32,8 +32,10 @@ func ApplyUpgrade(player: Mage1):
 	pass
 
 func UpgradeFireRate(player: Mage1):
-	player.fireRate -= upgradeValue
-	player.UpdateFireRate(player.fireRate)
+	var fireRatePercent = (player.fireRate * upgradeValue) / 100.0;
+	player.fireRate -= fireRatePercent;
+	print(player.fireRate);
+	player.UpdateFireRate(player.fireRate);
 	pass
 	
 func UpgradeLife(player: Mage1):

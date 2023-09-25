@@ -17,7 +17,10 @@ func Execute():
 		
 	Global.emit_signal("screen_shake", 2, .2, 1)
 	explosionParticle.emitting = true
-	smokeParticle.emitting = true
+	
+	if Settings.dustExplosion:
+		smokeParticle.emitting = true;
+		
 	explosionAnimPlayer.play("Explosion")
 	self.reparent(get_parent().get_parent())
 	
