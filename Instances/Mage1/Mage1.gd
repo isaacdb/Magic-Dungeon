@@ -7,6 +7,7 @@ class_name Mage1
 @export var shootManager : ShooterComponent
 @export var bulletStats : BulletStats
 @export var weapon : Weapon
+@export var playerInput : PlayerInputManager;
 
 @export var acceleration := 1400.0
 @export var speed := 150.0
@@ -70,12 +71,12 @@ func _physics_process(delta) -> void:
 	if !isAlive:
 		return
 	
-	var input = GetAxisInput()
+	var moveInput = playerInput.GetAxisInput()
 	
 	if Input.is_action_just_pressed("dash") and dashSkill.canDash:
-		dashSkill.Dash(GetAxisInput(), self, speed)
+		dashSkill.Dash(moveInput, self, speed)
 	else:
-		moveComponent.Move(self, input, delta, acceleration, speed)
+		moveComponent.Move(self, moveInput, delta, acceleration, speed)
 		
 	sprite2D.flip_h = (get_global_mouse_position() - position).x < 0
 	pass	
@@ -98,21 +99,13 @@ func StartIFrame() -> void:
 func EndIFrame() -> void:
 	healthManager.SetActive(true)
 
-func GetAxisInput() -> Vector2:
-	var directionH = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
-	var directionV = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")	
-	
-	return Vector2 (directionH, directionV).normalized()
-
 func UpdateFireRate(newFireRate: float):
 	shootManager.UpdateFireRate(newFireRate)
 	pass
 
 func Fire() -> void:
-	var shoot = shootManager.FireWithCooldown(GetMouseDirection(), bulletStats)
+	var direction = playerInput.GetMouseDirection(shootManager.global_position)
+	var shoot = shootManager.FireWithCooldown(direction, bulletStats)
 	if shoot:
 		Global.emit_signal("screen_shake", 1, .1, 1)
-		weapon.PlayAnimFire()
-		
-func GetMouseDirection() -> Vector2:
-	return (get_global_mouse_position() - shootManager.global_position).normalized()	
+		weapon.PlayAnimFire();

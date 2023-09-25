@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://c6g7qwsljeavk"]
+[gd_scene load_steps=32 format=3 uid="uid://c6g7qwsljeavk"]
 
 [ext_resource type="Script" path="res://Instances/Mage1/Mage1.gd" id="1_giwmu"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="1_hkxu6"]
@@ -19,6 +19,7 @@
 [ext_resource type="AudioStream" uid="uid://bm2t2he5c3da" path="res://Instances/Mage1/PlayerHit.ogg" id="12_qa121"]
 [ext_resource type="PackedScene" uid="uid://valwt38uo38s" path="res://Instances/Components/BulletPredict/BulletPredict.tscn" id="14_qybn2"]
 [ext_resource type="PackedScene" uid="uid://b4enx6olclngm" path="res://Instances/Components/FlashHit/FlashHit.tscn" id="15_34hya"]
+[ext_resource type="PackedScene" uid="uid://b4osisqtoowwc" path="res://Instances/Components/PlayerInputManager/PlayerInputManager.tscn" id="20_22m8h"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0wwrl"]
 radius = 6.0
@@ -109,7 +110,7 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 radius = 6.0
 height = 16.0
 
-[node name="Mage1" type="CharacterBody2D" node_paths=PackedStringArray("moveComponent", "healthManager", "flashHit", "shootManager", "weapon") groups=["player"]]
+[node name="Mage1" type="CharacterBody2D" node_paths=PackedStringArray("moveComponent", "healthManager", "flashHit", "shootManager", "weapon", "playerInput") groups=["player"]]
 collision_layer = 0
 collision_mask = 112
 script = ExtResource("1_giwmu")
@@ -119,6 +120,7 @@ flashHit = NodePath("FlashHit")
 shootManager = NodePath("Weapon/ShooterComponent")
 bulletStats = ExtResource("2_jv4dm")
 weapon = NodePath("Weapon")
+playerInput = NodePath("PlayerInputManager")
 lifeBase = 3.0
 fireRate = 0.5
 
@@ -216,3 +218,5 @@ healthComponent = NodePath("../Health")
 [node name="TimerIFrame" type="Timer" parent="."]
 
 [node name="FlashHit" parent="." instance=ExtResource("15_34hya")]
+
+[node name="PlayerInputManager" parent="." instance=ExtResource("20_22m8h")]

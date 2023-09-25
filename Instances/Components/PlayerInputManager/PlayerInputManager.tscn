@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4osisqtoowwc"]
+
+[ext_resource type="Script" path="res://Instances/Components/PlayerInputManager/PlayerInputManager.gd" id="1_skwds"]
+
+[node name="PlayerInputManager" type="Node2D"]
+script = ExtResource("1_skwds")
