@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://ckji28dievdf"]
+[gd_scene load_steps=9 format=3 uid="uid://ckji28dievdf"]
 
 [ext_resource type="Texture2D" uid="uid://bhpjkg5womx6v" path="res://Instances/Props/Box/box.png" id="1_kfi6q"]
 [ext_resource type="Script" path="res://Instances/Props/Box/Box.gd" id="1_xwt5u"]
 [ext_resource type="PackedScene" uid="uid://b4asjdyoyep5s" path="res://Instances/Components/Health/Health.tscn" id="2_f7a82"]
 [ext_resource type="PackedScene" uid="uid://6fcg84clxst2" path="res://Instances/Components/Death/DeathManager.tscn" id="3_27yqm"]
 [ext_resource type="PackedScene" uid="uid://bdh7yqt03o3v4" path="res://Instances/Components/PropDestruction/PropDestruction.tscn" id="4_blv3r"]
+[ext_resource type="PackedScene" uid="uid://cwyxu1ysjtku7" path="res://Instances/Components/DropXp/DropXp.tscn" id="5_jdwc7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mfiuh"]
 size = Vector2(18, 16)
@@ -33,7 +34,10 @@ position = Vector2(0, 9)
 shape = SubResource("RectangleShape2D_mfiuh")
 
 [node name="DeathManager" parent="." instance=ExtResource("3_27yqm")]
-switch_nps = Array[NodePath]([NodePath("../PropDestruction")])
+switch_nps = Array[NodePath]([NodePath("../PropDestruction"), NodePath("../DropXp")])
+
+[node name="DropXp" parent="." instance=ExtResource("5_jdwc7")]
+dropChance = 30
 
 [node name="PropDestruction" parent="." instance=ExtResource("4_blv3r")]
 
