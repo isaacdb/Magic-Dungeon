@@ -105,7 +105,6 @@ func AttackFinished():
 	pass
 	
 func GetHit(attack: Attack):
-	flashHit.Flash(sprite.material)
 	if healthManager.currentHealth < lifeBase/2:
 		SetRageMode()
 		

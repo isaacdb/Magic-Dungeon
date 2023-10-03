@@ -413,18 +413,22 @@ animation = &"Walk"
 centered = false
 offset = Vector2(-8.062, -20.028)
 
-[node name="Health" parent="." node_paths=PackedStringArray("deathManager", "knockBack", "lifeBar") instance=ExtResource("5_ybllr")]
+[node name="Health" parent="." node_paths=PackedStringArray("deathManager", "knockBack", "flashHit", "lifeBar") instance=ExtResource("5_ybllr")]
 position = Vector2(0, -8)
 collision_layer = 8
 collision_mask = 0
 deathManager = NodePath("../DeathManager")
 knockBack = NodePath("../KnockBack")
+flashHit = NodePath("../FlashHit")
 lifeBar = NodePath("../HealthBar")
 hitAudio = ExtResource("7_3v1x2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Health"]
 shape = SubResource("CapsuleShape2D_axq1k")
 debug_color = Color(0, 0.6, 0, 0.419608)
+
+[node name="FlashHit" parent="." node_paths=PackedStringArray("animatedSprite") instance=ExtResource("16_n4vfa")]
+animatedSprite = NodePath("../GroupFlip/AnimatedSprite2D")
 
 [node name="DeathManager" parent="." node_paths=PackedStringArray("activeHandle") instance=ExtResource("6_y0wxg")]
 position = Vector2(0, -8)
@@ -465,5 +469,3 @@ fill_mode = 1
 [node name="ShooterComponent" parent="." instance=ExtResource("15_3v3iq")]
 position = Vector2(0, -8)
 fireAudio = ExtResource("18_nskge")
-
-[node name="FlashHit" parent="." instance=ExtResource("16_n4vfa")]

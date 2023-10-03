@@ -360,8 +360,6 @@ orcMageBulletStats = ExtResource("2_is0ku")
 lifeBase = 8
 timeIdle = 2.0
 
-[node name="FlashHit" parent="." instance=ExtResource("3_5fn7d")]
-
 [node name="TimerIdle" type="Timer" parent="."]
 
 [node name="TimerAttack" type="Timer" parent="."]
@@ -391,18 +389,21 @@ libraries = {
 "": SubResource("AnimationLibrary_a08sq")
 }
 
-[node name="Health" parent="." node_paths=PackedStringArray("deathManager", "knockBack", "lifeBar") instance=ExtResource("3_k0wef")]
-visible = false
+[node name="Health" parent="." node_paths=PackedStringArray("deathManager", "knockBack", "flashHit", "lifeBar") instance=ExtResource("3_k0wef")]
 collision_layer = 8
 collision_mask = 0
 deathManager = NodePath("../DeathManager")
 knockBack = NodePath("../KnockBack")
+flashHit = NodePath("../FlashHit")
 lifeBar = NodePath("../HealthBar")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Health"]
 position = Vector2(-1, -7)
 shape = SubResource("CapsuleShape2D_fhp2g")
 debug_color = Color(0, 0.52549, 0, 0.419608)
+
+[node name="FlashHit" parent="." node_paths=PackedStringArray("animatedSprite") instance=ExtResource("3_5fn7d")]
+animatedSprite = NodePath("../GroupFlip/AnimatedSprite2D")
 
 [node name="DeathManager" parent="." node_paths=PackedStringArray("activeHandle") instance=ExtResource("4_s32rd")]
 activeHandle = NodePath("../ActiveHandleComponent")

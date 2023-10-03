@@ -60,8 +60,12 @@ func _physics_process(delta) -> void:
 func GetHited(attack: Attack) -> void:
 	Global.emit_signal("screen_shake", 10.0, .3, 1)
 	Global.player_hited.emit()
-	flashHit.Flash(sprite2D.material)
 	StartIFrame()
+	
+	if attack.damage <= 0:
+		return
+	
+	Global.player_remove_life.emit()	
 	pass	
 
 func ChangeAnim(anim: String) -> void:

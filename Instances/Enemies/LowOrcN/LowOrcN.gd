@@ -32,7 +32,6 @@ var roundDirection := 1
 var tweenAttack : Tween
 
 func _ready():
-	healthManager.damage.connect(GetHit)
 	healthManager.SetLifeBase(lifeBase)
 	pass
 	
@@ -60,10 +59,6 @@ func ChangeState(state: States):
 func AttackFinished():
 	shootManager.FireWithCooldown(playerTracker.GetDirection(), orcLowBulletStats)
 	ChangeState(States.CHASING)
-	pass
-	
-func GetHit(attack: Attack):
-	flashHit.Flash(sprite.material)
 	pass
 	
 func GetDirection() -> Vector2:

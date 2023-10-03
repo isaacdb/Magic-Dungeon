@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://4ai608jgoxt0"]
+
+[ext_resource type="PackedScene" uid="uid://bao0oq6xak2nx" path="res://Instances/Props/Jars/Jar.tscn" id="1_ylsrw"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Jar" parent="." instance=ExtResource("1_ylsrw")]
+position = Vector2(184, 221)
+
+[node name="Jar2" parent="." instance=ExtResource("1_ylsrw")]
+position = Vector2(284, 207)
+
+[node name="Jar3" parent="." instance=ExtResource("1_ylsrw")]
+position = Vector2(364, 296)

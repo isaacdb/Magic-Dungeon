@@ -3,6 +3,7 @@ class_name Health
 
 @export var deathManager : DeathManager
 @export var knockBack : KnockBack
+@export var flashHit : FlashHit
 @export var lifeBar : HealthBar
 @export var hitAudio : AudioStream
 
@@ -58,11 +59,14 @@ func take_damage(attack: Attack):
 	
 	if knockBack:
 		knockBack.Execute(get_parent(), attack.knock_back, attack.direction)
+		
+	if flashHit:
+		flashHit.Flash()
 	
 	if hitAudio && Settings.soundEffect:
 		audioPlayer.play()
 	
-	if (currentHealth <= 0):
+	if currentHealth <= 0 and deathManager:
 		deathManager.Execute()
 		
 	pass

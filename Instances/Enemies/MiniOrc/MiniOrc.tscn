@@ -375,17 +375,21 @@ libraries = {
 "": SubResource("AnimationLibrary_lasgw")
 }
 
-[node name="Health" parent="." node_paths=PackedStringArray("deathManager", "knockBack", "lifeBar") instance=ExtResource("1_a5e0l")]
+[node name="Health" parent="." node_paths=PackedStringArray("deathManager", "knockBack", "flashHit", "lifeBar") instance=ExtResource("1_a5e0l")]
 collision_layer = 8
 collision_mask = 0
 deathManager = NodePath("../DeathManager")
 knockBack = NodePath("../KnockBack")
+flashHit = NodePath("../FlashHit")
 lifeBar = NodePath("../HealthBar")
 hitAudio = ExtResource("4_nikii")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Health"]
 position = Vector2(0.5, -5)
 shape = SubResource("RectangleShape2D_vwr3s")
+
+[node name="FlashHit" parent="." node_paths=PackedStringArray("animatedSprite") instance=ExtResource("15_6avr8")]
+animatedSprite = NodePath("../GroupFlip/AnimatedSprite2D")
 
 [node name="Move" parent="." instance=ExtResource("2_ai1y0")]
 
@@ -428,5 +432,3 @@ offset_bottom = 9.0
 [node name="PlayerTracker" parent="." instance=ExtResource("11_j4ejo")]
 
 [node name="ShooterComponent" parent="." instance=ExtResource("12_27l44")]
-
-[node name="FlashHit" parent="." instance=ExtResource("15_6avr8")]

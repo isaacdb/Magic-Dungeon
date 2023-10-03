@@ -1,9 +1,10 @@
 extends Node2D
 
 @export var healthManager : Health
-
 @export var lifeBase := 8
+@export var dropXpOn := true
 
+@onready var dropXp := $DropXp as DropXp
 @onready var sprite := $Sprite2D as Sprite2D
 @onready var rnd := RandomNumberGenerator.new()
 
@@ -13,6 +14,9 @@ func _ready():
 
 	healthManager.SetLifeBase(lifeBase)
 	healthManager.damage.connect(Shake)
+	
+	if not dropXpOn:
+		dropXp.dropChance = 0	
 	pass
 	
 func Shake(attack: Attack):	

@@ -28,7 +28,6 @@ enum States
 
 var currentState := States.IDLE
 func _ready():
-	healthManager.damage.connect(GetHit)
 	healthManager.SetLifeBase(lifeBase)
 	
 	var randTime = rnd.randf_range(-1.5, 1.5)	
@@ -63,10 +62,6 @@ func _physics_process(delta):
 func ChangeState(state: States):
 	currentState = state
 	pass
-
-func GetHit(attack: Attack):
-	flashHit.Flash(sprite.material)
-	pass	
 	
 func AttackFinished():
 	var angleFire = rnd.randf_range(0.0, 90.0)

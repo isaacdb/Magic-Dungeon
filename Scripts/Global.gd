@@ -6,6 +6,7 @@ signal screen_shake
 signal player_dead
 signal set_player_max_life
 signal player_hited
+signal player_remove_life
 signal player_add_life
 
 signal xp_colleted

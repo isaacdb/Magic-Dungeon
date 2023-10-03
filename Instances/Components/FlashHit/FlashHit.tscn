@@ -3,4 +3,5 @@
 [ext_resource type="Script" path="res://Instances/Components/FlashHit/FlashHit.gd" id="1_70m1x"]
 
 [node name="FlashHit" type="Node2D"]
+use_parent_material = true
 script = ExtResource("1_70m1x")

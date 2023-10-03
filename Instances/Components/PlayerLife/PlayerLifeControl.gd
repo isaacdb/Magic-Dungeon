@@ -9,7 +9,7 @@ var lifes : Array[LifeIcon]
 
 func _ready():
 	Global.set_player_max_life.connect(SetPlayerLife)
-	Global.player_hited.connect(RemoveLife)
+	Global.player_remove_life.connect(RemoveLife)
 	Global.player_add_life.connect(AddLife)
 	pass
 

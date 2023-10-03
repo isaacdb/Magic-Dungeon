@@ -157,7 +157,7 @@ fill_to = Vector2(0.858696, 0.798913)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5v3u6"]
 size = Vector2(20, 26)
 
-[sub_resource type="Resource" id="Resource_i5dlc"]
+[sub_resource type="Resource" id="Resource_il1bu"]
 resource_local_to_scene = true
 script = ExtResource("10_f14nk")
 damage = 1.0
@@ -166,7 +166,7 @@ speed = 200.0
 origin = "Enemy"
 prefab = ExtResource("9_uueks")
 
-[sub_resource type="Resource" id="Resource_c1ioe"]
+[sub_resource type="Resource" id="Resource_d4qgt"]
 resource_local_to_scene = true
 script = ExtResource("10_f14nk")
 damage = 1.0
@@ -379,7 +379,7 @@ _data = {
 "Walk": SubResource("Animation_y1p4g")
 }
 
-[node name="BossOrc" type="CharacterBody2D" node_paths=PackedStringArray("moveComponent", "playerTracker", "healthManager", "shootManager", "flashHit", "attackManager", "itensRage")]
+[node name="BossOrc" type="CharacterBody2D" node_paths=PackedStringArray("moveComponent", "playerTracker", "healthManager", "shootManager", "flashHit", "attackManager")]
 collision_layer = 0
 collision_mask = 32
 script = ExtResource("1_38hcy")
@@ -389,7 +389,6 @@ healthManager = NodePath("Health")
 shootManager = NodePath("ShooterComponent")
 flashHit = NodePath("FlashHit")
 attackManager = NodePath("AttackManager")
-itensRage = [NodePath("RageLine1"), NodePath("RageLine2"), NodePath("GroupFlip/AnimatedSprite2D/Eye"), NodePath("GroupFlip/AnimatedSprite2D/Eye2"), NodePath("GroupFlip/PointLight2D")]
 lifeBase = 350.0
 orcLowBulletStats = ExtResource("2_pc7t6")
 audioRage = ExtResource("3_7l1vd")
@@ -460,11 +459,12 @@ shadow_enabled = true
 shadow_filter_smooth = 20.3
 texture = SubResource("GradientTexture2D_6ni8p")
 
-[node name="Health" parent="." node_paths=PackedStringArray("deathManager", "lifeBar") instance=ExtResource("3_uvpwl")]
+[node name="Health" parent="." node_paths=PackedStringArray("deathManager", "flashHit", "lifeBar") instance=ExtResource("3_uvpwl")]
 visible = false
 collision_layer = 8
 collision_mask = 0
 deathManager = NodePath("../DeathManager")
+flashHit = NodePath("../FlashHit")
 lifeBar = NodePath("../CanvasLayer/HealthBar")
 hitAudio = ExtResource("7_kgjiu")
 
@@ -472,11 +472,14 @@ hitAudio = ExtResource("7_kgjiu")
 position = Vector2(0, -13)
 shape = SubResource("RectangleShape2D_5v3u6")
 
+[node name="FlashHit" parent="." node_paths=PackedStringArray("animatedSprite") instance=ExtResource("8_w2yds")]
+animatedSprite = NodePath("../GroupFlip/AnimatedSprite2D")
+
 [node name="AttackManager" parent="." instance=ExtResource("7_qdm3p")]
 pathsAttackPaterns = Array[NodePath]([NodePath("EspiralPatern"), NodePath("CirclePatern"), NodePath("ArcPatern")])
 
 [node name="ArcPatern" parent="AttackManager" instance=ExtResource("8_ts25e")]
-bullet = SubResource("Resource_i5dlc")
+bullet = SubResource("Resource_il1bu")
 
 [node name="CirclePatern" parent="AttackManager" instance=ExtResource("8_afanf")]
 bulletAmount = 50
@@ -486,7 +489,7 @@ bullet = ExtResource("10_vbjbx")
 bulletAmount = 5
 fireAmount = 15
 delayBetweenFire = 0.1
-bullet = SubResource("Resource_c1ioe")
+bullet = SubResource("Resource_d4qgt")
 
 [node name="ActiveHandleComponent" parent="." instance=ExtResource("4_c4ky7")]
 activeOnLoad = true
@@ -506,8 +509,6 @@ position = Vector2(-8, -16)
 position = Vector2(11, -19)
 
 [node name="DropXp" parent="." instance=ExtResource("7_5ok6n")]
-
-[node name="FlashHit" parent="." instance=ExtResource("8_w2yds")]
 
 [node name="Move" parent="." instance=ExtResource("9_4wogm")]
 

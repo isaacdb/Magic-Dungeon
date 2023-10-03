@@ -34,7 +34,6 @@ var _currentTimeCheckStuck := 0.0
 
 
 func _ready() -> void:
-	healthManager.damage.connect(GetHit)	
 	healthManager.SetLifeBase(lifeBase)
 	
 	timerIdle.wait_time = timeIdle
@@ -79,10 +78,6 @@ func _physics_process(delta) -> void:
 			animPlayer.play("Attack")
 			pass
 			
-func GetHit(attack: Attack) -> void:
-	flashHit.Flash(sprite.material)
-	pass
-
 func ChangeState(state: States) -> void:
 	currentState = state
 	pass
