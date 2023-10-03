@@ -9,5 +9,5 @@ id = 2
 description = "Teste 2 descrição"
 title = "+ MOVE SPEED"
 upgradeType = 2
-upgradeValue = 30.0
+upgradeValue = 15.0
 icon = ExtResource("1_nr05c")

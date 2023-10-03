@@ -43,30 +43,6 @@ func _process(delta) -> void:
 		Fire();
 	pass
 
-func is_ui_clicked():
-	var clickable_collider = get_clickable_collider()
-	
-	if clickable_collider:
-		return clickable_collider.has_group("UI")
-	
-	print(clickable_collider)
-	return false
-
-func get_clickable_collider():
-	var mouse_pos = get_viewport().get_mouse_position()
-	var space_state = get_world_2d().direct_space_state
-	var param = PhysicsPointQueryParameters2D.new()
-	param.position = mouse_pos;
-	var result = space_state.intersect_point(param)
-	
-	for i in result:
-		print(i)
-	
-	if result:
-		return result.collider
-	else:
-		return null
-
 func _physics_process(delta) -> void:
 	if !isAlive:
 		return

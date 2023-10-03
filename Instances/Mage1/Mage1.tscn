@@ -209,7 +209,7 @@ switch_nps = Array[NodePath]([NodePath("../Health"), NodePath("../DeathManager")
 walkParticule = NodePath("../WalkParticle")
 
 [node name="DashSkill" parent="." node_paths=PackedStringArray("healthComponent") instance=ExtResource("8_hx86t")]
-dashSpeed = 550
+dashSpeed = 300
 dashDuration = 0.06
 healthComponent = NodePath("../Health")
 
