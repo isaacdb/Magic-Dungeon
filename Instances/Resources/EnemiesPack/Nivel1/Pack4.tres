@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemyPack" load_steps=4 format=3 uid="uid://bhdifqge1jngt"]
+
+[ext_resource type="PackedScene" uid="uid://rdglfbq61btc" path="res://Instances/Enemies/LowOrcN/LowOrcN.tscn" id="1_qncag"]
+[ext_resource type="PackedScene" uid="uid://d3j4vevwj6ecg" path="res://Instances/Enemies/MageOrcN/MageOrcN.tscn" id="2_piagi"]
+[ext_resource type="Script" path="res://Instances/Resources/EnemiesPack/EnemyPack.gd" id="3_vve3x"]
+
+[resource]
+script = ExtResource("3_vve3x")
+waveAmount = 1
+enemies = Array[PackedScene]([ExtResource("1_qncag"), ExtResource("2_piagi")])
+qntdEnemies = Array[int]([3, 5])

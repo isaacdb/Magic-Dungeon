@@ -12,7 +12,7 @@ extends Node2D
 var randExpPosition : Vector2
 var navigateToPlayer := false
 
-func _ready() -> void:	
+func _ready() -> void:
 	var tweenRotate = create_tween().set_loops()
 	tweenRotate.tween_property(self, "rotation_degrees", 360, 3.0).from(0.0)
 	rnd.randomize()
@@ -46,6 +46,8 @@ func SpawnExplosion() -> Vector2:
 	return (randPosition + self.global_position)
 	
 func Collected() -> void:
-	Global.xp_colleted.emit()
+	if Global.playerIsAlive:
+		Global.xp_colleted.emit()
+		
 	queue_free()
 	pass

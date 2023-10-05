@@ -3,7 +3,6 @@ class_name UpgradeSelector
 
 @export var optionUpgrade = preload("res://Instances/Components/UpgradeSelector/OptionItem.tscn")
 @export var listOfUpgradesAvaiable : Array[UpgradeStats] = []
-@export var player : Mage1
 
 @onready var boxOptionList = $OptionList as VBoxContainer
 @onready var rnd = RandomNumberGenerator.new()
@@ -11,14 +10,17 @@ class_name UpgradeSelector
 @onready var audioLevelUp := $AudioPlayerLevelUp as AudioStreamPlayer2D
 
 var chosenUpgradesIndex : Array[int] = []
+var player : Mage1
 
 func _ready():
 	Global.level_up.connect(ActiveSelector)
+	player = get_tree().get_nodes_in_group("player")[0] as Mage1
 	pass
 	
 func ActiveSelector():
 	self.visible = true
 	get_tree().paused = true
+	Global.panelUpgradeIsOpen = true;
 	
 	if Settings.soundEffect:
 		audioLevelUp.play()
@@ -44,6 +46,7 @@ func UpgradeSelected(upgrade: UpgradeStats):
 	# Usefull for dont catch click input of button to fire in game
 	var tween = create_tween()
 	tween.tween_callback(func(): get_tree().paused = false).set_delay(0.5)
+	tween.tween_callback(func(): Global.panelUpgradeIsOpen = false)
 	tween.play()
 	pass
 

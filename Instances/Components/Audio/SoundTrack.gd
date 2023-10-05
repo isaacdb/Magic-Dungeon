@@ -29,6 +29,9 @@ func EndGame():
 	pass
 
 func ChangeTrackAndTweenPlay(audio: AudioStream, finalVolume: int) -> void:
+	if audio == audioPlayer.stream and audioPlayer.playing and finalVolume == audioPlayer.volume_db:
+		return
+	
 	audioPlayer.volume_db = -100
 	audioPlayer.stream = audio	
 	

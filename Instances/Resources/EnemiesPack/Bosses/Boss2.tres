@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EnemyPack" load_steps=3 format=3 uid="uid://iaj7o4f6x1l1"]
+
+[ext_resource type="PackedScene" uid="uid://owdfvvvn7ja3" path="res://Instances/Enemies/BossOrc/BossOrc.tscn" id="1_jx5xm"]
+[ext_resource type="Script" path="res://Instances/Resources/EnemiesPack/EnemyPack.gd" id="2_76qfb"]
+
+[resource]
+script = ExtResource("2_76qfb")
+waveAmount = 1
+enemies = Array[PackedScene]([ExtResource("1_jx5xm")])
+qntdEnemies = Array[int]([1])

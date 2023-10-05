@@ -28,6 +28,9 @@ func _physics_process(delta) -> void:
 	pass
 	
 func OpenCloseSettingsMenu() -> void:
+	if Global.panelUpgradeIsOpen or not Global.playerIsAlive:
+		return
+	
 	self.visible = !self.visible;
 	get_tree().paused = self.visible
 	pass

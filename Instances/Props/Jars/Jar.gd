@@ -1,10 +1,10 @@
 extends Node2D
 
 
-@export var healthManager : Health
 @export var lifeBase := 3
 @export var dropXpOn := true
 
+@onready var healthManager := $Health as Health
 @onready var dropXp := $DropXp as DropXp
 @onready var sprite := $Sprite2D as Sprite2D
 @onready var rnd := RandomNumberGenerator.new()
@@ -12,7 +12,6 @@ extends Node2D
 func _ready():
 	rnd.randomize()
 	sprite.frame = rnd.randi_range(0, (sprite.hframes * sprite.vframes) - 1)
-	print(name)
 	healthManager.SetLifeBase(lifeBase)
 	healthManager.damage.connect(Shake)
 	

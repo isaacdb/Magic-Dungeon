@@ -121,6 +121,7 @@ shootManager = NodePath("Weapon/ShooterComponent")
 bulletStats = ExtResource("2_jv4dm")
 weapon = NodePath("Weapon")
 playerInput = NodePath("PlayerInputManager")
+speed = 80.0
 lifeBase = 3.0
 fireRate = 0.5
 

@@ -4,7 +4,7 @@ class_name SpawnAlert
 @onready var spawnAnimPlayer := $SpawnSprite/AnimationPlayer as AnimationPlayer
 @onready var sprite := $SpawnSprite as AnimatedSprite2D
 
-var objectToSpawn : PackedScene
+@export var objectToSpawn : PackedScene
 
 var isSpawned := false
 var isSpawning := false

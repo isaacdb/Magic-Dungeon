@@ -10,9 +10,8 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_m2fbi"]
 radius = 5.0
 
-[node name="Jar" type="Node2D" node_paths=PackedStringArray("healthManager")]
+[node name="Jar" type="Node2D"]
 script = ExtResource("1_vi3w1")
-healthManager = NodePath("Health")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -8)

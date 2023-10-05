@@ -32,7 +32,7 @@ func Execute():
 	
 	if deathAudio && Settings.soundEffect:
 		audioPlayer.play()
-		audioPlayer.reparent(get_tree().get_root())
+		audioPlayer.reparent(get_parent().get_parent())
 		var tween = create_tween()
 		tween.tween_callback(func(): audioPlayer.queue_free()).set_delay(2.0)
 	

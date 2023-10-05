@@ -157,7 +157,7 @@ fill_to = Vector2(0.858696, 0.798913)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5v3u6"]
 size = Vector2(20, 26)
 
-[sub_resource type="Resource" id="Resource_il1bu"]
+[sub_resource type="Resource" id="Resource_dsn07"]
 resource_local_to_scene = true
 script = ExtResource("10_f14nk")
 damage = 1.0
@@ -166,7 +166,7 @@ speed = 200.0
 origin = "Enemy"
 prefab = ExtResource("9_uueks")
 
-[sub_resource type="Resource" id="Resource_d4qgt"]
+[sub_resource type="Resource" id="Resource_0obfy"]
 resource_local_to_scene = true
 script = ExtResource("10_f14nk")
 damage = 1.0
@@ -379,7 +379,7 @@ _data = {
 "Walk": SubResource("Animation_y1p4g")
 }
 
-[node name="BossOrc" type="CharacterBody2D" node_paths=PackedStringArray("moveComponent", "playerTracker", "healthManager", "shootManager", "flashHit", "attackManager")]
+[node name="BossOrc" type="CharacterBody2D" node_paths=PackedStringArray("moveComponent", "playerTracker", "healthManager", "shootManager", "flashHit", "attackManager", "itensRage")]
 collision_layer = 0
 collision_mask = 32
 script = ExtResource("1_38hcy")
@@ -389,6 +389,7 @@ healthManager = NodePath("Health")
 shootManager = NodePath("ShooterComponent")
 flashHit = NodePath("FlashHit")
 attackManager = NodePath("AttackManager")
+itensRage = [NodePath("GroupFlip/AnimatedSprite2D/Eye"), NodePath("GroupFlip/PointLight2D"), NodePath("GroupFlip/AnimatedSprite2D/Eye2"), NodePath("RageLine1"), NodePath("RageLine2")]
 lifeBase = 350.0
 orcLowBulletStats = ExtResource("2_pc7t6")
 audioRage = ExtResource("3_7l1vd")
@@ -401,6 +402,7 @@ position = Vector2(2, -10)
 shape = SubResource("CircleShape2D_nmnha")
 
 [node name="RageLine1" type="Line2D" parent="." node_paths=PackedStringArray("targetToFollow")]
+visible = false
 z_index = 15
 width = 1.0
 width_curve = SubResource("Curve_qojjg")
@@ -410,6 +412,7 @@ lenght = 20
 targetToFollow = NodePath("../GroupFlip/AnimatedSprite2D/Eye")
 
 [node name="RageLine2" type="Line2D" parent="." node_paths=PackedStringArray("targetToFollow")]
+visible = false
 z_index = 15
 width = 1.0
 width_curve = SubResource("Curve_ldir8")
@@ -433,6 +436,7 @@ frame_progress = 0.869444
 flip_h = true
 
 [node name="Eye" type="AnimatedSprite2D" parent="GroupFlip/AnimatedSprite2D"]
+visible = false
 modulate = Color(1, 0.129412, 0.2, 1)
 position = Vector2(0, -4)
 scale = Vector2(0.6, 0.6)
@@ -442,6 +446,7 @@ frame_progress = 0.752977
 offset = Vector2(0, -2)
 
 [node name="Eye2" type="AnimatedSprite2D" parent="GroupFlip/AnimatedSprite2D"]
+visible = false
 modulate = Color(1, 0.129412, 0.2, 1)
 position = Vector2(-6, -4)
 scale = Vector2(0.6, 0.6)
@@ -451,6 +456,7 @@ frame_progress = 0.59081
 offset = Vector2(0, -2)
 
 [node name="PointLight2D" type="PointLight2D" parent="GroupFlip"]
+visible = false
 position = Vector2(0, -9)
 scale = Vector2(2.08026, 1.88008)
 color = Color(1, 0, 0, 1)
@@ -479,7 +485,7 @@ animatedSprite = NodePath("../GroupFlip/AnimatedSprite2D")
 pathsAttackPaterns = Array[NodePath]([NodePath("EspiralPatern"), NodePath("CirclePatern"), NodePath("ArcPatern")])
 
 [node name="ArcPatern" parent="AttackManager" instance=ExtResource("8_ts25e")]
-bullet = SubResource("Resource_il1bu")
+bullet = SubResource("Resource_dsn07")
 
 [node name="CirclePatern" parent="AttackManager" instance=ExtResource("8_afanf")]
 bulletAmount = 50
@@ -489,7 +495,7 @@ bullet = ExtResource("10_vbjbx")
 bulletAmount = 5
 fireAmount = 15
 delayBetweenFire = 0.1
-bullet = SubResource("Resource_d4qgt")
+bullet = SubResource("Resource_0obfy")
 
 [node name="ActiveHandleComponent" parent="." instance=ExtResource("4_c4ky7")]
 activeOnLoad = true

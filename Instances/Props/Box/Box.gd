@@ -1,9 +1,9 @@
 extends Node2D
 
-@export var healthManager : Health
 @export var lifeBase := 8
 @export var dropXpOn := true
 
+@onready var healthManager := $Health as Health
 @onready var dropXp := $DropXp as DropXp
 @onready var sprite := $Sprite2D as Sprite2D
 @onready var rnd := RandomNumberGenerator.new()

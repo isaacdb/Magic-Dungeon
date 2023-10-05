@@ -28,6 +28,14 @@ func _ready():
 	hitBox.SetActive(true)
 	
 	wallDetect.connect("body_entered", WorldCollision)
+	
+	Global.player_dead.connect(DestroyPlayerBulletsInGameOver)
+	
+	pass
+
+func DestroyPlayerBulletsInGameOver():
+	if bulletStats.origin == "Player":
+		self.queue_free()
 	pass
 
 func UpdateStats(bulletStats: BulletStats):

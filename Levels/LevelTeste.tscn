@@ -69,7 +69,7 @@ texture = ExtResource("13_4pdkx")
 offsets = PackedFloat32Array(0, 0.522988, 1)
 colors = PackedColorArray(0, 0, 0, 1, 0.967804, 0, 0.277184, 1, 1, 1, 1, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_q6po8"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wk461"]
 gradient = SubResource("Gradient_jo7ba")
 
 [sub_resource type="Environment" id="Environment_k8p4i"]
@@ -84,14 +84,14 @@ glow_mix = 0.0
 glow_blend_mode = 1
 glow_hdr_threshold = 0.0
 glow_hdr_scale = 1.5
-adjustment_color_correction = SubResource("GradientTexture2D_q6po8")
+adjustment_color_correction = SubResource("GradientTexture2D_wk461")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_424jm"]
 noise_type = 5
 seed = 6
 frequency = 0.005
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yuqon"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_u53sq"]
 seamless = true
 seamless_blend_skirt = 1.0
 noise = SubResource("FastNoiseLite_424jm")
@@ -105,7 +105,7 @@ shader_parameter/starting_frequency = 1.0
 shader_parameter/shift = -0.3
 shader_parameter/velocity = Vector2(0.05, 0.005)
 shader_parameter/fog_color = Color(0, 0, 0, 1)
-shader_parameter/noise = SubResource("NoiseTexture2D_yuqon")
+shader_parameter/noise = SubResource("NoiseTexture2D_u53sq")
 
 [sub_resource type="Gradient" id="Gradient_kx2mx"]
 offsets = PackedFloat32Array(0.0126582, 0.512821, 1)
@@ -114,7 +114,7 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.627451, 1, 1, 1, 0)
 [sub_resource type="Gradient" id="Gradient_xsmxh"]
 colors = PackedColorArray(0.316749, 0.422333, 0.477803, 1, 1, 1, 1, 1)
 
-[sub_resource type="Resource" id="Resource_vg1sj"]
+[sub_resource type="Resource" id="Resource_lgrtj"]
 resource_local_to_scene = true
 script = ExtResource("12_5cc7y")
 damage = 1.0
@@ -154,15 +154,13 @@ audioWinGame = NodePath("Camera2D/AudioWinGame")
 position = Vector2(315, -2306)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
-[node name="UpgradeSelector" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("2_q6x83")]
+[node name="UpgradeSelector" parent="CanvasLayer" instance=ExtResource("2_q6x83")]
 visible = false
 offset_left = 368.0
 offset_top = 133.0
 offset_right = -350.0
 offset_bottom = -136.0
-player = NodePath("../../Mage1")
 
 [node name="LevelUpCount" parent="CanvasLayer" instance=ExtResource("4_ktwlu")]
 offset_left = 263.0
@@ -617,8 +615,7 @@ layer_1/tile_data = PackedInt32Array(1966130, 131072, 9, 1900594, 0, 8, 1835058,
 
 [node name="Mage1" parent="." instance=ExtResource("4_f7hcd")]
 position = Vector2(313, -45)
-bulletStats = SubResource("Resource_vg1sj")
-speed = 80.0
+bulletStats = SubResource("Resource_lgrtj")
 
 [node name="Room-1" type="Node2D" parent="." node_paths=PackedStringArray("gateEnter", "gateExit", "audioPlayer")]
 visible = false

@@ -20,6 +20,8 @@ signal game_start
 
 ## Variables
 var mouseOverGUI := false
+var playerIsAlive := true
+var panelUpgradeIsOpen := false
 
 var camera : Camera2D
 

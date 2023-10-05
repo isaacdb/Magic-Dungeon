@@ -25,7 +25,7 @@ func _ready():
 	rand.randomize()
 	areaRoom.connect("area_entered", area_room_area_entered)
 	Global.enemy_killed.connect(enemy_killed)
-	pass # Replace with function body.
+	pass
 
 func area_room_area_entered(area):
 	if !areaClean and !areaActive and area.is_in_group("player"):

@@ -1,0 +1,424 @@
+[gd_scene load_steps=33 format=3 uid="uid://dbagu3ctathua"]
+
+[ext_resource type="Shader" path="res://Scripts/Shaders/Fog.gdshader" id="1_j1bxr"]
+[ext_resource type="Script" path="res://Scripts/GameManager2.gd" id="1_nqqcy"]
+[ext_resource type="PackedScene" uid="uid://pnthfjsqolx2" path="res://Instances/Components/Camera/Camera.tscn" id="2_pxoe0"]
+[ext_resource type="AudioStream" uid="uid://bxodjoixexwnf" path="res://Assets/Audios/game-over-2.ogg" id="4_vssgx"]
+[ext_resource type="AudioStream" uid="uid://dp6nfumb27dcl" path="res://Assets/Audios/Win.mp3" id="5_6e2b3"]
+[ext_resource type="Script" path="res://Scripts/GUI/CanvaVisibleOnInit.gd" id="6_ocj7c"]
+[ext_resource type="PackedScene" uid="uid://bipohfp6birf5" path="res://Instances/Components/UpgradeSelector/UpgradeSelector.tscn" id="8_fljgn"]
+[ext_resource type="PackedScene" uid="uid://cmcoex7vi3kc8" path="res://Instances/Components/LevelUpManager/LevelUpCount.tscn" id="9_wc2jf"]
+[ext_resource type="PackedScene" uid="uid://c7tou3yg5pxkm" path="res://Instances/Components/LevelUpManager/LevelUpManager.tscn" id="10_o17g1"]
+[ext_resource type="Texture2D" uid="uid://b3c3itdsfadyh" path="res://Assets/GUI/fullbackground-bar.png" id="11_akw1h"]
+[ext_resource type="Texture2D" uid="uid://vrt1i0dh5evf" path="res://Assets/GUI/exp-progress.png" id="12_ylja1"]
+[ext_resource type="PackedScene" uid="uid://4jvawle2nm0s" path="res://Instances/Components/PlayerLife/PlayerLife.tscn" id="13_7d7jm"]
+[ext_resource type="PackedScene" uid="uid://dak4jp66ns1mg" path="res://Instances/Components/PanelFade/PanelFade.tscn" id="14_bqkcx"]
+[ext_resource type="Texture2D" uid="uid://8c6s72ifn40" path="res://Assets/GUI/panel.png" id="15_qu6au"]
+[ext_resource type="Texture2D" uid="uid://b3gmb1kq3cxwk" path="res://Assets/GUI/background-panel.png" id="16_gkep2"]
+[ext_resource type="FontFile" uid="uid://dq8hbswcklqcs" path="res://Assets/Fonts/Bitfantasy.ttf" id="17_nolo0"]
+[ext_resource type="Texture2D" uid="uid://dsa860i7r5ace" path="res://Assets/GUI/panel-adorn.png" id="18_cnoar"]
+[ext_resource type="PackedScene" uid="uid://b0w2fstnkg5ry" path="res://Instances/Components/SettingComponent/SettingMenu.tscn" id="19_5lm0h"]
+[ext_resource type="Texture2D" uid="uid://bam2sv4p2ryc" path="res://Assets/GUI/settingIcon.png" id="20_1vo6b"]
+[ext_resource type="Script" path="res://Scripts/GUI/SettingButton.gd" id="21_7uvpj"]
+
+[sub_resource type="Gradient" id="Gradient_gde7p"]
+offsets = PackedFloat32Array(0.0126582, 0.512821, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.627451, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_yc4yq"]
+colors = PackedColorArray(0.316749, 0.422333, 0.477803, 1, 1, 1, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_8dt1a"]
+offsets = PackedFloat32Array(0, 0.522988, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.967804, 0, 0.277184, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_q6po8"]
+gradient = SubResource("Gradient_8dt1a")
+
+[sub_resource type="Environment" id="Environment_cojaq"]
+background_mode = 3
+tonemap_mode = 3
+glow_levels/3 = 30.0
+glow_levels/4 = 10.0
+glow_levels/5 = 0.0
+glow_intensity = 5.03
+glow_strength = 0.39
+glow_mix = 0.0
+glow_blend_mode = 1
+glow_hdr_threshold = 0.0
+glow_hdr_scale = 1.5
+adjustment_color_correction = SubResource("GradientTexture2D_q6po8")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_28oop"]
+noise_type = 5
+seed = 6
+frequency = 0.005
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yuqon"]
+seamless = true
+seamless_blend_skirt = 1.0
+noise = SubResource("FastNoiseLite_28oop")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x4hyw"]
+resource_local_to_scene = true
+shader = ExtResource("1_j1bxr")
+shader_parameter/octaves = 8
+shader_parameter/starting_amplitude = 0.5
+shader_parameter/starting_frequency = 0.76
+shader_parameter/shift = -0.245
+shader_parameter/velocity = Vector2(0.075, 0.005)
+shader_parameter/fog_color = Color(0, 0, 0, 1)
+shader_parameter/noise = SubResource("NoiseTexture2D_yuqon")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yhi0w"]
+resource_local_to_scene = true
+texture = ExtResource("11_akw1h")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_02esq"]
+resource_local_to_scene = true
+texture = ExtResource("12_ylja1")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q4kub"]
+texture = ExtResource("15_qu6au")
+texture_margin_left = 38.5402
+texture_margin_top = 37.4707
+texture_margin_right = 37.6638
+texture_margin_bottom = 38.6962
+region_rect = Rect2(0, 0, 128, 128)
+draw_center = false
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4ryv8"]
+texture = ExtResource("16_gkep2")
+
+[node name="RoomTemplate" type="Node2D" node_paths=PackedStringArray("audioGameOver", "audioWinGame")]
+script = ExtResource("1_nqqcy")
+defaultColorModulate = Color(0.478431, 0.419608, 0.670588, 1)
+hitColorModulate = Color(0.877383, 0.398502, 0.375717, 1)
+audioGameOver = NodePath("AudioGameOver")
+audioWinGame = NodePath("AudioWinGame")
+
+[node name="PointsParticle" type="CPUParticles2D" parent="."]
+y_sort_enabled = true
+position = Vector2(614, 367)
+amount = 200
+lifetime = 3.0
+emission_shape = 3
+emission_rect_extents = Vector2(800, 400)
+direction = Vector2(0, -1)
+spread = 135.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+angular_velocity_min = 10.0
+angular_velocity_max = 30.0
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+color_ramp = SubResource("Gradient_gde7p")
+color_initial_ramp = SubResource("Gradient_yc4yq")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_cojaq")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.454902, 0.447059, 0.72549, 1)
+
+[node name="FogShader" type="ColorRect" parent="."]
+z_index = 200
+texture_repeat = 2
+material = SubResource("ShaderMaterial_x4hyw")
+offset_left = -162.0
+offset_top = -115.0
+offset_right = 1443.0
+offset_bottom = 769.0
+
+[node name="Camera2D" parent="." instance=ExtResource("2_pxoe0")]
+zoom = Vector2(3, 3)
+limit_top = 0
+limit_right = 850
+limit_bottom = 450
+
+[node name="AudioGameOver" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_vssgx")
+volume_db = 10.0
+
+[node name="AudioWinGame" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_6e2b3")
+volume_db = 5.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("6_ocj7c")
+
+[node name="PanelFade" parent="CanvasLayer" instance=ExtResource("14_bqkcx")]
+
+[node name="UpgradeSelector" parent="CanvasLayer" instance=ExtResource("8_fljgn")]
+visible = false
+offset_left = 368.0
+offset_top = 133.0
+offset_right = -350.0
+offset_bottom = -136.0
+
+[node name="LevelUpCount" parent="CanvasLayer" instance=ExtResource("9_wc2jf")]
+offset_left = 263.0
+offset_top = 28.0
+offset_right = 303.0
+offset_bottom = 55.0
+
+[node name="LevelUpManger" parent="CanvasLayer" instance=ExtResource("10_o17g1")]
+offset_left = 306.0
+offset_top = 38.0
+offset_right = 1009.0
+offset_bottom = 46.0
+theme_override_styles/background = SubResource("StyleBoxTexture_yhi0w")
+theme_override_styles/fill = SubResource("StyleBoxTexture_02esq")
+rounded = true
+
+[node name="PlayerLife" parent="CanvasLayer" instance=ExtResource("13_7d7jm")]
+process_mode = 3
+
+[node name="PanelGameOver" type="Panel" parent="CanvasLayer"]
+visible = false
+modulate = Color(0.698039, 0.698039, 0.698039, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 325.0
+offset_top = -350.0
+offset_right = -385.0
+offset_bottom = -770.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(285, 150)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_q4kub")
+
+[node name="Background" type="Panel" parent="CanvasLayer/PanelGameOver"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 31.0
+offset_right = -31.0
+offset_bottom = -29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_4ryv8")
+
+[node name="GameOverText" type="Label" parent="CanvasLayer/PanelGameOver"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -233.0
+offset_top = -36.0
+offset_right = 218.0
+offset_bottom = 42.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("17_nolo0")
+theme_override_font_sizes/font_size = 60
+text = "Game Over"
+horizontal_alignment = 1
+
+[node name="TextureAdorno" type="TextureRect" parent="CanvasLayer/PanelGameOver"]
+modulate = Color(0.305882, 0.305882, 0.305882, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -91.0
+offset_right = 220.0
+offset_bottom = -67.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("18_cnoar")
+expand_mode = 2
+stretch_mode = 1
+
+[node name="TextureAdorno2" type="TextureRect" parent="CanvasLayer/PanelGameOver"]
+modulate = Color(0.305882, 0.305882, 0.305882, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = 62.0
+offset_right = 220.0
+offset_bottom = 86.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("18_cnoar")
+expand_mode = 2
+stretch_mode = 1
+flip_v = true
+
+[node name="PanelCongrats" type="Panel" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 358.0
+offset_top = -600.0
+offset_right = -352.0
+offset_bottom = -820.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(285, 250)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_q4kub")
+
+[node name="Background" type="Panel" parent="CanvasLayer/PanelCongrats"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 31.0
+offset_right = -31.0
+offset_bottom = -29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_4ryv8")
+
+[node name="CongratsText" type="Label" parent="CanvasLayer/PanelCongrats"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -225.5
+offset_top = -180.0
+offset_right = 225.5
+offset_bottom = -102.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("17_nolo0")
+theme_override_font_sizes/font_size = 60
+text = "CONGRATULATIONS"
+
+[node name="TextureAdorno" type="TextureRect" parent="CanvasLayer/PanelCongrats"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -108.0
+offset_right = 220.0
+offset_bottom = -84.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("18_cnoar")
+expand_mode = 2
+stretch_mode = 1
+
+[node name="TextureAdorno2" type="TextureRect" parent="CanvasLayer/PanelCongrats"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -77.0
+offset_right = 220.0
+offset_bottom = -53.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("18_cnoar")
+expand_mode = 2
+stretch_mode = 1
+flip_v = true
+
+[node name="BeatBossText" type="Label" parent="CanvasLayer/PanelCongrats"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.5
+offset_top = -25.0
+offset_right = 197.5
+offset_bottom = 53.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("17_nolo0")
+theme_override_font_sizes/font_size = 33
+text = "You beat the first Boss!"
+
+[node name="ButText" type="Label" parent="CanvasLayer/PanelCongrats"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.5
+offset_top = 10.0
+offset_right = 207.5
+offset_bottom = 88.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("17_nolo0")
+theme_override_font_sizes/font_size = 33
+text = "But is not over"
+
+[node name="ContinueText" type="Label" parent="CanvasLayer/PanelCongrats"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -29.5
+offset_top = 45.0
+offset_right = 184.5
+offset_bottom = 123.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("17_nolo0")
+theme_override_font_sizes/font_size = 33
+text = "Continue..."
+
+[node name="SettingMenu" parent="CanvasLayer" instance=ExtResource("19_5lm0h")]
+
+[node name="SettingsButton" type="Button" parent="CanvasLayer" node_paths=PackedStringArray("settingMenu") groups=["UI"]]
+process_mode = 3
+modulate = Color(0.390625, 0.386719, 0.675781, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1143.0
+offset_top = 19.0
+offset_right = -113.0
+offset_bottom = -677.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(5.11253, 5.00471)
+focus_mode = 0
+theme_override_colors/icon_pressed_color = Color(0.52549, 0.529412, 0.792157, 1)
+theme_override_colors/icon_hover_color = Color(0.317647, 0.313726, 0.560784, 1)
+icon = ExtResource("20_1vo6b")
+flat = true
+script = ExtResource("21_7uvpj")
+settingMenu = NodePath("../SettingMenu")
