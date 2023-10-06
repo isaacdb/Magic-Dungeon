@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://b6l8fu6uss63t" path="res://Assets/Dust.png" id="14_f75kf"]
 [ext_resource type="AudioStream" uid="uid://7rg6q1b0mlcl" path="res://Assets/Audios/Gates.ogg" id="15_t6keb"]
 
-[sub_resource type="Resource" id="Resource_ulpen"]
+[sub_resource type="Resource" id="Resource_77qy3"]
 resource_local_to_scene = true
 script = ExtResource("10_y6erf")
 damage = 1.0
@@ -273,7 +273,7 @@ position = Vector2(456, -495)
 
 [node name="Mage1" parent="." instance=ExtResource("8_1ccib")]
 position = Vector2(442, 398)
-bulletStats = SubResource("Resource_ulpen")
+bulletStats = SubResource("Resource_77qy3")
 
 [node name="TeleportStart" type="Area2D" parent="."]
 position = Vector2(440, 5)

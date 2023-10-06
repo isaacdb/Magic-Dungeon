@@ -8,13 +8,13 @@ var iconWidth := 32
 var lifes : Array[LifeIcon]
 
 func _ready():
-	Global.set_player_max_life.connect(SetPlayerLife)
+	SetCurrentLife();
 	Global.player_remove_life.connect(RemoveLife)
 	Global.player_add_life.connect(AddLife)
 	pass
 
-func SetPlayerLife(maxLife: int):
-	for i in range(maxLife):
+func SetCurrentLife():
+	for i in range(0, StatsManager.currentLife):
 		AddLife()
 	pass
 

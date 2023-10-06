@@ -18,10 +18,12 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Settings="*res://Scripts/Settings.gd"
-ProgressManager="*res://Scripts/ProgressManager.gd"
-Global="*res://Scripts/Global.gd"
+Settings="*res://Scripts/Singletons/Settings.gd"
+ProgressManager="*res://Scripts/Singletons/ProgressManager.gd"
+Global="*res://Scripts/Singletons/Global.gd"
 SoundTrack="*res://Instances/Components/Audio/SoundTrack.tscn"
+StatsManager="*res://Scripts/Singletons/StatsManager.gd"
+UpgradeManager="*res://Scripts/Singletons/UpgradeManager.gd"
 
 [display]
 

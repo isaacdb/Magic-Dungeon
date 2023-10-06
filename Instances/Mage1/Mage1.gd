@@ -28,8 +28,6 @@ func _ready() -> void:
 	healthManager.damage.connect(GetHited)	
 	healthManager.SetLifeBase(lifeBase)
 	
-	Global.set_player_max_life.emit(lifeBase)
-	
 	shootManager.UpdateFireRate(fireRate)
 	
 	timerIFrame.wait_time = durationIFrame
@@ -65,7 +63,7 @@ func GetHited(attack: Attack) -> void:
 	if attack.damage <= 0:
 		return
 	
-	Global.player_remove_life.emit()	
+	Global.player_remove_life.emit()
 	pass	
 
 func ChangeAnim(anim: String) -> void:

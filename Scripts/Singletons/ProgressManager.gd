@@ -11,7 +11,7 @@ var bossRoomsUseds : Array[int]
 var enemiesPackUseds : Array[int]
 var bossPackUseds : Array[int]
 
-const roomsUntilBoss := 1
+const roomsUntilBoss := 3
 var currentRoomNumber := 0
 var bossKillCount := 0
 
