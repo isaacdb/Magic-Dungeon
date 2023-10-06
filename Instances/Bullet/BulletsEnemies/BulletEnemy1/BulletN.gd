@@ -1,7 +1,6 @@
 extends Node2D
 class_name BulletN
 
-@export var bulletStats : BulletStats
 
 @export var moveDirection := Vector2.ZERO
 
@@ -18,6 +17,7 @@ class_name BulletN
 var velocity := Vector2.ZERO
 var speed := 0.0
 var isRunning := true
+var currentBulletStats : BulletStats
 
 func _ready():	
 	hitBox.monitoring = true
@@ -34,11 +34,12 @@ func _ready():
 	pass
 
 func DestroyPlayerBulletsInGameOver():
-	if bulletStats.origin == "Player":
+	if currentBulletStats.origin == "Player":
 		self.queue_free()
 	pass
 
 func UpdateStats(bulletStats: BulletStats):
+	currentBulletStats = bulletStats
 	match bulletStats.origin:
 		"None":
 			print("Bullet origin is MISSING!!")
