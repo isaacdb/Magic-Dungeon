@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dbagu3ctathua"]
+[gd_scene load_steps=34 format=3 uid="uid://dbagu3ctathua"]
 
 [ext_resource type="Shader" path="res://Scripts/Shaders/Fog.gdshader" id="1_j1bxr"]
 [ext_resource type="Script" path="res://Scripts/GameManager2.gd" id="1_nqqcy"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://b3c3itdsfadyh" path="res://Assets/GUI/fullbackground-bar.png" id="11_akw1h"]
 [ext_resource type="Texture2D" uid="uid://vrt1i0dh5evf" path="res://Assets/GUI/exp-progress.png" id="12_ylja1"]
 [ext_resource type="PackedScene" uid="uid://4jvawle2nm0s" path="res://Instances/Components/PlayerLife/PlayerLife.tscn" id="13_7d7jm"]
+[ext_resource type="PackedScene" uid="uid://cgqfjkemb0lih" path="res://Instances/UI/WeaponUI/WeaponUI.tscn" id="14_7wxvv"]
 [ext_resource type="PackedScene" uid="uid://dak4jp66ns1mg" path="res://Instances/Components/PanelFade/PanelFade.tscn" id="14_bqkcx"]
 [ext_resource type="Texture2D" uid="uid://8c6s72ifn40" path="res://Assets/GUI/panel.png" id="15_qu6au"]
 [ext_resource type="Texture2D" uid="uid://b3gmb1kq3cxwk" path="res://Assets/GUI/background-panel.png" id="16_gkep2"]
@@ -175,6 +176,8 @@ rounded = true
 
 [node name="PlayerLife" parent="CanvasLayer" instance=ExtResource("13_7d7jm")]
 process_mode = 3
+
+[node name="WeaponUI" parent="CanvasLayer" instance=ExtResource("14_7wxvv")]
 
 [node name="PanelGameOver" type="Panel" parent="CanvasLayer"]
 visible = false

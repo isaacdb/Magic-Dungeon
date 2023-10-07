@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://uhnlnlbf0r2h"]
+[gd_scene load_steps=16 format=3 uid="uid://uhnlnlbf0r2h"]
 
 [ext_resource type="Script" path="res://Levels/LobbyRoom.gd" id="1_gxoob"]
 [ext_resource type="PackedScene" uid="uid://dbagu3ctathua" path="res://Levels/RoomTemplate.tscn" id="1_w60sh"]
@@ -7,8 +7,6 @@
 [ext_resource type="Script" path="res://Scripts/Teleport.gd" id="4_pfhhq"]
 [ext_resource type="Texture2D" uid="uid://b6l8fu6uss63t" path="res://Assets/Dust.png" id="6_ueq2c"]
 [ext_resource type="PackedScene" uid="uid://c6g7qwsljeavk" path="res://Instances/Mage1/Mage1.tscn" id="7_6rr7k"]
-[ext_resource type="PackedScene" uid="uid://c4u7wkwoet4ws" path="res://Instances/Bullet/Bullet.tscn" id="8_iogtg"]
-[ext_resource type="Script" path="res://Instances/Resources/Bullets/BulletStats.gd" id="9_5y8t7"]
 [ext_resource type="PackedScene" uid="uid://dnou7mrnifiye" path="res://Instances/Props/Mushroom/Mushroom.tscn" id="10_j8pux"]
 [ext_resource type="PackedScene" uid="uid://cfc0jruo74mst" path="res://Instances/Props/Torch/Torch.tscn" id="11_wbu3i"]
 [ext_resource type="PackedScene" uid="uid://b1ihv7h1usawy" path="res://Instances/Props/Flags/Flag.tscn" id="12_5it20"]
@@ -27,15 +25,6 @@ colors = PackedColorArray(0, 0, 0, 1, 0.0962048, 0.0962047, 0.0962048, 1, 0, 0, 
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6htkh"]
 size = Vector2(67, 57)
-
-[sub_resource type="Resource" id="Resource_sal0j"]
-resource_local_to_scene = true
-script = ExtResource("9_5y8t7")
-damage = 1.0
-knockBackForce = 30.0
-speed = 500.0
-origin = "Player"
-prefab = ExtResource("8_iogtg")
 
 [node name="LobbyRoom" type="Node2D"]
 script = ExtResource("1_gxoob")
@@ -113,7 +102,6 @@ shape = SubResource("RectangleShape2D_6htkh")
 
 [node name="Mage1" parent="." instance=ExtResource("7_6rr7k")]
 position = Vector2(315, 181)
-bulletStats = SubResource("Resource_sal0j")
 
 [node name="Props" type="Node2D" parent="."]
 z_as_relative = false

@@ -1,0 +1,139 @@
+[gd_scene load_steps=10 format=3 uid="uid://cgqfjkemb0lih"]
+
+[ext_resource type="Texture2D" uid="uid://b3gmb1kq3cxwk" path="res://Assets/GUI/background-panel.png" id="1_m3cl7"]
+[ext_resource type="Texture2D" uid="uid://dly6q5evuf44e" path="res://Instances/Weapon/Sprite.png" id="2_dnie0"]
+[ext_resource type="Texture2D" uid="uid://bn767vd8pdr1t" path="res://Assets/bulletCount.png" id="3_bq4bs"]
+[ext_resource type="FontFile" uid="uid://dq8hbswcklqcs" path="res://Assets/Fonts/Bitfantasy.ttf" id="4_ac58g"]
+[ext_resource type="Script" path="res://Instances/UI/WeaponUI/MunitionAmountUI.gd" id="5_fb0ci"]
+[ext_resource type="Texture2D" uid="uid://8c6s72ifn40" path="res://Assets/GUI/panel.png" id="5_v5ydg"]
+[ext_resource type="Texture2D" uid="uid://dsa860i7r5ace" path="res://Assets/GUI/panel-adorn.png" id="6_ei26s"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3ymfa"]
+resource_local_to_scene = true
+texture = ExtResource("1_m3cl7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x2kcq"]
+texture = ExtResource("5_v5ydg")
+texture_margin_left = 38.5402
+texture_margin_top = 37.4707
+texture_margin_right = 37.6638
+texture_margin_bottom = 38.6962
+region_rect = Rect2(0, 0, 128, 128)
+draw_center = false
+
+[node name="WeaponUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1014.0
+offset_top = 543.0
+offset_right = -53.0
+offset_bottom = -54.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="Panel" parent="Panel"]
+modulate = Color(1, 1, 1, 0.364706)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_3ymfa")
+
+[node name="WeaponSprite" type="TextureRect" parent="Panel"]
+layout_mode = 0
+offset_left = 177.0
+offset_top = 21.0
+offset_right = 218.0
+offset_bottom = 168.6
+rotation = 1.5708
+texture = ExtResource("2_dnie0")
+expand_mode = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 68.0
+offset_right = 205.0
+offset_bottom = 107.0
+
+[node name="MunitonIcon" type="TextureRect" parent="Panel/HBoxContainer"]
+modulate = Color(0, 0.721569, 0.721569, 1)
+layout_mode = 2
+texture = ExtResource("3_bq4bs")
+expand_mode = 3
+
+[node name="MunitionAmount" type="Label" parent="Panel/HBoxContainer"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_ac58g")
+theme_override_font_sizes/font_size = 44
+text = "6
+"
+script = ExtResource("5_fb0ci")
+
+[node name="PanelCongrats" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 425.0
+offset_top = 228.0
+offset_right = -551.0
+offset_bottom = -268.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(285, 250)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_x2kcq")
+
+[node name="TextureAdorno2" type="TextureRect" parent="PanelCongrats"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 74.0
+offset_top = -55.0
+offset_right = 514.0
+offset_bottom = -31.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5708
+texture = ExtResource("6_ei26s")
+expand_mode = 2
+stretch_mode = 1
+flip_v = true
+
+[node name="ContinueText" type="Label" parent="PanelCongrats"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -58.0
+offset_top = 16.0
+offset_right = 156.0
+offset_bottom = 94.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_ac58g")
+theme_override_font_sizes/font_size = 33
+text = "Continue..."

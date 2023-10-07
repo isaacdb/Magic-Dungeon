@@ -18,9 +18,5 @@ func LevelUp() -> void:
 	pass
 	
 func PrintNewLevel() -> void:
-	var numberString = str(levelCount);
-	if (numberString.length() == 1): 
-		numberString = "0" + numberString;	
-	
-	self.text = numberString;
+	self.text = StringUtil.IntToString(levelCount);
 	pass

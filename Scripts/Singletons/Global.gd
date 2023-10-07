@@ -7,6 +7,7 @@ signal player_dead
 signal player_hited
 signal player_remove_life
 signal player_add_life
+signal player_fire
 
 signal xp_colleted
 signal level_up

@@ -22,7 +22,6 @@ func GetMouseDirection(positionRef: Vector2) -> Vector2:
 		return AddImprecision(direction);
 	else:
 		return direction;
-	
 	pass
 	
 func AddImprecision(direction: Vector2) -> Vector2:
@@ -30,3 +29,9 @@ func AddImprecision(direction: Vector2) -> Vector2:
 
 	var imprecisionAngleRadians = deg_to_rad(imprecisionAngleVector)
 	return direction.rotated(imprecisionAngleRadians)
+	
+func PressFire() -> bool:
+	return Input.is_action_pressed("fire");
+	
+func PressDash() -> bool:
+	return Input.is_action_just_pressed("dash");
