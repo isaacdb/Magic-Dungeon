@@ -1,79 +1,75 @@
-extends Area2D
+extends Node2D
+class_name Bullet
 
-@export var speed := 600.0
 @export var moveDirection := Vector2.ZERO
-@export var damage := 0.0
-@export_enum("None:-1", "Player:0", "Enemy:1") var origin = "Player"
+
+@export var enemyColor : Color
+@export var playerColor : Color
 
 @onready var timer := $Timer as Timer
-@onready var animationPlayer := $AnimationPlayer as AnimationPlayer
-@onready var collisionShape := $CollisionShape2D as CollisionShape2D
 @onready var sprite := $Sprite2D as AnimatedSprite2D
+@onready var lineTrail := $Line2D as Line2D
+@onready var hitBox := $HitBox as HitBoxComponent
+@onready var wallDetect := $WallDetect as Area2D
+@onready var impactParticle := $ImpactPaticle as CPUParticles2D
 
 var velocity := Vector2.ZERO
+var speed := 0.0
 var isRunning := true
+var currentBulletStats : BulletStats
 
-func _ready():
-	set_collision_mask_value(6, true) # World collision
-	match origin:
-		"None":
-			print("Bullet origin is MISSING!!")
-		"Player":
-			set_collision_mask_value(4, true) #Collision with enemy hurtBox
-		"Enemy":
-			set_collision_mask_value(2, true) #Collision with player hurtBox			
-			set_collision_mask_value(1, true)
-	
-	monitoring = true
-	monitorable = true # Have to be true, just bc a bug, its required for collision with tileemap
+func _ready():	
+	hitBox.monitoring = true
+	hitBox.monitorable = true # Have to be true, just bc a bug, its required for collision with tileemap
 	
 	timer.one_shot = true
+	hitBox.connect("attack_enter", Destroy)
+	hitBox.SetActive(true)
 	
-	connect("body_entered", _on_body_entered)
-	connect("area_entered", _on_area_entered)
+	wallDetect.connect("body_entered", WorldCollision)
+	
+	Global.player_dead.connect(DestroyPlayerBulletsInGameOver)
 	
 	pass
 
+func DestroyPlayerBulletsInGameOver():
+	if currentBulletStats.origin == "Player":
+		self.queue_free()
+	pass
+
+func UpdateStats(bulletStats: BulletStats):
+	currentBulletStats = bulletStats
+	match bulletStats.origin:
+		"None":
+			print("Bullet origin is MISSING!!")
+		"Player":
+			hitBox.set_collision_mask_value(4, true) #Collision with enemy hurtBox
+			sprite.modulate = playerColor
+			lineTrail.modulate = playerColor
+			impactParticle.modulate = playerColor
+		"Enemy":
+			hitBox.set_collision_mask_value(2, true) #Collision with player hurtBox
+			sprite.modulate = enemyColor
+			lineTrail.modulate = enemyColor
+			impactParticle.modulate = enemyColor
+			
+	speed = bulletStats.speed
+	hitBox.damage = bulletStats.damage
+	hitBox.knockBackForce = bulletStats.knockBackForce	
 
 func _physics_process(delta):
 	if isRunning:
 		velocity = speed * moveDirection * delta	
-		translate(velocity)			
-	pass
-
-	
-func _on_body_entered(body):
-	if !isRunning:
-		return
-		
-	if body.has_method("take_damage"):
-		body.take_damage(damage, moveDirection)
-		
-	_destroy()
-	pass
-
-
-func _on_area_entered(area):
-	if !isRunning:
-		return
-		
-	if area.has_method("take_damage"):
-		var attack = Attack.new()
-		attack.damage = damage
-		attack.direction = self.global_position
-		attack.knock_back = 10
-		area.take_damage(attack)
-		
-	_destroy()
+		translate(velocity)	
 	pass
 	
+func Destroy():
+	isRunning = false
+	#collisionShape.set_deferred("Disabled", true)
+	hitBox.queue_free()
+	sprite.queue_free()
 	
-func _destroy():
-	isRunning = false	
-	Global.emit_signal("screen_shake", 1, .1, 1)
-	collisionShape.set_deferred("Disabled", true)
-	animationPlayer.play("Hit")
-	
+	impactParticle.emitting = true
 	timer.wait_time = 1.5
 	timer.start()
 	
@@ -82,4 +78,14 @@ func _destroy():
 	self.queue_free()	
 	pass
 
+func WorldCollision(body):
+	SetParticleToWallCollision()	
+	Destroy()
+	pass
 
+func SetParticleToWallCollision():
+	impactParticle.rotate(deg_to_rad(180))
+	impactParticle.spread = 180
+	impactParticle.initial_velocity_min = 100
+	impactParticle.initial_velocity_min = 150	
+	pass

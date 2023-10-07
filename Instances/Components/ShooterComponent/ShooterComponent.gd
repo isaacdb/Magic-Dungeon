@@ -44,7 +44,7 @@ func JustFire(direction: Vector2, bulletStats: BulletStats):
 	pass
 
 func Shoot(direction: Vector2, bulletStats: BulletStats):
-	var newBullet = bulletStats.prefab.instantiate() as BulletN
+	var newBullet = bulletStats.prefab.instantiate() as Bullet
 	get_tree().get_root().get_child(4).add_child(newBullet)
 	newBullet.UpdateStats(bulletStats)
 	newBullet.global_position = self.global_position

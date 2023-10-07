@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="BulletStats" load_steps=3 format=3 uid="uid://x4dlqrrnafi6"]
 
-[ext_resource type="PackedScene" uid="uid://ckmrkojeday20" path="res://Instances/Bullet/BulletsEnemies/BulletEnemy1/BulletN.tscn" id="1_pqnck"]
+[ext_resource type="PackedScene" uid="uid://c4u7wkwoet4ws" path="res://Instances/Bullet/Bullet.tscn" id="1_si4ot"]
 [ext_resource type="Script" path="res://Instances/Resources/Bullets/BulletStats.gd" id="2_oibpu"]
 
 [resource]
@@ -9,4 +9,4 @@ damage = 0.0
 knockBackForce = 0.0
 speed = 80.0
 origin = "Enemy"
-prefab = ExtResource("1_pqnck")
+prefab = ExtResource("1_si4ot")

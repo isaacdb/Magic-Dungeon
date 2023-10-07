@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="BulletStats" load_steps=3 format=3 uid="uid://djtpaou5g32gg"]
 
 [ext_resource type="Script" path="res://Instances/Resources/Bullets/BulletStats.gd" id="1_54m2v"]
-[ext_resource type="PackedScene" uid="uid://ckmrkojeday20" path="res://Instances/Bullet/BulletsEnemies/BulletEnemy1/BulletN.tscn" id="1_o5cyb"]
+[ext_resource type="PackedScene" uid="uid://c4u7wkwoet4ws" path="res://Instances/Bullet/Bullet.tscn" id="1_yyhjn"]
 
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_54m2v")
-damage = 5.0
+damage = 1.0
 knockBackForce = 30.0
 speed = 500.0
 origin = "Player"
-prefab = ExtResource("1_o5cyb")
+prefab = ExtResource("1_yyhjn")

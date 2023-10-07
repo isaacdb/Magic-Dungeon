@@ -1,7 +1,6 @@
 extends Node2D
 class_name BulletN
 
-
 @export var moveDirection := Vector2.ZERO
 
 @export var enemyColor : Color

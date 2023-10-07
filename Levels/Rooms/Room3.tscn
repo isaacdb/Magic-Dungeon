@@ -11,21 +11,21 @@
 [ext_resource type="PackedScene" uid="uid://bao0oq6xak2nx" path="res://Instances/Props/Jars/Jar.tscn" id="9_mijl1"]
 [ext_resource type="PackedScene" uid="uid://c6g7qwsljeavk" path="res://Instances/Mage1/Mage1.tscn" id="10_3plkv"]
 [ext_resource type="PackedScene" uid="uid://bbkcg4cd5cjn6" path="res://Instances/Props/Shields/Shield.tscn" id="10_10f38"]
-[ext_resource type="PackedScene" uid="uid://ckmrkojeday20" path="res://Instances/Bullet/BulletsEnemies/BulletEnemy1/BulletN.tscn" id="11_gb4w3"]
+[ext_resource type="PackedScene" uid="uid://c4u7wkwoet4ws" path="res://Instances/Bullet/Bullet.tscn" id="12_e54wt"]
 [ext_resource type="Script" path="res://Instances/Resources/Bullets/BulletStats.gd" id="12_le2ws"]
 [ext_resource type="Script" path="res://Scripts/Teleport.gd" id="13_4xt1g"]
 [ext_resource type="Texture2D" uid="uid://b6l8fu6uss63t" path="res://Assets/Dust.png" id="14_6dhiy"]
 [ext_resource type="PackedScene" uid="uid://ccth7h5t4bfu" path="res://Instances/Props/Gate/Gate.tscn" id="15_j27p1"]
 [ext_resource type="AudioStream" uid="uid://7rg6q1b0mlcl" path="res://Assets/Audios/Gates.ogg" id="16_qsiym"]
 
-[sub_resource type="Resource" id="Resource_ydb6k"]
+[sub_resource type="Resource" id="Resource_70b4c"]
 resource_local_to_scene = true
 script = ExtResource("12_le2ws")
 damage = 1.0
 knockBackForce = 30.0
 speed = 500.0
 origin = "Player"
-prefab = ExtResource("11_gb4w3")
+prefab = ExtResource("12_e54wt")
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yl17v"]
 particles_animation = true
@@ -290,7 +290,7 @@ position = Vector2(639, -419)
 
 [node name="Mage1" parent="." instance=ExtResource("10_3plkv")]
 position = Vector2(442, 398)
-bulletStats = SubResource("Resource_ydb6k")
+bulletStats = SubResource("Resource_70b4c")
 
 [node name="TeleportStart" type="Area2D" parent="."]
 position = Vector2(440, 5)
