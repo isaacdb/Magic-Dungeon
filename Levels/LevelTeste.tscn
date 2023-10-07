@@ -23,7 +23,6 @@
 [ext_resource type="PackedScene" uid="uid://dhqly5q1v8pys" path="res://Instances/Components/SpawnEffect/SpawnEffect.tscn" id="8_owyhm"]
 [ext_resource type="Texture2D" uid="uid://vrt1i0dh5evf" path="res://Assets/GUI/exp-progress.png" id="8_x7cnd"]
 [ext_resource type="PackedScene" uid="uid://dmjqj7loxtlm8" path="res://Instances/Enemies/MiniOrc/MiniOrc.tscn" id="11_brv1s"]
-[ext_resource type="PackedScene" uid="uid://ckmrkojeday20" path="res://Instances/Bullet/BulletsEnemies/BulletEnemy1/BulletN.tscn" id="11_ycdyd"]
 [ext_resource type="Script" path="res://Instances/Resources/Bullets/BulletStats.gd" id="12_5cc7y"]
 [ext_resource type="Texture2D" uid="uid://8c6s72ifn40" path="res://Assets/GUI/panel.png" id="12_xc8r2"]
 [ext_resource type="Texture2D" uid="uid://b3gmb1kq3cxwk" path="res://Assets/GUI/background-panel.png" id="13_4pdkx"]
@@ -38,6 +37,7 @@
 [ext_resource type="PackedScene" uid="uid://b1ihv7h1usawy" path="res://Instances/Props/Flags/Flag.tscn" id="22_50bky"]
 [ext_resource type="PackedScene" uid="uid://bao0oq6xak2nx" path="res://Instances/Props/Jars/Jar.tscn" id="22_n8q72"]
 [ext_resource type="PackedScene" uid="uid://7so4v4xjp5xx" path="res://Instances/Props/Gargoyle/Gargoyle.tscn" id="23_7svb7"]
+[ext_resource type="PackedScene" uid="uid://c4u7wkwoet4ws" path="res://Instances/Bullet/Bullet.tscn" id="25_07ktc"]
 [ext_resource type="PackedScene" uid="uid://bbkcg4cd5cjn6" path="res://Instances/Props/Shields/Shield.tscn" id="26_nskup"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Fog.gdshader" id="26_ntkou"]
 [ext_resource type="PackedScene" uid="uid://ckji28dievdf" path="res://Instances/Props/Box/Box.tscn" id="27_v6fap"]
@@ -114,14 +114,14 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.627451, 1, 1, 1, 0)
 [sub_resource type="Gradient" id="Gradient_xsmxh"]
 colors = PackedColorArray(0.316749, 0.422333, 0.477803, 1, 1, 1, 1, 1)
 
-[sub_resource type="Resource" id="Resource_3mt4f"]
+[sub_resource type="Resource" id="Resource_tmk4v"]
 resource_local_to_scene = true
 script = ExtResource("12_5cc7y")
 damage = 1.0
 knockBackForce = 30.0
 speed = 500.0
 origin = "Player"
-prefab = ExtResource("11_ycdyd")
+prefab = ExtResource("25_07ktc")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fsra8"]
 size = Vector2(631, 298)
@@ -615,7 +615,7 @@ layer_1/tile_data = PackedInt32Array(1966130, 131072, 9, 1900594, 0, 8, 1835058,
 
 [node name="Mage1" parent="." instance=ExtResource("4_f7hcd")]
 position = Vector2(313, -45)
-bulletStats = SubResource("Resource_3mt4f")
+bulletStats = SubResource("Resource_tmk4v")
 
 [node name="Room-1" type="Node2D" parent="." node_paths=PackedStringArray("gateEnter", "gateExit", "audioPlayer")]
 visible = false

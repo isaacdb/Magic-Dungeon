@@ -19,7 +19,6 @@ extends CharacterBody2D
 @export var lifeBase := 100.0
 @export var timeIdle := 3.0
 @export var timeWalk := 3.0
-@export var orcLowBulletStats : BulletStats
 
 ## Audios
 @export var audioRage : AudioStream
@@ -100,7 +99,6 @@ func ChangeState(state: States):
 	
 func AttackFinished():
 	attackManager.Execute()
-#	shootManager.FireWithCooldown(playerTracker.GetDirection(), orcLowBulletStats)
 	ChangeState(States.IDLE)
 	pass
 	
