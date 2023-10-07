@@ -47,8 +47,7 @@ func Shoot(direction: Vector2, bulletStats: BulletStats):
 	var newBullet = bulletStats.prefab.instantiate() as Bullet
 	get_tree().get_root().get_child(4).add_child(newBullet)
 	newBullet.UpdateStats(bulletStats)
-	newBullet.global_position = self.global_position
-	newBullet.moveDirection = direction
+	newBullet.SetupPositionAndDirection(direction, self.global_position);
 	newBullet.look_at(self.global_position + (direction * 10))
 	
 	if fireAudio && Settings.soundEffect:

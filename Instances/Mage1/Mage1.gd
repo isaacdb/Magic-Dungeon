@@ -4,7 +4,6 @@ class_name Mage1
 @export var moveComponent : MoveComponent
 @export var healthManager : Health
 @export var flashHit : FlashHit
-@export var shootManager : ShooterComponent
 @export var weapon : Weapon
 @export var playerInput : PlayerInputManager;
 
@@ -72,10 +71,6 @@ func StartIFrame() -> void:
 # Chamado no timeout do timerIFrame
 func EndIFrame() -> void:
 	healthManager.SetActive(true)
-
-func UpdateFireRate(newFireRate: float):
-	shootManager.UpdateFireRate(newFireRate)
-	pass
 
 func Fire() -> void:
 	var direction = playerInput.GetMouseDirection(weapon.GetSpawnPoint())

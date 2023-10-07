@@ -36,13 +36,11 @@ func _physics_process(delta):
 func _fire():
 	animationPlayer.play("Fire")
 	
-	var newBullet = bullet.instantiate()
+	var newBullet = bullet.instantiate() as Bullet
 	newBullet.origin = "Player"
 	get_tree().get_root().get_child(0).add_child(newBullet)
-	newBullet.global_position = spawnPoint.global_position
-	
 	var targetDirection = (get_global_mouse_position() - spawnPoint.global_position).normalized()
-	newBullet.moveDirection = targetDirection
+	newBullet.SetupPositionAndDirection(targetDirection, spawnPoint.global_position);
 	newBullet.look_at(get_global_mouse_position())
 	canShoot = false
 	fireTimer.start()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://ddlfus1uberc8"]
+[gd_scene load_steps=18 format=3 uid="uid://ddlfus1uberc8"]
 
 [ext_resource type="PackedScene" uid="uid://03my8igrvwt8" path="res://Instances/Tilemap/TileMapWalls.tscn" id="1_idyx1"]
 [ext_resource type="PackedScene" uid="uid://d2iv4f2anflh4" path="res://Instances/Tilemap/TileMapGround.tscn" id="2_glhkn"]
@@ -13,8 +13,6 @@
 [ext_resource type="Texture2D" uid="uid://b6l8fu6uss63t" path="res://Assets/Dust.png" id="11_7rye2"]
 [ext_resource type="Script" path="res://Scripts/Teleport.gd" id="12_ntm4a"]
 [ext_resource type="PackedScene" uid="uid://c6g7qwsljeavk" path="res://Instances/Mage1/Mage1.tscn" id="14_4qgeq"]
-[ext_resource type="PackedScene" uid="uid://c4u7wkwoet4ws" path="res://Instances/Bullet/Bullet.tscn" id="15_fhggl"]
-[ext_resource type="Script" path="res://Instances/Resources/Bullets/BulletStats.gd" id="16_y20ab"]
 [ext_resource type="PackedScene" uid="uid://dbagu3ctathua" path="res://Levels/RoomTemplate.tscn" id="17_m0w53"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_noxbd"]
@@ -29,15 +27,6 @@ colors = PackedColorArray(0, 0, 0, 1, 0.0962048, 0.0962047, 0.0962048, 1, 0, 0, 
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b8wwk"]
 size = Vector2(67, 57)
-
-[sub_resource type="Resource" id="Resource_h1ycm"]
-resource_local_to_scene = true
-script = ExtResource("16_y20ab")
-damage = 1.0
-knockBackForce = 30.0
-speed = 500.0
-origin = "Player"
-prefab = ExtResource("15_fhggl")
 
 [node name="TrainingRoom" type="Node2D"]
 
@@ -254,4 +243,3 @@ shape = SubResource("RectangleShape2D_b8wwk")
 
 [node name="Mage1" parent="." instance=ExtResource("14_4qgeq")]
 position = Vector2(305, 63)
-bulletStats = SubResource("Resource_h1ycm")

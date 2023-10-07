@@ -1,8 +1,6 @@
 extends Node2D
 class_name Bullet
 
-@export var moveDirection := Vector2.ZERO
-
 @export var enemyColor : Color
 @export var playerColor : Color
 
@@ -17,6 +15,7 @@ var velocity := Vector2.ZERO
 var speed := 0.0
 var isRunning := true
 var currentBulletStats : BulletStats
+var moveDirection := Vector2.ZERO
 
 func _ready():	
 	hitBox.monitoring = true
@@ -29,7 +28,11 @@ func _ready():
 	wallDetect.connect("body_entered", WorldCollision)
 	
 	Global.player_dead.connect(DestroyPlayerBulletsInGameOver)
-	
+	pass
+
+func SetupPositionAndDirection(direction: Vector2, spawnPosition: Vector2) -> void:
+	global_position = spawnPosition;
+	moveDirection = direction;
 	pass
 
 func DestroyPlayerBulletsInGameOver():
