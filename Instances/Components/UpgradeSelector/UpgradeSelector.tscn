@@ -1,11 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://bipohfp6birf5"]
+[gd_scene load_steps=9 format=3 uid="uid://bipohfp6birf5"]
 
 [ext_resource type="Script" path="res://Instances/Components/UpgradeSelector/UpgradeSelector.gd" id="1_exuln"]
 [ext_resource type="Texture2D" uid="uid://8c6s72ifn40" path="res://Assets/GUI/panel.png" id="1_tuogw"]
-[ext_resource type="Resource" uid="uid://b7g6e2jq8sfs4" path="res://Instances/Resources/Upgrades/UpgradeFireRate1.tres" id="2_xmpim"]
-[ext_resource type="Resource" uid="uid://dykeqpoftq3a6" path="res://Instances/Resources/Upgrades/UpgradeMoveSpeed1.tres" id="3_jy3fs"]
-[ext_resource type="Resource" uid="uid://c4wfb7vate6vv" path="res://Instances/Resources/Upgrades/UpgradeLife1.tres" id="4_0tsou"]
-[ext_resource type="Resource" uid="uid://ctxj1apwera67" path="res://Instances/Resources/Upgrades/UpgradeBulletDamage1.tres" id="5_vs3ld"]
 [ext_resource type="Texture2D" uid="uid://b3gmb1kq3cxwk" path="res://Assets/GUI/background-panel.png" id="7_nir3b"]
 [ext_resource type="FontFile" uid="uid://dq8hbswcklqcs" path="res://Assets/Fonts/Bitfantasy.ttf" id="8_j4c7y"]
 [ext_resource type="AudioStream" uid="uid://cwuthsoolsen5" path="res://Assets/Audios/Confirm-upgrade.ogg" id="9_h34gq"]
@@ -37,7 +33,6 @@ grow_vertical = 2
 size_flags_horizontal = 4
 theme_override_styles/panel = SubResource("StyleBoxTexture_yujky")
 script = ExtResource("1_exuln")
-listOfUpgradesAvaiable = Array[Resource("res://Instances/Resources/Upgrades/UpgradeStats.gd")]([ExtResource("2_xmpim"), ExtResource("3_jy3fs"), ExtResource("4_0tsou"), ExtResource("5_vs3ld")])
 
 [node name="Panel" type="Panel" parent="."]
 self_modulate = Color(0.713726, 0.713726, 0.713726, 1)

@@ -26,6 +26,7 @@ func _ready() -> void:
 	congrats.position.y = -600
 		
 	Global.game_start.emit()
+	UpgradeManager.ApplyUpgradesAdquired();
 	pass
 
 func PlayerDead() -> void:

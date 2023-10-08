@@ -29,7 +29,6 @@ func ValueXpRequiredNextLevel() -> int:
 func AddXp() -> void:
 	currentXp += xpUnitValue
 	if CheckLevelUp():
-		print("UP")
 		LevelUpEffect()
 	else:
 		UpdateProgressBar()

@@ -1,8 +1,10 @@
 extends Node2D
 class_name Bullet
 
-@export var enemyColor : Color
-@export var playerColor : Color
+# CRIMSON = RED
+var enemyColor :=  Color(0.862745, 0.0784314, 0.235294, 1)
+# ANTIQUE_WHITE
+var playerColor := Color(0.980392, 0.921569, 0.843137, 1)
 
 @onready var timer := $Timer as Timer
 @onready var sprite := $Sprite2D as AnimatedSprite2D
@@ -16,20 +18,30 @@ var speed := 0.0
 var isRunning := true
 var currentBulletStats : BulletStats
 var moveDirection := Vector2.ZERO
+var piercingShots := 0
+var currentPiercingsShots := 0
 
-func _ready():	
+func _ready():
 	hitBox.monitoring = true
 	hitBox.monitorable = true # Have to be true, just bc a bug, its required for collision with tileemap
 	
 	timer.one_shot = true
-	hitBox.connect("attack_enter", Destroy)
+	hitBox.connect("attack_enter", HitBody)
 	hitBox.SetActive(true)
 	
 	wallDetect.connect("body_entered", WorldCollision)
 	
 	Global.player_dead.connect(DestroyPlayerBulletsInGameOver)
 	pass
-
+	
+func HitBody() -> void:
+	if currentPiercingsShots < piercingShots:
+		currentPiercingsShots += 1;
+		return
+		
+	Destroy()
+	pass
+	
 func SetupPositionAndDirection(direction: Vector2, spawnPosition: Vector2) -> void:
 	global_position = spawnPosition;
 	moveDirection = direction;
@@ -57,6 +69,7 @@ func UpdateStats(bulletStats: BulletStats):
 			impactParticle.modulate = enemyColor
 			
 	speed = bulletStats.speed
+	piercingShots = bulletStats.piercingShots
 	hitBox.damage = bulletStats.damage
 	hitBox.knockBackForce = bulletStats.knockBackForce	
 

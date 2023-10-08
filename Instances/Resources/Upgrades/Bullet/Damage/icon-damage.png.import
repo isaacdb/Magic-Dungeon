@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://csn032cwbcrth"
-path="res://.godot/imported/icon-damage.png-3de7fb3ee16138f828fc8f1f51128145.ctex"
+path="res://.godot/imported/icon-damage.png-b2872383b7262105988297d7927f41de.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/GUI/icon-damage.png"
-dest_files=["res://.godot/imported/icon-damage.png-3de7fb3ee16138f828fc8f1f51128145.ctex"]
+source_file="res://Instances/Resources/Upgrades/Bullet/Damage/icon-damage.png"
+dest_files=["res://.godot/imported/icon-damage.png-b2872383b7262105988297d7927f41de.ctex"]
 
 [params]
 

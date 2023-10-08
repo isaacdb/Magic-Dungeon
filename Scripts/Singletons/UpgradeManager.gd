@@ -1,11 +1,42 @@
 extends Node
 
+var listOfUpgradesAvaiable : Array[UpgradeStats] = []
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+var listOfUpgradesAdquired : Array[UpgradeStats] = []
 
+func _init():
+	BuscarUpgradesPorPasta("res://Instances/Resources/Upgrades/");
+	pass
+		
+func ApplyUpgradesAdquired():
+	var player = GetPlayer();
+	for upgrade in listOfUpgradesAdquired:
+		upgrade.Apply(player);
+	pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func AddNewUpgrade(newUpgrade: UpgradeStats):
+	newUpgrade.Apply(GetPlayer());
+	listOfUpgradesAdquired.insert(0, newUpgrade);
+	pass
+
+func GetPlayer() -> Mage1:
+	return get_tree().get_nodes_in_group("player")[0] as Mage1
+	
+func BuscarUpgradesPorPasta(path: String):
+	var dir = DirAccess.open(path)
+	if dir:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		while file_name != "":
+			if dir.current_is_dir():
+				BuscarUpgradesPorPasta(path + file_name + "/")
+			else:
+				if file_name.contains(".tres"):
+					listOfUpgradesAvaiable.insert(0, ResourceLoader.load(path + file_name))
+			file_name = dir.get_next()
+	else:
+		print("ERRO AO TENTAR CARREGAR UPGRADES NO UPGRADE MANAGER")
+		
+func CleanUpgrades():
+	listOfUpgradesAdquired = []
 	pass

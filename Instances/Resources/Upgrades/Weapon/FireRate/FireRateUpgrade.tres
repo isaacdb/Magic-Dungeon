@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="FireRateUpgrade" load_steps=3 format=3 uid="uid://c4mw8plg7250f"]
+
+[ext_resource type="Texture2D" uid="uid://3nc8v12vb40w" path="res://Instances/Resources/Upgrades/Weapon/FireRate/icon-firerate.png" id="1_l4u3i"]
+[ext_resource type="Script" path="res://Instances/Resources/Upgrades/Weapon/FireRate/FireRateUpgrade.gd" id="2_8njfh"]
+
+[resource]
+script = ExtResource("2_8njfh")
+id = 3
+description = "decr"
+title = "+ Fire rate"
+upgradeType = 0
+upgradeValue = 10.0
+icon = ExtResource("1_l4u3i")

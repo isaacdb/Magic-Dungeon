@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dbagu3ctathua"]
+[gd_scene load_steps=35 format=3 uid="uid://dbagu3ctathua"]
 
 [ext_resource type="Shader" path="res://Scripts/Shaders/Fog.gdshader" id="1_j1bxr"]
 [ext_resource type="Script" path="res://Scripts/GameManager2.gd" id="1_nqqcy"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://b0w2fstnkg5ry" path="res://Instances/Components/SettingComponent/SettingMenu.tscn" id="19_5lm0h"]
 [ext_resource type="Texture2D" uid="uid://bam2sv4p2ryc" path="res://Assets/GUI/settingIcon.png" id="20_1vo6b"]
 [ext_resource type="Script" path="res://Scripts/GUI/SettingButton.gd" id="21_7uvpj"]
+[ext_resource type="PackedScene" uid="uid://de7qtyx7gmvux" path="res://Instances/Components/CheatComponent/CheatComponent.tscn" id="22_w38yr"]
 
 [sub_resource type="Gradient" id="Gradient_gde7p"]
 offsets = PackedFloat32Array(0.0126582, 0.512821, 1)
@@ -425,3 +426,5 @@ icon = ExtResource("20_1vo6b")
 flat = true
 script = ExtResource("21_7uvpj")
 settingMenu = NodePath("../SettingMenu")
+
+[node name="CheatComponent" parent="." instance=ExtResource("22_w38yr")]

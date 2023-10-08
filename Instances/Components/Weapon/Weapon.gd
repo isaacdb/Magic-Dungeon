@@ -4,13 +4,13 @@ class_name Weapon
 @export var fireRate := 0.6;
 @export var ammunitionAmount := 6;
 @export var reloadTime := 2.0;
+@export var bulletStats : BulletStats
 
 @onready var shooterComponent := $WeaponRoundComponent/ShooterComponent as ShooterComponent
 @onready var sprite := $WeaponRoundComponent/Sprite2D as Sprite2D
 @onready var reloadTimer := $Timer as Timer
 @onready var progressReload := $ProgressBar as ProgressBar
 
-var bulletStats : BulletStats = preload("res://Instances/Resources/Bullets/BulletMage1.tres")
 var currentAmmunitionAmount := 0;
 
 func _ready():
@@ -18,13 +18,23 @@ func _ready():
 	progressReload.visible = false
 	Global.player_fire.emit(currentAmmunitionAmount)
 	
-	shooterComponent.UpdateFireRate(fireRate);
-	
-	reloadTimer.wait_time = reloadTime
+	SetupFireRate(fireRate);
+	SetupReloadTime(reloadTime);
 	reloadTimer.set_one_shot(true)
 	reloadTimer.connect("timeout", RealodComplete)
-	
 	pass
+
+func SetupFireRate(newFireRate: float) -> void:
+	fireRate = newFireRate
+	if shooterComponent:
+		shooterComponent.UpdateFireRate(fireRate);
+	pass
+	
+func SetupReloadTime(newReloadTime: float) -> void:
+	reloadTime = newReloadTime;
+	if reloadTimer:
+		reloadTimer.wait_time = newReloadTime;
+	pass	
 
 func _physics_process(delta):
 	sprite.position.y = Global.CalculeFloatVariation(delta, 0.15, 1.5)

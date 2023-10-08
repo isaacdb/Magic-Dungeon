@@ -2,19 +2,18 @@ extends Panel
 class_name UpgradeSelector
 
 @export var optionUpgrade = preload("res://Instances/Components/UpgradeSelector/OptionItem.tscn")
-@export var listOfUpgradesAvaiable : Array[UpgradeStats] = []
 
 @onready var boxOptionList = $OptionList as VBoxContainer
 @onready var rnd = RandomNumberGenerator.new()
 @onready var audioConfirm := $AudioPlayerSelectUpgrade as AudioStreamPlayer2D
 @onready var audioLevelUp := $AudioPlayerLevelUp as AudioStreamPlayer2D
 
+var listOfUpgradesAvaiable : Array[UpgradeStats] = []
 var chosenUpgradesIndex : Array[int] = []
-var player : Mage1
 
 func _ready():
 	Global.level_up.connect(ActiveSelector)
-	player = get_tree().get_nodes_in_group("player")[0] as Mage1
+	listOfUpgradesAvaiable = UpgradeManager.listOfUpgradesAvaiable
 	pass
 	
 func ActiveSelector():
@@ -34,7 +33,7 @@ func ActiveSelector():
 	pass
 
 func UpgradeSelected(upgrade: UpgradeStats):
-	upgrade.ApplyUpgrade(player);
+	UpgradeManager.AddNewUpgrade(upgrade);
 	
 	if Settings.soundEffect:
 		audioConfirm.play();

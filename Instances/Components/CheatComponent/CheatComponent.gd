@@ -8,6 +8,6 @@ func _physics_process(delta):
 	if Input.is_action_pressed("ui_text_backspace"):
 		player.global_position = bossRommTp.global_position
 	
-	if Input.is_action_just_pressed("ui_end"):
+	if Input.is_action_just_pressed("ui_home"):
 		Global.level_up.emit()
 

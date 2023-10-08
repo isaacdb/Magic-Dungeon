@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Instances/Components/UpgradeSelector/OptionItem.gd" id="1_8c2m5"]
 [ext_resource type="Texture2D" uid="uid://dy24c6u5q36ig" path="res://Assets/GUI/quad-icon.png" id="2_3ll0c"]
 [ext_resource type="FontFile" uid="uid://dq8hbswcklqcs" path="res://Assets/Fonts/Bitfantasy.ttf" id="3_exwpb"]
-[ext_resource type="Texture2D" uid="uid://csn032cwbcrth" path="res://Assets/GUI/icon-damage.png" id="3_rsolb"]
+[ext_resource type="Texture2D" uid="uid://csn032cwbcrth" path="res://Instances/Resources/Upgrades/Bullet/Damage/icon-damage.png" id="3_prfcf"]
 [ext_resource type="Texture2D" uid="uid://bsnpicuksmrkl" path="res://Assets/GUI/button.png" id="4_8yrle"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xv4nt"]
@@ -47,7 +47,7 @@ offset_left = 9.0
 offset_top = 9.0
 offset_right = 31.0
 offset_bottom = 31.0
-texture = ExtResource("3_rsolb")
+texture = ExtResource("3_prfcf")
 expand_mode = 1
 
 [node name="OptionText" type="Label" parent="."]

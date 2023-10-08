@@ -36,7 +36,7 @@ func FireWithCooldown(direction: Vector2, bulletStats: BulletStats):
 	Shoot(direction, bulletStats)
 	
 	canShoot = false
-	fireTimer.start()	
+	fireTimer.start()
 	return true
 	
 func JustFire(direction: Vector2, bulletStats: BulletStats):

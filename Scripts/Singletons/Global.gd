@@ -11,6 +11,7 @@ signal player_fire
 
 signal xp_colleted
 signal level_up
+signal upgrade_adquired
 
 signal enemy_killed
 signal boss_killed

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://3nc8v12vb40w"
-path="res://.godot/imported/icon-firerate.png-4a42bf99a032bec9926d2d8990e029b9.ctex"
+path="res://.godot/imported/icon-firerate.png-e68be3a3a2470bef7d814c926bb4c858.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/GUI/icon-firerate.png"
-dest_files=["res://.godot/imported/icon-firerate.png-4a42bf99a032bec9926d2d8990e029b9.ctex"]
+source_file="res://Instances/Resources/Upgrades/Weapon/FireRate/icon-firerate.png"
+dest_files=["res://.godot/imported/icon-firerate.png-e68be3a3a2470bef7d814c926bb4c858.ctex"]
 
 [params]
 
