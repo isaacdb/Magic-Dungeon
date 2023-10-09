@@ -30,6 +30,11 @@ func SetupFireRate(newFireRate: float) -> void:
 		shooterComponent.UpdateFireRate(fireRate);
 	pass
 	
+func SetupFireRateBoost(boostedFireRate: float):
+	if shooterComponent:
+		shooterComponent.UpdateFireRate(boostedFireRate);
+	pass
+	
 func SetupReloadTime(newReloadTime: float) -> void:
 	reloadTime = newReloadTime;
 	if reloadTimer:
@@ -55,7 +60,7 @@ func Fire(direction: Vector2) -> void:
 		currentAmmunitionAmount -= 1;
 		Global.player_fire.emit(currentAmmunitionAmount)
 		
-		if currentAmmunitionAmount <=0:
+		if currentAmmunitionAmount <= 0:
 			ReloadStart()
 			
 		Global.emit_signal("screen_shake", 1, .1, 1)

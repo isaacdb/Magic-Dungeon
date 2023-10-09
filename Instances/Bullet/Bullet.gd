@@ -1,4 +1,4 @@
-extends Node2D
+extends CharacterBody2D
 class_name Bullet
 
 # CRIMSON = RED
@@ -10,16 +10,16 @@ var playerColor := Color(0.980392, 0.921569, 0.843137, 1)
 @onready var sprite := $Sprite2D as AnimatedSprite2D
 @onready var lineTrail := $Line2D as Line2D
 @onready var hitBox := $HitBox as HitBoxComponent
-@onready var wallDetect := $WallDetect as Area2D
 @onready var impactParticle := $ImpactPaticle as CPUParticles2D
 
-var velocity := Vector2.ZERO
 var speed := 0.0
 var isRunning := true
 var currentBulletStats : BulletStats
 var moveDirection := Vector2.ZERO
 var piercingShots := 0
 var currentPiercingsShots := 0
+var bounceTimes := 0
+var currentBounceTimes := 0
 
 func _ready():
 	hitBox.monitoring = true
@@ -28,8 +28,6 @@ func _ready():
 	timer.one_shot = true
 	hitBox.connect("attack_enter", HitBody)
 	hitBox.SetActive(true)
-	
-	wallDetect.connect("body_entered", WorldCollision)
 	
 	Global.player_dead.connect(DestroyPlayerBulletsInGameOver)
 	pass
@@ -70,13 +68,17 @@ func UpdateStats(bulletStats: BulletStats):
 			
 	speed = bulletStats.speed
 	piercingShots = bulletStats.piercingShots
+	bounceTimes = bulletStats.bounceTimes
 	hitBox.damage = bulletStats.damage
-	hitBox.knockBackForce = bulletStats.knockBackForce	
+	hitBox.knockBackForce = bulletStats.knockBackForce
 
 func _physics_process(delta):
-	if isRunning:
-		velocity = speed * moveDirection * delta	
-		translate(velocity)	
+	if not isRunning:
+		return
+	
+	var collision = move_and_collide(speed * moveDirection * delta)
+	if collision:
+		WorldCollision(collision);
 	pass
 	
 func Destroy():
@@ -94,9 +96,18 @@ func Destroy():
 	self.queue_free()	
 	pass
 
-func WorldCollision(body):
-	SetParticleToWallCollision()	
+func WorldCollision(collision: KinematicCollision2D):
+	if currentBounceTimes < bounceTimes:
+		Bounce(collision);
+		return
+	
+	SetParticleToWallCollision()
 	Destroy()
+	pass
+	
+func Bounce(collision: KinematicCollision2D) -> void:
+	moveDirection = moveDirection.bounce(collision.get_normal())
+	currentBounceTimes += 1
 	pass
 
 func SetParticleToWallCollision():

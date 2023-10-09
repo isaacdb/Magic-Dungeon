@@ -33,7 +33,13 @@ func SetLifeBase(newLifeBase: float):
 	
 	if lifeBar:
 		lifeBar.SetMaxValue(lifeBase)
-	
+		lifeBar.value = lifeBase
+	pass
+
+func SetCurrentLife(newCurrentLife: float):
+	currentHealth = newCurrentLife;
+	if lifeBar:
+		lifeBar.value = currentHealth
 	pass
 
 func _process(delta):

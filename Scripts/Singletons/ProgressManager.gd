@@ -43,7 +43,7 @@ func LoadNewRoom() -> void:
 	pass
 
 func IsBossRoom() -> bool:
-	return roomsUntilBoss % currentRoomNumber
+	return not currentRoomNumber % roomsUntilBoss
 	
 func GetRandomRoom() -> int:
 	var roomIndex = rand.randi_range(1, roomsAvailable);

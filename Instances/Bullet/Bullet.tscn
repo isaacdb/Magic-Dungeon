@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c4u7wkwoet4ws"]
+[gd_scene load_steps=18 format=3 uid="uid://c4u7wkwoet4ws"]
 
 [ext_resource type="Script" path="res://Instances/Bullet/Bullet.gd" id="1_4mtt8"]
 [ext_resource type="Texture2D" uid="uid://dh3qos317vpgn" path="res://Instances/Bullet/Asset/hits/hits-1/frames/hits-1-1.png" id="2_ij83f"]
@@ -56,9 +56,6 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_eshji"]
 radius = 4.12311
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_8g7t0"]
-radius = 5.0
-
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hu3uy"]
 particles_animation = true
 particles_anim_h_frames = 3
@@ -69,10 +66,10 @@ particles_anim_loop = false
 _data = [Vector2(0.027972, 0.4), 0.0, 0.0, 0, 0, Vector2(0.671329, 0.210526), -1.34955, -1.34955, 0, 0, Vector2(0.979021, 0.0947368), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[node name="Bullet" type="Area2D"]
+[node name="Bullet" type="CharacterBody2D"]
 y_sort_enabled = true
 collision_layer = 0
-collision_mask = 0
+collision_mask = 32
 script = ExtResource("1_4mtt8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -105,14 +102,6 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 shape = SubResource("CircleShape2D_eshji")
-
-[node name="WallDetect" type="Area2D" parent="."]
-visible = false
-collision_layer = 32
-collision_mask = 32
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WallDetect"]
-shape = SubResource("CircleShape2D_8g7t0")
 
 [node name="ImpactPaticle" type="CPUParticles2D" parent="."]
 z_index = 9

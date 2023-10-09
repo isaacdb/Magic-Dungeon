@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="BoostFireRateWhenHitedUpgrade" load_steps=3 format=3 uid="uid://desjmn2oiiat3"]
+
+[ext_resource type="Script" path="res://Instances/Resources/Upgrades/Weapon/BoostFireRateWhenHited/BoostFireRateWhenHitedUpgrade.gd" id="1_3h0ol"]
+[ext_resource type="Texture2D" uid="uid://3nc8v12vb40w" path="res://Instances/Resources/Upgrades/Weapon/FireRate/icon-firerate.png" id="1_f6q5t"]
+
+[resource]
+script = ExtResource("1_3h0ol")
+durationTime = 3.0
+id = 13
+description = "fwegfw"
+title = "Boost when hited"
+upgradeType = 0
+upgradeValue = 80.0
+icon = ExtResource("1_f6q5t")

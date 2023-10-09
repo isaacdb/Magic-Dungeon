@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ExtraBulletUpgrade" load_steps=3 format=3 uid="uid://clj5vqdndmo5x"]
+
+[ext_resource type="Texture2D" uid="uid://3nc8v12vb40w" path="res://Instances/Resources/Upgrades/Weapon/FireRate/icon-firerate.png" id="1_8fauf"]
+[ext_resource type="Script" path="res://Instances/Resources/Upgrades/Weapon/ExtraBullet/ExtraBulletScript.gd" id="1_asxyl"]
+
+[resource]
+script = ExtResource("1_asxyl")
+id = 10
+description = "wsfwe"
+title = "+ 1 Bullet"
+upgradeType = 0
+upgradeValue = 1.0
+icon = ExtResource("1_8fauf")

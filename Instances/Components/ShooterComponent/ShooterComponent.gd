@@ -43,16 +43,31 @@ func JustFire(direction: Vector2, bulletStats: BulletStats):
 	Shoot(direction, bulletStats)
 	pass
 
-func Shoot(direction: Vector2, bulletStats: BulletStats):
+func Shoot(direction: Vector2, bulletStats: BulletStats):	
+	for i in bulletStats.bulletFireAmount:
+		var bulletDirection = direction
+		if bulletStats.bulletFireAmount > 1:
+			bulletDirection = GetDirectionBulletBySpread(direction, bulletStats, i);
+			pass
+			
+		InstatiateBullet(bulletDirection, bulletStats)
+		pass
+		
+	if fireAudio && Settings.soundEffect:
+		audioPlayer.play()
+	pass
+	
+func GetDirectionBulletBySpread(direction: Vector2, bulletStats: BulletStats, numBullet: float) -> Vector2:
+	var angleBetween = bulletStats.angleSpread / (bulletStats.bulletFireAmount - 1);
+	var startAngle = direction.rotated(deg_to_rad( - bulletStats.angleSpread / 2))
+	return startAngle.rotated(deg_to_rad(angleBetween * numBullet))
+	
+func InstatiateBullet(direction: Vector2, bulletStats: BulletStats) -> void:
 	var newBullet = bulletStats.prefab.instantiate() as Bullet
 	get_tree().get_root().get_child(4).add_child(newBullet)
 	newBullet.UpdateStats(bulletStats)
 	newBullet.SetupPositionAndDirection(direction, self.global_position);
 	newBullet.look_at(self.global_position + (direction * 10))
-	
-	if fireAudio && Settings.soundEffect:
-		audioPlayer.play()
-		
 	pass
 	
 func FireTimerTimeout():

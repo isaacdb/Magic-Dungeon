@@ -24,16 +24,24 @@ func _ready() -> void:
 	
 	healthManager.damage.connect(GetHited)	
 	healthManager.SetLifeBase(lifeBase)
+	healthManager.SetCurrentLife(StatsManager.currentLife);
 	
-	timerIFrame.wait_time = durationIFrame
-	timerIFrame.one_shot = true
-	timerIFrame.autostart = false
-	timerIFrame.timeout.connect(EndIFrame)
+	SetupIFrameTimer(durationIFrame)
 	pass
 
 func _process(delta) -> void:
 	if playerInput.PressFire() && !Global.mouseOverGUI:
 		Fire();
+	pass
+	
+func SetupIFrameTimer(duration: float) -> void:
+	durationIFrame = duration
+	if timerIFrame:
+		timerIFrame.wait_time = duration
+		timerIFrame.one_shot = true
+		timerIFrame.autostart = false
+		if not timerIFrame.timeout.is_connected(EndIFrame):
+			timerIFrame.timeout.connect(EndIFrame)
 	pass
 
 func _physics_process(delta) -> void:
@@ -48,7 +56,7 @@ func _physics_process(delta) -> void:
 		moveComponent.Move(self, moveInput, delta, acceleration, speed)
 		
 	sprite2D.flip_h = (get_global_mouse_position() - position).x < 0
-	pass	
+	pass
 
 func GetHited(attack: Attack) -> void:
 	Global.emit_signal("screen_shake", 10.0, .3, 1)

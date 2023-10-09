@@ -23,7 +23,6 @@ func SetupCurrentLevelAndXp() -> void:
 	pass
 
 func ValueXpRequiredNextLevel() -> int:
-	print(max_value * (xpDificultMultiply + 100) / 100)
 	return max_value * (xpDificultMultiply + 100) / 100;
 
 func AddXp() -> void:

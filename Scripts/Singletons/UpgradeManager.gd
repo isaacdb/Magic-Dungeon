@@ -11,12 +11,19 @@ func _init():
 func ApplyUpgradesAdquired():
 	var player = GetPlayer();
 	for upgrade in listOfUpgradesAdquired:
-		upgrade.Apply(player);
+		upgrade.apliedTimes = 0;
+		for stack in range(0, upgrade.upgradeStack):
+			upgrade.Apply(player);
 	pass
 
 func AddNewUpgrade(newUpgrade: UpgradeStats):
+	newUpgrade.upgradeStack += 1
 	newUpgrade.Apply(GetPlayer());
-	listOfUpgradesAdquired.insert(0, newUpgrade);
+	
+	var indexUpgradeAlreadyAdquired = listOfUpgradesAdquired.find(newUpgrade);
+	if indexUpgradeAlreadyAdquired == -1:
+		listOfUpgradesAdquired.insert(0, newUpgrade);
+		
 	pass
 
 func GetPlayer() -> Mage1:
@@ -38,5 +45,8 @@ func BuscarUpgradesPorPasta(path: String):
 		print("ERRO AO TENTAR CARREGAR UPGRADES NO UPGRADE MANAGER")
 		
 func CleanUpgrades():
+	for upgrade in listOfUpgradesAdquired:
+		upgrade.Clean()
+	
 	listOfUpgradesAdquired = []
 	pass

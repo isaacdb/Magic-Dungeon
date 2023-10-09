@@ -15,5 +15,19 @@ enum UpgradeTypes{
 @export var upgradeValue : float
 @export var icon : Texture2D
 
+var upgradeStack := 0
+var apliedTimes := 0
+
 func Apply(player: Mage1):
 	pass
+	
+func Clean():
+	pass
+	
+func VerifyApliedStacks() -> bool:
+	if apliedTimes < upgradeStack:
+		apliedTimes += 1;
+		return true
+		
+	return false
+
