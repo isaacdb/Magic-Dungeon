@@ -156,21 +156,29 @@ fill_to = Vector2(0.858696, 0.798913)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5v3u6"]
 size = Vector2(20, 26)
 
-[sub_resource type="Resource" id="Resource_3dahc"]
+[sub_resource type="Resource" id="Resource_sv23l"]
 resource_local_to_scene = true
 script = ExtResource("10_f14nk")
 damage = 1.0
+piercingShots = 0
+bounceTimes = 0
 knockBackForce = 0.0
 speed = 200.0
+bulletFireAmount = 1
+angleSpread = 10.0
 origin = "Enemy"
 prefab = ExtResource("13_3hr1r")
 
-[sub_resource type="Resource" id="Resource_xtc6o"]
+[sub_resource type="Resource" id="Resource_frdta"]
 resource_local_to_scene = true
 script = ExtResource("10_f14nk")
 damage = 1.0
+piercingShots = 0
+bounceTimes = 0
 knockBackForce = 0.0
 speed = 120.0
+bulletFireAmount = 1
+angleSpread = 10.0
 origin = "Enemy"
 prefab = ExtResource("13_3hr1r")
 
@@ -482,7 +490,7 @@ animatedSprite = NodePath("../GroupFlip/AnimatedSprite2D")
 pathsAttackPaterns = Array[NodePath]([NodePath("EspiralPatern"), NodePath("CirclePatern"), NodePath("ArcPatern")])
 
 [node name="ArcPatern" parent="AttackManager" instance=ExtResource("8_ts25e")]
-bullet = SubResource("Resource_3dahc")
+bullet = SubResource("Resource_sv23l")
 
 [node name="CirclePatern" parent="AttackManager" instance=ExtResource("8_afanf")]
 bulletAmount = 50
@@ -492,7 +500,7 @@ bullet = ExtResource("10_vbjbx")
 bulletAmount = 5
 fireAmount = 15
 delayBetweenFire = 0.1
-bullet = SubResource("Resource_xtc6o")
+bullet = SubResource("Resource_frdta")
 
 [node name="ActiveHandleComponent" parent="." instance=ExtResource("4_c4ky7")]
 activeOnLoad = true

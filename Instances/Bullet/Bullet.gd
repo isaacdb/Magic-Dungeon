@@ -28,8 +28,6 @@ func _ready():
 	timer.one_shot = true
 	hitBox.connect("attack_enter", HitBody)
 	hitBox.SetActive(true)
-	
-	Global.player_dead.connect(DestroyPlayerBulletsInGameOver)
 	pass
 	
 func HitBody() -> void:
@@ -45,10 +43,11 @@ func SetupPositionAndDirection(direction: Vector2, spawnPosition: Vector2) -> vo
 	moveDirection = direction;
 	pass
 
-func DestroyPlayerBulletsInGameOver():
-	if currentBulletStats.origin == "Player":
-		self.queue_free()
-	pass
+func IsOriginPlayer() -> bool:
+	return currentBulletStats.origin == "Player";
+
+func IsOriginEnemy() -> bool:
+	return currentBulletStats.origin == "Enemy";
 
 func UpdateStats(bulletStats: BulletStats):
 	currentBulletStats = bulletStats
