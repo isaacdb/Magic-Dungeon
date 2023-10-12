@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="IFrameUpgrade" load_steps=3 format=3 uid="uid://cdjpdsajiktde"]
 
-[ext_resource type="Texture2D" uid="uid://dwiwv7sga4qxi" path="res://Instances/Resources/Upgrades/Player/MoveSpeed/icon-speed.png" id="1_7g37h"]
+[ext_resource type="Texture2D" uid="uid://ctochfu36g83q" path="res://Instances/Resources/Upgrades/Player/Iframe/sprite_icons029.png" id="1_fpkeq"]
 [ext_resource type="Script" path="res://Instances/Resources/Upgrades/Player/Iframe/IFrameUpgrade.gd" id="1_k5a0o"]
 
 [resource]
@@ -10,4 +10,4 @@ description = "dfqwefwe"
 title = "+ 1 Sec IFrame"
 upgradeType = 0
 upgradeValue = 1.0
-icon = ExtResource("1_7g37h")
+icon = ExtResource("1_fpkeq")

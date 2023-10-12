@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ReloadUpgrade" load_steps=3 format=3 uid="uid://b38fq1qtljyki"]
 
+[ext_resource type="Texture2D" uid="uid://bfjkjdempxxr2" path="res://Instances/Resources/Upgrades/Weapon/Reload/sprite_icons022.png" id="1_5skds"]
 [ext_resource type="Script" path="res://Instances/Resources/Upgrades/Weapon/Reload/ReloadUpgrade.gd" id="1_13umt"]
-[ext_resource type="Texture2D" uid="uid://3nc8v12vb40w" path="res://Instances/Resources/Upgrades/Weapon/FireRate/icon-firerate.png" id="1_w35tv"]
 
 [resource]
 script = ExtResource("1_13umt")
@@ -10,4 +10,4 @@ description = "desc"
 title = " Reload time"
 upgradeType = 0
 upgradeValue = 10.0
-icon = ExtResource("1_w35tv")
+icon = ExtResource("1_5skds")

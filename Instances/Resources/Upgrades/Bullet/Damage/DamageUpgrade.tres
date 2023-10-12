@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="DamageUpgrade" load_steps=3 format=3 uid="uid://6oxfswvuy2qc"]
 
-[ext_resource type="Texture2D" uid="uid://csn032cwbcrth" path="res://Instances/Resources/Upgrades/Bullet/Damage/icon-damage.png" id="1_e7yii"]
+[ext_resource type="Texture2D" uid="uid://da8g5f35coqxu" path="res://Instances/Resources/Upgrades/Bullet/Damage/sprite_icons015.png" id="1_bi6qi"]
 [ext_resource type="Script" path="res://Instances/Resources/Upgrades/Bullet/Damage/DamageUpgrade.gd" id="2_o8ixp"]
 
 [resource]
@@ -10,4 +10,4 @@ description = "Descricao"
 title = "+ Damage"
 upgradeType = 3
 upgradeValue = 1.0
-icon = ExtResource("1_e7yii")
+icon = ExtResource("1_bi6qi")

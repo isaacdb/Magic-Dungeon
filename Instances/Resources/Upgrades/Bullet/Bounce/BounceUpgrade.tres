@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="BounceUpgrade" load_steps=3 format=3 uid="uid://dh3cinpvc36vh"]
 
-[ext_resource type="Texture2D" uid="uid://csn032cwbcrth" path="res://Instances/Resources/Upgrades/Bullet/Damage/icon-damage.png" id="1_7uoev"]
+[ext_resource type="Texture2D" uid="uid://bbt3upwt0n8qa" path="res://Instances/Resources/Upgrades/Bullet/Bounce/sprite_icons020.png" id="1_mxofp"]
 [ext_resource type="Script" path="res://Instances/Resources/Upgrades/Bullet/Bounce/BounceUpgrade.gd" id="1_sl3tf"]
 
 [resource]
@@ -10,4 +10,4 @@ description = "fwefgwe"
 title = "+ 1 Bounce"
 upgradeType = 0
 upgradeValue = 1.0
-icon = ExtResource("1_7uoev")
+icon = ExtResource("1_mxofp")

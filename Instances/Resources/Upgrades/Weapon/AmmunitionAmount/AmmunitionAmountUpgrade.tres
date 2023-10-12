@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="AmmunitionAmountUpgrade" load_steps=3 format=3 uid="uid://hbn268wtasbw"]
 
-[ext_resource type="Texture2D" uid="uid://dwiwv7sga4qxi" path="res://Instances/Resources/Upgrades/Player/MoveSpeed/icon-speed.png" id="1_aqca7"]
+[ext_resource type="Texture2D" uid="uid://coiipeyt27jgh" path="res://Instances/Resources/Upgrades/Weapon/AmmunitionAmount/sprite_icons007.png" id="1_8aakt"]
 [ext_resource type="Script" path="res://Instances/Resources/Upgrades/Weapon/AmmunitionAmount/AmmunitionAmountUpgrade.gd" id="1_pqfeh"]
 
 [resource]
@@ -10,4 +10,4 @@ description = "desc"
 title = "+ 1 Ammuniton"
 upgradeType = 0
 upgradeValue = 1.0
-icon = ExtResource("1_aqca7")
+icon = ExtResource("1_8aakt")

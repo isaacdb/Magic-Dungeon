@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="PiercingShotUpgrade" load_steps=3 format=3 uid="uid://bklhpudmkss82"]
 
-[ext_resource type="Texture2D" uid="uid://csn032cwbcrth" path="res://Instances/Resources/Upgrades/Bullet/Damage/icon-damage.png" id="1_gbrsr"]
+[ext_resource type="Texture2D" uid="uid://bouh7xxfiaecq" path="res://Instances/Resources/Upgrades/Bullet/PiercingShot/sprite_icons026.png" id="1_1w4tn"]
 [ext_resource type="Script" path="res://Instances/Resources/Upgrades/Bullet/PiercingShot/PiercingShotUpgrade.gd" id="1_sxb6n"]
 
 [resource]
@@ -10,4 +10,4 @@ description = "dewqf"
 title = "+ 1 Piercing Shot"
 upgradeType = 0
 upgradeValue = 1.0
-icon = ExtResource("1_gbrsr")
+icon = ExtResource("1_1w4tn")
