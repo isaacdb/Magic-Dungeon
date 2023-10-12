@@ -33,7 +33,7 @@ func _process(delta) -> void:
 	if playerInput.PressFire() && !Global.mouseOverGUI:
 		Fire();
 	pass
-	
+
 func SetupIFrameTimer(duration: float) -> void:
 	durationIFrame = duration
 	if timerIFrame:
@@ -50,7 +50,7 @@ func _physics_process(delta) -> void:
 	
 	var moveInput = playerInput.GetAxisInput()
 	
-	if playerInput.PressDash() and dashSkill.canDash:
+	if playerInput.PressDash() and dashSkill.CanDash():
 		dashSkill.Dash(moveInput, self, speed)
 	else:
 		moveComponent.Move(self, moveInput, delta, acceleration, speed)

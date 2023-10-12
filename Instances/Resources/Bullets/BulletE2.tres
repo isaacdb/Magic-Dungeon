@@ -7,7 +7,11 @@
 resource_local_to_scene = true
 script = ExtResource("2_foqvf")
 damage = 1.0
+piercingShots = 0
+bounceTimes = 0
 knockBackForce = 0.0
 speed = 120.0
+bulletFireAmount = 1
+angleSpread = 10.0
 origin = "Enemy"
 prefab = ExtResource("1_10akq")

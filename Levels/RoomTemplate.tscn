@@ -428,3 +428,5 @@ script = ExtResource("21_7uvpj")
 settingMenu = NodePath("../SettingMenu")
 
 [node name="CheatComponent" parent="." instance=ExtResource("22_w38yr")]
+
+[node name="BulletParent" type="Node2D" parent="." groups=["BulletParent"]]

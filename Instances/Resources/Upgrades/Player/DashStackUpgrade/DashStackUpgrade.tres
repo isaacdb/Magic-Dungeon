@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="DashStackUpgrade" load_steps=3 format=3 uid="uid://bksxdsoi5pcdn"]
+
+[ext_resource type="Texture2D" uid="uid://dwiwv7sga4qxi" path="res://Instances/Resources/Upgrades/Player/MoveSpeed/icon-speed.png" id="1_51agc"]
+[ext_resource type="Script" path="res://Instances/Resources/Upgrades/Player/DashStackUpgrade/DashStackUpgrade.gd" id="1_nbvo6"]
+
+[resource]
+script = ExtResource("1_nbvo6")
+id = 0
+description = ""
+title = "Dash Stack"
+upgradeType = 0
+upgradeValue = 0.0
+icon = ExtResource("1_51agc")

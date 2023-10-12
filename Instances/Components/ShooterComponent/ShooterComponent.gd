@@ -49,8 +49,9 @@ func Shoot(direction: Vector2, bulletStats: BulletStats):
 		if bulletStats.bulletFireAmount > 1:
 			bulletDirection = GetDirectionBulletBySpread(direction, bulletStats, i);
 			pass
-			
-		InstatiateBullet(bulletDirection, bulletStats)
+		
+		#Need use call_deferred to can use this component on explodeEnemyUpgrade
+		call_deferred("InstatiateBullet", bulletDirection, bulletStats)
 		pass
 		
 	if fireAudio && Settings.soundEffect:
@@ -64,7 +65,7 @@ func GetDirectionBulletBySpread(direction: Vector2, bulletStats: BulletStats, nu
 	
 func InstatiateBullet(direction: Vector2, bulletStats: BulletStats) -> void:
 	var newBullet = bulletStats.prefab.instantiate() as Bullet
-	get_tree().get_root().get_child(4).add_child(newBullet)
+	get_tree().get_first_node_in_group("BulletParent").add_child(newBullet)
 	newBullet.UpdateStats(bulletStats)
 	newBullet.SetupPositionAndDirection(direction, self.global_position);
 	newBullet.look_at(self.global_position + (direction * 10))

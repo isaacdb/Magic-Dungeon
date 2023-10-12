@@ -62,7 +62,7 @@ func get_random_spawn_point() -> Vector2:
 	
 	return spawnPoints[positionIndex].global_position
 	
-func enemy_killed() -> void:
+func enemy_killed(enemyPosition) -> void:
 	enemiesKilled += 1
 	
 	if enemiesKilled >= enemiesCount:

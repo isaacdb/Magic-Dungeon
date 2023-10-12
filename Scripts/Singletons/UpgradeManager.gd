@@ -10,6 +10,8 @@ func _init():
 		
 func ApplyUpgradesAdquired():
 	var player = GetPlayer();
+	# Need to wait the end of the frame to load all the components of the player that the upgrades can use
+	await player.get_tree().process_frame
 	for upgrade in listOfUpgradesAdquired:
 		upgrade.apliedTimes = 0;
 		for stack in range(0, upgrade.upgradeStack):

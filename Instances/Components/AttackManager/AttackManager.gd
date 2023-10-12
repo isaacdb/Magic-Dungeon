@@ -13,7 +13,7 @@ func _ready():
 
 func Execute():
 	attackIsRunning = true
-	var indexRandPatern = rnd.randi_range(0, attackPaterns.size() -1)	
+	var indexRandPatern = rnd.randi_range(0, attackPaterns.size() -1)
 	var randAttackPatern = attackPaterns[indexRandPatern]
 	randAttackPatern.Execute()
 	pass
