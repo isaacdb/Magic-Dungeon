@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://dmjqj7loxtlm8"]
+[gd_scene load_steps=40 format=3 uid="uid://dmjqj7loxtlm8"]
 
 [ext_resource type="PackedScene" uid="uid://b4asjdyoyep5s" path="res://Instances/Components/Health/Health.tscn" id="1_a5e0l"]
 [ext_resource type="Script" path="res://Instances/Enemies/MiniOrc/MiniOrc.gd" id="1_w1fg2"]
@@ -8,6 +8,8 @@
 [ext_resource type="AudioStream" uid="uid://hhj8od3wlwnn" path="res://Instances/Enemies/Audio/enemyHit.ogg" id="4_nikii"]
 [ext_resource type="PackedScene" uid="uid://d1loimaxqs6y6" path="res://Instances/Components/LookAtPlayerComponent/LookAtPlayerComponent.tscn" id="4_tqfj2"]
 [ext_resource type="Texture2D" uid="uid://dq672djydkruv" path="res://Instances/Enemies/MiniOrc/miniOrc.png" id="5_hdiuc"]
+[ext_resource type="PackedScene" uid="uid://bjsnss7q14dlj" path="res://Instances/Components/SpawnerDamagePopup/SpawnerDamagePopup.tscn" id="5_w55ry"]
+[ext_resource type="PackedScene" uid="uid://bjq2iuiw53hdd" path="res://Instances/Enemies/Behaviours/DeslocateToPlayer/DeslocateToPlayer.tscn" id="6_llbpa"]
 [ext_resource type="PackedScene" uid="uid://6fcg84clxst2" path="res://Instances/Components/Death/DeathManager.tscn" id="6_noalf"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="7_hsfs1"]
 [ext_resource type="PackedScene" uid="uid://bjwrgsdbjvqw3" path="res://Instances/Components/DeathEffect/DeathExplosion.tscn" id="7_p68xh"]
@@ -21,7 +23,8 @@
 [ext_resource type="PackedScene" uid="uid://b4enx6olclngm" path="res://Instances/Components/FlashHit/FlashHit.tscn" id="15_6avr8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_stryp"]
-height = 22.0
+radius = 5.0
+height = 10.0
 
 [sub_resource type="Animation" id="Animation_0rh76"]
 resource_name = "Attack"
@@ -140,6 +143,30 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1.08, 1.08), Vector2(1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("GroupFlip/AnimatedSprite2D:material:shader_parameter/flash_color")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("GroupFlip/AnimatedSprite2D:material:shader_parameter/flash_modifier")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_37pfq"]
@@ -364,10 +391,10 @@ flashHit = NodePath("FlashHit")
 miniOrcBulletStats = ExtResource("2_15qqp")
 lifeBase = 12.0
 
-[node name="TimerToExpode" type="Timer" parent="."]
+[node name="TimerIdle" type="Timer" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
+position = Vector2(0, -5)
 shape = SubResource("CapsuleShape2D_stryp")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -384,9 +411,15 @@ flashHit = NodePath("../FlashHit")
 lifeBar = NodePath("../HealthBar")
 hitAudio = ExtResource("4_nikii")
 
+[node name="SpawnerDamagePopup" parent="Health" instance=ExtResource("5_w55ry")]
+position = Vector2(0, -8)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Health"]
 position = Vector2(0.5, -5)
 shape = SubResource("RectangleShape2D_vwr3s")
+
+[node name="DeslocateToPlayer" parent="." instance=ExtResource("6_llbpa")]
+position = Vector2(0, -4)
 
 [node name="FlashHit" parent="." node_paths=PackedStringArray("animatedSprite") instance=ExtResource("15_6avr8")]
 animatedSprite = NodePath("../GroupFlip/AnimatedSprite2D")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dpxfjv1sqccpw"]
 
-[ext_resource type="Script" path="res://Instances/Components/ExplodeCircleBullets.gd" id="1_sak3d"]
+[ext_resource type="Script" path="res://Instances/Components/ExplodeCircleBulletsComponent/ExplodeCircleBullets.gd" id="1_sak3d"]
 [ext_resource type="PackedScene" uid="uid://ca6aeltom7e7y" path="res://Instances/Components/ShooterComponent/ShooterComponent.tscn" id="2_ttqn7"]
 
 [node name="ExplodeCircleBullets" type="Node2D"]

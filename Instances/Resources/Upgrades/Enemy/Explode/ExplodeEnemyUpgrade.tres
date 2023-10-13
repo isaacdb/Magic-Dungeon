@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ExplodeEnemyUpgrade" load_steps=4 format=3 uid="uid://bw5edecs3f2b7"]
 
-[ext_resource type="PackedScene" uid="uid://dpxfjv1sqccpw" path="res://Instances/Components/ExplodeCircleBullets.tscn" id="1_1oeow"]
+[ext_resource type="PackedScene" uid="uid://dpxfjv1sqccpw" path="res://Instances/Components/ExplodeCircleBulletsComponent/ExplodeCircleBullets.tscn" id="1_1oeow"]
 [ext_resource type="Script" path="res://Instances/Resources/Upgrades/Enemy/Explode/ExplodeEnemyUpgrade.gd" id="1_6a5di"]
 [ext_resource type="Texture2D" uid="uid://by7cmol00ehqv" path="res://Instances/Resources/Upgrades/Enemy/Explode/sprite_icons033.png" id="2_078s5"]
 

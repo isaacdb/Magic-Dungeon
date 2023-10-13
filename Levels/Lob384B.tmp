@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://uhnlnlbf0r2h"]
+[gd_scene load_steps=17 format=3 uid="uid://uhnlnlbf0r2h"]
 
 [ext_resource type="Script" path="res://Levels/LobbyRoom.gd" id="1_gxoob"]
 [ext_resource type="PackedScene" uid="uid://dbagu3ctathua" path="res://Levels/RoomTemplate.tscn" id="1_w60sh"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cfc0jruo74mst" path="res://Instances/Props/Torch/Torch.tscn" id="11_wbu3i"]
 [ext_resource type="PackedScene" uid="uid://b1ihv7h1usawy" path="res://Instances/Props/Flags/Flag.tscn" id="12_5it20"]
 [ext_resource type="PackedScene" uid="uid://bao0oq6xak2nx" path="res://Instances/Props/Jars/Jar.tscn" id="13_m546h"]
+[ext_resource type="PackedScene" uid="uid://rdglfbq61btc" path="res://Instances/Enemies/LowOrcN/LowOrcN.tscn" id="13_xh4eh"]
 [ext_resource type="PackedScene" uid="uid://bbkcg4cd5cjn6" path="res://Instances/Props/Shields/Shield.tscn" id="14_ype7s"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kjiow"]
@@ -188,3 +189,6 @@ position = Vector2(288, -171.04)
 
 [node name="Torch2" parent="Props/Torchs" instance=ExtResource("11_wbu3i")]
 position = Vector2(375, -172.04)
+
+[node name="LowOrcN" parent="." instance=ExtResource("13_xh4eh")]
+position = Vector2(214, 258)

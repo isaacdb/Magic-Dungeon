@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjq2iuiw53hdd"]
+
+[ext_resource type="Script" path="res://Instances/Enemies/Behaviours/DeslocateToPlayer/DeslocateToPlayer.gd" id="1_nvec2"]
+
+[node name="DeslocateToPlayer" type="Node2D"]
+script = ExtResource("1_nvec2")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+collision_mask = 32

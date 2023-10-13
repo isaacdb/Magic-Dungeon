@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://d3j4vevwj6ecg"]
+[gd_scene load_steps=40 format=3 uid="uid://d3j4vevwj6ecg"]
 
 [ext_resource type="Script" path="res://Instances/Enemies/MageOrcN/MageOrcN.gd" id="1_mpfqp"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="1_rj5j8"]
@@ -9,7 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://6fcg84clxst2" path="res://Instances/Components/Death/DeathManager.tscn" id="4_s32rd"]
 [ext_resource type="PackedScene" uid="uid://bjwrgsdbjvqw3" path="res://Instances/Components/DeathEffect/DeathExplosion.tscn" id="5_5fvh3"]
 [ext_resource type="PackedScene" uid="uid://dx8h735nl0e2d" path="res://Instances/Components/Move/Move.tscn" id="6_oin3v"]
+[ext_resource type="PackedScene" uid="uid://bjsnss7q14dlj" path="res://Instances/Components/SpawnerDamagePopup/SpawnerDamagePopup.tscn" id="7_0rikr"]
 [ext_resource type="PackedScene" uid="uid://c1sky0kyn05tc" path="res://Instances/Components/PlayerTracker/PlayerTracker.tscn" id="7_mtjfn"]
+[ext_resource type="PackedScene" uid="uid://bjq2iuiw53hdd" path="res://Instances/Enemies/Behaviours/DeslocateToPlayer/DeslocateToPlayer.tscn" id="8_hdty8"]
 [ext_resource type="PackedScene" uid="uid://d1loimaxqs6y6" path="res://Instances/Components/LookAtPlayerComponent/LookAtPlayerComponent.tscn" id="9_166lo"]
 [ext_resource type="AudioStream" uid="uid://dmup1gun0pjth" path="res://Instances/Enemies/Audio/Explosion_04.mp3" id="9_cvsdh"]
 [ext_resource type="PackedScene" uid="uid://of0xsffqavim" path="res://Instances/Components/EnemyDeath/EnemyDeath.tscn" id="9_xxcs3"]
@@ -20,8 +22,8 @@
 [ext_resource type="PackedScene" uid="uid://8mpq1pm143kp" path="res://Instances/Components/HealthBar/HealthBar.tscn" id="15_ohlla"]
 [ext_resource type="AudioStream" uid="uid://bykjueqtfwcyp" path="res://Instances/Enemies/Audio/FireEnemy.ogg" id="16_2jq3g"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_u6pv1"]
-radius = 3.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_xgg6p"]
+radius = 8.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7dk2g"]
 resource_local_to_scene = true
@@ -95,7 +97,7 @@ animations = [{
 
 [sub_resource type="Animation" id="Animation_rv7bv"]
 resource_name = "Attack"
-length = 0.4
+length = 2.0
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -103,9 +105,18 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.4),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "values": [{
+"args": [],
+"method": &"Shoot"
+}, {
+"args": [],
+"method": &"Shoot"
+}, {
+"args": [],
+"method": &"Shoot"
+}, {
 "args": [],
 "method": &"AttackFinished"
 }]
@@ -117,10 +128,10 @@ tracks/1/path = NodePath("GroupFlip/AnimatedSprite2D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.5, 0.7, 1, 1.2, 1.5, 1.7, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(-8, -3), Vector2(10, 0), Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(-8, -3), Vector2(10, 0), Vector2(-8, -3), Vector2(10, 0), Vector2(-8, -3), Vector2(10, 0), Vector2(0, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -129,10 +140,10 @@ tracks/2/path = NodePath("GroupFlip/AnimatedSprite2D:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.5, 0.7, 1, 1.2, 1.5, 1.7, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.0, 0.21293, 0.0]
+"values": [0.0, 0.0, 0.21293, 0.0, 0.21293, 0.0, 0.21293, 0.0]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -141,10 +152,10 @@ tracks/3/path = NodePath("GroupFlip/AnimatedSprite2D:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.5, 0.7, 1, 1.2, 1.5, 1.7, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(0.651, 0.651), Vector2(0.872, 1.346), Vector2(1, 1)]
+"values": [Vector2(1, 1), Vector2(0.651, 0.651), Vector2(0.872, 1.346), Vector2(0.651, 0.651), Vector2(0.872, 1.346), Vector2(0.651, 0.651), Vector2(0.872, 1.346), Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_fwoc5"]
@@ -348,7 +359,6 @@ height = 18.0
 [node name="MageOrcN" type="CharacterBody2D" node_paths=PackedStringArray("moveComponent", "playerTracker", "healthManager", "shootManager", "flashHit")]
 collision_layer = 0
 collision_mask = 32
-motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_mpfqp")
 moveComponent = NodePath("Move")
@@ -361,12 +371,14 @@ lifeBase = 8
 timeIdle = 2.0
 
 [node name="TimerIdle" type="Timer" parent="."]
+one_shot = true
 
 [node name="TimerAttack" type="Timer" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, -3)
-shape = SubResource("CircleShape2D_u6pv1")
+z_index = 1
+position = Vector2(1, -7)
+shape = SubResource("CircleShape2D_xgg6p")
 
 [node name="GroupFlip" type="Node2D" parent="."]
 
@@ -385,6 +397,7 @@ offset = Vector2(-8.062, -20.028)
 flip_h = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Idle"
 libraries = {
 "": SubResource("AnimationLibrary_a08sq")
 }
@@ -397,10 +410,17 @@ knockBack = NodePath("../KnockBack")
 flashHit = NodePath("../FlashHit")
 lifeBar = NodePath("../HealthBar")
 
+[node name="SpawnerDamagePopup" parent="Health" instance=ExtResource("7_0rikr")]
+position = Vector2(0, -13)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Health"]
-position = Vector2(-1, -7)
+visible = false
+position = Vector2(1, -8)
 shape = SubResource("CapsuleShape2D_fhp2g")
 debug_color = Color(0, 0.52549, 0, 0.419608)
+
+[node name="DeslocateToPlayer" parent="." instance=ExtResource("8_hdty8")]
+position = Vector2(0, -8)
 
 [node name="FlashHit" parent="." node_paths=PackedStringArray("animatedSprite") instance=ExtResource("3_5fn7d")]
 animatedSprite = NodePath("../GroupFlip/AnimatedSprite2D")

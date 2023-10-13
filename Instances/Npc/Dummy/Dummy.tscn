@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dhd8le2ntgtps"]
+[gd_scene load_steps=10 format=3 uid="uid://dhd8le2ntgtps"]
 
 [ext_resource type="Script" path="res://Instances/Npc/Dummy/Dummy.gd" id="1_sho2w"]
 [ext_resource type="PackedScene" uid="uid://b4enx6olclngm" path="res://Instances/Components/FlashHit/FlashHit.tscn" id="1_xbxyb"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bcbgphbcmqgky" path="res://Instances/Components/KnockBack/KnockBack.tscn" id="2_skvrd"]
 [ext_resource type="PackedScene" uid="uid://b4asjdyoyep5s" path="res://Instances/Components/Health/Health.tscn" id="3_u2mgc"]
 [ext_resource type="Texture2D" uid="uid://cc5ft0mnc5x72" path="res://Instances/Npc/Dummy/dummy.png" id="4_uhgot"]
+[ext_resource type="PackedScene" uid="uid://bjsnss7q14dlj" path="res://Instances/Components/SpawnerDamagePopup/SpawnerDamagePopup.tscn" id="5_tr70v"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p5kss"]
 resource_local_to_scene = true
@@ -35,6 +36,9 @@ flashHit = NodePath("../FlashHit")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Health"]
 shape = SubResource("CapsuleShape2D_431jc")
 debug_color = Color(0, 0.6, 0, 0.419608)
+
+[node name="SpawnerDamagePopup" parent="Health" instance=ExtResource("5_tr70v")]
+position = Vector2(0, -6)
 
 [node name="FlashHit" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("1_xbxyb")]
 sprite = NodePath("../Sprite2D")

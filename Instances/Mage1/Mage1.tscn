@@ -19,7 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://b4enx6olclngm" path="res://Instances/Components/FlashHit/FlashHit.tscn" id="15_34hya"]
 [ext_resource type="PackedScene" uid="uid://b4osisqtoowwc" path="res://Instances/Components/PlayerInputManager/PlayerInputManager.tscn" id="20_22m8h"]
 
-[sub_resource type="Resource" id="Resource_vbckx"]
+[sub_resource type="Resource" id="Resource_gfy5g"]
 resource_local_to_scene = true
 script = ExtResource("4_rtcm8")
 damage = 1.0
@@ -135,7 +135,7 @@ lifeBase = 3.0
 
 [node name="Weapon" parent="." instance=ExtResource("2_540pc")]
 position = Vector2(0, -9)
-bulletStats = SubResource("Resource_vbckx")
+bulletStats = SubResource("Resource_gfy5g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 1

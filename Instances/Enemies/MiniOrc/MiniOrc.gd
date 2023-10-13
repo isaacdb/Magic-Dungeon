@@ -11,52 +11,60 @@ extends CharacterBody2D
 
 @export var speed := 80.0
 @export var lifeBase := 5.0
-@export var timeUntilExplode := 5.0
+@export var maxDistanceToWalk := 300
+@export var timeIdle := 3.0
+@export var bulletAmount := 6
 
-@onready var timerToExplode := $TimerToExpode as Timer
+@onready var timerIdle := $TimerIdle as Timer
 @onready var animPlayer := $AnimationPlayer as AnimationPlayer
 @onready var sprite := $GroupFlip/AnimatedSprite2D as AnimatedSprite2D
 @onready var rnd := RandomNumberGenerator.new()
+@onready var deslocateToPlayer = $DeslocateToPlayer as DescolateToPlayer
+
+var attackExplodeBullet = preload("res://Instances/Components/ExplodeCircleBulletsComponent/ExplodeCircleBullets.tscn")
 
 enum States
 {
 	IDLE,
 	CHASING,
-	ATTACK,
-	DEATH
+	ATTACK
 }
 
 var currentState := States.IDLE
+var nextPosition := Vector2.ZERO
+
 func _ready():
 	healthManager.SetLifeBase(lifeBase)
-	
-	var randTime = rnd.randf_range(-1.5, 1.5)	
-	timerToExplode.wait_time = timeUntilExplode + randTime
-	timerToExplode.one_shot = true
-	timerToExplode.autostart = false
-	timerToExplode.timeout.connect(TimerUtilExplodeTimeout)
-	timerToExplode.start()
+	timerIdle.timeout.connect(EndIdleState)
 	pass
 	
 func _physics_process(delta):
 	match currentState:
-		States.IDLE:
-			animPlayer.play("Idle")
-			
-			if playerTracker.GetDistance() > 2.0:
-				ChangeState(States.CHASING)
-			pass
-			
 		States.CHASING:
+			if nextPosition.distance_to(global_position) < 10:
+				ChangeState(States.ATTACK);
+				return
+			
 			animPlayer.play("Walk")
-			moveComponent.Move(self, playerTracker.GetDirection(), delta, 1300, speed)		
-
-			if playerTracker.GetDistance() < 2.0:
-				ChangeState(States.IDLE)
+			moveComponent.Move(self, GetDirectionToNextPosition(), delta, 1300, speed)
+			
+			if get_slide_collision_count():
+				var collision = get_slide_collision(0);
+				nextPosition = global_position + (GetDirectionToNextPosition().bounce(collision.get_normal()) * 20)
+				return
+			
 			pass
 			
 		States.ATTACK:
 			animPlayer.play("Attack")
+			pass
+			
+		States.IDLE:
+			animPlayer.play("Idle")
+			if timerIdle.is_stopped():
+				var randTime = rnd.randf_range(0.0, 1.0)
+				timerIdle.wait_time = timeIdle + randTime;
+				timerIdle.start();
 			pass
 
 func ChangeState(state: States):
@@ -64,13 +72,25 @@ func ChangeState(state: States):
 	pass
 	
 func AttackFinished():
-	var angleFire = rnd.randf_range(0.0, 90.0)
-	for i in 4:
-		shootManager.JustFire(Vector2.RIGHT.rotated(deg_to_rad(angleFire)), miniOrcBulletStats)
-		angleFire += 90.0
+	var attack = attackExplodeBullet.instantiate() as ExplodeCircleBullets
+	attack.bullet = miniOrcBulletStats
+	attack.bulletAmount = bulletAmount
+	self.add_child(attack);
+	attack.global_position = global_position
 		
-	deathManager.Execute()
+	ChangeState(States.IDLE)
 	pass
 		
-func TimerUtilExplodeTimeout():
-	ChangeState(States.ATTACK)
+func EndIdleState() -> void:
+	nextPosition = deslocateToPlayer.GetNextPosition(playerTracker.GetDirection(), GetDistanceToWalk(), 45) + global_position;
+	ChangeState(States.CHASING);
+	pass
+
+func GetDirectionToNextPosition() -> Vector2:
+	return (nextPosition - self.global_position).normalized()
+	
+func GetDistanceToWalk() -> float:
+	if playerTracker.GetDistance() < maxDistanceToWalk:
+		return playerTracker.GetDistance()
+	
+	return  maxDistanceToWalk;

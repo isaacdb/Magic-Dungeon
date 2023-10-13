@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjsnss7q14dlj"]
+
+[ext_resource type="Script" path="res://Instances/Components/SpawnerDamagePopup/SpawnerDamagePopup.gd" id="1_qpk2p"]
+
+[node name="SpawnerDamagePopup" type="Marker2D"]
+script = ExtResource("1_qpk2p")
