@@ -1,17 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://bao0oq6xak2nx"]
+[gd_scene load_steps=4 format=3 uid="uid://bao0oq6xak2nx"]
 
 [ext_resource type="Texture2D" uid="uid://moadwha10gdl" path="res://Instances/Props/Jars/jars.png" id="1_siqhe"]
 [ext_resource type="Script" path="res://Instances/Props/Jars/Jar.gd" id="1_vi3w1"]
-[ext_resource type="PackedScene" uid="uid://b4asjdyoyep5s" path="res://Instances/Components/Health/Health.tscn" id="2_quj8o"]
-[ext_resource type="PackedScene" uid="uid://6fcg84clxst2" path="res://Instances/Components/Death/DeathManager.tscn" id="3_dmkuv"]
-[ext_resource type="PackedScene" uid="uid://bdh7yqt03o3v4" path="res://Instances/Components/PropDestruction/PropDestruction.tscn" id="5_5y4uv"]
-[ext_resource type="PackedScene" uid="uid://cwyxu1ysjtku7" path="res://Instances/Components/DropXp/DropXp.tscn" id="5_8hv71"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_m2fbi"]
-radius = 5.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_vajvj"]
+radius = 6.0
 
-[node name="Jar" type="Node2D"]
+[node name="Jar" type="Area2D"]
+collision_layer = 0
+collision_mask = 15
 script = ExtResource("1_vi3w1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_vajvj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -8)
@@ -19,23 +21,3 @@ texture = ExtResource("1_siqhe")
 hframes = 3
 vframes = 4
 frame = 11
-
-[node name="Health" parent="." node_paths=PackedStringArray("deathManager") instance=ExtResource("2_quj8o")]
-unique_name_in_owner = true
-position = Vector2(0, -7)
-collision_layer = 10
-collision_mask = 0
-deathManager = NodePath("../DeathManager")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Health"]
-z_index = 1
-position = Vector2(0, 2)
-shape = SubResource("CircleShape2D_m2fbi")
-
-[node name="DeathManager" parent="." instance=ExtResource("3_dmkuv")]
-switch_nps = Array[NodePath]([NodePath("../PropDestruction"), NodePath("../DropXp")])
-
-[node name="DropXp" parent="." instance=ExtResource("5_8hv71")]
-dropChance = 10
-
-[node name="PropDestruction" parent="." instance=ExtResource("5_5y4uv")]

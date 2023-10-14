@@ -14,7 +14,7 @@ func _ready():
 	healthManager.damage.connect(Shake)
 	
 	if not dropXpOn:
-		dropXp.dropChance = 0	
+		dropXp.dropChance = 0
 	pass
 	
 func Shake(attack: Attack):	

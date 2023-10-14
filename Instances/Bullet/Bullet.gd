@@ -56,11 +56,13 @@ func UpdateStats(bulletStats: BulletStats):
 			print("Bullet origin is MISSING!!")
 		"Player":
 			hitBox.set_collision_mask_value(4, true) #Collision with enemy hurtBox
+			hitBox.set_collision_layer_value(1, true)
 			sprite.modulate = playerColor
 			lineTrail.modulate = playerColor
 			impactParticle.modulate = playerColor
 		"Enemy":
 			hitBox.set_collision_mask_value(2, true) #Collision with player hurtBox
+			hitBox.set_collision_layer_value(3, true)
 			sprite.modulate = enemyColor
 			lineTrail.modulate = enemyColor
 			impactParticle.modulate = enemyColor

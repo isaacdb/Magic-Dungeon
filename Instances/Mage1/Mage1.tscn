@@ -19,7 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://b4enx6olclngm" path="res://Instances/Components/FlashHit/FlashHit.tscn" id="15_34hya"]
 [ext_resource type="PackedScene" uid="uid://b4osisqtoowwc" path="res://Instances/Components/PlayerInputManager/PlayerInputManager.tscn" id="20_22m8h"]
 
-[sub_resource type="Resource" id="Resource_gfy5g"]
+[sub_resource type="Resource" id="Resource_470r6"]
 resource_local_to_scene = true
 script = ExtResource("4_rtcm8")
 damage = 1.0
@@ -122,6 +122,7 @@ radius = 6.0
 height = 16.0
 
 [node name="Mage1" type="CharacterBody2D" node_paths=PackedStringArray("moveComponent", "healthManager", "flashHit", "weapon", "playerInput") groups=["player"]]
+y_sort_enabled = true
 collision_layer = 0
 collision_mask = 112
 script = ExtResource("1_giwmu")
@@ -135,7 +136,7 @@ lifeBase = 3.0
 
 [node name="Weapon" parent="." instance=ExtResource("2_540pc")]
 position = Vector2(0, -9)
-bulletStats = SubResource("Resource_gfy5g")
+bulletStats = SubResource("Resource_470r6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 1
