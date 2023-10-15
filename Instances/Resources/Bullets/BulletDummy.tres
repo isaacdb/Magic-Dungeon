@@ -6,7 +6,11 @@
 [resource]
 script = ExtResource("2_oibpu")
 damage = 0.0
+piercingShots = 0
+bounceTimes = 0
 knockBackForce = 0.0
 speed = 80.0
+bulletFireAmount = 1
+angleSpread = 10.0
 origin = "Enemy"
 prefab = ExtResource("1_si4ot")

@@ -1,8 +1,7 @@
-[gd_scene load_steps=36 format=3 uid="uid://dbagu3ctathua"]
+[gd_scene load_steps=35 format=3 uid="uid://dbagu3ctathua"]
 
 [ext_resource type="Shader" path="res://Scripts/Shaders/Fog.gdshader" id="1_j1bxr"]
 [ext_resource type="Script" path="res://Scripts/GameManager2.gd" id="1_nqqcy"]
-[ext_resource type="PackedScene" uid="uid://pnthfjsqolx2" path="res://Instances/Components/Camera/Camera.tscn" id="2_pxoe0"]
 [ext_resource type="AudioStream" uid="uid://bxodjoixexwnf" path="res://Assets/Audios/game-over-2.ogg" id="4_vssgx"]
 [ext_resource type="AudioStream" uid="uid://dp6nfumb27dcl" path="res://Assets/Audios/Win.mp3" id="5_6e2b3"]
 [ext_resource type="Script" path="res://Scripts/GUI/CanvaVisibleOnInit.gd" id="6_ocj7c"]
@@ -134,12 +133,6 @@ offset_top = -115.0
 offset_right = 1443.0
 offset_bottom = 769.0
 
-[node name="Camera2D" parent="." instance=ExtResource("2_pxoe0")]
-zoom = Vector2(3, 3)
-limit_top = 0
-limit_right = 850
-limit_bottom = 450
-
 [node name="AudioGameOver" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_vssgx")
 volume_db = 10.0
@@ -152,27 +145,20 @@ volume_db = 5.0
 visible = false
 script = ExtResource("6_ocj7c")
 
-[node name="UpgradeSelector" parent="CanvasLayer" instance=ExtResource("8_fljgn")]
-visible = false
-offset_left = 368.0
-offset_top = 133.0
-offset_right = -350.0
-offset_bottom = -136.0
+[node name="LevelUpManger" parent="CanvasLayer" instance=ExtResource("10_o17g1")]
+offset_left = 306.0
+offset_top = 39.0
+offset_right = 1009.0
+offset_bottom = 46.0
+theme_override_styles/background = SubResource("StyleBoxTexture_yhi0w")
+theme_override_styles/fill = SubResource("StyleBoxTexture_02esq")
+rounded = true
 
 [node name="LevelUpCount" parent="CanvasLayer" instance=ExtResource("9_wc2jf")]
 offset_left = 263.0
 offset_top = 28.0
 offset_right = 303.0
 offset_bottom = 55.0
-
-[node name="LevelUpManger" parent="CanvasLayer" instance=ExtResource("10_o17g1")]
-offset_left = 306.0
-offset_top = 38.0
-offset_right = 1009.0
-offset_bottom = 46.0
-theme_override_styles/background = SubResource("StyleBoxTexture_yhi0w")
-theme_override_styles/fill = SubResource("StyleBoxTexture_02esq")
-rounded = true
 
 [node name="PlayerLife" parent="CanvasLayer" instance=ExtResource("13_7d7jm")]
 process_mode = 3
@@ -340,6 +326,13 @@ script = ExtResource("21_7uvpj")
 settingMenu = NodePath("../SettingMenu")
 
 [node name="PanelFade" parent="CanvasLayer" instance=ExtResource("14_bqkcx")]
+
+[node name="UpgradeSelector" parent="CanvasLayer" instance=ExtResource("8_fljgn")]
+visible = false
+offset_left = 368.0
+offset_top = 133.0
+offset_right = -350.0
+offset_bottom = -136.0
 
 [node name="PanelGameOver" type="Panel" parent="CanvasLayer"]
 visible = false

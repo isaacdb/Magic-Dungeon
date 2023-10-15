@@ -6,7 +6,7 @@
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_54m2v")
-damage = 1.0
+damage = 15.0
 piercingShots = 0
 bounceTimes = 0
 knockBackForce = 30.0

@@ -9,5 +9,5 @@ id = 3
 description = "decr"
 title = "+ Fire rate"
 upgradeType = 0
-upgradeValue = 10.0
+upgradeValue = 25.0
 icon = ExtResource("1_ops15")

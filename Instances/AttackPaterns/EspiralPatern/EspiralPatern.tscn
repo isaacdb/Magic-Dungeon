@@ -1,11 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://de18hnbsclqlr"]
+[gd_scene load_steps=3 format=3 uid="uid://de18hnbsclqlr"]
 
 [ext_resource type="Script" path="res://Instances/AttackPaterns/EspiralPatern/EspiralPatern.gd" id="1_yquqs"]
 [ext_resource type="PackedScene" uid="uid://ca6aeltom7e7y" path="res://Instances/Components/ShooterComponent/ShooterComponent.tscn" id="2_7vw3p"]
-[ext_resource type="Resource" path="res://Instances/Resources/Bullets/BulletE2.tres" id="2_qthx8"]
 
 [node name="EspiralPatern" type="Node2D"]
 script = ExtResource("1_yquqs")
-bullet = ExtResource("2_qthx8")
 
 [node name="ShooterComponent" parent="." instance=ExtResource("2_7vw3p")]

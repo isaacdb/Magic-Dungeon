@@ -389,7 +389,8 @@ deathManager = NodePath("DeathManager")
 shootManager = NodePath("ShooterComponent")
 flashHit = NodePath("FlashHit")
 miniOrcBulletStats = ExtResource("2_15qqp")
-lifeBase = 12.0
+lifeBase = 50.0
+timeIdle = 2.0
 
 [node name="TimerIdle" type="Timer" parent="."]
 

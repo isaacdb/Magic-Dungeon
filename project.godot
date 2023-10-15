@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 StringUtil="*res://Scripts/Singletons/StringUtil.gd"
+MathUtil="*res://Scripts/Singletons/MathUtil.gd"
 Settings="*res://Scripts/Singletons/Settings.gd"
 ProgressManager="*res://Scripts/Singletons/ProgressManager.gd"
 Global="*res://Scripts/Singletons/Global.gd"

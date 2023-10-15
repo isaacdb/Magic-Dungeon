@@ -12,7 +12,7 @@ func SetActive(active: bool):
 	isActive = active
 	pass
 
-func _ready():	
+func _ready():
 	monitorable = true
 	monitoring = true
 	
@@ -25,7 +25,7 @@ func _on_area_entered(area):
 	
 	if area is Health:
 		var attack = Attack.new()
-		attack.damage = damage
+		attack.damage = GetDamageVariation()
 		attack.knock_back = knockBackForce
 		attack.direction = self.global_position
 		
@@ -33,3 +33,8 @@ func _on_area_entered(area):
 	
 	attack_enter.emit()
 	return
+
+func GetDamageVariation():
+	if damage == 1:
+		return damage
+	return damage + damage * randf_range(-0.1 , 0.1)

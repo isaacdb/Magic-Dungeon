@@ -9,5 +9,5 @@ id = 4
 description = "desc"
 title = " Reload time"
 upgradeType = 0
-upgradeValue = 10.0
+upgradeValue = 25.0
 icon = ExtResource("1_5skds")

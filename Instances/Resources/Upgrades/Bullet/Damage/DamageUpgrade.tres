@@ -9,5 +9,5 @@ id = 1
 description = "Descricao"
 title = "+ Damage"
 upgradeType = 3
-upgradeValue = 1.0
+upgradeValue = 30.0
 icon = ExtResource("1_bi6qi")

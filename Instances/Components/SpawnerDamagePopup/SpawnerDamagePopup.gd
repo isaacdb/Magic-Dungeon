@@ -9,7 +9,6 @@ func _ready():
 	pass
 	
 func SpawnDamagePopup(attack: Attack) -> void:
-	print("spawn")
 	var newDamagePopup = popupPrefab.instantiate() as PopupText
 	var parent = get_tree().get_first_node_in_group("DamagePopupParent")
 	parent.add_child(newDamagePopup)

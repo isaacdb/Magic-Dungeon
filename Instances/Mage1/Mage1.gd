@@ -63,6 +63,7 @@ func GetHited(attack: Attack) -> void:
 	Global.player_hited.emit()
 	StartIFrame()
 	
+	print(attack.damage)
 	if attack.damage <= 0:
 		return
 	

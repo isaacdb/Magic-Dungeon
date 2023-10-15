@@ -5,6 +5,6 @@
 
 [resource]
 script = ExtResource("1_ov386")
-waveAmount = 1
+waveAmount = 2
 enemies = Array[PackedScene]([ExtResource("1_o0uvv")])
-qntdEnemies = Array[int]([5])
+qntdEnemies = Array[int]([3])

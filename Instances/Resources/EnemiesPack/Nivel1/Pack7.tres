@@ -7,6 +7,6 @@
 
 [resource]
 script = ExtResource("4_np3la")
-waveAmount = 3
+waveAmount = 2
 enemies = Array[PackedScene]([ExtResource("1_sp08h"), ExtResource("2_cne1g"), ExtResource("3_0ejrw")])
 qntdEnemies = Array[int]([2, 2, 2])

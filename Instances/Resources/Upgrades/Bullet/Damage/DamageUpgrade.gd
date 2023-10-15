@@ -3,5 +3,7 @@ class_name DamageUpgrade
 
 func Apply(player: Mage1):
 	if VerifyApliedStacks():
-		player.weapon.bulletStats.damage += upgradeValue
+		var currentDamage = player.weapon.bulletStats.damage
+		var newDamage = currentDamage + MathUtil.CalculateValueByPercent(upgradeValue, currentDamage)
+		player.weapon.bulletStats.damage = newDamage
 	pass

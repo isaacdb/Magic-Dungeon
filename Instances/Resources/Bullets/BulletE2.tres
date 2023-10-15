@@ -4,13 +4,12 @@
 [ext_resource type="Script" path="res://Instances/Resources/Bullets/BulletStats.gd" id="2_foqvf"]
 
 [resource]
-resource_local_to_scene = true
 script = ExtResource("2_foqvf")
 damage = 1.0
 piercingShots = 0
 bounceTimes = 0
 knockBackForce = 0.0
-speed = 120.0
+speed = 150.0
 bulletFireAmount = 1
 angleSpread = 10.0
 origin = "Enemy"

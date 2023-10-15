@@ -367,8 +367,8 @@ healthManager = NodePath("Health")
 shootManager = NodePath("ShooterComponent")
 flashHit = NodePath("FlashHit")
 orcMageBulletStats = ExtResource("2_is0ku")
-lifeBase = 8
-timeIdle = 2.0
+lifeBase = 100
+timeIdle = 1.5
 
 [node name="TimerIdle" type="Timer" parent="."]
 one_shot = true
