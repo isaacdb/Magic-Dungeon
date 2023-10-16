@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://cqago4dchak01"]
 
-[ext_resource type="Script" path="res://Instances/UI/OptionUpgrade/OptionItem.gd" id="1_57h1u"]
+[ext_resource type="Script" path="res://Instances/UI/OptionUpgrade/OptionItem.gd" id="1_xxwi2"]
 [ext_resource type="Texture2D" uid="uid://da8g5f35coqxu" path="res://Instances/Resources/Upgrades/Bullet/Damage/sprite_icons015.png" id="2_w1lgk"]
 [ext_resource type="FontFile" uid="uid://dq8hbswcklqcs" path="res://Assets/Fonts/Bitfantasy.ttf" id="4_06h0m"]
 [ext_resource type="Texture2D" uid="uid://bsnpicuksmrkl" path="res://Assets/GUI/button.png" id="5_4h00e"]
@@ -26,7 +26,7 @@ process_mode = 2
 offset_right = 402.0
 offset_bottom = 90.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_57doc")
-script = ExtResource("1_57h1u")
+script = ExtResource("1_xxwi2")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
