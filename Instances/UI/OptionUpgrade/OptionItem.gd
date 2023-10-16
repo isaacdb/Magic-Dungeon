@@ -1,9 +1,9 @@
-extends Panel
+extends PanelContainer
 class_name OptionItem
 
-@onready var button := $ButtonOption as Button
-@onready var text := $OptionText as Label
-@onready var iconRect := $iconPanel/icon as TextureRect
+@onready var button := %ButtonOption as Button
+@onready var text := %OptionText as Label
+@onready var iconRect := %Icon as TextureRect
 
 var upgradeSelector : UpgradeSelector
 var upgradeStats : UpgradeStats
@@ -17,6 +17,10 @@ func Initialize(upgradeSelectorInject: UpgradeSelector, upgradeStatsInject: Upgr
 	upgradeStats = upgradeStatsInject
 	text.text = upgradeStats.title
 	iconRect.texture = upgradeStats.icon
+	pass
+	
+func DisableButton() -> void:
+	button.button_down.disconnect(Selected);
 	pass
 	
 func Selected():

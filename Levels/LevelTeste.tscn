@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://4jvawle2nm0s" path="res://Instances/Components/PlayerLife/PlayerLife.tscn" id="2_5g5bp"]
 [ext_resource type="FontFile" uid="uid://f5t35k6jiqnp" path="res://Assets/Fonts/Awexbmp.ttf" id="2_a82mv"]
 [ext_resource type="AudioStream" uid="uid://7rg6q1b0mlcl" path="res://Assets/Audios/Gates.ogg" id="2_gbbxt"]
-[ext_resource type="PackedScene" uid="uid://bipohfp6birf5" path="res://Instances/Components/UpgradeSelector/UpgradeSelector.tscn" id="2_q6x83"]
+[ext_resource type="PackedScene" uid="uid://bipohfp6birf5" path="res://Instances/UI/UpgradeSelection/UpgradeSelector.tscn" id="2_q6x83"]
 [ext_resource type="PackedScene" uid="uid://d2iv4f2anflh4" path="res://Instances/Tilemap/TileMapGround.tscn" id="2_vbm8m"]
 [ext_resource type="AudioStream" uid="uid://bxodjoixexwnf" path="res://Assets/Audios/game-over-2.ogg" id="3_qdsft"]
 [ext_resource type="AudioStream" uid="uid://dp6nfumb27dcl" path="res://Assets/Audios/Win.mp3" id="4_22iy5"]

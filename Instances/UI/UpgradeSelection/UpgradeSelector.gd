@@ -1,9 +1,9 @@
 extends Panel
 class_name UpgradeSelector
 
-@export var optionUpgrade = preload("res://Instances/Components/UpgradeSelector/OptionItem.tscn")
+@export var optionUpgrade = preload("res://Instances/UI/OptionUpgrade/OptionItem.tscn")
 
-@onready var boxOptionList = $OptionList as VBoxContainer
+@onready var boxOptionList = %OptionList as VBoxContainer
 @onready var rnd = RandomNumberGenerator.new()
 @onready var audioConfirm := $AudioPlayerSelectUpgrade as AudioStreamPlayer2D
 @onready var audioLevelUp := $AudioPlayerLevelUp as AudioStreamPlayer2D
@@ -19,6 +19,11 @@ func _ready():
 func ActiveSelector():
 	self.visible = true
 	get_tree().paused = true
+
+	var tween = self.create_tween()
+	tween.tween_property(self, "position:y", 87, 0.5).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT).from(-830)
+	tween.play()
+	
 	Global.panelUpgradeIsOpen = true;
 	
 	if Settings.soundEffect:
@@ -34,19 +39,25 @@ func ActiveSelector():
 
 func UpgradeSelected(upgrade: UpgradeStats):
 	UpgradeManager.AddNewUpgrade(upgrade);
+	DisabledButtons();
 	
 	if Settings.soundEffect:
 		audioConfirm.play();
 	
-	CleanUpgradesListed()
-	
-	self.visible = false
-	
 	# Usefull for dont catch click input of button to fire in game
 	var tween = create_tween()
-	tween.tween_callback(func(): get_tree().paused = false).set_delay(0.5)
+	tween.tween_property(self, "position:y", -830, 0.5).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN).from(87)
+	tween.tween_callback(func(): self.visible = false)
+	tween.tween_callback(CleanUpgradesListed)
+	tween.tween_callback(func(): get_tree().paused = false)
 	tween.tween_callback(func(): Global.panelUpgradeIsOpen = false)
 	tween.play()
+	pass
+
+func DisabledButtons() -> void:
+	var upgrades = boxOptionList.get_children() as Array[OptionItem]
+	for i in upgrades:
+		i.DisableButton();
 	pass
 
 func CleanUpgradesListed():

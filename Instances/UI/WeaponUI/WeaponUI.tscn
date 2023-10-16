@@ -1,72 +1,52 @@
-[gd_scene load_steps=7 format=3 uid="uid://cgqfjkemb0lih"]
+[gd_scene load_steps=5 format=3 uid="uid://cgqfjkemb0lih"]
 
-[ext_resource type="Texture2D" uid="uid://b3gmb1kq3cxwk" path="res://Assets/GUI/background-panel.png" id="1_m3cl7"]
 [ext_resource type="Texture2D" uid="uid://dly6q5evuf44e" path="res://Instances/Weapon/Sprite.png" id="2_dnie0"]
 [ext_resource type="Texture2D" uid="uid://bn767vd8pdr1t" path="res://Assets/bulletCount.png" id="3_bq4bs"]
 [ext_resource type="FontFile" uid="uid://dq8hbswcklqcs" path="res://Assets/Fonts/Bitfantasy.ttf" id="4_ac58g"]
 [ext_resource type="Script" path="res://Instances/UI/WeaponUI/MunitionAmountUI.gd" id="5_fb0ci"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3ymfa"]
-resource_local_to_scene = true
-texture = ExtResource("1_m3cl7")
-
-[node name="WeaponUI" type="Control"]
-layout_mode = 3
-anchors_preset = 12
+[node name="WeaponUI" type="Panel"]
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
+offset_left = -213.0
+offset_top = -137.0
+offset_right = -45.0
+offset_bottom = -40.0
+grow_horizontal = 0
 grow_vertical = 0
 size_flags_vertical = 4
+theme_type_variation = &"PanelBackground"
 
-[node name="Panel" type="Panel" parent="."]
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 1014.0
-offset_top = -160.0
-offset_right = -53.0
-offset_bottom = -44.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Background" type="Panel" parent="Panel"]
-modulate = Color(1, 1, 1, 0.364706)
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_3ymfa")
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
 
-[node name="WeaponSprite" type="TextureRect" parent="Panel"]
-layout_mode = 0
-offset_left = 177.0
-offset_top = 21.0
-offset_right = 218.0
-offset_bottom = 168.6
-rotation = 1.5708
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="WeaponSprite" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
 texture = ExtResource("2_dnie0")
-expand_mode = 5
+expand_mode = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
-layout_mode = 0
-offset_left = 18.0
-offset_top = 68.0
-offset_right = 205.0
-offset_bottom = 107.0
-
-[node name="MunitonIcon" type="TextureRect" parent="Panel/HBoxContainer"]
+[node name="MunitonIcon" type="TextureRect" parent="MarginContainer/HBoxContainer"]
 modulate = Color(0, 0.721569, 0.721569, 1)
 layout_mode = 2
 texture = ExtResource("3_bq4bs")
 expand_mode = 3
 
-[node name="MunitionAmount" type="Label" parent="Panel/HBoxContainer"]
+[node name="MunitionAmount" type="Label" parent="MarginContainer/HBoxContainer"]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_ac58g")

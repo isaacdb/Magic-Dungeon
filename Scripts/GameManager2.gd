@@ -33,14 +33,6 @@ func PlayerDead() -> void:
 	Global.playerIsAlive = false;
 	Global.screen_shake.emit(10, 2, 1)
 	
-	if Settings.soundEffect:
-		audioGameOver.play();
-	
-	deadPanel.visible = true
-	var tweenDeadPanel = create_tween()
-	tweenDeadPanel.tween_property(deadPanel, "position:y", 200, 3).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN_OUT)
-	tweenDeadPanel.play()
-	
 	var tween = create_tween()
 	tween.tween_callback(func(): get_tree().change_scene_to_file("res://Levels/LobbyRoom.tscn")).set_delay(7)
 	tween.play()
@@ -61,16 +53,8 @@ func PlayerGetHit() -> void:
 	pass
 	
 func BossKilled() -> void:
-	congrats.visible = true
-	var tweenCongrats = create_tween()
-	tweenCongrats.tween_interval(1)
-	tweenCongrats.tween_property(congrats, "position:y", 100, 2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	tweenCongrats.play()
-	
+	Global.gameFinished = true
 	var tween = create_tween()
 	tween.tween_callback(func(): get_tree().change_scene_to_file("res://Levels/LobbyRoom.tscn")).set_delay(7)
 	tween.play()
-	
-	if Settings.soundEffect:
-		audioWinGame.play();
 	pass

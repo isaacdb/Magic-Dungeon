@@ -1,113 +1,82 @@
-[gd_scene load_steps=8 format=3 uid="uid://b0w2fstnkg5ry"]
+[gd_scene load_steps=2 format=3 uid="uid://b0w2fstnkg5ry"]
 
-[ext_resource type="Texture2D" uid="uid://8c6s72ifn40" path="res://Assets/GUI/panel.png" id="1_8khwq"]
-[ext_resource type="Texture2D" uid="uid://b3gmb1kq3cxwk" path="res://Assets/GUI/background-panel.png" id="2_wcfqs"]
 [ext_resource type="Script" path="res://Instances/Components/SettingComponent/SettingMenu.gd" id="2_x0uvk"]
-[ext_resource type="FontFile" uid="uid://dq8hbswcklqcs" path="res://Assets/Fonts/Bitfantasy.ttf" id="3_mjxj0"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0bacm"]
-texture = ExtResource("1_8khwq")
-texture_margin_left = 40.0
-texture_margin_top = 40.0
-texture_margin_right = 40.0
-texture_margin_bottom = 40.0
-draw_center = false
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_abcmy"]
-texture = ExtResource("2_wcfqs")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k5mds"]
 
 [node name="SettingMenu" type="Panel" node_paths=PackedStringArray("buttonCameraShake", "buttonDustExplosion", "buttonSoundEffect", "buttonMusic")]
 process_mode = 3
-self_modulate = Color(0.435294, 0.333333, 0.219608, 1)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 350.0
-offset_top = 68.0
-offset_right = -398.0
-offset_bottom = -66.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -245.5
+offset_top = -228.0
+offset_right = 245.5
+offset_bottom = 228.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_0bacm")
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("2_x0uvk")
-buttonCameraShake = NodePath("Panel2/ToggleCameraShake")
-buttonDustExplosion = NodePath("Panel2/ToggleDustExplosion")
-buttonSoundEffect = NodePath("Panel2/ToggleSoundEffect")
-buttonMusic = NodePath("Panel2/ToggleMusic")
+buttonCameraShake = NodePath("MarginContainer/Panel/HBoxContainer/VBoxContainer/ToggleCameraShake")
+buttonDustExplosion = NodePath("MarginContainer/Panel/HBoxContainer/VBoxContainer/ToggleDustExplosion")
+buttonSoundEffect = NodePath("MarginContainer/Panel/HBoxContainer/VBoxContainer/ToggleSoundEffect")
+buttonMusic = NodePath("MarginContainer/Panel/HBoxContainer/VBoxContainer/ToggleMusic")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 35.0
-offset_top = 37.0
-offset_right = -35.0
-offset_bottom = -35.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_abcmy")
+size_flags_horizontal = 3
 
-[node name="Title" type="Label" parent="."]
-layout_mode = 0
-offset_left = 19.0
-offset_top = 40.0
-offset_right = 499.0
-offset_bottom = 130.0
-theme_override_colors/font_color = Color(0.560784, 0, 0.141176, 1)
-theme_override_colors/font_shadow_color = Color(0.603922, 0.603922, 0.603922, 1)
-theme_override_fonts/font = ExtResource("3_mjxj0")
-theme_override_font_sizes/font_size = 90
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+theme_type_variation = &"PanelBackground"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -13.0
+offset_right = 14.0
+offset_bottom = 219.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="ControlSpace" type="Control" parent="MarginContainer/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Title" type="Label" parent="MarginContainer/Panel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
 text = "SETTINGS"
 horizontal_alignment = 1
 
-[node name="Panel2" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 130.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_k5mds")
-
-[node name="ToggleCameraShake" type="CheckButton" parent="Panel2"]
-layout_mode = 1
-offset_left = 55.0
-offset_right = 459.0
-offset_bottom = 48.0
-theme_override_fonts/font = ExtResource("3_mjxj0")
-theme_override_font_sizes/font_size = 30
+[node name="ToggleCameraShake" type="CheckButton" parent="MarginContainer/Panel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
 text = "Camera Shake"
 
-[node name="ToggleDustExplosion" type="CheckButton" parent="Panel2"]
-layout_mode = 1
-offset_left = 59.0
-offset_top = 59.0
-offset_right = 457.0
-offset_bottom = 107.0
-theme_override_fonts/font = ExtResource("3_mjxj0")
-theme_override_font_sizes/font_size = 30
+[node name="ToggleDustExplosion" type="CheckButton" parent="MarginContainer/Panel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
 text = "Dust Explosion"
 
-[node name="ToggleSoundEffect" type="CheckButton" parent="Panel2"]
-layout_mode = 1
-offset_left = 56.0
-offset_top = 112.0
-offset_right = 459.0
-offset_bottom = 160.0
-theme_override_fonts/font = ExtResource("3_mjxj0")
-theme_override_font_sizes/font_size = 30
+[node name="ToggleSoundEffect" type="CheckButton" parent="MarginContainer/Panel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
 text = "Sound Effect"
 
-[node name="ToggleMusic" type="CheckButton" parent="Panel2"]
-layout_mode = 1
-offset_left = 54.0
-offset_top = 172.0
-offset_right = 458.0
-offset_bottom = 220.0
-theme_override_fonts/font = ExtResource("3_mjxj0")
-theme_override_font_sizes/font_size = 30
+[node name="ToggleMusic" type="CheckButton" parent="MarginContainer/Panel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
 text = "Music"
+
+[node name="ControlSpace2" type="Control" parent="MarginContainer/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3

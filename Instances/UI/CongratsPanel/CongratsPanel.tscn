@@ -1,0 +1,125 @@
+[gd_scene load_steps=6 format=3 uid="uid://bioa7gfg86ob7"]
+
+[ext_resource type="Script" path="res://Instances/UI/CongratsPanel/CongratsPanel.gd" id="1_86g6x"]
+[ext_resource type="Texture2D" uid="uid://dsa860i7r5ace" path="res://Assets/GUI/panel-adorn.png" id="1_wt404"]
+[ext_resource type="Theme" uid="uid://m37p3jin2cw5" path="res://Themes/MyTheme.tres" id="2_hpfg6"]
+[ext_resource type="FontFile" uid="uid://dq8hbswcklqcs" path="res://Assets/Fonts/Bitfantasy.ttf" id="3_vbmdv"]
+[ext_resource type="AudioStream" uid="uid://dp6nfumb27dcl" path="res://Assets/Audios/Win.mp3" id="5_ndfhu"]
+
+[node name="PanelCongrats" type="Panel"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -403.0
+offset_top = -178.0
+offset_right = 403.0
+offset_bottom = 178.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(285, 250)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_86g6x")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="Panel" parent="MarginContainer"]
+show_behind_parent = true
+layout_mode = 2
+theme_type_variation = &"PanelBackground"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Background/HBoxContainer"]
+layout_mode = 2
+
+[node name="CongratsText" type="Label" parent="MarginContainer/Background/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = "CONGRATULATIONS"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Background/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureAdorno2" type="TextureRect" parent="MarginContainer/Background/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_wt404")
+flip_v = true
+
+[node name="TextureAdorno3" type="TextureRect" parent="MarginContainer/Background/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_wt404")
+flip_v = true
+
+[node name="TextureAdorno4" type="TextureRect" parent="MarginContainer/Background/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_wt404")
+flip_v = true
+
+[node name="TextureAdorno5" type="TextureRect" parent="MarginContainer/Background/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_wt404")
+flip_v = true
+
+[node name="TextureAdorno6" type="TextureRect" parent="MarginContainer/Background/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_wt404")
+flip_v = true
+
+[node name="TextureAdorno7" type="TextureRect" parent="MarginContainer/Background/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_wt404")
+flip_v = true
+
+[node name="TextureAdorno8" type="TextureRect" parent="MarginContainer/Background/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_wt404")
+flip_v = true
+
+[node name="BeatBossText" type="Label" parent="MarginContainer/Background/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_hpfg6")
+theme_override_fonts/font = ExtResource("3_vbmdv")
+theme_override_font_sizes/font_size = 33
+text = "You beat the first Boss!"
+
+[node name="ButText" type="Label" parent="MarginContainer/Background/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_hpfg6")
+theme_override_fonts/font = ExtResource("3_vbmdv")
+theme_override_font_sizes/font_size = 33
+text = "But is not over"
+
+[node name="ButText2" type="Label" parent="MarginContainer/Background/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_hpfg6")
+theme_override_fonts/font = ExtResource("3_vbmdv")
+theme_override_font_sizes/font_size = 33
+text = "
+"
+
+[node name="ContinueText" type="Label" parent="MarginContainer/Background/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_vbmdv")
+theme_override_font_sizes/font_size = 33
+text = "Continue..."
+
+[node name="AudioWinGame" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_ndfhu")
+volume_db = 5.0

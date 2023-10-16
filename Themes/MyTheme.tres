@@ -1,0 +1,58 @@
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://m37p3jin2cw5"]
+
+[ext_resource type="FontFile" uid="uid://dq8hbswcklqcs" path="res://Assets/Fonts/Bitfantasy.ttf" id="1_5v4h6"]
+[ext_resource type="Texture2D" uid="uid://8c6s72ifn40" path="res://Assets/GUI/panel.png" id="2_jknqc"]
+[ext_resource type="Texture2D" uid="uid://b3gmb1kq3cxwk" path="res://Assets/GUI/background-panel.png" id="3_pefi6"]
+[ext_resource type="Texture2D" uid="uid://dy24c6u5q36ig" path="res://Assets/GUI/quad-icon.png" id="4_ww5dj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tmdce"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tm4mk"]
+texture = ExtResource("2_jknqc")
+texture_margin_left = 40.0
+texture_margin_top = 40.0
+texture_margin_right = 40.0
+texture_margin_bottom = 40.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k3f8s"]
+texture = ExtResource("3_pefi6")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nxg34"]
+texture = ExtResource("4_ww5dj")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[resource]
+CheckButton/colors/font_color = Color(0.32549, 0.32549, 0.32549, 1)
+CheckButton/font_sizes/font_size = 30
+CheckButton/fonts/font = ExtResource("1_5v4h6")
+HeaderLarge/base_type = &"Label"
+HeaderLarge/colors/font_color = Color(0.745098, 0, 0, 1)
+HeaderLarge/colors/font_shadow_color = Color(0.172549, 0.172549, 0.172549, 1)
+HeaderLarge/font_sizes/font_size = 90
+Label/colors/font_color = Color(0, 0, 0, 1)
+Label/colors/font_outline_color = Color(1, 1, 1, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0)
+Label/constants/line_spacing = 3
+Label/constants/outline_size = 0
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/constants/shadow_outline_size = 1
+Label/font_sizes/font_size = 30
+Label/fonts/font = ExtResource("1_5v4h6")
+Label/styles/normal = SubResource("StyleBoxEmpty_tmdce")
+MarginContainer/constants/margin_bottom = 36
+MarginContainer/constants/margin_left = 36
+MarginContainer/constants/margin_right = 36
+MarginContainer/constants/margin_top = 36
+Panel/styles/panel = SubResource("StyleBoxTexture_tm4mk")
+PanelBackground/base_type = &"Panel"
+PanelBackground/styles/panel = SubResource("StyleBoxTexture_k3f8s")
+PanelIconQuad/base_type = &"Panel"
+PanelIconQuad/styles/panel = SubResource("StyleBoxTexture_nxg34")

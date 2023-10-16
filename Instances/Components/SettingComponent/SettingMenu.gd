@@ -28,7 +28,9 @@ func _physics_process(delta) -> void:
 	pass
 	
 func OpenCloseSettingsMenu() -> void:
-	if Global.panelUpgradeIsOpen or not Global.playerIsAlive:
+	if Global.panelUpgradeIsOpen or\
+	 	not Global.playerIsAlive or\
+		Global.gameFinished:
 		return
 	
 	self.visible = !self.visible;

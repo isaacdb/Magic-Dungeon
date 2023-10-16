@@ -23,7 +23,7 @@ signal game_start
 var mouseOverGUI := false
 var playerIsAlive := true
 var panelUpgradeIsOpen := false
-
+var gameFinished := false
 var camera : Camera2D
 
 func CalculeFloatVariation(delta: float, amplitude: float, frequency: float) -> float:
