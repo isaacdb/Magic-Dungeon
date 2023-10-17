@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dbagu3ctathua"]
+[gd_scene load_steps=30 format=3 uid="uid://dbagu3ctathua"]
 
 [ext_resource type="Shader" path="res://Scripts/Shaders/Fog.gdshader" id="1_j1bxr"]
 [ext_resource type="Script" path="res://Scripts/GameManager2.gd" id="1_nqqcy"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://4jvawle2nm0s" path="res://Instances/Components/PlayerLife/PlayerLife.tscn" id="13_7d7jm"]
 [ext_resource type="PackedScene" uid="uid://cgqfjkemb0lih" path="res://Instances/UI/WeaponUI/WeaponUI.tscn" id="14_7wxvv"]
 [ext_resource type="PackedScene" uid="uid://dak4jp66ns1mg" path="res://Instances/Components/PanelFade/PanelFade.tscn" id="14_bqkcx"]
+[ext_resource type="PackedScene" uid="uid://dlwpndh3qpud7" path="res://Instances/UI/DashStacks/DashStacks.tscn" id="14_us34i"]
 [ext_resource type="PackedScene" uid="uid://doyjlphcmb5u1" path="res://Instances/UI/GameOverPanel/GameOverPanel.tscn" id="18_e1nqk"]
 [ext_resource type="PackedScene" uid="uid://b0w2fstnkg5ry" path="res://Instances/Components/SettingComponent/SettingMenu.tscn" id="19_5lm0h"]
 [ext_resource type="Texture2D" uid="uid://bam2sv4p2ryc" path="res://Assets/GUI/settingIcon.png" id="20_1vo6b"]
@@ -139,10 +140,7 @@ process_mode = 3
 
 [node name="WeaponUI" parent="CanvasLayer" instance=ExtResource("14_7wxvv")]
 
-[node name="PanelCongrats" parent="CanvasLayer" instance=ExtResource("12_ymmvo")]
-
 [node name="SettingMenu" parent="CanvasLayer" instance=ExtResource("19_5lm0h")]
-visible = false
 
 [node name="SettingsButton" type="Button" parent="CanvasLayer" node_paths=PackedStringArray("settingMenu") groups=["UI"]]
 process_mode = 3
@@ -164,12 +162,19 @@ flat = true
 script = ExtResource("21_7uvpj")
 settingMenu = NodePath("../SettingMenu")
 
+[node name="DashStacks" parent="CanvasLayer" instance=ExtResource("14_us34i")]
+offset_right = 124.0
+
 [node name="PanelFade" parent="CanvasLayer" instance=ExtResource("14_bqkcx")]
+
+[node name="PanelCongrats" parent="CanvasLayer" instance=ExtResource("12_ymmvo")]
+visible = false
 
 [node name="UpgradeSelector" parent="CanvasLayer" instance=ExtResource("8_fljgn")]
 visible = false
 
 [node name="PanelGameOver" parent="CanvasLayer" instance=ExtResource("18_e1nqk")]
+visible = false
 
 [node name="CheatComponent" parent="." instance=ExtResource("22_w38yr")]
 

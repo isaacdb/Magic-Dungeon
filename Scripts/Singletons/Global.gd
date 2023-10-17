@@ -8,10 +8,12 @@ signal player_hited
 signal player_remove_life
 signal player_add_life
 signal player_fire
+signal player_dash
 
 signal xp_colleted
 signal level_up
 signal upgrade_adquired
+signal dash_stack_adquired
 
 signal enemy_killed
 signal boss_killed

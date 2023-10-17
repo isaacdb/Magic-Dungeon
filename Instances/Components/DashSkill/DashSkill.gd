@@ -41,7 +41,8 @@ func CanDash() -> bool:
 func Dash(direction: Vector2, character: CharacterBody2D, speedDefault: float):
 	if dashStacksAvailable <= 0 or !isActive:
 		return
-		
+	
+	Global.player_dash.emit()
 	dashStacksAvailable -= 1
 	characterDash = character
 	isDashing = true

@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=9 format=3 uid="uid://m37p3jin2cw5"]
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://m37p3jin2cw5"]
 
 [ext_resource type="FontFile" uid="uid://dq8hbswcklqcs" path="res://Assets/Fonts/Bitfantasy.ttf" id="1_5v4h6"]
 [ext_resource type="Texture2D" uid="uid://8c6s72ifn40" path="res://Assets/GUI/panel.png" id="2_jknqc"]
@@ -28,6 +28,23 @@ texture_margin_top = 12.0
 texture_margin_right = 12.0
 texture_margin_bottom = 12.0
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ntpuf"]
+texture = ExtResource("3_pefi6")
+texture_margin_left = 20.0
+texture_margin_right = 20.0
+modulate_color = Color(0.611765, 0.611765, 0.611765, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dbsks"]
+texture = ExtResource("3_pefi6")
+texture_margin_left = 40.0
+texture_margin_right = 40.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qeh3u"]
+texture = ExtResource("3_pefi6")
+texture_margin_left = 20.0
+texture_margin_right = 20.0
+modulate_color = Color(0.392157, 0.392157, 0.392157, 1)
+
 [resource]
 CheckButton/colors/font_color = Color(0.32549, 0.32549, 0.32549, 1)
 CheckButton/font_sizes/font_size = 30
@@ -56,3 +73,8 @@ PanelBackground/base_type = &"Panel"
 PanelBackground/styles/panel = SubResource("StyleBoxTexture_k3f8s")
 PanelIconQuad/base_type = &"Panel"
 PanelIconQuad/styles/panel = SubResource("StyleBoxTexture_nxg34")
+TabBar/colors/font_selected_color = Color(0.324219, 0.324219, 0.324219, 1)
+TabBar/fonts/font = ExtResource("1_5v4h6")
+TabBar/styles/tab_hovered = SubResource("StyleBoxTexture_ntpuf")
+TabBar/styles/tab_selected = SubResource("StyleBoxTexture_dbsks")
+TabBar/styles/tab_unselected = SubResource("StyleBoxTexture_qeh3u")

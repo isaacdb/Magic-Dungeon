@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://6ltvjlq3y2tt"]
+
+[ext_resource type="Texture2D" uid="uid://df7e1wxw0xfmk" path="res://Instances/UI/DashStacks/dashStackBorder.png" id="1_b0nfj"]
+[ext_resource type="Texture2D" uid="uid://co4kap47juqcr" path="res://Instances/UI/DashStacks/dashStackFill.png" id="2_kydfw"]
+[ext_resource type="Script" path="res://Instances/UI/DashStacks/DashProgress/DashProgressBar.gd" id="3_qds00"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_djyeq"]
+texture = ExtResource("1_b0nfj")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0vp52"]
+texture = ExtResource("2_kydfw")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
+
+[node name="DashProgressBar" type="ProgressBar"]
+custom_minimum_size = Vector2(100, 20)
+theme_override_styles/background = SubResource("StyleBoxTexture_djyeq")
+theme_override_styles/fill = SubResource("StyleBoxTexture_0vp52")
+value = 50.0
+show_percentage = false
+script = ExtResource("3_qds00")

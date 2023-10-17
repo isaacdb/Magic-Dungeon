@@ -6,6 +6,10 @@ class_name SettingMenu
 @export var buttonSoundEffect : CheckButton
 @export var buttonMusic : CheckButton
 
+@onready var h_box_settings = %HBoxSettings as HBoxContainer
+@onready var h_box_controls = %HBoxControls as HBoxContainer
+@onready var tab_bar = %TabBar as TabBar
+
 func _ready():
 	buttonCameraShake.button_pressed = Settings.cameraShake;
 	buttonCameraShake.pressed.connect(PressCameraShake);
@@ -18,6 +22,10 @@ func _ready():
 	
 	buttonMusic.button_pressed = Settings.music;
 	buttonMusic.pressed.connect(PressMusic);
+	
+	tab_bar.tab_changed.connect(SetPanelByTab);
+	
+	SetPanelByTab(1);
 	
 	self.visible = false;
 	pass
@@ -32,9 +40,16 @@ func OpenCloseSettingsMenu() -> void:
 	 	not Global.playerIsAlive or\
 		Global.gameFinished:
 		return
-	
+
+	SetPanelByTab(0);
 	self.visible = !self.visible;
 	get_tree().paused = self.visible
+	pass
+	
+func SetPanelByTab(tabIndex: int) -> void:
+	tab_bar.current_tab = tabIndex
+	h_box_settings.visible = tabIndex == 0
+	h_box_controls.visible = tabIndex == 1
 	pass
 	
 func PressCameraShake() -> void:
