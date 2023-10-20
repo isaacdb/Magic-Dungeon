@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3]
+[gd_scene load_steps=59 format=3 uid="uid://cd4qesd6ospxk"]
 
 [ext_resource type="Script" path="res://OldVersions/LowOrc/LowOrc.gd" id="1_fflio"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="2_hs026"]

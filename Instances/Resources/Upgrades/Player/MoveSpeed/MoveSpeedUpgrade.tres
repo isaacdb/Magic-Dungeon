@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("2_q5noj")
 id = 2
-description = "descri"
+description = "Increase the move speed in 25%"
 title = " Move speed"
 upgradeType = 2
 upgradeValue = 25.0

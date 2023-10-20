@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("2_o8ixp")
 id = 1
-description = "Descricao"
-title = "+ Damage"
+description = "Bullet damage will be increased by 30%"
+title = "Damage"
 upgradeType = 3
 upgradeValue = 30.0
 icon = ExtResource("1_bi6qi")

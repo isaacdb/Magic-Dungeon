@@ -18,6 +18,7 @@ signal dash_stack_adquired
 signal enemy_killed
 signal boss_killed
 signal enter_boss_room
+signal room_cleared
 
 signal game_start
 

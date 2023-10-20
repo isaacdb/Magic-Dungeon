@@ -1,7 +1,8 @@
-[gd_scene load_steps=30 format=3 uid="uid://dbagu3ctathua"]
+[gd_scene load_steps=31 format=3 uid="uid://dbagu3ctathua"]
 
 [ext_resource type="Shader" path="res://Scripts/Shaders/Fog.gdshader" id="1_j1bxr"]
 [ext_resource type="Script" path="res://Scripts/GameManager2.gd" id="1_nqqcy"]
+[ext_resource type="PackedScene" uid="uid://b1ipabpbr75jn" path="res://Instances/UI/RoomCounter/RoomCounter.tscn" id="4_mpxen"]
 [ext_resource type="Script" path="res://Scripts/GUI/CanvaVisibleOnInit.gd" id="6_ocj7c"]
 [ext_resource type="PackedScene" uid="uid://bipohfp6birf5" path="res://Instances/UI/UpgradeSelection/UpgradeSelector.tscn" id="8_fljgn"]
 [ext_resource type="PackedScene" uid="uid://cmcoex7vi3kc8" path="res://Instances/Components/LevelUpManager/LevelUpCount.tscn" id="9_wc2jf"]
@@ -121,19 +122,25 @@ script = ExtResource("6_ocj7c")
 
 [node name="LevelUpManger" parent="CanvasLayer" instance=ExtResource("10_o17g1")]
 offset_left = 306.0
-offset_top = 39.0
+offset_top = 58.0
 offset_right = 1009.0
-offset_bottom = 46.0
+offset_bottom = 65.0
 theme_override_styles/background = SubResource("StyleBoxTexture_yhi0w")
 theme_override_styles/fill = SubResource("StyleBoxTexture_02esq")
 rounded = true
 
 [node name="LevelUpCount" parent="CanvasLayer" instance=ExtResource("9_wc2jf")]
 offset_left = 263.0
-offset_top = 28.0
+offset_top = 44.0
 offset_right = 303.0
-offset_bottom = 55.0
+offset_bottom = 71.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+
+[node name="RoomCounter" parent="CanvasLayer" instance=ExtResource("4_mpxen")]
+offset_left = -198.0
+offset_top = 9.0
+offset_right = 199.0
+offset_bottom = 96.0
 
 [node name="PlayerLife" parent="CanvasLayer" instance=ExtResource("13_7d7jm")]
 process_mode = 3
@@ -163,7 +170,14 @@ script = ExtResource("21_7uvpj")
 settingMenu = NodePath("../SettingMenu")
 
 [node name="DashStacks" parent="CanvasLayer" instance=ExtResource("14_us34i")]
-offset_right = 124.0
+anchors_preset = 3
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -35.0
+offset_top = -71.0
+offset_right = -12.0
+offset_bottom = -44.0
+grow_horizontal = 0
 
 [node name="PanelFade" parent="CanvasLayer" instance=ExtResource("14_bqkcx")]
 

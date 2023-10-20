@@ -17,10 +17,12 @@ class_name Mage1
 @onready var timerIFrame := $TimerIFrame as Timer
 
 var isAlive = true
-var durationIFrame := 0.6
+var durationIFrame := 2.0
 
 func _ready() -> void:
 	animationPlayer.play("Idle")
+	
+	flashHit.end_flash_damage.connect(FlashingIFrame);
 	
 	healthManager.damage.connect(GetHited)	
 	healthManager.SetLifeBase(lifeBase)
@@ -74,8 +76,12 @@ func ChangeAnim(anim: String) -> void:
 	animationPlayer.play(anim)
 	
 func StartIFrame() -> void:
-	healthManager.SetActive(false)
-	timerIFrame.start()
+	healthManager.SetActive(false);
+	timerIFrame.start();
+	
+func FlashingIFrame() -> void:
+	flashHit.IFrameFlahsing(timerIFrame.time_left);
+	pass
 	
 # Chamado no timeout do timerIFrame
 func EndIFrame() -> void:

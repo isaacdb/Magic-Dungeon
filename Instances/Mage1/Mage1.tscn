@@ -19,7 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://b4enx6olclngm" path="res://Instances/Components/FlashHit/FlashHit.tscn" id="15_34hya"]
 [ext_resource type="PackedScene" uid="uid://b4osisqtoowwc" path="res://Instances/Components/PlayerInputManager/PlayerInputManager.tscn" id="20_22m8h"]
 
-[sub_resource type="Resource" id="Resource_iebtn"]
+[sub_resource type="Resource" id="Resource_chgws"]
 resource_local_to_scene = true
 script = ExtResource("4_rtcm8")
 damage = 15.0
@@ -134,10 +134,16 @@ playerInput = NodePath("PlayerInputManager")
 speed = 80.0
 lifeBase = 3.0
 
+[node name="DashSkill" parent="." node_paths=PackedStringArray("healthComponent") instance=ExtResource("8_hx86t")]
+dashSpeed = 300
+dashDuration = 0.06
+healthComponent = NodePath("../Health")
+
 [node name="Weapon" parent="." instance=ExtResource("2_540pc")]
 position = Vector2(0, -9)
+fireRate = 0.4
 ammunitionAmount = 10
-bulletStats = SubResource("Resource_iebtn")
+bulletStats = SubResource("Resource_chgws")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 1
@@ -198,6 +204,7 @@ position = Vector2(0, -8)
 shape = SubResource("CapsuleShape2D_2uere")
 
 [node name="FlashHit" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("15_34hya")]
+unique_name_in_owner = true
 sprite = NodePath("../Sprite2D")
 
 [node name="DeathManager" parent="." node_paths=PackedStringArray("activeHandle") instance=ExtResource("4_v7fsg")]
@@ -212,11 +219,6 @@ switch_nps = Array[NodePath]([NodePath("../Health"), NodePath("../DeathManager")
 
 [node name="Move" parent="." node_paths=PackedStringArray("walkParticule") instance=ExtResource("6_nmcf8")]
 walkParticule = NodePath("../WalkParticle")
-
-[node name="DashSkill" parent="." node_paths=PackedStringArray("healthComponent") instance=ExtResource("8_hx86t")]
-dashSpeed = 300
-dashDuration = 0.06
-healthComponent = NodePath("../Health")
 
 [node name="KnockBack" parent="." instance=ExtResource("12_b338j")]
 

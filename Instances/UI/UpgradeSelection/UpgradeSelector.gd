@@ -62,7 +62,7 @@ func DisabledButtons() -> void:
 
 func CleanUpgradesListed():
 	chosenUpgradesIndex.clear()
-	var upgrades = boxOptionList.get_children()
+	var upgrades = boxOptionList.get_children() as Array[OptionItem]
 	for i in upgrades:
 		i.queue_free()
 	pass

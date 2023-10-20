@@ -32,6 +32,7 @@ var currentState := States.IDLE
 var nextPosition := Vector2.ZERO
 
 func _ready():
+	if randf() > 0.5: currentState = States.ATTACK;
 	healthManager.SetLifeBase(lifeBase)
 	timerIdle.timeout.connect(EndIdleState)
 	pass

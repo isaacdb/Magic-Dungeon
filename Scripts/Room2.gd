@@ -69,6 +69,7 @@ func enemy_killed(enemyPosition) -> void:
 		if waveCount >= enemyPack.waveAmount:
 			gateExit.open()
 			areaClean = true
+			Global.room_cleared.emit()
 			
 			if Settings.soundEffect:
 				audioPlayer.play()

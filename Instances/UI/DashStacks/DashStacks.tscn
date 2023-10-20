@@ -1,19 +1,17 @@
 [gd_scene load_steps=3 format=3 uid="uid://dlwpndh3qpud7"]
 
 [ext_resource type="Script" path="res://Instances/UI/DashStacks/DashStacks.gd" id="1_jg1pp"]
-[ext_resource type="PackedScene" uid="uid://6ltvjlq3y2tt" path="res://Instances/UI/DashStacks/DashProgress/DashProgressBar.tscn" id="1_si1wi"]
+[ext_resource type="PackedScene" uid="uid://d2pel3pvean4h" path="res://Instances/UI/DashStacks/DashProgressRounded/dashProgressRounded.tscn" id="2_n0ynw"]
 
 [node name="DashStacks" type="VBoxContainer"]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 24.0
-offset_top = -49.0
-offset_right = 84.0
-offset_bottom = -22.0
+offset_top = -19.0
+offset_right = 19.0
 grow_vertical = 0
 alignment = 2
 script = ExtResource("1_jg1pp")
 
-[node name="DashProgressBar" parent="." instance=ExtResource("1_si1wi")]
+[node name="DashProgressRounded6" parent="." instance=ExtResource("2_n0ynw")]
 layout_mode = 2

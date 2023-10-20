@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("1_sxb6n")
 id = 6
-description = "dewqf"
-title = "+ 1 Piercing Shot"
+description = "Bullets will pierce enemies"
+title = "Piercing Shot"
 upgradeType = 0
 upgradeValue = 1.0
 icon = ExtResource("1_1w4tn")

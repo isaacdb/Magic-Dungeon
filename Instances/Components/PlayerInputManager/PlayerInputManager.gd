@@ -2,7 +2,7 @@ extends Node2D
 class_name PlayerInputManager
 
 # Define a quantidade máxima de imprecisão em graus
-var maxImprecisionDegrees := 10;
+var maxImprecisionDegrees := 3;
 var rand := RandomNumberGenerator.new()
 
 func _ready() -> void:

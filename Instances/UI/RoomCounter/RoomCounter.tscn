@@ -1,0 +1,79 @@
+[gd_scene load_steps=9 format=3 uid="uid://b1ipabpbr75jn"]
+
+[ext_resource type="Script" path="res://Instances/UI/RoomCounter/RoomCounter.gd" id="1_titbc"]
+[ext_resource type="Texture2D" uid="uid://yq44pikq3a4x" path="res://Instances/UI/RoomCounter/panelROomIcons.png" id="1_toq8k"]
+[ext_resource type="Texture2D" uid="uid://g544bql7qod0" path="res://Instances/UI/RoomCounter/currentRoomIcon.png" id="2_7asmx"]
+[ext_resource type="Texture2D" uid="uid://bb8da7yxknt8v" path="res://Instances/UI/RoomCounter/nextRoomIcon.png" id="2_uckwm"]
+[ext_resource type="Texture2D" uid="uid://5l12mwcs8gia" path="res://Instances/UI/RoomCounter/defeatedRoomIcon.png" id="3_h8yd1"]
+[ext_resource type="Texture2D" uid="uid://b3cixh7d7cvs1" path="res://Instances/UI/RoomCounter/bossIcon.png" id="5_156ku"]
+[ext_resource type="Texture2D" uid="uid://dfaauoajacx46" path="res://Instances/UI/RoomCounter/battleBossIcon.png" id="6_6rwin"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a2rky"]
+content_margin_left = 70.0
+content_margin_right = 75.0
+texture = ExtResource("1_toq8k")
+region_rect = Rect2(5, 9, 42, 24)
+
+[node name="RoomCounter" type="PanelContainer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -270.5
+offset_top = 43.0
+offset_right = 270.5
+offset_bottom = 175.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_a2rky")
+script = ExtResource("1_titbc")
+roomIcon = ExtResource("2_uckwm")
+roomIconDefeated = ExtResource("3_h8yd1")
+currentRoomIcon = ExtResource("2_7asmx")
+bossRoomIcon = ExtResource("5_156ku")
+currentBossRoom = ExtResource("6_6rwin")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="ContainerRooms" type="HBoxContainer" parent="HBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ContainerBossRoom" type="HBoxContainer" parent="HBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Test" type="TextureRect" parent="HBoxContainer3/ContainerBossRoom"]
+visible = false
+layout_mode = 2
+texture = ExtResource("6_6rwin")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Test2" type="TextureRect" parent="HBoxContainer3/ContainerBossRoom"]
+visible = false
+layout_mode = 2
+texture = ExtResource("6_6rwin")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Test3" type="TextureRect" parent="HBoxContainer3/ContainerBossRoom"]
+visible = false
+layout_mode = 2
+texture = ExtResource("6_6rwin")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Test4" type="TextureRect" parent="HBoxContainer3/ContainerBossRoom"]
+visible = false
+layout_mode = 2
+texture = ExtResource("6_6rwin")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Test5" type="TextureRect" parent="HBoxContainer3/ContainerBossRoom"]
+visible = false
+layout_mode = 2
+texture = ExtResource("6_6rwin")
+expand_mode = 3
+stretch_mode = 5

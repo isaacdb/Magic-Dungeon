@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("1_sl3tf")
 id = 8
-description = "fwefgwe"
-title = "+ 1 Bounce"
+description = "Bullets will bounce on wall collision"
+title = "Bounce"
 upgradeType = 0
 upgradeValue = 1.0
 icon = ExtResource("1_mxofp")

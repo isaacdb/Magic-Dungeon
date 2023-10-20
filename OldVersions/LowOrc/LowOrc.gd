@@ -2,7 +2,7 @@ extends EnemyBase
 
 var canAttack = false
 
-func _ready():	
+func _ready():
 	enable_disable_enemy(false)
 	currentLife = lifeBase
 	pass

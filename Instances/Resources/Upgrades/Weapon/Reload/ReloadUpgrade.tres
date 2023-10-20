@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_13umt")
 id = 4
-description = "desc"
+description = "Descrease the reaload time by 25%"
 title = " Reload time"
 upgradeType = 0
 upgradeValue = 25.0

@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("1_pqfeh")
 id = 5
-description = "desc"
-title = "+ 1 Ammuniton"
+description = "Increase the ammunition max by 5"
+title = "Ammuniton"
 upgradeType = 0
-upgradeValue = 1.0
+upgradeValue = 5.0
 icon = ExtResource("1_8aakt")

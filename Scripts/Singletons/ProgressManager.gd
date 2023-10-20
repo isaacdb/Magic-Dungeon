@@ -11,7 +11,7 @@ var bossRoomsUseds : Array[int]
 var enemiesPackUseds : Array[int]
 var bossPackUseds : Array[int]
 
-const roomsUntilBoss := 3
+const bossRoomNumber := 5
 var currentRoomNumber := 0
 var bossKillCount := 0
 
@@ -43,7 +43,7 @@ func LoadNewRoom() -> void:
 	pass
 
 func IsBossRoom() -> bool:
-	return not currentRoomNumber % roomsUntilBoss
+	return not currentRoomNumber % bossRoomNumber
 	
 func GetRandomRoom() -> int:
 	var roomIndex = rand.randi_range(1, roomsAvailable);
