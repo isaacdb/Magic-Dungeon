@@ -44,7 +44,7 @@ func _process(delta):
 	pass
 	
 func screen_shake(intensity, duration, dampening):
-	if !Settings.cameraShake:
+	if !GeneralSettingsManager.cameraShake:
 		return
 	
 	# Tratativa para prevalecer a maior intensidade quando dois sinais disparados ao msm tempo

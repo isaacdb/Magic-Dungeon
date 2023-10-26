@@ -1,4 +1,4 @@
-extends Panel
+extends PanelContainer
 class_name UpgradeSelector
 
 @export var optionUpgrade = preload("res://Instances/UI/OptionUpgrade/OptionItem.tscn")
@@ -26,8 +26,7 @@ func ActiveSelector():
 	
 	Global.panelUpgradeIsOpen = true;
 	
-	if Settings.soundEffect:
-		audioLevelUp.play()
+	audioLevelUp.play()
 	
 	for i in 3:
 		var upgradeStats = GetRandomUpgrade()
@@ -41,8 +40,7 @@ func UpgradeSelected(upgrade: UpgradeStats):
 	UpgradeManager.AddNewUpgrade(upgrade);
 	DisabledButtons();
 	
-	if Settings.soundEffect:
-		audioConfirm.play();
+	audioConfirm.play();
 	
 	# Usefull for dont catch click input of button to fire in game
 	var tween = create_tween()

@@ -16,7 +16,6 @@ var isDashing = false
 var dashDirection := Vector2.ZERO
 var characterDash : CharacterBody2D
 var acceleration := 800.0
-var isActive := false
 var dashStacksAvailable := 0
 
 func _ready():
@@ -26,20 +25,16 @@ func _ready():
 	dashTimerDuration.one_shot = true
 	dashTimerDuration.connect("timeout", dashDuration_timeout)
 	
-func SetActive(active: bool):
-	isActive = active
-	pass
-	
 func AddDashStack() -> void:
 	dashStacksAvailable += 1
 	dashStacks += 1
 	pass
 	
 func CanDash() -> bool:
-	return !isDashing && isActive && dashStacksAvailable > 0
+	return !isDashing && dashStacksAvailable > 0
 	
 func Dash(direction: Vector2, character: CharacterBody2D, speedDefault: float):
-	if dashStacksAvailable <= 0 or !isActive:
+	if dashStacksAvailable <= 0:
 		return
 	
 	Global.player_dash.emit()
@@ -62,7 +57,7 @@ func Dash(direction: Vector2, character: CharacterBody2D, speedDefault: float):
 	pass
 
 func _physics_process(delta):
-	if isDashing and isActive:
+	if isDashing:
 		characterDash.velocity = characterDash.velocity.move_toward(dashDirection * dashSpeed, acceleration * 20 * delta)	
 		
 		characterDash.move_and_slide()

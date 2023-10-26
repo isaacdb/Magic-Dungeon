@@ -13,6 +13,8 @@ func _ready():
 		materialSprite = sprite.material
 	elif animatedSprite:
 		materialSprite = animatedSprite.material
+	else:
+		assert(false, "Flash component is missing sprite");
 
 func Flash():
 	if not materialSprite:

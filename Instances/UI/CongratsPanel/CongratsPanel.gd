@@ -1,4 +1,4 @@
-extends Panel
+extends PanelContainer
 
 @onready var audioWinGame = %AudioWinGame as AudioStreamPlayer2D
 
@@ -10,8 +10,7 @@ func _ready():
 func CongratsPanelActive() -> void:
 	visible = true
 	
-	if Settings.soundEffect:
-		audioWinGame.play();
+	audioWinGame.play();
 		
 	var tweenCongrats = create_tween()
 	tweenCongrats.tween_interval(1)

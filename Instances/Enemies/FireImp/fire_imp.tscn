@@ -1,0 +1,119 @@
+[gd_scene load_steps=26 format=3 uid="uid://dv7n1xxrx63pk"]
+
+[ext_resource type="PackedScene" uid="uid://b4asjdyoyep5s" path="res://Instances/Components/Health/Health.tscn" id="1_c0w5v"]
+[ext_resource type="Script" path="res://Instances/Enemies/FireImp/FireImp.gd" id="1_cuo2c"]
+[ext_resource type="Resource" uid="uid://dush0xum1pf7q" path="res://Instances/Resources/Bullets/BulletE3.tres" id="2_j0bru"]
+[ext_resource type="PackedScene" uid="uid://b4enx6olclngm" path="res://Instances/Components/FlashHit/FlashHit.tscn" id="2_ukofy"]
+[ext_resource type="PackedScene" uid="uid://6fcg84clxst2" path="res://Instances/Components/Death/DeathManager.tscn" id="3_rlflt"]
+[ext_resource type="PackedScene" uid="uid://cwyxu1ysjtku7" path="res://Instances/Components/DropXp/DropXp.tscn" id="4_my0ot"]
+[ext_resource type="AudioStream" uid="uid://dmup1gun0pjth" path="res://Instances/Enemies/Audio/Explosion_04.mp3" id="5_5i75p"]
+[ext_resource type="Texture2D" uid="uid://cq3wrgwnra0xh" path="res://Instances/Enemies/FireImp/pixil-frame-0.png" id="5_8awd1"]
+[ext_resource type="PackedScene" uid="uid://bjwrgsdbjvqw3" path="res://Instances/Components/DeathEffect/DeathExplosion.tscn" id="5_elfp8"]
+[ext_resource type="PackedScene" uid="uid://of0xsffqavim" path="res://Instances/Components/EnemyDeath/EnemyDeath.tscn" id="6_dnmml"]
+[ext_resource type="PackedScene" uid="uid://8mpq1pm143kp" path="res://Instances/Components/HealthBar/HealthBar.tscn" id="7_hx42f"]
+[ext_resource type="PackedScene" uid="uid://bcbgphbcmqgky" path="res://Instances/Components/KnockBack/KnockBack.tscn" id="8_knr41"]
+[ext_resource type="PackedScene" uid="uid://c1sky0kyn05tc" path="res://Instances/Components/PlayerTracker/PlayerTracker.tscn" id="9_q2e4h"]
+[ext_resource type="PackedScene" uid="uid://wwc5nmv5yn2j" path="res://Instances/Components/AttackManager/AttackManager.tscn" id="10_hsnl1"]
+[ext_resource type="Script" path="res://addons/finite_state_machine/scripts/finite_state_machine.gd" id="11_jl7ls"]
+[ext_resource type="AudioStream" uid="uid://hhj8od3wlwnn" path="res://Instances/Enemies/Audio/enemyHit.ogg" id="12_h0g4u"]
+[ext_resource type="Script" path="res://Instances/Enemies/Behaviours/States/IdleState.gd" id="13_4gon8"]
+[ext_resource type="Script" path="res://Instances/Enemies/Behaviours/States/WalkAndFireState.gd" id="16_2osku"]
+[ext_resource type="PackedScene" uid="uid://mdy0tyhdn2cm" path="res://Instances/AttackPaterns/LinePatern/line_patern.tscn" id="16_8ih4n"]
+[ext_resource type="PackedScene" uid="uid://dx8h735nl0e2d" path="res://Instances/Components/Move/Move.tscn" id="16_ibdv0"]
+[ext_resource type="Resource" uid="uid://cquj1ax4tccn" path="res://Instances/Resources/Bullets/StaticBullet1.tres" id="17_tsefq"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_squ1a"]
+radius = 6.0
+height = 12.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mdkwq"]
+radius = 7.0
+height = 14.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8fjm"]
+atlas = ExtResource("5_8awd1")
+region = Rect2(15, 0, 15, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e47g6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f8fjm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="FireImp" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 32
+script = ExtResource("1_cuo2c")
+bullet_stats = ExtResource("2_j0bru")
+life_base = 100.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("CapsuleShape2D_squ1a")
+
+[node name="Health" parent="." node_paths=PackedStringArray("deathManager", "knockBack", "flashHit", "lifeBar") instance=ExtResource("1_c0w5v")]
+collision_layer = 8
+collision_mask = 0
+deathManager = NodePath("../DeathManager")
+knockBack = NodePath("../KnockBack")
+flashHit = NodePath("../FlashHit")
+lifeBar = NodePath("../HealthBar")
+hitAudio = ExtResource("12_h0g4u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Health"]
+position = Vector2(0, -6)
+shape = SubResource("CapsuleShape2D_mdkwq")
+
+[node name="FlashHit" parent="." node_paths=PackedStringArray("animatedSprite") instance=ExtResource("2_ukofy")]
+animatedSprite = NodePath("../GroupFlip/AnimatedSprite2D")
+
+[node name="GroupFlip" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GroupFlip"]
+sprite_frames = SubResource("SpriteFrames_e47g6")
+offset = Vector2(0, -8)
+flip_h = true
+
+[node name="DeathManager" parent="." instance=ExtResource("3_rlflt")]
+deathAudio = ExtResource("5_5i75p")
+switch_nps = Array[NodePath]([NodePath("../DropXp"), NodePath("../DeathExplosion"), NodePath("../EnemyDeath")])
+
+[node name="DropXp" parent="." instance=ExtResource("4_my0ot")]
+
+[node name="DeathExplosion" parent="." instance=ExtResource("5_elfp8")]
+
+[node name="EnemyDeath" parent="." instance=ExtResource("6_dnmml")]
+
+[node name="HealthBar" parent="." instance=ExtResource("7_hx42f")]
+offset_left = -9.0
+offset_top = -19.0
+offset_right = 182.0
+offset_bottom = 8.0
+
+[node name="KnockBack" parent="." instance=ExtResource("8_knr41")]
+
+[node name="PlayerTracker" parent="." instance=ExtResource("9_q2e4h")]
+
+[node name="AttackManager" parent="." instance=ExtResource("10_hsnl1")]
+
+[node name="LinePatern" parent="AttackManager" instance=ExtResource("16_8ih4n")]
+bullet = ExtResource("17_tsefq")
+
+[node name="FiniteStateMachine" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("11_jl7ls")
+
+[node name="IdleState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("next_state")]
+script = ExtResource("13_4gon8")
+next_state = NodePath("../WalkAndFireState")
+
+[node name="WalkAndFireState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("next_state")]
+script = ExtResource("16_2osku")
+next_state = NodePath("../IdleState")
+
+[node name="Move" parent="." instance=ExtResource("16_ibdv0")]

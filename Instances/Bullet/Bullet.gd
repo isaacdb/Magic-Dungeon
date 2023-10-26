@@ -20,14 +20,13 @@ var piercingShots := 0
 var currentPiercingsShots := 0
 var bounceTimes := 0
 var currentBounceTimes := 0
+var lifeTime := 0.0
 
 func _ready():
 	hitBox.monitoring = true
 	hitBox.monitorable = true # Have to be true, just bc a bug, its required for collision with tileemap
 	
-	timer.one_shot = true
 	hitBox.connect("attack_enter", HitBody)
-	hitBox.SetActive(true)
 	pass
 	
 func HitBody() -> void:
@@ -67,11 +66,27 @@ func UpdateStats(bulletStats: BulletStats):
 			lineTrail.modulate = enemyColor
 			impactParticle.modulate = enemyColor
 			
+	sprite.play(bulletStats.bulletSpriteAnim)
+	if bulletStats.bulletSpriteAnim == "Default":
+		sprite.offset.y = 0;
+	elif bulletStats.bulletSpriteAnim == "Fire1":
+		sprite.offset.y = -12;
+		global_rotation_degrees = 0
+	elif bulletStats.bulletSpriteAnim == "Fire3":
+		sprite.offset.y = -8;
+		global_rotation_degrees = 0
+	
 	speed = bulletStats.speed
+	lifeTime = bulletStats.lifeTime
 	piercingShots = bulletStats.piercingShots
 	bounceTimes = bulletStats.bounceTimes
 	hitBox.damage = bulletStats.damage
 	hitBox.knockBackForce = bulletStats.knockBackForce
+
+	timer.one_shot = true
+	timer.wait_time = lifeTime;
+	timer.timeout.connect(timer_life_timeout)
+	timer.start()
 
 func _physics_process(delta):
 	if not isRunning:
@@ -83,18 +98,18 @@ func _physics_process(delta):
 	pass
 	
 func Destroy():
+	timer.stop();
+	timer.timeout.disconnect(timer_life_timeout)
 	isRunning = false
 	#collisionShape.set_deferred("Disabled", true)
 	hitBox.queue_free()
 	sprite.queue_free()
 	
 	impactParticle.emitting = true
-	timer.wait_time = 1.5
-	timer.start()
 	
-	await timer.timeout
+	await get_tree().create_timer(1.5).timeout
 	
-	self.queue_free()	
+	self.queue_free()
 	pass
 
 func WorldCollision(collision: KinematicCollision2D):
@@ -115,5 +130,14 @@ func SetParticleToWallCollision():
 	impactParticle.rotate(deg_to_rad(180))
 	impactParticle.spread = 180
 	impactParticle.initial_velocity_min = 100
-	impactParticle.initial_velocity_min = 150	
+	impactParticle.initial_velocity_min = 150
+	pass
+
+func timer_life_timeout() -> void:
+	impactParticle.rotate(deg_to_rad(-90))
+	impactParticle.spread = 90
+	impactParticle.initial_velocity_min = 100
+	impactParticle.initial_velocity_min = 150
+	
+	Destroy();
 	pass

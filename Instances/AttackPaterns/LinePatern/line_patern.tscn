@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://mdy0tyhdn2cm"]
+
+[ext_resource type="Script" path="res://Instances/AttackPaterns/LinePatern/LinePatern.gd" id="1_lmpcj"]
+[ext_resource type="PackedScene" uid="uid://ca6aeltom7e7y" path="res://Instances/Components/ShooterComponent/ShooterComponent.tscn" id="1_qkejm"]
+[ext_resource type="PackedScene" uid="uid://c1sky0kyn05tc" path="res://Instances/Components/PlayerTracker/PlayerTracker.tscn" id="2_5i43q"]
+
+[node name="LinePatern" type="Node2D"]
+script = ExtResource("1_lmpcj")
+
+[node name="ShooterComponent" parent="." instance=ExtResource("1_qkejm")]
+
+[node name="PlayerTracker" parent="." instance=ExtResource("2_5i43q")]

@@ -1,11 +1,10 @@
-[gd_scene load_steps=54 format=3 uid="uid://owdfvvvn7ja3"]
+[gd_scene load_steps=51 format=3 uid="uid://owdfvvvn7ja3"]
 
 [ext_resource type="PackedScene" uid="uid://d1loimaxqs6y6" path="res://Instances/Components/LookAtPlayerComponent/LookAtPlayerComponent.tscn" id="1_4mr3o"]
 [ext_resource type="Script" path="res://Instances/Enemies/BossOrc/BossOrc.gd" id="1_38hcy"]
 [ext_resource type="Texture2D" uid="uid://cn61j0eedmjw0" path="res://Instances/Enemies/BossOrc/boss-orc.png" id="2_td053"]
 [ext_resource type="AudioStream" uid="uid://b55qulyblut5q" path="res://Assets/Audios/Boss-Rage.mp3" id="3_7l1vd"]
 [ext_resource type="PackedScene" uid="uid://b4asjdyoyep5s" path="res://Instances/Components/Health/Health.tscn" id="3_uvpwl"]
-[ext_resource type="PackedScene" path="res://Instances/Components/ActiveHandleComponent/ActiveHandleComponent.tscn" id="4_c4ky7"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="4_g4uk6"]
 [ext_resource type="PackedScene" uid="uid://6fcg84clxst2" path="res://Instances/Components/Death/DeathManager.tscn" id="5_47m65"]
 [ext_resource type="PackedScene" uid="uid://bjwrgsdbjvqw3" path="res://Instances/Components/DeathEffect/DeathExplosion.tscn" id="6_wg2kf"]
@@ -19,12 +18,15 @@
 [ext_resource type="PackedScene" uid="uid://bjsnss7q14dlj" path="res://Instances/Components/SpawnerDamagePopup/SpawnerDamagePopup.tscn" id="10_3oewy"]
 [ext_resource type="PackedScene" uid="uid://de18hnbsclqlr" path="res://Instances/AttackPaterns/EspiralPatern/EspiralPatern.tscn" id="10_7ujot"]
 [ext_resource type="PackedScene" uid="uid://c1sky0kyn05tc" path="res://Instances/Components/PlayerTracker/PlayerTracker.tscn" id="10_q78kx"]
-[ext_resource type="PackedScene" uid="uid://ca6aeltom7e7y" path="res://Instances/Components/ShooterComponent/ShooterComponent.tscn" id="11_gefv3"]
 [ext_resource type="PackedScene" uid="uid://8mpq1pm143kp" path="res://Instances/Components/HealthBar/HealthBar.tscn" id="12_cp5v3"]
 [ext_resource type="Resource" uid="uid://dush0xum1pf7q" path="res://Instances/Resources/Bullets/BulletE3.tres" id="14_yo50b"]
 [ext_resource type="AudioStream" uid="uid://dmup1gun0pjth" path="res://Instances/Enemies/Audio/Explosion_04.mp3" id="17_fge52"]
+[ext_resource type="Script" path="res://addons/finite_state_machine/scripts/finite_state_machine.gd" id="24_5s07r"]
+[ext_resource type="Script" path="res://Instances/Enemies/Behaviours/States/IdleState.gd" id="25_23w85"]
 [ext_resource type="Script" path="res://Scripts/LineTrail.gd" id="25_33vr0"]
 [ext_resource type="Texture2D" uid="uid://jjjmenug6gvc" path="res://Instances/Enemies/BossOrc/burning_loop_5.png" id="25_t8sfh"]
+[ext_resource type="Script" path="res://Instances/Enemies/Behaviours/States/ChasePlayerState.gd" id="26_3edfw"]
+[ext_resource type="Script" path="res://Instances/Enemies/Behaviours/States/AttackState.gd" id="27_2gw20"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nmnha"]
 
@@ -179,210 +181,29 @@ corner_radius_top_right = 90
 corner_radius_bottom_right = 90
 corner_radius_bottom_left = 90
 
-[sub_resource type="Animation" id="Animation_rurjw"]
-resource_name = "Attack"
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"AttackFinished"
-}]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("GroupFlip/AnimatedSprite2D:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.7, 0.9, 1),
-"transitions": PackedFloat32Array(0.5, 2, 2, 0.5, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1.354, 0.761), Vector2(0.8, 1.3), Vector2(1.2, 0.9), Vector2(1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("GroupFlip/AnimatedSprite2D:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("GroupFlip/AnimatedSprite2D:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.7, 0.9, 1),
-"transitions": PackedFloat32Array(0.5, 2, 2, 0.5, 1),
-"update": 0,
-"values": [Vector2(1, -16), Vector2(1, -12), Vector2(1, -21), Vector2(1, -15), Vector2(1, -16)]
-}
-
-[sub_resource type="Animation" id="Animation_xodle"]
-resource_name = "Idle"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("GroupFlip/AnimatedSprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(2, 2, 2),
-"update": 0,
-"values": [Vector2(1, -16), Vector2(1, -17), Vector2(1, -16)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("GroupFlip/AnimatedSprite2D:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("GroupFlip/AnimatedSprite2D:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_s47ol"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("GroupFlip/AnimatedSprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, -16)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("GroupFlip/AnimatedSprite2D:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("GroupFlip/AnimatedSprite2D:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_y1p4g"]
-resource_name = "Walk"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("GroupFlip/AnimatedSprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, -16)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("GroupFlip/AnimatedSprite2D:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(-2, 0.5, 0.5),
-"update": 0,
-"values": [0.0, 0.174533, 0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("GroupFlip/AnimatedSprite2D:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_grafs"]
-_data = {
-"Attack": SubResource("Animation_rurjw"),
-"Idle": SubResource("Animation_xodle"),
-"RESET": SubResource("Animation_s47ol"),
-"Walk": SubResource("Animation_y1p4g")
-}
-
-[node name="BossOrc" type="CharacterBody2D" node_paths=PackedStringArray("moveComponent", "playerTracker", "healthManager", "shootManager", "flashHit", "attackManager", "itensRage")]
+[node name="BossOrc" type="CharacterBody2D" node_paths=PackedStringArray("moveComponent", "playerTracker", "healthManager", "flashHit", "attackManager")]
 collision_layer = 0
 collision_mask = 32
 script = ExtResource("1_38hcy")
 moveComponent = NodePath("Move")
 playerTracker = NodePath("PlayerTracker")
 healthManager = NodePath("Health")
-shootManager = NodePath("ShooterComponent")
 flashHit = NodePath("FlashHit")
 attackManager = NodePath("AttackManager")
-itensRage = [NodePath("GroupFlip/AnimatedSprite2D/Eye"), NodePath("RageLine1"), NodePath("RageLine2"), NodePath("GroupFlip/AnimatedSprite2D/Eye2"), NodePath("GroupFlip/PointLight2D")]
-lifeBase = 1500.0
 audioRage = ExtResource("3_7l1vd")
+lifeBase = 1500.0
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+bus = &"Sound"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2(2, -10)
 shape = SubResource("CircleShape2D_nmnha")
 
-[node name="RageLine1" type="Line2D" parent="." node_paths=PackedStringArray("targetToFollow")]
-visible = false
+[node name="RageLine1" type="Line2D" parent="." node_paths=PackedStringArray("targetToFollow") groups=["rage_mode"]]
 z_index = 15
+position = Vector2(1, -20)
 width = 1.0
 width_curve = SubResource("Curve_qojjg")
 default_color = Color(1, 0, 0, 1)
@@ -390,9 +211,9 @@ script = ExtResource("25_33vr0")
 lenght = 20
 targetToFollow = NodePath("../GroupFlip/AnimatedSprite2D/Eye")
 
-[node name="RageLine2" type="Line2D" parent="." node_paths=PackedStringArray("targetToFollow")]
-visible = false
+[node name="RageLine2" type="Line2D" parent="." node_paths=PackedStringArray("targetToFollow") groups=["rage_mode"]]
 z_index = 15
+position = Vector2(-6, -20)
 width = 1.0
 width_curve = SubResource("Curve_ldir8")
 default_color = Color(1, 0, 0, 1)
@@ -407,36 +228,33 @@ playerTracker = NodePath("../../PlayerTracker")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GroupFlip"]
 material = SubResource("ShaderMaterial_wa0hw")
-position = Vector2(1, -16)
 sprite_frames = SubResource("SpriteFrames_bxi7d")
 animation = &"Idle"
 frame = 7
 frame_progress = 0.869444
+offset = Vector2(0, -16)
 flip_h = true
 
-[node name="Eye" type="AnimatedSprite2D" parent="GroupFlip/AnimatedSprite2D"]
-visible = false
+[node name="Eye" type="AnimatedSprite2D" parent="GroupFlip/AnimatedSprite2D" groups=["rage_mode"]]
 modulate = Color(1, 0.129412, 0.2, 1)
-position = Vector2(0, -4)
+position = Vector2(-6, -20)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_rckoi")
 autoplay = "default"
 frame_progress = 0.752977
 offset = Vector2(0, -2)
 
-[node name="Eye2" type="AnimatedSprite2D" parent="GroupFlip/AnimatedSprite2D"]
-visible = false
+[node name="Eye2" type="AnimatedSprite2D" parent="GroupFlip/AnimatedSprite2D" groups=["rage_mode"]]
 modulate = Color(1, 0.129412, 0.2, 1)
-position = Vector2(-6, -4)
+position = Vector2(0, -20)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_rckoi")
 autoplay = "default"
 frame_progress = 0.59081
 offset = Vector2(0, -2)
 
-[node name="PointLight2D" type="PointLight2D" parent="GroupFlip"]
-visible = false
-position = Vector2(0, -9)
+[node name="PointLight2D" type="PointLight2D" parent="GroupFlip" groups=["rage_mode"]]
+position = Vector2(0, -13)
 scale = Vector2(2.08026, 1.88008)
 color = Color(1, 0, 0, 1)
 energy = 1.4
@@ -463,7 +281,6 @@ position = Vector2(0, -24)
 animatedSprite = NodePath("../GroupFlip/AnimatedSprite2D")
 
 [node name="AttackManager" parent="." instance=ExtResource("7_qdm3p")]
-pathsAttackPaterns = Array[NodePath]([NodePath("EspiralPatern"), NodePath("CirclePatern"), NodePath("ArcPatern")])
 
 [node name="ArcPatern" parent="AttackManager" instance=ExtResource("8_ts25e")]
 bullet = ExtResource("14_yo50b")
@@ -478,12 +295,7 @@ fireAmount = 15
 delayBetweenFire = 0.1
 bullet = ExtResource("14_yo50b")
 
-[node name="ActiveHandleComponent" parent="." instance=ExtResource("4_c4ky7")]
-activeOnLoad = true
-switch_nps = Array[NodePath]([NodePath("../GroupFlip/LookAtPlayerComponent"), NodePath("../Health"), NodePath("../DeathManager"), NodePath("../DeathExplosion"), NodePath("../Move"), NodePath("../PlayerTracker")])
-
-[node name="DeathManager" parent="." node_paths=PackedStringArray("activeHandle") instance=ExtResource("5_47m65")]
-activeHandle = NodePath("../ActiveHandleComponent")
+[node name="DeathManager" parent="." instance=ExtResource("5_47m65")]
 deathAudio = ExtResource("17_fge52")
 switch_nps = Array[NodePath]([NodePath("../DeathExplosion"), NodePath("../DeathExplosion3"), NodePath("../DeathExplosion2")])
 
@@ -501,8 +313,6 @@ position = Vector2(11, -19)
 
 [node name="PlayerTracker" parent="." instance=ExtResource("10_q78kx")]
 
-[node name="ShooterComponent" parent="." instance=ExtResource("11_gefv3")]
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HealthBar" parent="CanvasLayer" instance=ExtResource("12_cp5v3")]
@@ -519,7 +329,18 @@ theme_override_styles/background = SubResource("StyleBoxFlat_6synx")
 theme_override_styles/fill = SubResource("StyleBoxFlat_rsy0i")
 value = 90.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_grafs")
-}
+[node name="FiniteStateMachine" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("24_5s07r")
+
+[node name="IdleState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("next_state")]
+script = ExtResource("25_23w85")
+next_state = NodePath("../AttackState")
+
+[node name="ChasePlayerState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("next_state")]
+script = ExtResource("26_3edfw")
+next_state = NodePath("../IdleState")
+
+[node name="AttackState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("next_state")]
+script = ExtResource("27_2gw20")
+next_state = NodePath("../ChasePlayerState")

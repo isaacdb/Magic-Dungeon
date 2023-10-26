@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BulletStats" load_steps=3 format=3 uid="uid://cquj1ax4tccn"]
+
+[ext_resource type="PackedScene" uid="uid://c4u7wkwoet4ws" path="res://Instances/Bullet/Bullet.tscn" id="1_h4n84"]
+[ext_resource type="Script" path="res://Instances/Resources/Bullets/BulletStats.gd" id="2_y2kaj"]
+
+[resource]
+script = ExtResource("2_y2kaj")
+damage = 1.0
+piercingShots = 0
+bounceTimes = 0
+knockBackForce = 0.0
+speed = 0.0
+bulletFireAmount = 1
+angleSpread = 10.0
+origin = "Enemy"
+prefab = ExtResource("1_h4n84")
+lifeTime = 5.0
+bulletSpriteAnim = "Fire3"

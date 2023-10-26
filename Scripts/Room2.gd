@@ -1,12 +1,12 @@
 extends Node2D
 
 @export var gateExit : Gate
-@export var spawnAlert : PackedScene
 @export var audioPlayer : AudioStreamPlayer2D
 
 @onready var spawnPoints = self.get_node("SpawnPoints").get_children() as Array[Node2D]
 @onready var rand = RandomNumberGenerator.new()
 
+var spawnAlert = preload("res://Instances/Components/SpawnEffect/SpawnEffect.tscn")
 var enemyPack : EnemyPack
 
 var areaClean = false
@@ -32,8 +32,7 @@ func GetRandomEnemyPack() -> void:
 	pass
 
 func area_room_area_entered():
-	if Settings.soundEffect:
-		audioPlayer.play();
+	audioPlayer.play();
 		
 	spawn_enemies()
 	pass
@@ -70,9 +69,7 @@ func enemy_killed(enemyPosition) -> void:
 			gateExit.open()
 			areaClean = true
 			Global.room_cleared.emit()
-			
-			if Settings.soundEffect:
-				audioPlayer.play()
+			audioPlayer.play()
 		else:
 			enemiesKilled = 0
 			enemiesCount = 0

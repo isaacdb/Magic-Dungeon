@@ -10,3 +10,5 @@ class_name BulletStats
 @export var angleSpread := 10.0
 @export_enum("None", "Player", "Enemy") var origin = "None"
 @export var prefab := preload("res://Instances/Bullet/Bullet.tscn")
+@export var lifeTime := 5.0
+@export_enum("Default", "Fire1", "Fire3") var bulletSpriteAnim := "Default"

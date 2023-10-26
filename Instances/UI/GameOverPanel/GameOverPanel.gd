@@ -1,4 +1,4 @@
-extends Panel
+extends PanelContainer
 
 @onready var audioGameOver = %AudioGameOver as AudioStreamPlayer2D
 
@@ -8,8 +8,7 @@ func _ready():
 	pass
 
 func GameOverPanelActive() -> void:
-	if Settings.soundEffect:
-		audioGameOver.play();
+	audioGameOver.play();
 	
 	visible = true
 	var tweenDeadPanel = create_tween()

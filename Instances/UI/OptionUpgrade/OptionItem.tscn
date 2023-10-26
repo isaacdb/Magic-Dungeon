@@ -1,11 +1,29 @@
 [gd_scene load_steps=9 format=3 uid="uid://cqago4dchak01"]
 
-[ext_resource type="Theme" uid="uid://m37p3jin2cw5" path="res://Themes/MyTheme.tres" id="1_2c8a6"]
 [ext_resource type="Script" path="res://Instances/UI/OptionUpgrade/OptionItem.gd" id="1_xxwi2"]
 [ext_resource type="Texture2D" uid="uid://da8g5f35coqxu" path="res://Instances/Resources/Upgrades/Bullet/Damage/sprite_icons015.png" id="2_w1lgk"]
 [ext_resource type="Texture2D" uid="uid://bsnpicuksmrkl" path="res://Assets/GUI/button.png" id="5_4h00e"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_em7p5"]
+
+[sub_resource type="FontFile" id="FontFile_86pru"]
+face_index = null
+embolden = null
+transform = null
+cache/0/15/0/ascent = 0.0
+cache/0/15/0/descent = 0.0
+cache/0/15/0/underline_position = 0.0
+cache/0/15/0/underline_thickness = 0.0
+cache/0/15/0/scale = 1.0
+cache/0/15/0/kerning_overrides/15/0 = Vector2(0, 0)
+cache/0/15/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/15/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3867q"]
 resource_local_to_scene = true
@@ -25,8 +43,6 @@ modulate_color = Color(1, 0.337255, 0.337255, 1)
 process_mode = 2
 offset_right = 402.0
 offset_bottom = 90.0
-tooltip_text = "TESTE TOLTIP"
-theme = ExtResource("1_2c8a6")
 theme_override_styles/panel = SubResource("StyleBoxTexture_em7p5")
 script = ExtResource("1_xxwi2")
 
@@ -90,6 +106,7 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.839216, 0.839216, 0.839216, 1)
 theme_override_colors/font_shadow_color = Color(0.215686, 0.215686, 0.215686, 1)
+theme_override_fonts/font = SubResource("FontFile_86pru")
 theme_override_font_sizes/font_size = 15
 text = "+1.1 FIRE RATE"
 autowrap_mode = 3

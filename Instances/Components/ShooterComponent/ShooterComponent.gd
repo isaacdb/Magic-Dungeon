@@ -8,7 +8,6 @@ class_name ShooterComponent
 @onready var audioPlayer := $AudioStreamPlayer2D as AudioStreamPlayer2D
 
 var canShoot := false
-var isActive := true
 
 func _ready():
 	fireTimer.connect("timeout", FireTimerTimeout)
@@ -25,12 +24,8 @@ func UpdateFireRate(newFireRate: float):
 	fireTimer.set_wait_time(fireRate)
 	fireTimer.start()
 
-func SetActive(active: bool):
-	isActive = active
-	pass
-
 func FireWithCooldown(direction: Vector2, bulletStats: BulletStats):
-	if !isActive or !canShoot:
+	if !canShoot:
 		return false
 	
 	Shoot(direction, bulletStats)
@@ -54,7 +49,7 @@ func Shoot(direction: Vector2, bulletStats: BulletStats):
 		call_deferred("InstatiateBullet", bulletDirection, bulletStats)
 		pass
 		
-	if fireAudio && Settings.soundEffect:
+	if fireAudio:
 		audioPlayer.play()
 	pass
 	
@@ -65,10 +60,14 @@ func GetDirectionBulletBySpread(direction: Vector2, bulletStats: BulletStats, nu
 	
 func InstatiateBullet(direction: Vector2, bulletStats: BulletStats) -> void:
 	var newBullet = bulletStats.prefab.instantiate() as Bullet
-	get_tree().get_first_node_in_group("BulletParent").add_child(newBullet)
+	var bulletParent = get_tree().get_first_node_in_group("BulletParent") as Node
+	if bulletParent:
+		bulletParent.add_child(newBullet);
+	else:
+		self.add_child(newBullet);
+	newBullet.look_at(self.global_position + (direction * 10))
 	newBullet.UpdateStats(bulletStats)
 	newBullet.SetupPositionAndDirection(direction, self.global_position);
-	newBullet.look_at(self.global_position + (direction * 10))
 	pass
 	
 func FireTimerTimeout():

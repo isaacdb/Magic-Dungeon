@@ -3,7 +3,6 @@ class_name KnockBack
 
 @onready var timerKnock := $Timer as Timer
 
-var isActive := false
 var isKnocking := false
 var characterKnock : CharacterBody2D
 var forceKnock : float
@@ -16,22 +15,15 @@ func _ready():
 	timerKnock.one_shot = true
 	timerKnock.timeout.connect(TimerKnockBackTimeout)
 
-func SetActive(active: bool):
-	isActive = active
-	pass
-
 func _physics_process(delta):
-	if isKnocking and isActive:
+	if isKnocking:
 		var direction = (self.global_position - impactOriginKnock).normalized()	
 		characterKnock.velocity = direction * forceKnock
 		characterKnock.move_and_slide()
 	pass
 
 
-func Execute(character: CharacterBody2D, force: float, impactOrigin: Vector2):
-	if !isActive:
-		return
-	
+func Execute(character: CharacterBody2D, force: float, impactOrigin: Vector2):	
 	isKnocking = true
 	characterKnock = character
 	forceKnock = force

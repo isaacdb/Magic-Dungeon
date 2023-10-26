@@ -14,3 +14,5 @@ bulletFireAmount = 1
 angleSpread = 10.0
 origin = "Enemy"
 prefab = ExtResource("1_5ia8w")
+lifeTime = 5.0
+bulletSpriteAnim = "Default"

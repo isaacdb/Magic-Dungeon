@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://c05q7ifylarx5"]
+
+[ext_resource type="Script" path="res://UI/Settings/SettingsMenu2.gd" id="1_1u7aa"]
+[ext_resource type="PackedScene" uid="uid://ldwyjwtrjbdd" path="res://UI/Settings/Audio/audio_settings.tscn" id="1_iqybp"]
+[ext_resource type="PackedScene" uid="uid://b4ritknc50ylv" path="res://UI/Settings/General/general_settings.tscn" id="2_0j8d5"]
+[ext_resource type="PackedScene" uid="uid://cw3iwnthti417" path="res://UI/Settings/KeyMapping/key_mapping.tscn" id="3_cy3wo"]
+
+[node name="SettingsMenu2" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1u7aa")
+
+[node name="GeneralSettings" parent="." instance=ExtResource("2_0j8d5")]
+layout_mode = 1
+
+[node name="KeyMapping" parent="." instance=ExtResource("3_cy3wo")]
+layout_mode = 1
+
+[node name="AudioSettings" parent="." instance=ExtResource("1_iqybp")]
+layout_mode = 1
+
+[node name="TabBar" type="TabBar" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -229.0
+offset_top = -301.0
+offset_right = 194.0
+offset_bottom = -258.0
+grow_horizontal = 2
+grow_vertical = 2
+tab_count = 3
+tab_0/title = "General"
+tab_1/title = "Controls"
+tab_2/title = "Audio"

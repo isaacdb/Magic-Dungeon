@@ -5,8 +5,8 @@ extends Node2D
 @export var audioGameOver : AudioStreamPlayer2D
 @export var audioWinGame : AudioStreamPlayer2D
 
-@onready var deadPanel := $CanvasLayer/PanelGameOver as Panel
-@onready var congrats := $CanvasLayer/PanelCongrats as Panel
+@onready var deadPanel := $CanvasLayer/PanelGameOver as PanelContainer
+@onready var congrats := $CanvasLayer/PanelCongrats as PanelContainer
 @onready var canvaModulate := $CanvasModulate as CanvasModulate
 
 var pointer = load("res://Assets/pointer4.png")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://c6g7qwsljeavk"]
+[gd_scene load_steps=30 format=3 uid="uid://c6g7qwsljeavk"]
 
 [ext_resource type="Script" path="res://Instances/Mage1/Mage1.gd" id="1_giwmu"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="1_hkxu6"]
@@ -9,7 +9,6 @@
 [ext_resource type="Script" path="res://Instances/Resources/Bullets/BulletStats.gd" id="4_rtcm8"]
 [ext_resource type="PackedScene" uid="uid://6fcg84clxst2" path="res://Instances/Components/Death/DeathManager.tscn" id="4_v7fsg"]
 [ext_resource type="Texture2D" uid="uid://b6l8fu6uss63t" path="res://Assets/Dust.png" id="5_2k80y"]
-[ext_resource type="PackedScene" path="res://Instances/Components/ActiveHandleComponent/ActiveHandleComponent.tscn" id="5_mmgrx"]
 [ext_resource type="PackedScene" uid="uid://dx8h735nl0e2d" path="res://Instances/Components/Move/Move.tscn" id="6_nmcf8"]
 [ext_resource type="PackedScene" uid="uid://deb4quwds46cx" path="res://Instances/Components/GameOverComponent/GameOverComponent.tscn" id="8_e43ia"]
 [ext_resource type="PackedScene" uid="uid://dc4pbmv3yevoo" path="res://Instances/Components/DashSkill/DashSkill.tscn" id="8_hx86t"]
@@ -19,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://b4enx6olclngm" path="res://Instances/Components/FlashHit/FlashHit.tscn" id="15_34hya"]
 [ext_resource type="PackedScene" uid="uid://b4osisqtoowwc" path="res://Instances/Components/PlayerInputManager/PlayerInputManager.tscn" id="20_22m8h"]
 
-[sub_resource type="Resource" id="Resource_chgws"]
+[sub_resource type="Resource" id="Resource_lvpsw"]
 resource_local_to_scene = true
 script = ExtResource("4_rtcm8")
 damage = 15.0
@@ -143,7 +142,7 @@ healthComponent = NodePath("../Health")
 position = Vector2(0, -9)
 fireRate = 0.4
 ammunitionAmount = 10
-bulletStats = SubResource("Resource_chgws")
+bulletStats = SubResource("Resource_lvpsw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 1
@@ -207,15 +206,10 @@ shape = SubResource("CapsuleShape2D_2uere")
 unique_name_in_owner = true
 sprite = NodePath("../Sprite2D")
 
-[node name="DeathManager" parent="." node_paths=PackedStringArray("activeHandle") instance=ExtResource("4_v7fsg")]
-activeHandle = NodePath("../ActiveHandleComponent")
+[node name="DeathManager" parent="." instance=ExtResource("4_v7fsg")]
 switch_nps = Array[NodePath]([NodePath("../GameOverComponent")])
 
 [node name="GameOverComponent" parent="." instance=ExtResource("8_e43ia")]
-
-[node name="ActiveHandleComponent" parent="." instance=ExtResource("5_mmgrx")]
-activeOnLoad = true
-switch_nps = Array[NodePath]([NodePath("../Health"), NodePath("../DeathManager"), NodePath("../Move"), NodePath("../DashSkill"), NodePath("../KnockBack")])
 
 [node name="Move" parent="." node_paths=PackedStringArray("walkParticule") instance=ExtResource("6_nmcf8")]
 walkParticule = NodePath("../WalkParticle")

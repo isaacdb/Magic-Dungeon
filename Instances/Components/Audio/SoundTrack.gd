@@ -35,8 +35,7 @@ func ChangeTrackAndTweenPlay(audio: AudioStream, finalVolume: int) -> void:
 	audioPlayer.volume_db = -100
 	audioPlayer.stream = audio	
 	
-	if Settings.music:
-		audioPlayer.play()
+	audioPlayer.play()
 	
 	var tween = create_tween()
 	tween.tween_property(audioPlayer, "volume_db", finalVolume, 1)

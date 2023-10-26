@@ -5,20 +5,11 @@ extends Node2D
 @onready var explosionParticle := $ExplosionSprite/ExplosionParticle as CPUParticles2D
 @onready var smokeParticle := $ExplosionSprite/SmokeParticle as CPUParticles2D
 
-var isActive := true
-
-func SetActive(active: bool):
-	isActive = active
-	pass
-
-func Execute():
-	if !isActive:
-		return
-		
+func Execute() -> void:	
 	Global.emit_signal("screen_shake", 2, .2, 1)
 	explosionParticle.emitting = true
 	
-	if Settings.dustExplosion:
+	if GeneralSettingsManager.dustParticles:
 		smokeParticle.emitting = true;
 		
 	explosionAnimPlayer.play("Explosion")

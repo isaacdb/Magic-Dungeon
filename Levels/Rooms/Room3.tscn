@@ -350,3 +350,4 @@ texture = SubResource("GradientTexture2D_c8x83")
 [node name="AudioRoomsGate" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("16_qsiym")
 volume_db = 10.0
+bus = &"Sound"

@@ -6,12 +6,6 @@ signal attack_enter
 var damage := 0.0
 var knockBackForce := 0.0
 
-var isActive := false
-
-func SetActive(active: bool):
-	isActive = active
-	pass
-
 func _ready():
 	monitorable = true
 	monitoring = true
@@ -19,10 +13,7 @@ func _ready():
 	connect("area_entered", _on_area_entered)
 	pass 
 
-func _on_area_entered(area):
-	if !isActive:
-		return
-	
+func _on_area_entered(area):	
 	if area is Health:
 		var attack = Attack.new()
 		attack.damage = GetDamageVariation()

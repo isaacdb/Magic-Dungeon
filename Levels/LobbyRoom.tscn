@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://uhnlnlbf0r2h"]
+[gd_scene load_steps=22 format=3 uid="uid://uhnlnlbf0r2h"]
 
 [ext_resource type="Script" path="res://Levels/LobbyRoom.gd" id="1_gxoob"]
 [ext_resource type="PackedScene" uid="uid://dbagu3ctathua" path="res://Levels/RoomTemplate.tscn" id="1_w60sh"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cimdu4a6cec3m" path="res://Instances/Props/Skulls/Skull.tscn" id="13_32u8a"]
 [ext_resource type="PackedScene" uid="uid://bao0oq6xak2nx" path="res://Instances/Props/Jars/Jar.tscn" id="13_m546h"]
 [ext_resource type="PackedScene" uid="uid://bbkcg4cd5cjn6" path="res://Instances/Props/Shields/Shield.tscn" id="14_ype7s"]
+[ext_resource type="PackedScene" uid="uid://dv7n1xxrx63pk" path="res://Instances/Enemies/FireImp/fire_imp.tscn" id="15_l3chj"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kjiow"]
 particles_animation = true
@@ -243,3 +244,6 @@ rotation = 1.5708
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 20
 text = "-->"
+
+[node name="FireImp" parent="." instance=ExtResource("15_l3chj")]
+position = Vector2(294, 155)

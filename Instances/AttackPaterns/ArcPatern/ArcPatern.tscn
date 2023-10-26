@@ -10,4 +10,3 @@ script = ExtResource("1_ec5vu")
 [node name="ShooterComponent" parent="." instance=ExtResource("1_nfgti")]
 
 [node name="PlayerTracker" parent="." instance=ExtResource("3_at0qf")]
-isActive = true

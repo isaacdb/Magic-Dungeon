@@ -3,16 +3,7 @@ class_name LookAtPlayerComponent
 
 @export var playerTracker : PlayerTracker
 
-var isActive := false
-
-func SetActive(active: bool):
-	isActive = active
-	pass
-
-func _physics_process(delta):
-	if !isActive:
-		return
-	
+func _physics_process(delta):	
 	var nodeToFlip = self.get_parent() as Node2D
 	
 	var playerDirection = playerTracker.GetDirection()

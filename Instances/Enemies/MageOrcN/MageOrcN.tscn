@@ -1,13 +1,14 @@
-[gd_scene load_steps=40 format=3 uid="uid://d3j4vevwj6ecg"]
+[gd_scene load_steps=31 format=3 uid="uid://d3j4vevwj6ecg"]
 
 [ext_resource type="Script" path="res://Instances/Enemies/MageOrcN/MageOrcN.gd" id="1_mpfqp"]
-[ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="1_rj5j8"]
 [ext_resource type="Resource" uid="uid://d2m56lunijwd2" path="res://Instances/Resources/Bullets/BulletE2.tres" id="2_is0ku"]
-[ext_resource type="Texture2D" uid="uid://c4qxerf4msgyu" path="res://OldVersions/MageOrc/mage-orc.png" id="2_v83le"]
 [ext_resource type="PackedScene" uid="uid://b4enx6olclngm" path="res://Instances/Components/FlashHit/FlashHit.tscn" id="3_5fn7d"]
 [ext_resource type="PackedScene" uid="uid://b4asjdyoyep5s" path="res://Instances/Components/Health/Health.tscn" id="3_k0wef"]
+[ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="4_ihkd4"]
 [ext_resource type="PackedScene" uid="uid://6fcg84clxst2" path="res://Instances/Components/Death/DeathManager.tscn" id="4_s32rd"]
 [ext_resource type="PackedScene" uid="uid://bjwrgsdbjvqw3" path="res://Instances/Components/DeathEffect/DeathExplosion.tscn" id="5_5fvh3"]
+[ext_resource type="Texture2D" uid="uid://bpn4ulhaujtv7" path="res://Instances/Enemies/MageOrcN/mage-orcN.png" id="5_wdd30"]
+[ext_resource type="AudioStream" uid="uid://hhj8od3wlwnn" path="res://Instances/Enemies/Audio/enemyHit.ogg" id="6_hhnmk"]
 [ext_resource type="PackedScene" uid="uid://dx8h735nl0e2d" path="res://Instances/Components/Move/Move.tscn" id="6_oin3v"]
 [ext_resource type="PackedScene" uid="uid://bjsnss7q14dlj" path="res://Instances/Components/SpawnerDamagePopup/SpawnerDamagePopup.tscn" id="7_0rikr"]
 [ext_resource type="PackedScene" uid="uid://c1sky0kyn05tc" path="res://Instances/Components/PlayerTracker/PlayerTracker.tscn" id="7_mtjfn"]
@@ -17,346 +18,43 @@
 [ext_resource type="PackedScene" uid="uid://of0xsffqavim" path="res://Instances/Components/EnemyDeath/EnemyDeath.tscn" id="9_xxcs3"]
 [ext_resource type="PackedScene" uid="uid://cwyxu1ysjtku7" path="res://Instances/Components/DropXp/DropXp.tscn" id="10_1pkgr"]
 [ext_resource type="PackedScene" uid="uid://bcbgphbcmqgky" path="res://Instances/Components/KnockBack/KnockBack.tscn" id="10_5ip6j"]
-[ext_resource type="PackedScene" uid="uid://ca6aeltom7e7y" path="res://Instances/Components/ShooterComponent/ShooterComponent.tscn" id="13_hksvg"]
-[ext_resource type="PackedScene" path="res://Instances/Components/ActiveHandleComponent/ActiveHandleComponent.tscn" id="14_fg023"]
 [ext_resource type="PackedScene" uid="uid://8mpq1pm143kp" path="res://Instances/Components/HealthBar/HealthBar.tscn" id="15_ohlla"]
-[ext_resource type="AudioStream" uid="uid://bykjueqtfwcyp" path="res://Instances/Enemies/Audio/FireEnemy.ogg" id="16_2jq3g"]
+[ext_resource type="Script" path="res://addons/finite_state_machine/scripts/finite_state_machine.gd" id="21_ukunj"]
+[ext_resource type="PackedScene" uid="uid://wwc5nmv5yn2j" path="res://Instances/Components/AttackManager/AttackManager.tscn" id="22_0xihf"]
+[ext_resource type="Script" path="res://Instances/Enemies/Behaviours/States/IdleState.gd" id="22_uk74o"]
+[ext_resource type="PackedScene" uid="uid://mdy0tyhdn2cm" path="res://Instances/AttackPaterns/LinePatern/line_patern.tscn" id="23_5vt7i"]
+[ext_resource type="Script" path="res://Instances/Enemies/Behaviours/States/WalkState.gd" id="23_l5cvn"]
+[ext_resource type="Script" path="res://Instances/Enemies/Behaviours/States/AttackState.gd" id="24_y2444"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xgg6p"]
 radius = 8.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7dk2g"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_np877"]
 resource_local_to_scene = true
-shader = ExtResource("1_rj5j8")
+shader = ExtResource("4_ihkd4")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifier = 0.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nkjao"]
-atlas = ExtResource("2_v83le")
+[sub_resource type="AtlasTexture" id="AtlasTexture_w55op"]
+atlas = ExtResource("5_wdd30")
 region = Rect2(0, 0, 16, 20)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_v7e5j"]
-atlas = ExtResource("2_v83le")
-region = Rect2(16, 0, 16, 20)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qj25f"]
-atlas = ExtResource("2_v83le")
-region = Rect2(32, 0, 16, 20)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hnupf"]
-atlas = ExtResource("2_v83le")
-region = Rect2(48, 0, 16, 20)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_h2d2w"]
-atlas = ExtResource("2_v83le")
-region = Rect2(64, 0, 16, 20)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_26ken"]
-atlas = ExtResource("2_v83le")
-region = Rect2(80, 0, 16, 20)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vdim7"]
-atlas = ExtResource("2_v83le")
-region = Rect2(96, 0, 16, 20)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6d7kn"]
-atlas = ExtResource("2_v83le")
-region = Rect2(112, 0, 16, 20)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_6sefw"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_fnmwe"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_nkjao")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_v7e5j")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qj25f")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hnupf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_h2d2w")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_26ken")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vdim7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6d7kn")
+"texture": SubResource("AtlasTexture_w55op")
 }],
 "loop": true,
-"name": &"Walk",
+"name": &"Idle",
 "speed": 5.0
 }]
-
-[sub_resource type="Animation" id="Animation_rv7bv"]
-resource_name = "Attack"
-length = 2.0
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.5, 1, 1.5, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"values": [{
-"args": [],
-"method": &"Shoot"
-}, {
-"args": [],
-"method": &"Shoot"
-}, {
-"args": [],
-"method": &"Shoot"
-}, {
-"args": [],
-"method": &"AttackFinished"
-}]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("GroupFlip/AnimatedSprite2D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.7, 1, 1.2, 1.5, 1.7, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(-8, -3), Vector2(10, 0), Vector2(-8, -3), Vector2(10, 0), Vector2(-8, -3), Vector2(10, 0), Vector2(0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("GroupFlip/AnimatedSprite2D:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.7, 1, 1.2, 1.5, 1.7, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.0, 0.21293, 0.0, 0.21293, 0.0, 0.21293, 0.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("GroupFlip/AnimatedSprite2D:scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.7, 1, 1.2, 1.5, 1.7, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(0.651, 0.651), Vector2(0.872, 1.346), Vector2(0.651, 0.651), Vector2(0.872, 1.346), Vector2(0.651, 0.651), Vector2(0.872, 1.346), Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_fwoc5"]
-resource_name = "Death"
-
-[sub_resource type="Animation" id="Animation_jg2ij"]
-resource_name = "Idle"
-length = 0.5
-loop_mode = 1
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("GroupFlip/AnimatedSprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.3, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("GroupFlip/AnimatedSprite2D:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.3, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.0, 0.0, 0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("GroupFlip/AnimatedSprite2D:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.3, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1.08, 0.917), Vector2(0.919, 1.187), Vector2(1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("GroupFlip/AnimatedSprite2D:animation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"Walk"]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("GroupFlip/AnimatedSprite2D:frame")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_0kp24"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("GroupFlip/AnimatedSprite2D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("GroupFlip/AnimatedSprite2D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("GroupFlip/AnimatedSprite2D:animation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"Walk"]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("GroupFlip/AnimatedSprite2D:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("GroupFlip/AnimatedSprite2D:scale")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_onjrd"]
-resource_name = "Walk"
-length = 0.6
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("GroupFlip/AnimatedSprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(1, -2), Vector2(0, 0), Vector2(-1, -2), Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("GroupFlip/AnimatedSprite2D:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.0872665, 0.0, -0.0872665, 0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("GroupFlip/AnimatedSprite2D:animation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"Walk"]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("GroupFlip/AnimatedSprite2D:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_a08sq"]
-_data = {
-"Attack": SubResource("Animation_rv7bv"),
-"Death": SubResource("Animation_fwoc5"),
-"Idle": SubResource("Animation_jg2ij"),
-"RESET": SubResource("Animation_0kp24"),
-"Walk": SubResource("Animation_onjrd")
-}
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fhp2g"]
 radius = 6.0
 height = 18.0
 
-[node name="MageOrcN" type="CharacterBody2D" node_paths=PackedStringArray("moveComponent", "playerTracker", "healthManager", "shootManager", "flashHit")]
+[node name="MageOrcN" type="CharacterBody2D" node_paths=PackedStringArray("moveComponent", "playerTracker", "healthManager")]
 collision_layer = 0
 collision_mask = 32
 wall_min_slide_angle = 0.0
@@ -364,16 +62,9 @@ script = ExtResource("1_mpfqp")
 moveComponent = NodePath("Move")
 playerTracker = NodePath("PlayerTracker")
 healthManager = NodePath("Health")
-shootManager = NodePath("ShooterComponent")
-flashHit = NodePath("FlashHit")
 orcMageBulletStats = ExtResource("2_is0ku")
 lifeBase = 100
 timeIdle = 1.5
-
-[node name="TimerIdle" type="Timer" parent="."]
-one_shot = true
-
-[node name="TimerAttack" type="Timer" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 1
@@ -388,19 +79,11 @@ scale = Vector2(1, -1)
 playerTracker = NodePath("../../PlayerTracker")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GroupFlip"]
-y_sort_enabled = true
-material = SubResource("ShaderMaterial_7dk2g")
-sprite_frames = SubResource("SpriteFrames_6sefw")
-animation = &"Walk"
-centered = false
-offset = Vector2(-8.062, -20.028)
+material = SubResource("ShaderMaterial_np877")
+sprite_frames = SubResource("SpriteFrames_fnmwe")
+animation = &"Idle"
+offset = Vector2(0, -10)
 flip_h = true
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Idle"
-libraries = {
-"": SubResource("AnimationLibrary_a08sq")
-}
 
 [node name="Health" parent="." node_paths=PackedStringArray("deathManager", "knockBack", "flashHit", "lifeBar") instance=ExtResource("3_k0wef")]
 collision_layer = 8
@@ -409,6 +92,7 @@ deathManager = NodePath("../DeathManager")
 knockBack = NodePath("../KnockBack")
 flashHit = NodePath("../FlashHit")
 lifeBar = NodePath("../HealthBar")
+hitAudio = ExtResource("6_hhnmk")
 
 [node name="SpawnerDamagePopup" parent="Health" instance=ExtResource("7_0rikr")]
 position = Vector2(0, -13)
@@ -425,8 +109,7 @@ position = Vector2(0, -8)
 [node name="FlashHit" parent="." node_paths=PackedStringArray("animatedSprite") instance=ExtResource("3_5fn7d")]
 animatedSprite = NodePath("../GroupFlip/AnimatedSprite2D")
 
-[node name="DeathManager" parent="." node_paths=PackedStringArray("activeHandle") instance=ExtResource("4_s32rd")]
-activeHandle = NodePath("../ActiveHandleComponent")
+[node name="DeathManager" parent="." instance=ExtResource("4_s32rd")]
 deathAudio = ExtResource("9_cvsdh")
 switch_nps = Array[NodePath]([NodePath("../DropXp"), NodePath("../DeathExplosion"), NodePath("../EnemyDeath")])
 
@@ -443,16 +126,31 @@ xpAmount = 2
 
 [node name="KnockBack" parent="." instance=ExtResource("10_5ip6j")]
 
-[node name="ShooterComponent" parent="." instance=ExtResource("13_hksvg")]
-position = Vector2(0, -8)
-fireAudio = ExtResource("16_2jq3g")
-
-[node name="ActiveHandleComponent" parent="." instance=ExtResource("14_fg023")]
-activeOnLoad = true
-switch_nps = Array[NodePath]([NodePath("../Health"), NodePath("../DeathManager"), NodePath("../DeathExplosion"), NodePath("../Move"), NodePath("../PlayerTracker"), NodePath("../GroupFlip/LookAtPlayerComponent"), NodePath("../KnockBack"), NodePath("../ShooterComponent")])
-
 [node name="HealthBar" parent="." instance=ExtResource("15_ohlla")]
 offset_left = -9.0
 offset_top = -19.0
 offset_right = 182.0
 offset_bottom = 8.0
+
+[node name="FiniteStateMachine" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("21_ukunj")
+
+[node name="IdleState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("next_state")]
+script = ExtResource("22_uk74o")
+next_state = NodePath("../AttackState")
+
+[node name="WalkState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("next_state")]
+script = ExtResource("23_l5cvn")
+next_state = NodePath("../IdleState")
+
+[node name="AttackState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("next_state")]
+script = ExtResource("24_y2444")
+next_state = NodePath("../WalkState")
+
+[node name="AttackManager" parent="." instance=ExtResource("22_0xihf")]
+
+[node name="LinePatern" parent="AttackManager" instance=ExtResource("23_5vt7i")]
+fireAmount = 3
+delayBetweenFire = 0.3
+bullet = ExtResource("2_is0ku")

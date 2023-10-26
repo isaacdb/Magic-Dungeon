@@ -4,7 +4,6 @@ class_name MoveComponent
 @export var walkParticule : CPUParticles2D
 @export var navAgent : MyNavAgent
 
-var isActive := false
 var characterToMove : CharacterBody2D
 
 func _ready():
@@ -12,14 +11,7 @@ func _ready():
 		navAgent.velocity_computed.connect(MoveWithAvoidance)
 	pass
 
-func SetActive(active: bool):
-	isActive = active
-	pass
-
-func Move(character: CharacterBody2D, direction: Vector2, delta: float, acceleration: float, speed: float):
-	if !isActive:
-		return
-	
+func Move(character: CharacterBody2D, direction: Vector2, delta: float, acceleration: float, speed: float):	
 	characterToMove = character
 	if direction:
 		character.velocity = character.velocity.move_toward(direction * speed, delta * acceleration)

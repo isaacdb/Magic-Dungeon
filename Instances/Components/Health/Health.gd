@@ -80,7 +80,7 @@ func take_damage(attack: Attack):
 	if flashHit:
 		flashHit.Flash()
 	
-	if hitAudio && Settings.soundEffect:
+	if hitAudio:
 		audioPlayer.play()
 	
 	if currentHealth <= 0 and deathManager:
