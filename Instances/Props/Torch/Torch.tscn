@@ -78,29 +78,30 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Gradient" id="Gradient_rt8y1"]
-offsets = PackedFloat32Array(0, 0.327161, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0.419813, 0.419813, 0.419813, 1, 0, 0, 0, 1)
+[sub_resource type="Gradient" id="Gradient_0d5pp"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ag5ab"]
-gradient = SubResource("Gradient_rt8y1")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jwcyi"]
+gradient = SubResource("Gradient_0d5pp")
 width = 128
 height = 128
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.825688, 0.802752)
 
-[node name="Torch" type="AnimatedSprite2D"]
+[node name="Torch" type="AnimatedSprite2D" groups=["have_modulate"]]
 y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_dnlb1")
 animation = &"LightUp"
 autoplay = "LightUp"
-frame_progress = 0.568766
+frame_progress = 0.748805
 offset = Vector2(0, -10.96)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-modulate = Color(1, 0.219608, 0.141176, 1)
 scale = Vector2(2.08026, 1.88008)
+color = Color(1, 0.92549, 0.784314, 1)
+energy = 2.0
+blend_mode = 2
 shadow_enabled = true
 shadow_filter_smooth = 20.3
-texture = SubResource("GradientTexture2D_ag5ab")
+texture = SubResource("GradientTexture2D_jwcyi")

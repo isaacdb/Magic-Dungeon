@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EnemyPack" load_steps=5 format=3 uid="uid://cnvgslwjpsqhk"]
+
+[ext_resource type="PackedScene" uid="uid://cdqitnnnisgfs" path="res://Instances/Enemies/Necro/necro.tscn" id="2_6ewa4"]
+[ext_resource type="PackedScene" uid="uid://dmjqj7loxtlm8" path="res://Instances/Enemies/MiniOrc/MiniOrc.tscn" id="3_1ueu3"]
+[ext_resource type="PackedScene" uid="uid://b4dipyjtak2xd" path="res://Instances/Enemies/PrecisionImp/precision_imp.tscn" id="3_p1ldk"]
+[ext_resource type="Script" path="res://Instances/Resources/EnemiesPack/EnemyPack.gd" id="4_7bj7r"]
+
+[resource]
+script = ExtResource("4_7bj7r")
+waveAmount = 1
+enemies = Array[PackedScene]([ExtResource("2_6ewa4"), ExtResource("3_p1ldk"), ExtResource("3_1ueu3")])
+qntdEnemies = Array[int]([2, 3, 2])

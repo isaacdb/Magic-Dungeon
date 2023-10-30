@@ -349,7 +349,7 @@ terrain_set_0/terrain_0/color = Color(0.0784314, 0.678431, 0.776471, 1)
 sources/0 = SubResource("TileSetAtlasSource_h1628")
 sources/1 = SubResource("TileSetAtlasSource_hgf20")
 
-[node name="TileMapGround" type="TileMap"]
+[node name="TileMapGround" type="TileMap" groups=["have_modulate"]]
 y_sort_enabled = true
 tile_set = SubResource("TileSet_slwwa")
 format = 2

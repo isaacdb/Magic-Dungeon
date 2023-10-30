@@ -13,7 +13,6 @@ func Execute() -> void:
 		smokeParticle.emitting = true;
 		
 	explosionAnimPlayer.play("Explosion")
-	self.reparent(get_parent().get_parent())
-	
-	var tween = create_tween()
-	tween.tween_callback(func(): queue_free()).set_delay(2.0)
+	self.reparent(get_tree().get_first_node_in_group("Room"))
+	get_tree().create_timer(2).timeout.connect(func(): queue_free())
+	pass

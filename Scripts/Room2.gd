@@ -16,6 +16,7 @@ var enemiesKilled := 0
 var waveCount := 0
 
 func _ready():
+	self.add_to_group("Room")
 	rand.randomize();
 	GetRandomEnemyPack();
 	Global.enemy_killed.connect(enemy_killed);

@@ -1,8 +1,9 @@
-[gd_scene load_steps=34 format=3 uid="uid://c4u7wkwoet4ws"]
+[gd_scene load_steps=45 format=3 uid="uid://c4u7wkwoet4ws"]
 
 [ext_resource type="Script" path="res://Instances/Bullet/Bullet.gd" id="1_4mtt8"]
 [ext_resource type="Texture2D" uid="uid://dh3qos317vpgn" path="res://Instances/Bullet/Asset/hits/hits-1/frames/hits-1-1.png" id="2_ij83f"]
 [ext_resource type="Texture2D" uid="uid://dhtb437l0ecsa" path="res://Instances/Bullet/Asset/Fire1/burning_loop_1.png" id="3_03u0u"]
+[ext_resource type="Shader" path="res://Scripts/Shaders/BulletColor.gdshader" id="3_6cyc0"]
 [ext_resource type="Texture2D" uid="uid://bym7e6hjeyd1e" path="res://Instances/Bullet/Asset/hits/hits-1/frames/hits-1-2.png" id="3_r8uhk"]
 [ext_resource type="Texture2D" uid="uid://b11kxnruvfbck" path="res://Instances/Bullet/Asset/hits/hits-1/frames/hits-1-3.png" id="4_asanq"]
 [ext_resource type="Texture2D" uid="uid://c52stvfain1es" path="res://Instances/Bullet/Asset/Fire3/burning_loop_3.png" id="5_g8378"]
@@ -12,6 +13,15 @@
 [ext_resource type="PackedScene" uid="uid://bplfkb5uolvrb" path="res://Instances/Components/HitBox/HitBox.tscn" id="8_cltdl"]
 [ext_resource type="Texture2D" uid="uid://b6l8fu6uss63t" path="res://Assets/Dust.png" id="9_0tod4"]
 [ext_resource type="Script" path="res://Scripts/LineTrail.gd" id="10_p260d"]
+[ext_resource type="Texture2D" uid="uid://dposw8odwlpod" path="res://Instances/Bullet/Asset/Spinning/spinning_bullet_01.png" id="11_tnmj4"]
+[ext_resource type="Texture2D" uid="uid://cjlx6p5ea0bff" path="res://Instances/Bullet/Asset/Spinning/spinning_bullet_02.png" id="12_ftqb6"]
+[ext_resource type="PackedScene" uid="uid://c1sky0kyn05tc" path="res://Instances/Components/PlayerTracker/PlayerTracker.tscn" id="13_at8gx"]
+[ext_resource type="Texture2D" uid="uid://dmcnnkwihtx8s" path="res://Instances/Bullet/Asset/Spinning/spinning_bullet_3.png" id="13_i2tnp"]
+[ext_resource type="Texture2D" uid="uid://6mnd5vfass53" path="res://Instances/Bullet/Asset/Spinning/spinning_bullet_04.png" id="14_m3s4w"]
+[ext_resource type="Texture2D" uid="uid://c8qg3pr885dij" path="res://Instances/Bullet/Asset/Spinning2/spinning2_bullet_02.png" id="15_5ppgj"]
+[ext_resource type="Texture2D" uid="uid://drfdnu0mjlv7u" path="res://Instances/Bullet/Asset/Spinning2/spinning2_bullet_04.png" id="16_fghrs"]
+[ext_resource type="Texture2D" uid="uid://8cscf4eebg7w" path="res://Instances/Bullet/Asset/Spinning2/spinning2_bullet_01.png" id="17_qviw7"]
+[ext_resource type="Texture2D" uid="uid://diia1r3rove7c" path="res://Instances/Bullet/Asset/Spinning2/spinning2_bullet_03.png" id="18_jggki"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xgp00"]
 radius = 4.0
@@ -19,6 +29,11 @@ radius = 4.0
 [sub_resource type="Curve" id="Curve_w0lf5"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.609442, 0.727273), 1.21956, 1.21956, 0, 0, Vector2(0.995708, 0.981818), 0.0, 0.0, 0, 0]
 point_count = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j4f3g"]
+resource_local_to_scene = true
+shader = ExtResource("3_6cyc0")
+shader_parameter/base_color = Color(1, 1, 1, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jw0j5"]
 atlas = ExtResource("7_vpftu")
@@ -161,6 +176,40 @@ animations = [{
 "loop": false,
 "name": &"Hit",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_tnmj4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ftqb6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_i2tnp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_m3s4w")
+}],
+"loop": true,
+"name": &"Spinning1",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_5ppgj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_fghrs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_qviw7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_jggki")
+}],
+"loop": true,
+"name": &"Spinning2",
+"speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eshji"]
@@ -177,6 +226,7 @@ _data = [Vector2(0.027972, 0.4), 0.0, 0.0, 0, 0, Vector2(0.671329, 0.210526), -1
 point_count = 3
 
 [node name="Bullet" type="CharacterBody2D"]
+z_index = 50
 y_sort_enabled = true
 collision_layer = 0
 collision_mask = 32
@@ -194,16 +244,13 @@ script = ExtResource("10_p260d")
 lenght = 7
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
-modulate = Color(0, 1, 1, 1)
 z_index = 1
 y_sort_enabled = true
+material = SubResource("ShaderMaterial_j4f3g")
 position = Vector2(-8.9407e-08, -5.96046e-08)
 sprite_frames = SubResource("SpriteFrames_r1dy0")
-animation = &"Fire3"
+animation = &"Default"
 autoplay = "Default"
-frame_progress = 0.305922
-offset = Vector2(0, -8)
-flip_h = true
 
 [node name="Timer" type="Timer" parent="."]
 
@@ -230,3 +277,6 @@ initial_velocity_min = 300.0
 initial_velocity_max = 350.0
 scale_amount_max = 3.0
 scale_amount_curve = SubResource("Curve_gbtdj")
+
+[node name="PlayerTracker" parent="." instance=ExtResource("13_at8gx")]
+visible = false

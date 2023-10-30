@@ -5,6 +5,7 @@ class_name PlayerTracker
 var playerTrack : CharacterBody2D
 
 func _ready():
+	set_physics_process(false)
 	if playerGroup:
 		playerTrack = playerGroup[0] as CharacterBody2D
 

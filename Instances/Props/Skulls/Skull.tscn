@@ -14,7 +14,7 @@ collision_layer = 0
 collision_mask = 32
 script = ExtResource("1_r7gfs")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["have_modulate"]]
 texture = ExtResource("1_mntwj")
 hframes = 3
 

@@ -2,9 +2,6 @@ class_name DeathManager
 extends Node2D
 
 @export var deathAudio : AudioStream
-
-@export var switch_nps: Array[NodePath]
-@onready var deathActions = switch_nps.map(get_node)  # feels hacky but works, not in editor though!
 @onready var audioPlayer := $AudioStreamPlayer2D as AudioStreamPlayer2D
 
 func _ready():
@@ -13,8 +10,9 @@ func _ready():
 	pass
 
 func Execute():	
-	for action in deathActions:
-		action.Execute()
+	for action in get_children():
+		if action.has_method("Execute"):
+			action.Execute();
 	
 	if deathAudio:
 		audioPlayer.play()

@@ -1,10 +1,12 @@
 extends Control
 class_name KeyMapping
 
+@export var settingMenu : SettingsMenu2
+
+@onready var button_back = %ButtonBack as Button
 @onready var input_button_scene = preload("res://UI/Settings/KeyMapping/InputButtonMap/input_button_map.tscn");
 @onready var input_button_list = %InputButtonList as VBoxContainer
 @onready var reset_button = %ResetButton as Button
-@onready var button_back = %ButtonBack as Button
 
 var is_remmaping := false
 var action_to_remap : String
@@ -21,7 +23,7 @@ const input_actions = {
 }
 
 var config_file: ConfigFile
-
+	
 func _ready() -> void:
 	config_file = ConfigFile.new();
 	
@@ -33,7 +35,7 @@ func _ready() -> void:
 	pass
 	
 func _on_button_back_pressed():
-	print_debug("Button back press")
+	settingMenu.OpenCloseSettingsMenu()
 	pass
 	
 func _reset_mapping() -> void:

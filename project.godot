@@ -30,6 +30,7 @@ Global="*res://Scripts/Singletons/Global.gd"
 SoundTrack="*res://Instances/Components/Audio/SoundTrack.tscn"
 StatsManager="*res://Scripts/Singletons/StatsManager.gd"
 UpgradeManager="*res://Scripts/Singletons/UpgradeManager.gd"
+ModulateController="*res://Scripts/Singletons/ModulateController.gd"
 
 [display]
 

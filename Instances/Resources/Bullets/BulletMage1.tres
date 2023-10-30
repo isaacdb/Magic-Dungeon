@@ -16,3 +16,4 @@ angleSpread = 10.0
 origin = "Player"
 prefab = ExtResource("1_gephh")
 lifeTime = 5.0
+bulletSpriteAnim = "Default"

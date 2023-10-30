@@ -11,6 +11,7 @@ var playerColor := Color(0.980392, 0.921569, 0.843137, 1)
 @onready var lineTrail := $Line2D as Line2D
 @onready var hitBox := $HitBox as HitBoxComponent
 @onready var impactParticle := $ImpactPaticle as CPUParticles2D
+@onready var player_tracker = $PlayerTracker as PlayerTracker
 
 var speed := 0.0
 var isRunning := true
@@ -21,6 +22,8 @@ var currentPiercingsShots := 0
 var bounceTimes := 0
 var currentBounceTimes := 0
 var lifeTime := 0.0
+var follow_player := true
+var follow_player_weight := 0.02
 
 func _ready():
 	hitBox.monitoring = true
@@ -56,32 +59,38 @@ func UpdateStats(bulletStats: BulletStats):
 		"Player":
 			hitBox.set_collision_mask_value(4, true) #Collision with enemy hurtBox
 			hitBox.set_collision_layer_value(1, true)
-			sprite.modulate = playerColor
+			#sprite.modulate = playerColor
+			sprite.material.set("shader_parameter/base_color", playerColor)
 			lineTrail.modulate = playerColor
 			impactParticle.modulate = playerColor
 		"Enemy":
 			hitBox.set_collision_mask_value(2, true) #Collision with player hurtBox
 			hitBox.set_collision_layer_value(3, true)
-			sprite.modulate = enemyColor
+			#sprite.modulate = enemyColor
+			sprite.material.set("shader_parameter/base_color", enemyColor)
 			lineTrail.modulate = enemyColor
 			impactParticle.modulate = enemyColor
 			
 	sprite.play(bulletStats.bulletSpriteAnim)
-	if bulletStats.bulletSpriteAnim == "Default":
-		sprite.offset.y = 0;
-	elif bulletStats.bulletSpriteAnim == "Fire1":
+	
+	if bulletStats.bulletSpriteAnim == "Fire1":
 		sprite.offset.y = -12;
 		global_rotation_degrees = 0
 	elif bulletStats.bulletSpriteAnim == "Fire3":
 		sprite.offset.y = -8;
 		global_rotation_degrees = 0
+	else:
+		sprite.offset.y = 0;
 	
+	lineTrail.visible = bulletStats.line_trail_active
 	speed = bulletStats.speed
 	lifeTime = bulletStats.lifeTime
 	piercingShots = bulletStats.piercingShots
 	bounceTimes = bulletStats.bounceTimes
 	hitBox.damage = bulletStats.damage
 	hitBox.knockBackForce = bulletStats.knockBackForce
+	follow_player = bulletStats.follow_player
+	follow_player_weight = bulletStats.follow_player_weight
 
 	timer.one_shot = true
 	timer.wait_time = lifeTime;
@@ -92,6 +101,9 @@ func _physics_process(delta):
 	if not isRunning:
 		return
 	
+	if follow_player:
+		moveDirection = moveDirection.lerp(player_tracker.GetDirection(), follow_player_weight);
+	
 	var collision = move_and_collide(speed * moveDirection * delta)
 	if collision:
 		WorldCollision(collision);
@@ -99,12 +111,13 @@ func _physics_process(delta):
 	
 func Destroy():
 	timer.stop();
-	timer.timeout.disconnect(timer_life_timeout)
+	if timer.timeout.is_connected(timer_life_timeout):
+		timer.timeout.disconnect(timer_life_timeout)
 	isRunning = false
 	#collisionShape.set_deferred("Disabled", true)
 	hitBox.queue_free()
 	sprite.queue_free()
-	
+
 	impactParticle.emitting = true
 	
 	await get_tree().create_timer(1.5).timeout

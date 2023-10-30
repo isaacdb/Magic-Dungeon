@@ -155,17 +155,18 @@ animatedSprite = NodePath("../GroupFlip/AnimatedSprite2D")
 [node name="DeathManager" parent="." instance=ExtResource("6_y0wxg")]
 position = Vector2(0, -8)
 deathAudio = ExtResource("9_bpqu5")
-switch_nps = Array[NodePath]([NodePath("../DropXp"), NodePath("../DeathExplosion"), NodePath("../EnemyDeath"), NodePath("../ShockWave")])
 
-[node name="EnemyDeath" parent="." instance=ExtResource("8_3sbaw")]
+[node name="DeathExplosion" parent="DeathManager" instance=ExtResource("7_0143p")]
 
-[node name="DropXp" parent="." instance=ExtResource("8_pw8x6")]
+[node name="DropXp" parent="DeathManager" instance=ExtResource("8_pw8x6")]
+position = Vector2(0, 8)
 xpAmount = 2
 
-[node name="DeathExplosion" parent="." instance=ExtResource("7_0143p")]
-position = Vector2(0, -8)
+[node name="EnemyDeath" parent="DeathManager" instance=ExtResource("8_3sbaw")]
+position = Vector2(0, 8)
 
-[node name="ShockWave" parent="." instance=ExtResource("11_5r17v")]
+[node name="ShockWave" parent="DeathManager" instance=ExtResource("11_5r17v")]
+position = Vector2(0, 8)
 
 [node name="Move" parent="." instance=ExtResource("8_irqj0")]
 position = Vector2(0, -8)

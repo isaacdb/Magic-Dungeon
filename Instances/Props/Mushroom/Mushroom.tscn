@@ -7,13 +7,14 @@
 size = Vector2(12, 9)
 
 [node name="Mushroom" type="Node2D"]
+light_mask = 2
+visibility_layer = 2
 y_sort_enabled = true
 script = ExtResource("2_6had5")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-y_sort_enabled = true
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["have_modulate"]]
 texture = ExtResource("2_v2mk6")
-offset = Vector2(0, -4.045)
+offset = Vector2(0, -4)
 hframes = 7
 
 [node name="Area2D" type="Area2D" parent="."]

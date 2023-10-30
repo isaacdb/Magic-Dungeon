@@ -15,6 +15,7 @@ class_name Mage1
 @onready var animationPlayer := $AnimationPlayer as AnimationPlayer
 @onready var dashSkill := $DashSkill as DashSkillComponent
 @onready var timerIFrame := $TimerIFrame as Timer
+@onready var impact_paticle = $ImpactPaticle as CPUParticles2D
 
 var isAlive = true
 var durationIFrame := 2.0
@@ -69,6 +70,7 @@ func GetHited(attack: Attack) -> void:
 	if attack.damage <= 0:
 		return
 	
+	impact_paticle.emitting = true
 	Global.player_remove_life.emit()
 	pass	
 

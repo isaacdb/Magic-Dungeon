@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dv7n1xxrx63pk"]
+[gd_scene load_steps=27 format=3 uid="uid://dv7n1xxrx63pk"]
 
 [ext_resource type="PackedScene" uid="uid://b4asjdyoyep5s" path="res://Instances/Components/Health/Health.tscn" id="1_c0w5v"]
 [ext_resource type="Script" path="res://Instances/Enemies/FireImp/FireImp.gd" id="1_cuo2c"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://wwc5nmv5yn2j" path="res://Instances/Components/AttackManager/AttackManager.tscn" id="10_hsnl1"]
 [ext_resource type="Script" path="res://addons/finite_state_machine/scripts/finite_state_machine.gd" id="11_jl7ls"]
 [ext_resource type="AudioStream" uid="uid://hhj8od3wlwnn" path="res://Instances/Enemies/Audio/enemyHit.ogg" id="12_h0g4u"]
+[ext_resource type="PackedScene" uid="uid://bfeok0rvx26n0" path="res://Instances/Components/ShockWave/ShockWave.tscn" id="12_l3xwy"]
 [ext_resource type="Script" path="res://Instances/Enemies/Behaviours/States/IdleState.gd" id="13_4gon8"]
 [ext_resource type="Script" path="res://Instances/Enemies/Behaviours/States/WalkAndFireState.gd" id="16_2osku"]
 [ext_resource type="PackedScene" uid="uid://mdy0tyhdn2cm" path="res://Instances/AttackPaterns/LinePatern/line_patern.tscn" id="16_8ih4n"]
@@ -81,13 +82,14 @@ flip_h = true
 
 [node name="DeathManager" parent="." instance=ExtResource("3_rlflt")]
 deathAudio = ExtResource("5_5i75p")
-switch_nps = Array[NodePath]([NodePath("../DropXp"), NodePath("../DeathExplosion"), NodePath("../EnemyDeath")])
 
-[node name="DropXp" parent="." instance=ExtResource("4_my0ot")]
+[node name="DropXp" parent="DeathManager" instance=ExtResource("4_my0ot")]
 
-[node name="DeathExplosion" parent="." instance=ExtResource("5_elfp8")]
+[node name="DeathExplosion" parent="DeathManager" instance=ExtResource("5_elfp8")]
 
-[node name="EnemyDeath" parent="." instance=ExtResource("6_dnmml")]
+[node name="EnemyDeath" parent="DeathManager" instance=ExtResource("6_dnmml")]
+
+[node name="ShockWave" parent="DeathManager" instance=ExtResource("12_l3xwy")]
 
 [node name="HealthBar" parent="." instance=ExtResource("7_hx42f")]
 offset_left = -9.0

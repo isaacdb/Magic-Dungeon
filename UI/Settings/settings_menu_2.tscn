@@ -15,14 +15,17 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1u7aa")
 
-[node name="GeneralSettings" parent="." instance=ExtResource("2_0j8d5")]
+[node name="GeneralSettings" parent="." node_paths=PackedStringArray("settingMenu") instance=ExtResource("2_0j8d5")]
 layout_mode = 1
+settingMenu = NodePath("..")
 
-[node name="KeyMapping" parent="." instance=ExtResource("3_cy3wo")]
+[node name="KeyMapping" parent="." node_paths=PackedStringArray("settingMenu") instance=ExtResource("3_cy3wo")]
 layout_mode = 1
+settingMenu = NodePath("..")
 
-[node name="AudioSettings" parent="." instance=ExtResource("1_iqybp")]
+[node name="AudioSettings" parent="." node_paths=PackedStringArray("settingMenu") instance=ExtResource("1_iqybp")]
 layout_mode = 1
+settingMenu = NodePath("..")
 
 [node name="TabBar" type="TabBar" parent="."]
 unique_name_in_owner = true

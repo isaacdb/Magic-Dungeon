@@ -15,7 +15,7 @@ script = ExtResource("1_vi3w1")
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_vajvj")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["have_modulate"]]
 position = Vector2(0, -8)
 texture = ExtResource("1_siqhe")
 hframes = 3

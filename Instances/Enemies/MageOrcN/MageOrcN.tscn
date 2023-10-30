@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://d3j4vevwj6ecg"]
+[gd_scene load_steps=32 format=3 uid="uid://d3j4vevwj6ecg"]
 
 [ext_resource type="Script" path="res://Instances/Enemies/MageOrcN/MageOrcN.gd" id="1_mpfqp"]
 [ext_resource type="Resource" uid="uid://d2m56lunijwd2" path="res://Instances/Resources/Bullets/BulletE2.tres" id="2_is0ku"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://cwyxu1ysjtku7" path="res://Instances/Components/DropXp/DropXp.tscn" id="10_1pkgr"]
 [ext_resource type="PackedScene" uid="uid://bcbgphbcmqgky" path="res://Instances/Components/KnockBack/KnockBack.tscn" id="10_5ip6j"]
 [ext_resource type="PackedScene" uid="uid://8mpq1pm143kp" path="res://Instances/Components/HealthBar/HealthBar.tscn" id="15_ohlla"]
+[ext_resource type="PackedScene" uid="uid://bfeok0rvx26n0" path="res://Instances/Components/ShockWave/ShockWave.tscn" id="16_tewxo"]
 [ext_resource type="Script" path="res://addons/finite_state_machine/scripts/finite_state_machine.gd" id="21_ukunj"]
 [ext_resource type="PackedScene" uid="uid://wwc5nmv5yn2j" path="res://Instances/Components/AttackManager/AttackManager.tscn" id="22_0xihf"]
 [ext_resource type="Script" path="res://Instances/Enemies/Behaviours/States/IdleState.gd" id="22_uk74o"]
@@ -111,14 +112,15 @@ animatedSprite = NodePath("../GroupFlip/AnimatedSprite2D")
 
 [node name="DeathManager" parent="." instance=ExtResource("4_s32rd")]
 deathAudio = ExtResource("9_cvsdh")
-switch_nps = Array[NodePath]([NodePath("../DropXp"), NodePath("../DeathExplosion"), NodePath("../EnemyDeath")])
 
-[node name="EnemyDeath" parent="." instance=ExtResource("9_xxcs3")]
-
-[node name="DeathExplosion" parent="." instance=ExtResource("5_5fvh3")]
-
-[node name="DropXp" parent="." instance=ExtResource("10_1pkgr")]
+[node name="DropXp" parent="DeathManager" instance=ExtResource("10_1pkgr")]
 xpAmount = 2
+
+[node name="EnemyDeath" parent="DeathManager" instance=ExtResource("9_xxcs3")]
+
+[node name="DeathExplosion" parent="DeathManager" instance=ExtResource("5_5fvh3")]
+
+[node name="ShockWave" parent="DeathManager" instance=ExtResource("16_tewxo")]
 
 [node name="Move" parent="." instance=ExtResource("6_oin3v")]
 

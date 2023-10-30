@@ -7,7 +7,6 @@ extends Node2D
 
 @onready var deadPanel := $CanvasLayer/PanelGameOver as PanelContainer
 @onready var congrats := $CanvasLayer/PanelCongrats as PanelContainer
-@onready var canvaModulate := $CanvasModulate as CanvasModulate
 
 var pointer = load("res://Assets/pointer4.png")
 
@@ -39,13 +38,6 @@ func PlayerDead() -> void:
 	pass
 
 func PlayerGetHit() -> void:
-	var tween = create_tween()
-	tween.tween_property(canvaModulate, "color", hitColorModulate, 0.1).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
-	tween.tween_property(canvaModulate, "color", defaultColorModulate, 0.1).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
-	tween.tween_property(canvaModulate, "color", hitColorModulate, 0.1).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
-	tween.tween_property(canvaModulate, "color", defaultColorModulate, 0.1).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
-	tween.play()
-	
 	var tweenTime = create_tween()
 	tweenTime.tween_property(Engine, "time_scale", 0.3, 0.3).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
 	tweenTime.tween_property(Engine, "time_scale", 1.0, 0.3).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)	

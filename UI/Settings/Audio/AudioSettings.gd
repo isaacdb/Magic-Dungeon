@@ -1,6 +1,8 @@
 extends Control
 class_name AudioSettings
 
+@export var settingMenu : SettingsMenu2
+
 @onready var button_back = %ButtonBack as Button
 
 func _ready():
@@ -8,5 +10,5 @@ func _ready():
 	pass
 	
 func _on_button_back_pressed():
-	print_debug("Button back press")
+	settingMenu.OpenCloseSettingsMenu()
 	pass

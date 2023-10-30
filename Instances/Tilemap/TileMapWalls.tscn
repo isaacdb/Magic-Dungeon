@@ -719,7 +719,7 @@ terrain_set_0/terrain_0/name = "Wall"
 terrain_set_0/terrain_0/color = Color(0.129412, 0.627451, 0.490196, 1)
 sources/0 = SubResource("TileSetAtlasSource_763mn")
 
-[node name="TileMap" type="TileMap"]
+[node name="TileMap" type="TileMap" groups=["have_modulate"]]
 y_sort_enabled = true
 tile_set = SubResource("TileSet_iq7ja")
 format = 2

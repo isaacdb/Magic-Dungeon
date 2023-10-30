@@ -1,0 +1,145 @@
+[gd_scene load_steps=31 format=3 uid="uid://cdqitnnnisgfs"]
+
+[ext_resource type="Script" path="res://Instances/Enemies/Necro/Necro.gd" id="1_r17ul"]
+[ext_resource type="PackedScene" uid="uid://b4asjdyoyep5s" path="res://Instances/Components/Health/Health.tscn" id="1_rjpyx"]
+[ext_resource type="AudioStream" uid="uid://hhj8od3wlwnn" path="res://Instances/Enemies/Audio/enemyHit.ogg" id="2_1t41c"]
+[ext_resource type="PackedScene" uid="uid://bjq2iuiw53hdd" path="res://Instances/Enemies/Behaviours/DeslocateToPlayer/DeslocateToPlayer.tscn" id="3_pap3l"]
+[ext_resource type="PackedScene" uid="uid://b4enx6olclngm" path="res://Instances/Components/FlashHit/FlashHit.tscn" id="4_lns2m"]
+[ext_resource type="PackedScene" uid="uid://dx8h735nl0e2d" path="res://Instances/Components/Move/Move.tscn" id="5_sl3yq"]
+[ext_resource type="PackedScene" uid="uid://d1loimaxqs6y6" path="res://Instances/Components/LookAtPlayerComponent/LookAtPlayerComponent.tscn" id="6_3hc2x"]
+[ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="7_de6ed"]
+[ext_resource type="Texture2D" uid="uid://bpyc446g0c25y" path="res://Instances/Enemies/Necro/necro_1.png" id="8_w5lta"]
+[ext_resource type="PackedScene" uid="uid://6fcg84clxst2" path="res://Instances/Components/Death/DeathManager.tscn" id="9_n5ut2"]
+[ext_resource type="AudioStream" uid="uid://dmup1gun0pjth" path="res://Instances/Enemies/Audio/Explosion_04.mp3" id="10_k0dwq"]
+[ext_resource type="PackedScene" uid="uid://cwyxu1ysjtku7" path="res://Instances/Components/DropXp/DropXp.tscn" id="11_hcg7d"]
+[ext_resource type="PackedScene" uid="uid://bjwrgsdbjvqw3" path="res://Instances/Components/DeathEffect/DeathExplosion.tscn" id="12_2crx5"]
+[ext_resource type="PackedScene" uid="uid://of0xsffqavim" path="res://Instances/Components/EnemyDeath/EnemyDeath.tscn" id="13_7ono8"]
+[ext_resource type="PackedScene" uid="uid://8mpq1pm143kp" path="res://Instances/Components/HealthBar/HealthBar.tscn" id="14_1fsq6"]
+[ext_resource type="PackedScene" uid="uid://bcbgphbcmqgky" path="res://Instances/Components/KnockBack/KnockBack.tscn" id="15_l0uk4"]
+[ext_resource type="PackedScene" uid="uid://c1sky0kyn05tc" path="res://Instances/Components/PlayerTracker/PlayerTracker.tscn" id="16_2khyg"]
+[ext_resource type="PackedScene" uid="uid://bfeok0rvx26n0" path="res://Instances/Components/ShockWave/ShockWave.tscn" id="16_yiluk"]
+[ext_resource type="Script" path="res://addons/finite_state_machine/scripts/finite_state_machine.gd" id="17_2agmp"]
+[ext_resource type="Script" path="res://Instances/Enemies/Behaviours/States/IdleState.gd" id="18_7kwy2"]
+[ext_resource type="Script" path="res://Instances/Enemies/Behaviours/States/WalkState.gd" id="19_61cly"]
+[ext_resource type="Script" path="res://Instances/Enemies/Behaviours/States/AttackState.gd" id="20_01tke"]
+[ext_resource type="Script" path="res://Instances/Components/AttackManager/AttackManager.gd" id="21_nxu7k"]
+[ext_resource type="PackedScene" uid="uid://bs5y7eh8kgpuo" path="res://Instances/AttackPaterns/ArcPatern/ArcPatern.tscn" id="22_xysh4"]
+[ext_resource type="Resource" uid="uid://dush0xum1pf7q" path="res://Instances/Resources/Bullets/BulletE3.tres" id="23_mgt6n"]
+[ext_resource type="Resource" uid="uid://c02atp32fln73" path="res://Instances/Resources/Bullets/BulletE1.tres" id="25_dleh8"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mligr"]
+radius = 5.0
+height = 10.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lstr7"]
+radius = 5.0
+height = 18.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_465jv"]
+resource_local_to_scene = true
+shader = ExtResource("7_de6ed")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_27b8p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_w5lta")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Necro" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 32
+script = ExtResource("1_r17ul")
+orcMageBulletStats = ExtResource("23_mgt6n")
+speed = 100.0
+timeIdle = 3.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("CapsuleShape2D_mligr")
+
+[node name="Health" parent="." node_paths=PackedStringArray("deathManager", "knockBack", "flashHit", "lifeBar") instance=ExtResource("1_rjpyx")]
+collision_layer = 8
+collision_mask = 0
+audio_bus_name = &"Sound"
+deathManager = NodePath("../DeathManager")
+knockBack = NodePath("../KnockBack")
+flashHit = NodePath("../FlashHit")
+lifeBar = NodePath("../HealthBar")
+hitAudio = ExtResource("2_1t41c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Health"]
+z_index = 10
+position = Vector2(0, -8)
+shape = SubResource("CapsuleShape2D_lstr7")
+
+[node name="DeslocateToPlayer" parent="." instance=ExtResource("3_pap3l")]
+position = Vector2(0, -4)
+
+[node name="FlashHit" parent="." node_paths=PackedStringArray("animatedSprite") instance=ExtResource("4_lns2m")]
+animatedSprite = NodePath("../GroupFlip/AnimatedSprite2D")
+
+[node name="Move" parent="." instance=ExtResource("5_sl3yq")]
+
+[node name="GroupFlip" type="Node2D" parent="."]
+
+[node name="LookAtPlayerComponent" parent="GroupFlip" node_paths=PackedStringArray("playerTracker") instance=ExtResource("6_3hc2x")]
+playerTracker = NodePath("../../PlayerTracker")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GroupFlip"]
+material = SubResource("ShaderMaterial_465jv")
+sprite_frames = SubResource("SpriteFrames_27b8p")
+offset = Vector2(0, -11)
+flip_h = true
+
+[node name="DeathManager" parent="." instance=ExtResource("9_n5ut2")]
+deathAudio = ExtResource("10_k0dwq")
+
+[node name="DropXp" parent="DeathManager" instance=ExtResource("11_hcg7d")]
+xpAmount = 2
+
+[node name="DeathExplosion" parent="DeathManager" instance=ExtResource("12_2crx5")]
+
+[node name="EnemyDeath" parent="DeathManager" instance=ExtResource("13_7ono8")]
+
+[node name="ShockWave" parent="DeathManager" instance=ExtResource("16_yiluk")]
+
+[node name="HealthBar" parent="." instance=ExtResource("14_1fsq6")]
+offset_left = -9.0
+offset_top = -21.0
+offset_right = 182.0
+offset_bottom = 6.0
+
+[node name="KnockBack" parent="." instance=ExtResource("15_l0uk4")]
+
+[node name="PlayerTracker" parent="." instance=ExtResource("16_2khyg")]
+
+[node name="FiniteStateMachine" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("17_2agmp")
+
+[node name="IdleState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("next_state")]
+script = ExtResource("18_7kwy2")
+next_state = NodePath("../AttackState")
+
+[node name="WalkState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("next_state")]
+script = ExtResource("19_61cly")
+next_state = NodePath("../IdleState")
+
+[node name="AttackState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("next_state")]
+script = ExtResource("20_01tke")
+next_state = NodePath("../WalkState")
+
+[node name="AttackManager" type="Node2D" parent="."]
+script = ExtResource("21_nxu7k")
+
+[node name="ArcPatern" parent="AttackManager" instance=ExtResource("22_xysh4")]
+fireAmount = 3
+anglePerFire = 3.0
+bullet = ExtResource("25_dleh8")

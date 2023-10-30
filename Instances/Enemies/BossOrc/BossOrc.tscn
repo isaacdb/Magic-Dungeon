@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://owdfvvvn7ja3"]
+[gd_scene load_steps=52 format=3 uid="uid://owdfvvvn7ja3"]
 
 [ext_resource type="PackedScene" uid="uid://d1loimaxqs6y6" path="res://Instances/Components/LookAtPlayerComponent/LookAtPlayerComponent.tscn" id="1_4mr3o"]
 [ext_resource type="Script" path="res://Instances/Enemies/BossOrc/BossOrc.gd" id="1_38hcy"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://8mpq1pm143kp" path="res://Instances/Components/HealthBar/HealthBar.tscn" id="12_cp5v3"]
 [ext_resource type="Resource" uid="uid://dush0xum1pf7q" path="res://Instances/Resources/Bullets/BulletE3.tres" id="14_yo50b"]
 [ext_resource type="AudioStream" uid="uid://dmup1gun0pjth" path="res://Instances/Enemies/Audio/Explosion_04.mp3" id="17_fge52"]
+[ext_resource type="PackedScene" uid="uid://bfeok0rvx26n0" path="res://Instances/Components/ShockWave/ShockWave.tscn" id="21_1ufi6"]
 [ext_resource type="Script" path="res://addons/finite_state_machine/scripts/finite_state_machine.gd" id="24_5s07r"]
 [ext_resource type="Script" path="res://Instances/Enemies/Behaviours/States/IdleState.gd" id="25_23w85"]
 [ext_resource type="Script" path="res://Scripts/LineTrail.gd" id="25_33vr0"]
@@ -297,17 +298,18 @@ bullet = ExtResource("14_yo50b")
 
 [node name="DeathManager" parent="." instance=ExtResource("5_47m65")]
 deathAudio = ExtResource("17_fge52")
-switch_nps = Array[NodePath]([NodePath("../DeathExplosion"), NodePath("../DeathExplosion3"), NodePath("../DeathExplosion2")])
 
-[node name="DeathExplosion" parent="." instance=ExtResource("6_wg2kf")]
+[node name="DeathExplosion" parent="DeathManager" instance=ExtResource("6_wg2kf")]
 position = Vector2(-8, -16)
 
-[node name="DeathExplosion2" parent="." instance=ExtResource("6_wg2kf")]
+[node name="DeathExplosion2" parent="DeathManager" instance=ExtResource("6_wg2kf")]
 
-[node name="DeathExplosion3" parent="." instance=ExtResource("6_wg2kf")]
+[node name="DeathExplosion3" parent="DeathManager" instance=ExtResource("6_wg2kf")]
 position = Vector2(11, -19)
 
-[node name="DropXp" parent="." instance=ExtResource("7_5ok6n")]
+[node name="DropXp" parent="DeathManager" instance=ExtResource("7_5ok6n")]
+
+[node name="ShockWave" parent="DeathManager" instance=ExtResource("21_1ufi6")]
 
 [node name="Move" parent="." instance=ExtResource("9_4wogm")]
 

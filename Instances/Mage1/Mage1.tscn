@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://c6g7qwsljeavk"]
+[gd_scene load_steps=33 format=3 uid="uid://c6g7qwsljeavk"]
 
 [ext_resource type="Script" path="res://Instances/Mage1/Mage1.gd" id="1_giwmu"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="1_hkxu6"]
@@ -14,11 +14,12 @@
 [ext_resource type="PackedScene" uid="uid://dc4pbmv3yevoo" path="res://Instances/Components/DashSkill/DashSkill.tscn" id="8_hx86t"]
 [ext_resource type="PackedScene" uid="uid://bcbgphbcmqgky" path="res://Instances/Components/KnockBack/KnockBack.tscn" id="12_b338j"]
 [ext_resource type="AudioStream" uid="uid://bm2t2he5c3da" path="res://Instances/Mage1/PlayerHit.ogg" id="12_qa121"]
+[ext_resource type="PackedScene" uid="uid://bfeok0rvx26n0" path="res://Instances/Components/ShockWave/ShockWave.tscn" id="14_5j0sq"]
 [ext_resource type="PackedScene" uid="uid://valwt38uo38s" path="res://Instances/Components/BulletPredict/BulletPredict.tscn" id="14_qybn2"]
 [ext_resource type="PackedScene" uid="uid://b4enx6olclngm" path="res://Instances/Components/FlashHit/FlashHit.tscn" id="15_34hya"]
 [ext_resource type="PackedScene" uid="uid://b4osisqtoowwc" path="res://Instances/Components/PlayerInputManager/PlayerInputManager.tscn" id="20_22m8h"]
 
-[sub_resource type="Resource" id="Resource_lvpsw"]
+[sub_resource type="Resource" id="Resource_maj1r"]
 resource_local_to_scene = true
 script = ExtResource("4_rtcm8")
 damage = 15.0
@@ -30,6 +31,11 @@ bulletFireAmount = 1
 angleSpread = 10.0
 origin = "Player"
 prefab = ExtResource("3_qnl43")
+lifeTime = 5.0
+bulletSpriteAnim = "Default"
+follow_player = false
+follow_player_weight = 0.02
+line_trail_active = true
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0wwrl"]
 radius = 6.0
@@ -98,7 +104,7 @@ _data = {
 }
 
 [sub_resource type="Gradient" id="Gradient_0d5pp"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_vpnaj"]
 gradient = SubResource("Gradient_0d5pp")
@@ -119,6 +125,16 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2uere"]
 radius = 6.0
 height = 16.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_upod3"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_tnrwi"]
+_data = [Vector2(0.027972, 0.4), 0.0, 0.0, 0, 0, Vector2(0.671329, 0.210526), -1.34955, -1.34955, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [node name="Mage1" type="CharacterBody2D" node_paths=PackedStringArray("moveComponent", "healthManager", "flashHit", "weapon", "playerInput") groups=["player"]]
 y_sort_enabled = true
@@ -142,9 +158,10 @@ healthComponent = NodePath("../Health")
 position = Vector2(0, -9)
 fireRate = 0.4
 ammunitionAmount = 10
-bulletStats = SubResource("Resource_lvpsw")
+bulletStats = SubResource("Resource_maj1r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 z_index = 1
 position = Vector2(0, -7)
 shape = SubResource("CapsuleShape2D_0wwrl")
@@ -165,7 +182,8 @@ libraries = {
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(0, -9)
 scale = Vector2(2.08026, 1.88008)
-energy = 0.2
+energy = 1.2
+blend_mode = 2
 shadow_enabled = true
 shadow_filter_smooth = 20.3
 texture = SubResource("GradientTexture2D_vpnaj")
@@ -199,6 +217,7 @@ flashHit = NodePath("../FlashHit")
 hitAudio = ExtResource("12_qa121")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Health" groups=["player"]]
+visible = false
 position = Vector2(0, -8)
 shape = SubResource("CapsuleShape2D_2uere")
 
@@ -207,9 +226,10 @@ unique_name_in_owner = true
 sprite = NodePath("../Sprite2D")
 
 [node name="DeathManager" parent="." instance=ExtResource("4_v7fsg")]
-switch_nps = Array[NodePath]([NodePath("../GameOverComponent")])
 
-[node name="GameOverComponent" parent="." instance=ExtResource("8_e43ia")]
+[node name="GameOverComponent" parent="DeathManager" instance=ExtResource("8_e43ia")]
+
+[node name="ShockWave" parent="DeathManager" instance=ExtResource("14_5j0sq")]
 
 [node name="Move" parent="." node_paths=PackedStringArray("walkParticule") instance=ExtResource("6_nmcf8")]
 walkParticule = NodePath("../WalkParticle")
@@ -222,3 +242,20 @@ walkParticule = NodePath("../WalkParticle")
 
 [node name="BulletPredict" parent="." instance=ExtResource("14_qybn2")]
 position = Vector2(0, -9)
+
+[node name="ImpactPaticle" type="CPUParticles2D" parent="."]
+z_index = 9
+z_as_relative = false
+material = SubResource("CanvasItemMaterial_upod3")
+emitting = false
+amount = 50
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.7
+texture = ExtResource("5_2k80y")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 300.0
+initial_velocity_max = 350.0
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_tnrwi")

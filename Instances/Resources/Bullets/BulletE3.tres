@@ -15,3 +15,4 @@ angleSpread = 10.0
 origin = "Enemy"
 prefab = ExtResource("1_b4u04")
 lifeTime = 5.0
+bulletSpriteAnim = "Default"

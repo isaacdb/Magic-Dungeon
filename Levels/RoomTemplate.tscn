@@ -37,11 +37,13 @@ gradient = SubResource("Gradient_8dt1a")
 
 [sub_resource type="Environment" id="Environment_cojaq"]
 background_mode = 3
+ambient_light_sky_contribution = 0.6
 tonemap_mode = 3
+glow_enabled = true
 glow_levels/3 = 30.0
 glow_levels/4 = 10.0
 glow_levels/5 = 0.0
-glow_intensity = 5.03
+glow_intensity = 2.0
 glow_strength = 0.39
 glow_mix = 0.0
 glow_blend_mode = 1
@@ -78,10 +80,10 @@ texture = ExtResource("11_akw1h")
 resource_local_to_scene = true
 texture = ExtResource("12_ylja1")
 
-[node name="RoomTemplate" type="Node2D"]
+[node name="RoomTemplate" type="Node2D" groups=["Room"]]
 script = ExtResource("1_nqqcy")
-defaultColorModulate = Color(0.478431, 0.419608, 0.670588, 1)
-hitColorModulate = Color(0.877383, 0.398502, 0.375717, 1)
+defaultColorModulate = Color(1, 1, 1, 1)
+hitColorModulate = Color(0.878431, 0.4, 0.376471, 1)
 
 [node name="PointsParticle" type="CPUParticles2D" parent="."]
 y_sort_enabled = true
@@ -104,9 +106,6 @@ color_initial_ramp = SubResource("Gradient_yc4yq")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_cojaq")
-
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.454902, 0.447059, 0.72549, 1)
 
 [node name="FogShader" type="ColorRect" parent="."]
 z_index = 200
@@ -193,7 +192,7 @@ visible = false
 
 [node name="CheatComponent" parent="." instance=ExtResource("22_w38yr")]
 
+[node name="DamagePopupParent" type="Node" parent="." groups=["DamagePopupParent"]]
+
 [node name="BulletParent" type="Node2D" parent="." groups=["BulletParent"]]
 script = ExtResource("23_8q7is")
-
-[node name="DamagePopupParent" type="Node" parent="." groups=["DamagePopupParent"]]

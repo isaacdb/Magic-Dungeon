@@ -2,7 +2,6 @@ extends Node
 
 @export var roomsAvailable := 4
 @export var bossRoomsAvailable := 1
-@export var enemiesPackAvailable := 7
 
 @onready var rand = RandomNumberGenerator.new()
 
@@ -63,8 +62,9 @@ func GetRandomBossRoom() -> int:
 	
 	bossRoomsUseds.insert(0, bossRoomIndex);
 	return bossRoomIndex;
-	
+
 func GetRandomEnemyPack() -> int:
+	var enemiesPackAvailable = get_number_of_enemy_packs();
 	var enemyPackIndex = rand.randi_range(1, enemiesPackAvailable);
 	
 	while enemiesPackUseds.any(func(number): return number == enemyPackIndex):
@@ -73,3 +73,18 @@ func GetRandomEnemyPack() -> int:
 	enemiesPackUseds.insert(0, enemyPackIndex);
 	
 	return enemyPackIndex;
+	
+func get_number_of_enemy_packs() -> int:
+	var count: int = 0
+	var dir = DirAccess.open("res://Instances/Resources/EnemiesPack/Nivel1/")
+	if dir:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		while file_name != "":
+			if not dir.current_is_dir() and file_name.contains(".tres"):
+				count +=1;
+			file_name = dir.get_next()
+	else:
+		print("ERRO AO TENTAR BUSCAR QUANTIDADE DE PACKS DE INIMIGOS")
+	
+	return count;
