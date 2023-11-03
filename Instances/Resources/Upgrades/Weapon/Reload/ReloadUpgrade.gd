@@ -3,6 +3,6 @@ class_name ReloadUpgrade
 
 func Apply(player: Mage1):
 	if VerifyApliedStacks():
-		var newReloadTime = player.weapon.reloadTime - MathUtil.CalculateValueByPercent(upgradeValue, player.weapon.reloadTime)
-		player.weapon.SetupReloadTime(newReloadTime);
+		player.weapon.ApplyUpgradeReloadTime(upgradeType);
+		player.weapon.ApplyUpgradeFireRate(downgradeValue);
 	pass

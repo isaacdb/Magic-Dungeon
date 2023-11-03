@@ -10,4 +10,5 @@ description = "Increase the ammunition max by 5"
 title = "Ammuniton"
 upgradeType = 0
 upgradeValue = 5.0
+downgradeValue = 5.0
 icon = ExtResource("1_8aakt")

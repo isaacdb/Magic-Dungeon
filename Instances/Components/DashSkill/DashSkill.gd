@@ -69,7 +69,8 @@ func dashDuration_timeout():
 	tween.tween_property(dashTrail, "lenght", 0.0, 1.0).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
 	
 	if healthComponent:
-		healthComponent.SetActive(true)
+		get_tree().create_timer(0.1).timeout.connect(func(): healthComponent.SetActive(true))
+#		healthComponent.SetActive(true)
 	pass
 	
 func dashCooldown_timeout():

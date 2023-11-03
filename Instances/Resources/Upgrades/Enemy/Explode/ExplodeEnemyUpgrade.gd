@@ -4,6 +4,8 @@ class_name ExplodeEnemyUpgrade
 @export var explosionPrefab : PackedScene
 var playerInstance : Mage1
 
+var enemyIdExplodedList : Array[int] = []
+
 func Apply(player: Mage1):
 	if VerifyApliedStacks():
 		playerInstance = player
@@ -12,13 +14,20 @@ func Apply(player: Mage1):
 	pass
 
 func Clean():
-	playerInstance = null
-	Global.enemy_killed.disconnect(CreateExplosion)
+	super.Clean();
+	playerInstance = null;
+	enemyIdExplodedList.clear();
+	Global.enemy_killed.disconnect(CreateExplosion);
 	pass
 
 func CreateExplosion(enemy: CharacterBody2D) -> void:
 	if not is_instance_valid(playerInstance):
 		return
+	
+	if enemyIdExplodedList.find(enemy.get_instance_id()) != -1:
+		return
+		
+	enemyIdExplodedList.append(enemy.get_instance_id());
 		
 	var explosion = explosionPrefab.instantiate() as ExplodeCircleBullets
 	explosion.bulletAmount = upgradeValue + (upgradeStack * 2)

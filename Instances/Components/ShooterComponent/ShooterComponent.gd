@@ -66,8 +66,8 @@ func InstatiateBullet(direction: Vector2, bulletStats: BulletStats) -> void:
 	else:
 		self.add_child(newBullet);
 	newBullet.look_at(self.global_position + (direction * 10))
-	newBullet.UpdateStats(bulletStats)
 	newBullet.SetupPositionAndDirection(direction, self.global_position);
+	newBullet.UpdateStats(bulletStats)
 	pass
 	
 func FireTimerTimeout():

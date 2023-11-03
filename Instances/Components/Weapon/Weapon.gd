@@ -35,6 +35,23 @@ func SetupFireRateBoost(boostedFireRate: float):
 		shooterComponent.UpdateFireRate(boostedFireRate);
 	pass
 	
+func ApplyUpgradeFireRate(upgradeValue: float) -> void:
+	var newFireRate = fireRate - MathUtil.CalculateValueByPercent(upgradeValue, fireRate);
+	SetupFireRate(newFireRate);
+	pass
+	
+func ApplyUpgradeAmmunitonAmount(upgradeValue: int) -> void:
+	ammunitionAmount += upgradeValue;
+	if ammunitionAmount < 1:
+		ammunitionAmount = 1;
+	RealodComplete();
+	pass
+	
+func ApplyUpgradeReloadTime(upgradeValue: float) -> void:
+	var newReloadTime = reloadTime - MathUtil.CalculateValueByPercent(upgradeValue, reloadTime)
+	SetupReloadTime(newReloadTime);
+	pass
+	
 func SetupReloadTime(newReloadTime: float) -> void:
 	reloadTime = newReloadTime;
 	if reloadTimer:

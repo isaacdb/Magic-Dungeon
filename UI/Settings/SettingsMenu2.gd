@@ -31,7 +31,6 @@ func OpenCloseSettingsMenu() -> void:
 	pass
 
 func SetPanelByTab(tabIndex: int) -> void:
-	print('1')
 	tab_bar.current_tab = tabIndex
 	general_settings.visible = tabIndex == 0
 	key_mapping.visible = tabIndex == 1

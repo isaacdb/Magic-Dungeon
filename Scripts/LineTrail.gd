@@ -1,4 +1,5 @@
 extends Line2D
+class_name LineTrail
 
 @export var lenght := 50
 @export var targetToFollow : Node2D
@@ -6,6 +7,7 @@ extends Line2D
 var point := Vector2.ZERO
 
 func _ready():
+	clear_points();
 	if !targetToFollow:
 		targetToFollow = get_parent()
 

@@ -10,4 +10,5 @@ description = "Increase by one the bullets dispared at same time"
 title = "Bullet"
 upgradeType = 0
 upgradeValue = 1.0
+downgradeValue = 30.0
 icon = ExtResource("1_momdr")

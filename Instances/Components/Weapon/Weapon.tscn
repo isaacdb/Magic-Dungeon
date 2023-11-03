@@ -22,9 +22,9 @@ bulletStats = ExtResource("2_qfelm")
 [node name="ProgressBar" type="ProgressBar" parent="."]
 modulate = Color(0, 0.592157, 0.592157, 1)
 offset_left = 9.0
-offset_top = 13.0
+offset_top = -13.0
 offset_right = 10.0
-offset_bottom = 31.0
+offset_bottom = 5.0
 rotation = 1.5708
 theme_override_styles/background = SubResource("StyleBoxFlat_2xckj")
 theme_override_styles/fill = SubResource("StyleBoxFlat_2xsys")

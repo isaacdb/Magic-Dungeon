@@ -15,3 +15,13 @@ class_name BulletStats
 @export var follow_player := false
 @export var follow_player_weight := 0.02
 @export var line_trail_active := true
+
+func ApplyUpgradeDamage(upgradeValue: float):
+	var currentDamage = damage
+	var newDamage = currentDamage + MathUtil.CalculateValueByPercent(upgradeValue, currentDamage)
+	damage = newDamage
+	pass
+
+func ApplyUpgradeBounce(upgradeValue) -> void:
+	bounceTimes += upgradeValue
+	pass

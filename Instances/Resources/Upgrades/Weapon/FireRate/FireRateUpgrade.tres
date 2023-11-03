@@ -10,4 +10,5 @@ description = "Increase the fire rate by 25%"
 title = "Fire rate"
 upgradeType = 0
 upgradeValue = 25.0
+downgradeValue = 15.0
 icon = ExtResource("1_ops15")

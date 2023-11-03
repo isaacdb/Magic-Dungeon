@@ -7,11 +7,12 @@ var enemyColor :=  Color(0.862745, 0.0784314, 0.235294, 1)
 var playerColor := Color(0.980392, 0.921569, 0.843137, 1)
 
 @onready var timer := $Timer as Timer
-@onready var sprite := $Sprite2D as AnimatedSprite2D
-@onready var lineTrail := $Line2D as Line2D
-@onready var hitBox := $HitBox as HitBoxComponent
-@onready var impactParticle := $ImpactPaticle as CPUParticles2D
+@onready var sprite := $ScaleControl/Sprite2D as AnimatedSprite2D
+@onready var lineTrail := $Line2D as LineTrail
+@onready var hitBox := $ScaleControl/HitBox as HitBoxComponent
+@onready var impactParticle := $ScaleControl/ImpactPaticle as CPUParticles2D
 @onready var player_tracker = $PlayerTracker as PlayerTracker
+@onready var scale_control := $ScaleControl as Node2D
 
 var speed := 0.0
 var isRunning := true
@@ -35,8 +36,10 @@ func _ready():
 func HitBody() -> void:
 	if currentPiercingsShots < piercingShots:
 		currentPiercingsShots += 1;
+		DowngradeBullet();
 		return
-		
+	
+	impactParticle.direction = moveDirection;
 	Destroy()
 	pass
 	
@@ -115,8 +118,10 @@ func Destroy():
 		timer.timeout.disconnect(timer_life_timeout)
 	isRunning = false
 	#collisionShape.set_deferred("Disabled", true)
-	hitBox.queue_free()
-	sprite.queue_free()
+	hitBox.queue_free();
+	sprite.queue_free();
+	lineTrail.queue_free();
+	player_tracker.queue_free();
 
 	impactParticle.emitting = true
 	
@@ -137,18 +142,29 @@ func WorldCollision(collision: KinematicCollision2D):
 func Bounce(collision: KinematicCollision2D) -> void:
 	moveDirection = moveDirection.bounce(collision.get_normal())
 	currentBounceTimes += 1
+	DowngradeBullet();
+	pass
+	
+func DowngradeBullet() -> void:
+	hitBox.damage = hitBox.damage / 2;
+	if hitBox.damage <= 2:
+		hitBox.damage = 2;
+	
+	var scaleDowngrade := Vector2(.2, .2);
+	if scale_control.scale > scaleDowngrade:
+		scale_control.scale = scale_control.scale - scaleDowngrade;
+		lineTrail.width -= lineTrail.width * 0.2;
+		lineTrail.lenght -= lineTrail.lenght * 0.2;
 	pass
 
 func SetParticleToWallCollision():
-	impactParticle.rotate(deg_to_rad(180))
 	impactParticle.spread = 180
 	impactParticle.initial_velocity_min = 100
 	impactParticle.initial_velocity_min = 150
 	pass
 
 func timer_life_timeout() -> void:
-	impactParticle.rotate(deg_to_rad(-90))
-	impactParticle.spread = 90
+	impactParticle.spread = 360
 	impactParticle.initial_velocity_min = 100
 	impactParticle.initial_velocity_min = 150
 	

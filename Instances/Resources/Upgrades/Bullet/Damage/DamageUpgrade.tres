@@ -10,4 +10,5 @@ description = "Bullet damage will be increased by 30%"
 title = "Damage"
 upgradeType = 3
 upgradeValue = 30.0
+downgradeValue = 10.0
 icon = ExtResource("1_bi6qi")

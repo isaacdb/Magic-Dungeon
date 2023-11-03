@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://yq44pikq3a4x"
-path="res://.godot/imported/panelROomIcons.png-e9d52a6aa73c2cb6681f10bb77877cf1.ctex"
+uid="uid://dqvswfviywqx3"
+path="res://.godot/imported/PanelRoomCounter.png-67ffeb439bfce1f312b6ae61be15725b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Instances/UI/RoomCounter/panelROomIcons.png"
-dest_files=["res://.godot/imported/panelROomIcons.png-e9d52a6aa73c2cb6681f10bb77877cf1.ctex"]
+source_file="res://Instances/UI/RoomCounter/PanelRoomCounter.png"
+dest_files=["res://.godot/imported/PanelRoomCounter.png-67ffeb439bfce1f312b6ae61be15725b.ctex"]
 
 [params]
 

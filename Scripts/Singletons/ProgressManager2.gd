@@ -9,10 +9,10 @@ extends Node
 var roomsUseds : Array[int]
 var bossRoomsUseds : Array[int]
 var enemiesResources : Array[Resource] = []
-var startDifficult := 5.0
+var startDifficult := 1.0
 var currentRoomNumber := 0
 
-const bossRoomNumber := 5
+const bossRoomNumber := 10
 
 func _ready():
 	enemiesResources = FileLoader.get_resouces_by_folder("res://Instances/Resources/EnemiesPack/EnemyImpact/")
@@ -27,7 +27,7 @@ func CleanProgress():
 	pass
 	
 func GetDifficultAmount() -> float:
-	return startDifficult + (startDifficult * ((difficultMultiply / 100) * currentRoomNumber))
+	return startDifficult + ((startDifficult + currentRoomNumber) * ((difficultMultiply / 100) * currentRoomNumber))
 	
 func LoadNewRoom() -> void:
 	currentRoomNumber += 1;
@@ -51,7 +51,9 @@ func get_random_room_index() -> int:
 		roomIndex = rand.randi_range(1, roomsAvailable);
 	
 	roomsUseds.insert(0, roomIndex);
-	
+	if roomsUseds.size() == roomsAvailable:
+		roomsUseds.clear();
+		
 	return roomIndex;
 	
 func get_random_boss_room_index() -> int:

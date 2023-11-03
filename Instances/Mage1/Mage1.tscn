@@ -4,11 +4,11 @@
 [ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="1_hkxu6"]
 [ext_resource type="PackedScene" uid="uid://ceg2p5rdoxduo" path="res://Instances/Components/Weapon/Weapon.tscn" id="2_540pc"]
 [ext_resource type="PackedScene" uid="uid://b4asjdyoyep5s" path="res://Instances/Components/Health/Health.tscn" id="3_gonwg"]
-[ext_resource type="PackedScene" uid="uid://c4u7wkwoet4ws" path="res://Instances/Bullet/Bullet.tscn" id="3_qnl43"]
 [ext_resource type="Texture2D" uid="uid://dk66h00qimkf4" path="res://Instances/Mage1/Mage1.png" id="4_ftoke"]
-[ext_resource type="Script" path="res://Instances/Resources/Bullets/BulletStats.gd" id="4_rtcm8"]
+[ext_resource type="PackedScene" uid="uid://c4u7wkwoet4ws" path="res://Instances/Bullet/Bullet.tscn" id="4_gercb"]
 [ext_resource type="PackedScene" uid="uid://6fcg84clxst2" path="res://Instances/Components/Death/DeathManager.tscn" id="4_v7fsg"]
 [ext_resource type="Texture2D" uid="uid://b6l8fu6uss63t" path="res://Assets/Dust.png" id="5_2k80y"]
+[ext_resource type="Script" path="res://Instances/Resources/Bullets/BulletStats.gd" id="5_u52cn"]
 [ext_resource type="PackedScene" uid="uid://dx8h735nl0e2d" path="res://Instances/Components/Move/Move.tscn" id="6_nmcf8"]
 [ext_resource type="PackedScene" uid="uid://deb4quwds46cx" path="res://Instances/Components/GameOverComponent/GameOverComponent.tscn" id="8_e43ia"]
 [ext_resource type="PackedScene" uid="uid://dc4pbmv3yevoo" path="res://Instances/Components/DashSkill/DashSkill.tscn" id="8_hx86t"]
@@ -19,9 +19,9 @@
 [ext_resource type="PackedScene" uid="uid://b4enx6olclngm" path="res://Instances/Components/FlashHit/FlashHit.tscn" id="15_34hya"]
 [ext_resource type="PackedScene" uid="uid://b4osisqtoowwc" path="res://Instances/Components/PlayerInputManager/PlayerInputManager.tscn" id="20_22m8h"]
 
-[sub_resource type="Resource" id="Resource_ac46s"]
+[sub_resource type="Resource" id="Resource_pn7d3"]
 resource_local_to_scene = true
-script = ExtResource("4_rtcm8")
+script = ExtResource("5_u52cn")
 damage = 15.0
 piercingShots = 0
 bounceTimes = 0
@@ -30,7 +30,7 @@ speed = 500.0
 bulletFireAmount = 1
 angleSpread = 10.0
 origin = "Player"
-prefab = ExtResource("3_qnl43")
+prefab = ExtResource("4_gercb")
 lifeTime = 5.0
 bulletSpriteAnim = "Default"
 follow_player = false
@@ -158,7 +158,8 @@ healthComponent = NodePath("../Health")
 position = Vector2(0, -9)
 fireRate = 0.4
 ammunitionAmount = 10
-bulletStats = SubResource("Resource_ac46s")
+reloadTime = 1.3
+bulletStats = SubResource("Resource_pn7d3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

@@ -19,4 +19,4 @@ lifeTime = 5.0
 bulletSpriteAnim = "Default"
 follow_player = false
 follow_player_weight = 0.02
-line_trail_active = true
+line_trail_active = false

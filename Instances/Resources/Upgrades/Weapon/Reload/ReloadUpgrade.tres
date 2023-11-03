@@ -9,5 +9,6 @@ id = 4
 description = "Descrease the reaload time by 25%"
 title = " Reload time"
 upgradeType = 0
-upgradeValue = 25.0
+upgradeValue = 15.0
+downgradeValue = 10.0
 icon = ExtResource("1_5skds")

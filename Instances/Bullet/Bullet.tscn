@@ -30,6 +30,16 @@ radius = 4.0
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.609442, 0.727273), 1.21956, 1.21956, 0, 0, Vector2(0.995708, 0.981818), 0.0, 0.0, 0, 0]
 point_count = 3
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hu3uy"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_gbtdj"]
+_data = [Vector2(0.027972, 0.4), 0.0, 0.0, 0, 0, Vector2(0.671329, 0.210526), -1.34955, -1.34955, 0, 0, Vector2(0.979021, 0.0947368), 0.0, 0.0, 0, 0]
+point_count = 3
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j4f3g"]
 resource_local_to_scene = true
 shader = ExtResource("3_6cyc0")
@@ -215,16 +225,6 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_eshji"]
 radius = 4.12311
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hu3uy"]
-particles_animation = true
-particles_anim_h_frames = 3
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="Curve" id="Curve_gbtdj"]
-_data = [Vector2(0.027972, 0.4), 0.0, 0.0, 0, 0, Vector2(0.671329, 0.210526), -1.34955, -1.34955, 0, 0, Vector2(0.979021, 0.0947368), 0.0, 0.0, 0, 0]
-point_count = 3
-
 [node name="Bullet" type="CharacterBody2D"]
 z_index = 50
 y_sort_enabled = true
@@ -238,33 +238,25 @@ shape = SubResource("CircleShape2D_xgp00")
 
 [node name="Line2D" type="Line2D" parent="."]
 show_behind_parent = true
+position = Vector2(1, 0)
+points = PackedVector2Array(-1, 0)
 width = 7.0
 width_curve = SubResource("Curve_w0lf5")
 script = ExtResource("10_p260d")
 lenght = 7
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
-z_index = 1
-y_sort_enabled = true
-material = SubResource("ShaderMaterial_j4f3g")
-position = Vector2(-8.9407e-08, -5.96046e-08)
-sprite_frames = SubResource("SpriteFrames_r1dy0")
-animation = &"Default"
-autoplay = "Default"
-
 [node name="Timer" type="Timer" parent="."]
 
-[node name="HitBox" parent="." instance=ExtResource("8_cltdl")]
-collision_layer = 0
-collision_mask = 0
+[node name="PlayerTracker" parent="." instance=ExtResource("13_at8gx")]
+visible = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-shape = SubResource("CircleShape2D_eshji")
+[node name="ScaleControl" type="Node2D" parent="."]
 
-[node name="ImpactPaticle" type="CPUParticles2D" parent="."]
+[node name="ImpactPaticle" type="CPUParticles2D" parent="ScaleControl"]
 z_index = 9
 z_as_relative = false
 material = SubResource("CanvasItemMaterial_hu3uy")
+rotation = -0.523599
 emitting = false
 amount = 5
 lifetime = 0.3
@@ -278,5 +270,18 @@ initial_velocity_max = 350.0
 scale_amount_max = 3.0
 scale_amount_curve = SubResource("Curve_gbtdj")
 
-[node name="PlayerTracker" parent="." instance=ExtResource("13_at8gx")]
-visible = false
+[node name="Sprite2D" type="AnimatedSprite2D" parent="ScaleControl"]
+z_index = 1
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_j4f3g")
+position = Vector2(-8.9407e-08, -5.96046e-08)
+sprite_frames = SubResource("SpriteFrames_r1dy0")
+animation = &"Default"
+autoplay = "Default"
+
+[node name="HitBox" parent="ScaleControl" instance=ExtResource("8_cltdl")]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScaleControl/HitBox"]
+shape = SubResource("CircleShape2D_eshji")

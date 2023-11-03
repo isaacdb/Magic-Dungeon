@@ -15,6 +15,7 @@ func Apply(player: Mage1):
 	pass
 
 func Clean():
+	super.Clean();
 	stacks = 0
 	playerAux = null
 	Global.player_hited.disconnect(GetBoost)
