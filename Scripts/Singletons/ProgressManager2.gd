@@ -2,21 +2,19 @@ extends Node
 
 @export var roomsAvailable := 4
 @export var bossRoomsAvailable := 1
-@export var difficultMultiply := 100.0
+@export var difficultMultiply := 50.0
 
 @onready var rand = RandomNumberGenerator.new()
 
 var roomsUseds : Array[int]
 var bossRoomsUseds : Array[int]
 var enemiesResources : Array[Resource] = []
-var startDifficult := 20.0
-var currentDifficult := 10.0
+var startDifficult := 5.0
 var currentRoomNumber := 0
 
 const bossRoomNumber := 5
 
 func _ready():
-	currentDifficult = startDifficult;
 	enemiesResources = FileLoader.get_resouces_by_folder("res://Instances/Resources/EnemiesPack/EnemyImpact/")
 	rand.randomize();
 	Global.boss_killed

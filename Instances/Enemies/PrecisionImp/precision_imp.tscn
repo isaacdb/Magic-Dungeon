@@ -1,9 +1,10 @@
-[gd_scene load_steps=30 format=3 uid="uid://b4dipyjtak2xd"]
+[gd_scene load_steps=31 format=3 uid="uid://b4dipyjtak2xd"]
 
 [ext_resource type="Script" path="res://Instances/Enemies/PrecisionImp/PrecisionImp.gd" id="1_e6h47"]
 [ext_resource type="PackedScene" uid="uid://b4asjdyoyep5s" path="res://Instances/Components/Health/Health.tscn" id="1_nhbiv"]
 [ext_resource type="AudioStream" uid="uid://hhj8od3wlwnn" path="res://Instances/Enemies/Audio/enemyHit.ogg" id="2_ee7bv"]
 [ext_resource type="PackedScene" uid="uid://bjq2iuiw53hdd" path="res://Instances/Enemies/Behaviours/DeslocateToPlayer/DeslocateToPlayer.tscn" id="3_qajqo"]
+[ext_resource type="PackedScene" uid="uid://bjsnss7q14dlj" path="res://Instances/Components/SpawnerDamagePopup/SpawnerDamagePopup.tscn" id="4_hliyu"]
 [ext_resource type="PackedScene" uid="uid://b4enx6olclngm" path="res://Instances/Components/FlashHit/FlashHit.tscn" id="4_rhy6b"]
 [ext_resource type="PackedScene" uid="uid://dx8h735nl0e2d" path="res://Instances/Components/Move/Move.tscn" id="5_3t3lc"]
 [ext_resource type="PackedScene" uid="uid://d1loimaxqs6y6" path="res://Instances/Components/LookAtPlayerComponent/LookAtPlayerComponent.tscn" id="6_70brr"]
@@ -76,6 +77,8 @@ z_index = 1
 position = Vector2(0, -8)
 shape = SubResource("CapsuleShape2D_57u8j")
 debug_color = Color(0, 0.639216, 0.384314, 0.419608)
+
+[node name="SpawnerDamagePopup" parent="Health" instance=ExtResource("4_hliyu")]
 
 [node name="DeslocateToPlayer" parent="." instance=ExtResource("3_qajqo")]
 position = Vector2(0, -4)

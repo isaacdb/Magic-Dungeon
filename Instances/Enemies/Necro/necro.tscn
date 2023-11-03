@@ -1,10 +1,11 @@
-[gd_scene load_steps=31 format=3 uid="uid://cdqitnnnisgfs"]
+[gd_scene load_steps=32 format=3 uid="uid://cdqitnnnisgfs"]
 
 [ext_resource type="Script" path="res://Instances/Enemies/Necro/Necro.gd" id="1_r17ul"]
 [ext_resource type="PackedScene" uid="uid://b4asjdyoyep5s" path="res://Instances/Components/Health/Health.tscn" id="1_rjpyx"]
 [ext_resource type="AudioStream" uid="uid://hhj8od3wlwnn" path="res://Instances/Enemies/Audio/enemyHit.ogg" id="2_1t41c"]
 [ext_resource type="PackedScene" uid="uid://bjq2iuiw53hdd" path="res://Instances/Enemies/Behaviours/DeslocateToPlayer/DeslocateToPlayer.tscn" id="3_pap3l"]
 [ext_resource type="PackedScene" uid="uid://b4enx6olclngm" path="res://Instances/Components/FlashHit/FlashHit.tscn" id="4_lns2m"]
+[ext_resource type="PackedScene" uid="uid://bjsnss7q14dlj" path="res://Instances/Components/SpawnerDamagePopup/SpawnerDamagePopup.tscn" id="5_lsnli"]
 [ext_resource type="PackedScene" uid="uid://dx8h735nl0e2d" path="res://Instances/Components/Move/Move.tscn" id="5_sl3yq"]
 [ext_resource type="PackedScene" uid="uid://d1loimaxqs6y6" path="res://Instances/Components/LookAtPlayerComponent/LookAtPlayerComponent.tscn" id="6_3hc2x"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="7_de6ed"]
@@ -78,6 +79,8 @@ hitAudio = ExtResource("2_1t41c")
 z_index = 10
 position = Vector2(0, -8)
 shape = SubResource("CapsuleShape2D_lstr7")
+
+[node name="SpawnerDamagePopup" parent="Health" instance=ExtResource("5_lsnli")]
 
 [node name="DeslocateToPlayer" parent="." instance=ExtResource("3_pap3l")]
 position = Vector2(0, -4)

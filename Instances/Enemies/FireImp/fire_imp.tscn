@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dv7n1xxrx63pk"]
+[gd_scene load_steps=28 format=3 uid="uid://dv7n1xxrx63pk"]
 
 [ext_resource type="PackedScene" uid="uid://b4asjdyoyep5s" path="res://Instances/Components/Health/Health.tscn" id="1_c0w5v"]
 [ext_resource type="Script" path="res://Instances/Enemies/FireImp/FireImp.gd" id="1_cuo2c"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cwyxu1ysjtku7" path="res://Instances/Components/DropXp/DropXp.tscn" id="4_my0ot"]
 [ext_resource type="AudioStream" uid="uid://dmup1gun0pjth" path="res://Instances/Enemies/Audio/Explosion_04.mp3" id="5_5i75p"]
 [ext_resource type="Texture2D" uid="uid://cq3wrgwnra0xh" path="res://Instances/Enemies/FireImp/pixil-frame-0.png" id="5_8awd1"]
+[ext_resource type="PackedScene" uid="uid://bjsnss7q14dlj" path="res://Instances/Components/SpawnerDamagePopup/SpawnerDamagePopup.tscn" id="5_e6huy"]
 [ext_resource type="PackedScene" uid="uid://bjwrgsdbjvqw3" path="res://Instances/Components/DeathEffect/DeathExplosion.tscn" id="5_elfp8"]
 [ext_resource type="PackedScene" uid="uid://of0xsffqavim" path="res://Instances/Components/EnemyDeath/EnemyDeath.tscn" id="6_dnmml"]
 [ext_resource type="PackedScene" uid="uid://8mpq1pm143kp" path="res://Instances/Components/HealthBar/HealthBar.tscn" id="7_hx42f"]
@@ -69,6 +70,8 @@ hitAudio = ExtResource("12_h0g4u")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Health"]
 position = Vector2(0, -6)
 shape = SubResource("CapsuleShape2D_mdkwq")
+
+[node name="SpawnerDamagePopup" parent="Health" instance=ExtResource("5_e6huy")]
 
 [node name="FlashHit" parent="." node_paths=PackedStringArray("animatedSprite") instance=ExtResource("2_ukofy")]
 animatedSprite = NodePath("../GroupFlip/AnimatedSprite2D")
