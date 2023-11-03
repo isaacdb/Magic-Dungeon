@@ -37,7 +37,7 @@ size = Vector2(11, 10)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0v2od"]
 resource_local_to_scene = true
 shader = ExtResource("7_hsfs1")
-shader_parameter/flash_color = Color(1, 0, 0, 1)
+shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifier = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mxf5w"]
