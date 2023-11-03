@@ -63,8 +63,8 @@ func GetRandomBossRoom() -> int:
 	bossRoomsUseds.insert(0, bossRoomIndex);
 	return bossRoomIndex;
 
-func GetRandomEnemyPack() -> int:
-	var enemiesPackAvailable = get_number_of_enemy_packs();
+func GetRandomEnemyPack(path: String) -> int:
+	var enemiesPackAvailable = get_number_of_resources(path);
 	var enemyPackIndex = rand.randi_range(1, enemiesPackAvailable);
 	
 	while enemiesPackUseds.any(func(number): return number == enemyPackIndex):
@@ -74,9 +74,9 @@ func GetRandomEnemyPack() -> int:
 	
 	return enemyPackIndex;
 	
-func get_number_of_enemy_packs() -> int:
+func get_number_of_resources(path: String) -> int:
 	var count: int = 0
-	var dir = DirAccess.open("res://Instances/Resources/EnemiesPack/Nivel1/")
+	var dir = DirAccess.open(path)
 	if dir:
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
@@ -88,3 +88,14 @@ func get_number_of_enemy_packs() -> int:
 		print("ERRO AO TENTAR BUSCAR QUANTIDADE DE PACKS DE INIMIGOS")
 	
 	return count;
+	
+func GetRandomResource(path: String) -> int:
+	var enemiesPackAvailable = get_number_of_resources(path);
+	var enemyPackIndex = rand.randi_range(1, enemiesPackAvailable);
+	
+	while enemiesPackUseds.any(func(number): return number == enemyPackIndex):
+		enemyPackIndex = rand.randi_range(1, enemiesPackAvailable);
+	
+	enemiesPackUseds.insert(0, enemyPackIndex);
+	
+	return enemyPackIndex;

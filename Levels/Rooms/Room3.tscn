@@ -1,7 +1,6 @@
 [gd_scene load_steps=23 format=3 uid="uid://c67x1nblgxrga"]
 
-[ext_resource type="Script" path="res://Scripts/Room2.gd" id="1_cexsa"]
-[ext_resource type="PackedScene" uid="uid://dhqly5q1v8pys" path="res://Instances/Components/SpawnEffect/SpawnEffect.tscn" id="2_4lpsc"]
+[ext_resource type="Script" path="res://Scripts/Room3.gd" id="1_231x3"]
 [ext_resource type="PackedScene" uid="uid://dbagu3ctathua" path="res://Levels/RoomTemplate.tscn" id="3_7bvvh"]
 [ext_resource type="PackedScene" uid="uid://pnthfjsqolx2" path="res://Instances/Components/Camera/Camera.tscn" id="3_jbrgl"]
 [ext_resource type="PackedScene" uid="uid://03my8igrvwt8" path="res://Instances/Tilemap/TileMapWalls.tscn" id="4_302id"]
@@ -16,6 +15,9 @@
 [ext_resource type="Texture2D" uid="uid://b6l8fu6uss63t" path="res://Assets/Dust.png" id="14_6dhiy"]
 [ext_resource type="PackedScene" uid="uid://ccth7h5t4bfu" path="res://Instances/Props/Gate/Gate.tscn" id="15_j27p1"]
 [ext_resource type="AudioStream" uid="uid://7rg6q1b0mlcl" path="res://Assets/Audios/Gates.ogg" id="16_qsiym"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_px058"]
+size = Vector2(443, 303)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yl17v"]
 particles_animation = true
@@ -43,10 +45,16 @@ fill_to = Vector2(0.504274, 0)
 
 [node name="Room3" type="Node2D" node_paths=PackedStringArray("gateExit", "audioPlayer")]
 y_sort_enabled = true
-script = ExtResource("1_cexsa")
+script = ExtResource("1_231x3")
 gateExit = NodePath("Gate-Exit")
-spawnAlert = ExtResource("2_4lpsc")
 audioPlayer = NodePath("AudioRoomsGate")
+
+[node name="SpawnArea" type="Area2D" parent="."]
+position = Vector2(447, 244)
+
+[node name="SpawnAreaCollider" type="CollisionShape2D" parent="SpawnArea"]
+position = Vector2(-6.5, 14.5)
+shape = SubResource("RectangleShape2D_px058")
 
 [node name="Camera2D" parent="." instance=ExtResource("3_jbrgl")]
 z_index = 1000

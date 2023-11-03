@@ -1,9 +1,8 @@
 [gd_scene load_steps=22 format=3 uid="uid://d0cyny7a08ejb"]
 
 [ext_resource type="PackedScene" uid="uid://dbagu3ctathua" path="res://Levels/RoomTemplate.tscn" id="1_cqooj"]
-[ext_resource type="Script" path="res://Scripts/Room2.gd" id="1_r2uw8"]
+[ext_resource type="Script" path="res://Scripts/Room3.gd" id="1_qafxc"]
 [ext_resource type="PackedScene" uid="uid://03my8igrvwt8" path="res://Instances/Tilemap/TileMapWalls.tscn" id="2_4k1rh"]
-[ext_resource type="PackedScene" uid="uid://dhqly5q1v8pys" path="res://Instances/Components/SpawnEffect/SpawnEffect.tscn" id="2_w3r0r"]
 [ext_resource type="PackedScene" uid="uid://pnthfjsqolx2" path="res://Instances/Components/Camera/Camera.tscn" id="3_i873n"]
 [ext_resource type="PackedScene" uid="uid://d2iv4f2anflh4" path="res://Instances/Tilemap/TileMapGround.tscn" id="3_mx4cq"]
 [ext_resource type="PackedScene" uid="uid://cfc0jruo74mst" path="res://Instances/Props/Torch/Torch.tscn" id="5_swbrv"]
@@ -15,6 +14,9 @@
 [ext_resource type="Texture2D" uid="uid://b6l8fu6uss63t" path="res://Assets/Dust.png" id="14_e0wti"]
 [ext_resource type="PackedScene" uid="uid://ccth7h5t4bfu" path="res://Instances/Props/Gate/Gate.tscn" id="15_k2g07"]
 [ext_resource type="AudioStream" uid="uid://7rg6q1b0mlcl" path="res://Assets/Audios/Gates.ogg" id="16_mwxk6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lsdlt"]
+size = Vector2(438, 301)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yl17v"]
 particles_animation = true
@@ -42,10 +44,16 @@ fill_to = Vector2(0.504274, 0)
 
 [node name="Room2" type="Node2D" node_paths=PackedStringArray("gateExit", "audioPlayer")]
 y_sort_enabled = true
-script = ExtResource("1_r2uw8")
+script = ExtResource("1_qafxc")
 gateExit = NodePath("Gate-Exit")
-spawnAlert = ExtResource("2_w3r0r")
 audioPlayer = NodePath("AudioRoomsGate")
+
+[node name="SpawnArea" type="Area2D" parent="."]
+position = Vector2(447, 244)
+
+[node name="SpawnAreaCollider" type="CollisionShape2D" parent="SpawnArea"]
+position = Vector2(-4, 13.5)
+shape = SubResource("RectangleShape2D_lsdlt")
 
 [node name="Camera2D" parent="." instance=ExtResource("3_i873n")]
 z_index = 1000

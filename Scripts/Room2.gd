@@ -12,7 +12,7 @@ var enemyPack : EnemyPack
 var areaClean = false
 var spawnPointsUsed : Array[int]
 var enemiesCount := 0
-var enemiesKilled := 0 
+var enemiesIdKilled : Array[int]
 var waveCount := 0
 
 func _ready():
@@ -28,7 +28,7 @@ func GetRandomEnemyPack() -> void:
 		var randBossPack = ProgressManager.GetRandomBossPack();
 		enemyPack = ResourceLoader.load("res://Instances/Resources/EnemiesPack/Bosses/Boss" + str(randBossPack) + ".tres");		
 	else:
-		var randEnemyPack = ProgressManager.GetRandomEnemyPack();
+		var randEnemyPack = ProgressManager.GetRandomEnemyPack("res://Instances/Resources/EnemiesPack/Nivel1/");
 		enemyPack = ResourceLoader.load("res://Instances/Resources/EnemiesPack/Nivel1/Pack" + str(randEnemyPack) + ".tres");
 	pass
 
@@ -48,7 +48,7 @@ func spawn_enemies() -> void:
 			newSpawn.objectToSpawn = enemy
 			newSpawn.global_position = get_random_spawn_point()
 			enemiesCount += 1
-		
+			
 		enemyNum += 1
 	pass
 
@@ -62,17 +62,20 @@ func get_random_spawn_point() -> Vector2:
 	
 	return spawnPoints[positionIndex].global_position
 	
-func enemy_killed(enemyPosition) -> void:
-	enemiesKilled += 1
+func enemy_killed(enemy: CharacterBody2D) -> void:
+	if enemiesIdKilled.find(enemy.get_instance_id()) != -1:
+		return
+		
+	enemiesIdKilled.append(enemy.get_instance_id())
 	
-	if enemiesKilled >= enemiesCount:
+	if enemiesIdKilled.size() >= enemiesCount:
 		if waveCount >= enemyPack.waveAmount:
 			gateExit.open()
 			areaClean = true
 			Global.room_cleared.emit()
 			audioPlayer.play()
 		else:
-			enemiesKilled = 0
-			enemiesCount = 0
+			enemiesCount = 0;
+			enemiesIdKilled.clear()
 			spawnPointsUsed.clear()
-			spawn_enemies()
+			spawn_enemies();

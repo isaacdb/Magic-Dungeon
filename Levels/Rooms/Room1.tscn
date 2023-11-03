@@ -1,8 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://dyhneyx3pmplp"]
+[gd_scene load_steps=22 format=3 uid="uid://dyhneyx3pmplp"]
 
+[ext_resource type="Script" path="res://Scripts/Room3.gd" id="1_7o6mm"]
 [ext_resource type="PackedScene" uid="uid://dbagu3ctathua" path="res://Levels/RoomTemplate.tscn" id="1_8xjor"]
 [ext_resource type="PackedScene" uid="uid://03my8igrvwt8" path="res://Instances/Tilemap/TileMapWalls.tscn" id="1_kpn6q"]
-[ext_resource type="Script" path="res://Scripts/Room2.gd" id="1_sq6u1"]
 [ext_resource type="PackedScene" uid="uid://d2iv4f2anflh4" path="res://Instances/Tilemap/TileMapGround.tscn" id="2_s2j6g"]
 [ext_resource type="PackedScene" uid="uid://pnthfjsqolx2" path="res://Instances/Components/Camera/Camera.tscn" id="3_8g7px"]
 [ext_resource type="PackedScene" uid="uid://b1ihv7h1usawy" path="res://Instances/Props/Flags/Flag.tscn" id="3_hw72l"]
@@ -14,6 +14,9 @@
 [ext_resource type="Script" path="res://Scripts/Teleport.gd" id="13_tc18m"]
 [ext_resource type="Texture2D" uid="uid://b6l8fu6uss63t" path="res://Assets/Dust.png" id="14_f75kf"]
 [ext_resource type="AudioStream" uid="uid://7rg6q1b0mlcl" path="res://Assets/Audios/Gates.ogg" id="15_t6keb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_08rhs"]
+size = Vector2(451, 299)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yl17v"]
 particles_animation = true
@@ -41,9 +44,16 @@ fill_to = Vector2(0.504274, 0)
 
 [node name="Room1" type="Node2D" node_paths=PackedStringArray("gateExit", "audioPlayer")]
 y_sort_enabled = true
-script = ExtResource("1_sq6u1")
+script = ExtResource("1_7o6mm")
 gateExit = NodePath("Gate-Exit")
 audioPlayer = NodePath("AudioRoomsGate")
+
+[node name="SpawnArea" type="Area2D" parent="."]
+position = Vector2(447, 244)
+
+[node name="SpawnAreaCollider" type="CollisionShape2D" parent="SpawnArea"]
+position = Vector2(-10.5, 12.5)
+shape = SubResource("RectangleShape2D_08rhs")
 
 [node name="Camera2D" parent="." instance=ExtResource("3_8g7px")]
 z_index = 1000

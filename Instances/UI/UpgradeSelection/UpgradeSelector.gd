@@ -8,12 +8,12 @@ class_name UpgradeSelector
 @onready var audioConfirm := $AudioPlayerSelectUpgrade as AudioStreamPlayer2D
 @onready var audioLevelUp := $AudioPlayerLevelUp as AudioStreamPlayer2D
 
-var listOfUpgradesAvaiable : Array[UpgradeStats] = []
+var listOfUpgradesAvaiable : Array[Resource] = []
 var chosenUpgradesIndex : Array[int] = []
 
 func _ready():
 	Global.level_up.connect(ActiveSelector)
-	listOfUpgradesAvaiable = UpgradeManager.listOfUpgradesAvaiable
+	listOfUpgradesAvaiable = UpgradeManager.listOfUpgradesAvaiable;
 	pass
 	
 func ActiveSelector():
@@ -73,4 +73,4 @@ func GetRandomUpgrade() -> UpgradeStats:
 	
 	chosenUpgradesIndex.append(randIndex)
 	
-	return listOfUpgradesAvaiable[randIndex]
+	return listOfUpgradesAvaiable[randIndex] as UpgradeStats;

@@ -16,7 +16,7 @@ func Clean():
 	Global.enemy_killed.disconnect(CreateExplosion)
 	pass
 
-func CreateExplosion(enemyPosition: Node2D) -> void:
+func CreateExplosion(enemy: CharacterBody2D) -> void:
 	if not is_instance_valid(playerInstance):
 		return
 		
@@ -26,8 +26,8 @@ func CreateExplosion(enemyPosition: Node2D) -> void:
 	explosion.bullet.damage /= 2
 	explosion.bullet.bulletFireAmount = 1
 	
-	var bulletParent = enemyPosition.get_tree().get_first_node_in_group("BulletParent");
+	var bulletParent = enemy.get_tree().get_first_node_in_group("BulletParent");
 	bulletParent.add_child(explosion);
 	
-	explosion.global_position = enemyPosition.global_position
+	explosion.global_position = enemy.global_position
 	pass

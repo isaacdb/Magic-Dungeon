@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EnemyImpact" load_steps=3 format=3 uid="uid://ctgxq7y764teq"]
+
+[ext_resource type="PackedScene" uid="uid://d3j4vevwj6ecg" path="res://Instances/Enemies/MageOrcN/MageOrcN.tscn" id="1_unfwj"]
+[ext_resource type="Script" path="res://Instances/Resources/EnemiesPack/EnemyImpact/EnemyImpact.gd" id="2_cth7t"]
+
+[resource]
+script = ExtResource("2_cth7t")
+impact = 5
+enemy = ExtResource("1_unfwj")

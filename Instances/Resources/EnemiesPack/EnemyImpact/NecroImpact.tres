@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EnemyImpact" load_steps=3 format=3 uid="uid://dqcmt2cee4x2d"]
+
+[ext_resource type="PackedScene" uid="uid://cdqitnnnisgfs" path="res://Instances/Enemies/Necro/necro.tscn" id="1_t6xlp"]
+[ext_resource type="Script" path="res://Instances/Resources/EnemiesPack/EnemyImpact/EnemyImpact.gd" id="2_qc2et"]
+
+[resource]
+script = ExtResource("2_qc2et")
+impact = 4
+enemy = ExtResource("1_t6xlp")

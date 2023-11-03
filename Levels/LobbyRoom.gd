@@ -4,8 +4,5 @@ func _init():
 	StatsManager.SetupStartStats();
 	Global.playerIsAlive = true;
 	Global.gameFinished = false
-	ProgressManager.CleanProgress();
+	ProgressManager2.CleanProgress();
 	UpgradeManager.CleanUpgrades();
-
-func _ready():
-	pass

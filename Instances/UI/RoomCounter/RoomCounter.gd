@@ -11,7 +11,7 @@ class_name RoomCounter
 @onready var containerBossRoom := %ContainerBossRoom as HBoxContainer
 
 func _ready():
-	if ProgressManager.currentRoomNumber == 0:
+	if ProgressManager2.currentRoomNumber == 0:
 		visible = false;
 	else:
 		visible = true;
@@ -27,15 +27,15 @@ func ShowUp() -> void:
 	pass
 
 func CreateIcons() -> void:
-	for i in range(1, ProgressManager.bossRoomNumber):
+	for i in range(1, ProgressManager2.bossRoomNumber):
 		var newIcon = TextureRect.new()
 		newIcon.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
 		newIcon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		
-		if ProgressManager.currentRoomNumber > i:
+		if ProgressManager2.currentRoomNumber > i:
 			#Defeated rooms
 			newIcon.texture = roomIconDefeated;
-		elif ProgressManager.currentRoomNumber == i:
+		elif ProgressManager2.currentRoomNumber == i:
 			#Battle Icon
 			newIcon.texture = currentRoomIcon;
 		else:
@@ -48,7 +48,7 @@ func CreateIcons() -> void:
 	bossIcon.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
 	bossIcon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	bossIcon.texture = bossRoomIcon
-	if ProgressManager.IsBossRoom():
+	if ProgressManager2.IsBossRoom():
 		bossIcon.texture = currentBossRoom
 		# Boss Battle
 		

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EnemyImpact" load_steps=3 format=3 uid="uid://b1cmom1ujad1e"]
+
+[ext_resource type="PackedScene" uid="uid://b4dipyjtak2xd" path="res://Instances/Enemies/PrecisionImp/precision_imp.tscn" id="1_ujlhq"]
+[ext_resource type="Script" path="res://Instances/Resources/EnemiesPack/EnemyImpact/EnemyImpact.gd" id="2_es2l8"]
+
+[resource]
+script = ExtResource("2_es2l8")
+impact = 5
+enemy = ExtResource("1_ujlhq")

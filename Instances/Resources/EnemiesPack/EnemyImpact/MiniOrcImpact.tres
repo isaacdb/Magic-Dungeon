@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EnemyImpact" load_steps=3 format=3 uid="uid://c8yxqnpoowyhu"]
+
+[ext_resource type="PackedScene" uid="uid://dmjqj7loxtlm8" path="res://Instances/Enemies/MiniOrc/MiniOrc.tscn" id="1_mpo7c"]
+[ext_resource type="Script" path="res://Instances/Resources/EnemiesPack/EnemyImpact/EnemyImpact.gd" id="2_ncgb0"]
+
+[resource]
+script = ExtResource("2_ncgb0")
+impact = 3
+enemy = ExtResource("1_mpo7c")

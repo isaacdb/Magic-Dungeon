@@ -17,5 +17,5 @@ func OnAreaEntered(area: Area2D) -> void:
 		if destinyScenePath:
 			get_tree().change_scene_to_file(destinyScenePath)
 		else:
-			ProgressManager.LoadNewRoom()
+			ProgressManager2.LoadNewRoom()
 	pass

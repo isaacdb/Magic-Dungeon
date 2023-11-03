@@ -13,7 +13,6 @@ func _ready():
 	pass
 	
 func Explode() -> void:
-	prints("amount", bulletAmount, "bullet double?", bullet.bulletFireAmount)
 	var angleBetweenBullets := 360.0 / bulletAmount
 	var angleFire = rnd.randf_range(0.0, 90.0) # Add random first angle
 	for i in bulletAmount:

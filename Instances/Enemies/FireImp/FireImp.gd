@@ -5,7 +5,7 @@ extends CharacterBody2D
 @export var speed := 80.0
 @export var life_base := 5.0
 @export var time_walking := 6.0
-@export var time_dle := 3.0
+@export var time_idle := 3.0
 @export var delay_fire := 0.5
 
 @onready var sprite := $GroupFlip/AnimatedSprite2D as AnimatedSprite2D
@@ -22,7 +22,7 @@ extends CharacterBody2D
 func _ready() -> void:
 	health_manager.SetLifeBase(life_base)
 
-	idle_state.setup_state(time_dle, sprite);
+	idle_state.setup_state(time_idle, sprite);
 	walk_and_fire_state.setup_state(sprite, speed, move_component, self, player_tracker, time_walking, delay_fire, attack_manager, group_flip)
 	
 	finite_state_machine.current_state = idle_state

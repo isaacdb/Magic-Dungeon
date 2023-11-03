@@ -22,10 +22,12 @@ buses/default_bus_layout="res://UI/Settings/Audio/default_audio_bus_layout.tres"
 
 [autoload]
 
+FileLoader="*res://Scripts/Singletons/FileLoader.gd"
 GeneralSettingsManager="*res://UI/Settings/General/GeneralSettingsManager.gd"
 StringUtil="*res://Scripts/Singletons/StringUtil.gd"
 MathUtil="*res://Scripts/Singletons/MathUtil.gd"
-ProgressManager="*res://Scripts/Singletons/ProgressManager.gd"
+ProgressManager="res://Scripts/Singletons/ProgressManager.gd"
+ProgressManager2="*res://Scripts/Singletons/ProgressManager2.gd"
 Global="*res://Scripts/Singletons/Global.gd"
 SoundTrack="*res://Instances/Components/Audio/SoundTrack.tscn"
 StatsManager="*res://Scripts/Singletons/StatsManager.gd"
