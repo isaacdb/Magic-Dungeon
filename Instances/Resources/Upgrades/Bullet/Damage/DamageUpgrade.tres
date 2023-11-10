@@ -6,8 +6,9 @@
 [resource]
 script = ExtResource("2_o8ixp")
 id = 1
-description = "Bullet damage will be increased by 30%"
 title = "Damage"
+descriptionPro = "Increase damage by #%"
+descriptionContra = "Reduce fire rate by $%"
 upgradeType = 3
 upgradeValue = 30.0
 downgradeValue = 10.0

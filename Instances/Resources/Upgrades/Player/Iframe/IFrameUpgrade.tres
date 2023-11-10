@@ -6,8 +6,10 @@
 [resource]
 script = ExtResource("1_k5a0o")
 id = 11
-description = "Iframe duration increased by 1 second"
 title = "IFrame"
+descriptionPro = "Increase the invencibility time by # sec when get hit"
+descriptionContra = ""
 upgradeType = 0
 upgradeValue = 1.0
+downgradeValue = 0.0
 icon = ExtResource("1_fpkeq")

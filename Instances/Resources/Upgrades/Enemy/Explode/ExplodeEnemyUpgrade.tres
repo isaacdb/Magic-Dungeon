@@ -8,8 +8,10 @@
 script = ExtResource("1_6a5di")
 explosionPrefab = ExtResource("1_1oeow")
 id = 15
-description = "Dead enemies will explode and fire 4 of their bullets. Each stack increases 2 more bullets. These bullets do half damage."
 title = "Explode Enemies"
+descriptionPro = "Explode enemies when they die"
+descriptionContra = ""
 upgradeType = 0
 upgradeValue = 2.0
+downgradeValue = 0.0
 icon = ExtResource("2_078s5")

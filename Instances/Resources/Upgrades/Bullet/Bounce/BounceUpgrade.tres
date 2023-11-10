@@ -6,8 +6,9 @@
 [resource]
 script = ExtResource("1_sl3tf")
 id = 8
-description = "Bullets will bounce on wall collision"
 title = "Bounce"
+descriptionPro = "Make bullets # bounce on walls"
+descriptionContra = "Reduce ammunition by $"
 upgradeType = 0
 upgradeValue = 1.0
 downgradeValue = 1.0

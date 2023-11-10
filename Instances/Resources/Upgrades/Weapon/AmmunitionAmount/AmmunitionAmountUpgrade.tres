@@ -6,8 +6,9 @@
 [resource]
 script = ExtResource("1_pqfeh")
 id = 5
-description = "Increase the ammunition max by 5"
 title = "Ammuniton"
+descriptionPro = "Add # to max ammunition"
+descriptionContra = "Increase the reload time by $%"
 upgradeType = 0
 upgradeValue = 5.0
 downgradeValue = 5.0

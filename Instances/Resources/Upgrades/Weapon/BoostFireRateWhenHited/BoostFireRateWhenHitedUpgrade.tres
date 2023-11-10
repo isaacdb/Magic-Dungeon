@@ -7,8 +7,10 @@
 script = ExtResource("1_3h0ol")
 durationTime = 3.0
 id = 13
-description = "When you get hited, gain 80% extra fire rate per 3 seconds. Each stack increase the boost duration by 3 seconds"
 title = "Boost when hited"
+descriptionPro = "Increase fire rate by #% when get hit"
+descriptionContra = ""
 upgradeType = 0
 upgradeValue = 80.0
+downgradeValue = 0.0
 icon = ExtResource("1_shqb4")

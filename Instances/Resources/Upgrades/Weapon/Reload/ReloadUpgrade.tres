@@ -6,8 +6,9 @@
 [resource]
 script = ExtResource("1_13umt")
 id = 4
-description = "Descrease the reaload time by 25%"
 title = " Reload time"
+descriptionPro = "Decrease reload time by #%"
+descriptionContra = "Decrease fire rate by $%"
 upgradeType = 0
 upgradeValue = 15.0
 downgradeValue = 10.0

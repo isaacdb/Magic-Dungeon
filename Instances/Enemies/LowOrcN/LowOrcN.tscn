@@ -1,9 +1,10 @@
-[gd_scene load_steps=38 format=3 uid="uid://rdglfbq61btc"]
+[gd_scene load_steps=32 format=3 uid="uid://rdglfbq61btc"]
 
 [ext_resource type="Script" path="res://Instances/Enemies/LowOrcN/LowOrcN.gd" id="1_v5u44"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/Flash.gdshader" id="2_0f6yl"]
 [ext_resource type="Resource" uid="uid://c02atp32fln73" path="res://Instances/Resources/Bullets/BulletE1.tres" id="2_bxnmk"]
 [ext_resource type="PackedScene" uid="uid://b4asjdyoyep5s" path="res://Instances/Components/Health/Health.tscn" id="5_ybllr"]
+[ext_resource type="Texture2D" uid="uid://58xehv4u4pdu" path="res://Instances/Enemies/LowOrcN/low-orcN.png" id="5_ynp2t"]
 [ext_resource type="PackedScene" uid="uid://6fcg84clxst2" path="res://Instances/Components/Death/DeathManager.tscn" id="6_y0wxg"]
 [ext_resource type="AudioStream" uid="uid://hhj8od3wlwnn" path="res://Instances/Enemies/Audio/enemyHit.ogg" id="7_3v1x2"]
 [ext_resource type="PackedScene" uid="uid://bjwrgsdbjvqw3" path="res://Instances/Components/DeathEffect/DeathExplosion.tscn" id="7_0143p"]
@@ -35,63 +36,18 @@ shader = ExtResource("2_0f6yl")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifier = 0.0
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2fbrw"]
-load_path = "res://.godot/imported/low-orc.png-9c3f709eb8fc256c6504681c2ac8905a.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ckifb"]
-atlas = SubResource("CompressedTexture2D_2fbrw")
-region = Rect2(0, 0, 16, 20)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_erpwm"]
-atlas = SubResource("CompressedTexture2D_2fbrw")
-region = Rect2(16, 0, 16, 20)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vxg76"]
-atlas = SubResource("CompressedTexture2D_2fbrw")
-region = Rect2(32, 0, 16, 20)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6jg5u"]
-atlas = SubResource("CompressedTexture2D_2fbrw")
-region = Rect2(48, 0, 16, 20)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vjnxg"]
-atlas = SubResource("CompressedTexture2D_2fbrw")
-region = Rect2(64, 0, 16, 20)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lrukj"]
-atlas = SubResource("CompressedTexture2D_2fbrw")
-region = Rect2(80, 0, 16, 20)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ueiia"]
-atlas = SubResource("CompressedTexture2D_2fbrw")
-region = Rect2(96, 0, 16, 20)
+[sub_resource type="AtlasTexture" id="AtlasTexture_w40n5"]
+atlas = ExtResource("5_ynp2t")
+region = Rect2(0, 0, 15, 20)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_inkh6"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ckifb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_erpwm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vxg76")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6jg5u")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vjnxg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lrukj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ueiia")
+"texture": SubResource("AtlasTexture_w40n5")
 }],
 "loop": true,
-"name": &"Walk",
+"name": &"Idle",
 "speed": 5.0
 }]
 
@@ -124,7 +80,7 @@ playerTracker = NodePath("../../PlayerTracker")
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_7meio")
 sprite_frames = SubResource("SpriteFrames_inkh6")
-animation = &"Walk"
+animation = &"Idle"
 centered = false
 offset = Vector2(-8.062, -20.028)
 flip_h = true

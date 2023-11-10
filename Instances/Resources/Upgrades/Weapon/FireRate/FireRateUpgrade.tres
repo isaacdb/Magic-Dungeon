@@ -6,9 +6,10 @@
 [resource]
 script = ExtResource("2_8njfh")
 id = 3
-description = "Increase the fire rate by 25%"
 title = "Fire rate"
+descriptionPro = "Increase fire rate by #%"
+descriptionContra = "Decrease damage by $%"
 upgradeType = 0
 upgradeValue = 25.0
-downgradeValue = 15.0
+downgradeValue = 5.0
 icon = ExtResource("1_ops15")

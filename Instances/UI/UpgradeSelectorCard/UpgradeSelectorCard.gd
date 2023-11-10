@@ -1,9 +1,8 @@
-extends PanelContainer
-class_name UpgradeSelector
+extends Control
+class_name UpgradeSelectorCard
 
-@export var optionUpgrade = preload("res://Instances/UI/OptionUpgrade/OptionItem.tscn")
+@export var optionUpgradeCard = preload("res://Instances/UI/OptionUpgradeCard/option_upgrade_card.tscn")
 
-@onready var boxOptionList = %OptionList as VBoxContainer
 @onready var rnd = RandomNumberGenerator.new()
 @onready var audioConfirm := $AudioPlayerSelectUpgrade as AudioStreamPlayer2D
 @onready var audioLevelUp := $AudioPlayerLevelUp as AudioStreamPlayer2D
@@ -28,12 +27,14 @@ func ActiveSelector():
 	
 	audioLevelUp.play()
 	
+	var screen_size = get_viewport().get_visible_rect().size;
+	var width = (screen_size.x - 300) / 3;
 	for i in 3:
 		var upgradeStats = GetRandomUpgrade()
-		
-		var newOption = optionUpgrade.instantiate() as OptionItem
-		boxOptionList.add_child(newOption)
+		var newOption = optionUpgradeCard.instantiate() as OptionUpgradeCard
+		add_child(newOption)
 		newOption.Initialize(self, upgradeStats)
+		newOption.position.x = (width * (i)) + ((width - newOption.size.x) / 2) + 150
 	pass
 
 func UpgradeSelected(upgrade: UpgradeStats):
@@ -53,16 +54,18 @@ func UpgradeSelected(upgrade: UpgradeStats):
 	pass
 
 func DisabledButtons() -> void:
-	var upgrades = boxOptionList.get_children() as Array[OptionItem]
+	var upgrades = get_children();
 	for i in upgrades:
-		i.DisableButton();
+		if i.is_in_group("Card"):
+			i.DisableButton();
 	pass
 
 func CleanUpgradesListed():
 	chosenUpgradesIndex.clear()
-	var upgrades = boxOptionList.get_children() as Array[OptionItem]
+	var upgrades = get_children();
 	for i in upgrades:
-		i.queue_free()
+		if i.is_in_group("Card"):
+			i.queue_free();
 	pass
 
 func GetRandomUpgrade() -> UpgradeStats:

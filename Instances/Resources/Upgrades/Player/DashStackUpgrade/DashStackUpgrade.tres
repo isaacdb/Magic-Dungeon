@@ -6,8 +6,10 @@
 [resource]
 script = ExtResource("1_nbvo6")
 id = 0
-description = "You gain an extra dash"
 title = "Dash Stack"
+descriptionPro = "Get an extra dash stack"
+descriptionContra = ""
 upgradeType = 0
 upgradeValue = 0.0
+downgradeValue = 0.0
 icon = ExtResource("1_tgcv7")

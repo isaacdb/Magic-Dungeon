@@ -9,8 +9,13 @@ enum UpgradeTypes{
 }
 
 @export var id : int
-@export var description : String
 @export var title : String
+@export var descriptionPro : String:
+	get: return descriptionPro.replace("#", str(upgradeValue));
+	
+@export var descriptionContra : String:
+	get: return descriptionContra.replace("$", str(abs(downgradeValue)));
+	
 @export var upgradeType : UpgradeTypes
 @export var upgradeValue : float
 @export var downgradeValue : float:

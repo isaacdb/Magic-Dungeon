@@ -41,20 +41,6 @@ func SetCurrentLife(newCurrentLife: float):
 	if lifeBar:
 		lifeBar.value = currentHealth
 	pass
-
-func _process(delta):
-	if Input.is_action_just_pressed("ui_end"):
-		SelfDestroy()
-	pass
-	
-func SelfDestroy():
-	if get_parent().is_in_group("player"):
-		return
-	
-	var fakeAttack := Attack.new()
-	fakeAttack.damage = 100
-	take_damage(fakeAttack)
-	pass
 	
 func SetActive(active: bool):
 	isActive = active
